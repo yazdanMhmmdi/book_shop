@@ -1,3 +1,4 @@
+import 'package:book_shop/ui/home_screen.dart';
 import 'package:book_shop/ui/login_screen.dart';
 import 'package:book_shop/ui/sign_up_screen.dart';
 import 'package:book_shop/ui/splash_screen.dart';
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: LoginScreen(),
+      home: HomeScreen(),
     );
   }
 }

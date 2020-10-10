@@ -15,10 +15,13 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   MotionTabController _bottomNavController;
 
+  String home = "خانه", titles = "موضوعات", account = "حساب کاربری";
+
   @override
   void initState() {
     _bottomNavController =
         new MotionTabController(initialIndex: 0, vsync: this);
+    _bottomNavController.index = 2;
   }
 
   @override
@@ -26,18 +29,22 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-          child: MotionTabBarView(
-              controller: _bottomNavController,
-              children: <Widget>[
-            HomeTab(),
-            TitleTab(),
-            Container(
-              child: Text('3'),
-            ),
-          ])),
+          child: Directionality(
+        textDirection: TextDirection.rtl,
+        child: MotionTabBarView(
+            controller: _bottomNavController,
+            children: <Widget>[
+              Container(
+                child: Text('3'),
+              ),
+              TitleTab(),
+              HomeTab(),
+            ]),
+      )),
       bottomNavigationBar: MotionTabBar(
-        labels: ["خانه", "موضوعات", "حساب کاربری"],
-        initialSelectedTab: "خانه",
+        labels: [account, titles, home], //"خانه", "موضوعات", "حساب کاربری"
+        initialSelectedTab: home,
+
         tabIconColor: Color(0xffA3A2A8),
         tabSelectedColor: Color(txfColor),
         onTabItemSelected: (int value) {
@@ -46,14 +53,15 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             _bottomNavController.index = value;
           });
         },
-        icons: [Icons.home, Icons.book, Icons.person],
+        icons: [Icons.person, Icons.book, Icons.home],
         textStyle: TextStyle(
-            color: Colors.black87, fontFamily: "IranSans", fontSize: 16, fontWeight: FontWeight.w700),
+            color: Colors.black87,
+            fontFamily: "IranSans",
+            fontSize: 16,
+            fontWeight: FontWeight.w700),
       ),
     );
   }
-
-
 
   @override
   void dispose() {

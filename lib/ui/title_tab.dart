@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 class TitleTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
 
     return SingleChildScrollView(
       child: Column(
@@ -56,7 +55,7 @@ class TitleTab extends StatelessWidget {
                 physics: NeverScrollableScrollPhysics(),
                 crossAxisSpacing: 16,
                 mainAxisSpacing: 16,
-                childAspectRatio: (size.width / (size.height / 2)),
+                childAspectRatio: (MediaQuery.of(context).size.width / (MediaQuery.of(context).size.height / 2)),
                 children: <Widget>[
                   Container(
                     decoration: BoxDecoration(

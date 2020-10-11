@@ -27,42 +27,84 @@ class TitleTab extends StatelessWidget {
                       color: Color(txfColor).withOpacity(0.15),
                       borderRadius: BorderRadius.circular(18),
                     ),
-                    child: getTiles(Assets.drugImage, Strings.titleMedicine),
+                    child: Material(
+                        color: Colors.transparent,
+                        child: InkWell(
+                            splashColor: Colors.black12,
+                            borderRadius: BorderRadius.circular(18),
+                            onTap: () => print('medicine'),
+                            child: getTiles(
+                                Assets.drugImage, Strings.titleMedicine))),
                   ),
                   Container(
                     decoration: BoxDecoration(
                       color: Color(txfColor).withOpacity(0.15),
                       borderRadius: BorderRadius.circular(18),
                     ),
-                    child: getTiles(Assets.labToolImage, Strings.titleScience),
+                    child: Material(
+                        color: Colors.transparent,
+                        child: InkWell(
+                            splashColor: Colors.black12,
+                            borderRadius: BorderRadius.circular(18),
+                            onTap: () => print('science'),
+                            child: getTiles(
+                                Assets.labToolImage, Strings.titleScience))),
                   ),
                   Container(
                     decoration: BoxDecoration(
                       color: Color(txfColor).withOpacity(0.15),
                       borderRadius: BorderRadius.circular(18),
                     ),
-                    child: getTiles(Assets.historyImage, Strings.titleHistoric),
+                    child: Material(
+                        color: Colors.transparent,
+                        child: InkWell(
+                            splashColor: Colors.black12,
+                            borderRadius: BorderRadius.circular(18),
+                            onTap: () => print('historic'),
+                            child: getTiles(
+                                Assets.historyImage, Strings.titleHistoric))),
                   ),
                   Container(
                     decoration: BoxDecoration(
                       color: Color(txfColor).withOpacity(0.15),
                       borderRadius: BorderRadius.circular(18),
                     ),
-                    child: getTiles(Assets.lawImage, Strings.titleLaw),
+                    child: Material(
+                        color: Colors.transparent,
+                        child: InkWell(
+                            splashColor: Colors.black12,
+                            borderRadius: BorderRadius.circular(18),
+                            onTap: () => print('law'),
+                            child:
+                                getTiles(Assets.lawImage, Strings.titleLaw))),
                   ),
                   Container(
                     decoration: BoxDecoration(
                       color: Color(txfColor).withOpacity(0.15),
                       borderRadius: BorderRadius.circular(18),
                     ),
-                    child: getTiles(Assets.sportImage, Strings.titleSport),
+                    child: Material(
+                        color: Colors.transparent,
+                        child: InkWell(
+                            splashColor: Colors.black12,
+                            borderRadius: BorderRadius.circular(18),
+                            onTap: () => print('sport'),
+                            child: getTiles(
+                                Assets.sportImage, Strings.titleSport))),
                   ),
                   Container(
                     decoration: BoxDecoration(
                       color: Color(txfColor).withOpacity(0.15),
                       borderRadius: BorderRadius.circular(18),
                     ),
-                    child: getTiles(Assets.foodImage, Strings.titleFood),
+                    child: Material(
+                        color: Colors.transparent,
+                        child: InkWell(
+                            onTap: () => print('food'),
+                            splashColor: Colors.black12,
+                            borderRadius: BorderRadius.circular(18),
+                            child:
+                                getTiles(Assets.foodImage, Strings.titleFood))),
                   ),
                 ],
               ))
@@ -89,7 +131,7 @@ class TitleTab extends StatelessWidget {
           "$title",
           style: TextStyle(
               fontFamily: "IranSans", fontSize: 16, color: Colors.black87),
-        )
+        ),
       ],
     ));
   }

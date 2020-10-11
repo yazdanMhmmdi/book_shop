@@ -23,7 +23,7 @@ class Strings {
   static final String titleHistoric = "تاریخی";
   static final String titleFood = "غذایی";
   static final String titleSport = "ورزشی";
-  static final String titleLabel = "موضوعات";
+  static final String titleLabel = "دسته بندی";
   //
   static final String detailAboutBook = "درباره کتاب";
   static final String detailABoutPublisher = "درباره ناشر";

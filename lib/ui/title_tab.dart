@@ -1,4 +1,5 @@
 import 'package:book_shop/constants/assets.dart';
+import 'package:book_shop/constants/strings.dart';
 import 'package:book_shop/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
@@ -33,7 +34,7 @@ class TitleTab extends StatelessWidget {
                       ),
                       Center(
                         child: Text(
-                          'دسته بندی',
+                          '${Strings.titleLabel}',
                           style: TextStyle(
                               fontFamily: "IranSans",
                               fontSize: 20,
@@ -62,42 +63,42 @@ class TitleTab extends StatelessWidget {
                       color: Color(txfColor).withOpacity(0.15),
                       borderRadius: BorderRadius.circular(18),
                     ),
-                    child: getTiles(Assets.drugImage, "دارویی"),
+                    child: getTiles(Assets.drugImage, Strings.titleMedicine),
                   ),
                   Container(
                     decoration: BoxDecoration(
                       color: Color(txfColor).withOpacity(0.15),
                       borderRadius: BorderRadius.circular(18),
                     ),
-                    child: getTiles(Assets.labToolImage, "علمی"),
+                    child: getTiles(Assets.labToolImage,Strings.titleScience),
                   ),
                   Container(
                     decoration: BoxDecoration(
                       color: Color(txfColor).withOpacity(0.15),
                       borderRadius: BorderRadius.circular(18),
                     ),
-                    child: getTiles(Assets.historyImage, "تاریخی"),
+                    child: getTiles(Assets.historyImage, Strings.titleHistoric),
                   ),
                   Container(
                     decoration: BoxDecoration(
                       color: Color(txfColor).withOpacity(0.15),
                       borderRadius: BorderRadius.circular(18),
                     ),
-                    child: getTiles(Assets.lawImage, "قضایی"),
+                    child: getTiles(Assets.lawImage, Strings.titleLaw),
                   ),
                   Container(
                     decoration: BoxDecoration(
                       color: Color(txfColor).withOpacity(0.15),
                       borderRadius: BorderRadius.circular(18),
                     ),
-                    child: getTiles(Assets.sportImage, "ورزشی"),
+                    child: getTiles(Assets.sportImage, Strings.titleSport),
                   ),
                   Container(
                     decoration: BoxDecoration(
                       color: Color(txfColor).withOpacity(0.15),
                       borderRadius: BorderRadius.circular(18),
                     ),
-                    child: getTiles(Assets.foodImage, "غذایی"),
+                    child: getTiles(Assets.foodImage, Strings.titleFood),
                   ),
                 ],
               ))

@@ -1,3 +1,4 @@
+import 'package:book_shop/constants/strings.dart';
 import 'package:book_shop/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/animation.dart';
@@ -36,23 +37,23 @@ class _LoginScreenState extends State<LoginScreen> {
                       children: [
                         SizedBox(height: 23),
                         Text(
-                          'ورود',
+                          Strings.loginLabel,
                           style: TextStyle(
                               fontFamily: "IranSans",
                               fontSize: 18,
                               fontWeight: FontWeight.w700),
                         ),
                         SizedBox(height: 16),
-                        registrationTextField(Icons.person, "نام کاربری..."),
+                        registrationTextField(Icons.person, Strings.usernameLabel),
                         SizedBox(height: 16),
-                        registrationTextField(Icons.lock, "رمز عبور..."),
+                        registrationTextField(Icons.lock, Strings.passwordLabel),
                         SizedBox(
                           height: 16,
                         ),
                         registrationButton(),
                         SizedBox(height: 8),
                         Text(
-                          'حساب کاربری ندارید؟ ثبت نام',
+                          Strings.loginNeedSignUp,
                           style: TextStyle(
                             fontSize: 14,
                             fontFamily: "IranSans",

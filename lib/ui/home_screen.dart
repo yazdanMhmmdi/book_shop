@@ -1,3 +1,4 @@
+import 'package:book_shop/constants/strings.dart';
 import 'package:book_shop/ui/home_tab.dart';
 import 'package:book_shop/ui/horizontal_card.dart';
 import 'package:book_shop/ui/title_tab.dart';
@@ -14,8 +15,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   MotionTabController _bottomNavController;
-
-  String home = "خانه", titles = "موضوعات", account = "حساب کاربری";
 
   @override
   void initState() {
@@ -42,8 +41,12 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             ]),
       )),
       bottomNavigationBar: MotionTabBar(
-        labels: [account, titles, home], //"خانه", "موضوعات", "حساب کاربری"
-        initialSelectedTab: home,
+        labels: [
+          Strings.bottomNavAccount,
+          Strings.bottomNavTitle,
+          Strings.bottomNavHome
+        ], //"خانه", "موضوعات", "حساب کاربری"
+        initialSelectedTab: Strings.bottomNavHome,
 
         tabIconColor: Color(0xffA3A2A8),
         tabSelectedColor: Color(txfColor),

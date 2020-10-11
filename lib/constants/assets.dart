@@ -6,5 +6,8 @@ class Assets {
   static final String sportImage = "assets/images/trophy.png";
   static final String labToolImage = "assets/images/lab_tool.png";
   static final String femaleAvatarImage = "assets/images/femle_avatar.png";
+  static final String sampleImage_1 = "assets/images/image_1.png";
+  static final String sampleImage_2 = "assets/images/image_2.png";
+
 
 }

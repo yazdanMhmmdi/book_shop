@@ -2,9 +2,12 @@ import 'package:book_shop/ui/home_screen.dart';
 import 'package:book_shop/ui/login_screen.dart';
 import 'package:book_shop/ui/sign_up_screen.dart';
 import 'package:book_shop/ui/splash_screen.dart';
+import 'package:book_shop/ui/title_details_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
 }
 
@@ -17,7 +20,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: HomeScreen(),
+      home: TitleDetailsScreen(),
     );
   }
 }

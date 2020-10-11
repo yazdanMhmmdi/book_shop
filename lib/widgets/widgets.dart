@@ -36,7 +36,7 @@ Widget backgroundShapes() {
   );
 }
 
-Widget registrationTextField(var icon, var text) {
+Widget textField(var icon, var text, Color textFieldColor, Function onTap) {
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 16),
     child: Directionality(
@@ -45,14 +45,14 @@ Widget registrationTextField(var icon, var text) {
         width: double.infinity,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
-          color: Color(txfColor).withOpacity(0.15),
+          color: textFieldColor,
         ),
         child: Padding(
           padding: const EdgeInsets.all(0.0),
           child: Row(
             children: [
               IconButton(
-                  icon: Icon(icon, color: Color(icoColor)), onPressed: () {}),
+                  icon: Icon(icon, color: Color(icoColor)), onPressed: onTap),
               Expanded(
                 child: TextField(
                   style: TextStyle(
@@ -79,7 +79,7 @@ Widget registrationTextField(var icon, var text) {
   );
 }
 
-Widget registrationButton() {
+Widget button(String text, Function onTap) {
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 16),
     child: Container(
@@ -92,11 +92,15 @@ Widget registrationButton() {
       child: Material(
         color: Colors.transparent,
         child: InkWell(
-            onTap: () => print('ss'),
+            onTap: onTap,
             child: Center(
                 child: Text(
-              Strings.signupRegister,
-              style: TextStyle(color: Colors.white),
+              text,
+              style: TextStyle(
+                  color: Colors.white,
+                  fontFamily: "IranSans",
+                  fontSize: 18,
+                  fontWeight: FontWeight.w700),
             ))),
       ),
     ),
@@ -141,3 +145,5 @@ Widget getToolBar(String title) {
     ),
   );
 }
+
+Widget whiteTextField() {}

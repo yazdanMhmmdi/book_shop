@@ -4,11 +4,11 @@ class Strings {
   static final String passwordLabel = "رمز عبور...";
   //sign up
   static final String signupLabel = "ثبت نام";
-  static final String signupRegister = "ثبت نام";
+  static final String signupAccept = "تایید";
   static final String signupDidYouSignedUp = "ثبت نام کرده اید؟ورود";
   //login
   static final String loginLabel = "ورود";
-  static final String loginEdit = "ویرایش";
+  static final String loginAccept = "تایید";
   static final String loginNeedSignUp = "حساب کاربری ندارید؟ ثبت نام";
   //home
   static final String homeMostSales = "پرفروش ترین ها";
@@ -27,7 +27,8 @@ class Strings {
   //
   static final String detailAboutBook = "درباره کتاب";
   static final String detailABoutPublisher = "درباره ناشر";
-  //
+  //account
   static final String accountLabel = "حساب کاربری";
   static final String accountEdit = "ویرایش";
+  static final String accountWelcome = "خوش آمدید!";
 }

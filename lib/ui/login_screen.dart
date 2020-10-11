@@ -44,13 +44,15 @@ class _LoginScreenState extends State<LoginScreen> {
                               fontWeight: FontWeight.w700),
                         ),
                         SizedBox(height: 16),
-                        registrationTextField(Icons.person, Strings.usernameLabel),
+                        textField(Icons.person, Strings.usernameLabel,
+                            Color(txfColor).withOpacity(0.15), () {}),
                         SizedBox(height: 16),
-                        registrationTextField(Icons.lock, Strings.passwordLabel),
+                        textField(Icons.lock, Strings.passwordLabel,
+                            Color(txfColor).withOpacity(0.15), () {}),
                         SizedBox(
                           height: 16,
                         ),
-                        registrationButton(),
+                        button(Strings.loginAccept, () {}),
                         SizedBox(height: 8),
                         Text(
                           Strings.loginNeedSignUp,

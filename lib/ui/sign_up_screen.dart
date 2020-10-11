@@ -1,3 +1,4 @@
+import 'package:book_shop/constants/colors.dart';
 import 'package:book_shop/constants/strings.dart';
 import 'package:book_shop/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -38,22 +39,30 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         SizedBox(height: 23),
                         Text(
                           Strings.signupLabel,
-                          style: TextStyle(fontFamily: "IranSans", fontSize: 18, fontWeight: FontWeight.w700),
+                          style: TextStyle(
+                              fontFamily: "IranSans",
+                              fontSize: 18,
+                              fontWeight: FontWeight.w700),
                         ),
                         SizedBox(height: 16),
-                        registrationTextField(Icons.person, Strings.usernameLabel),
+                        textField(Icons.person, Strings.usernameLabel,
+                            IColors.lowedBoldGreen, () {}),
                         SizedBox(height: 16),
-                        registrationTextField(Icons.lock, Strings.passwordLabel),
+                        textField(Icons.lock, Strings.passwordLabel,
+                            IColors.lowedBoldGreen, () {}),
                         SizedBox(
                           height: 16,
                         ),
-                        registrationButton(),
+                        button(Strings.signupAccept, () {}),
                         SizedBox(height: 8),
-                        Text(Strings.signupDidYouSignedUp, style: TextStyle(
-                          fontSize: 14,
-                          fontFamily: "IranSans",
-                          color: Color(0xff000000).withOpacity(0.55),
-                        ),),
+                        Text(
+                          Strings.signupDidYouSignedUp,
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontFamily: "IranSans",
+                            color: Color(0xff000000).withOpacity(0.55),
+                          ),
+                        ),
                         SizedBox(height: 16),
                       ],
                     )),

@@ -1,3 +1,4 @@
+import 'package:book_shop/constants/strings.dart';
 import 'package:flutter/material.dart';
 
 int bgColor = 0xffA2DE96;
@@ -94,10 +95,49 @@ Widget registrationButton() {
             onTap: () => print('ss'),
             child: Center(
                 child: Text(
-              'تایید',
+              Strings.signupRegister,
               style: TextStyle(color: Colors.white),
             ))),
       ),
+    ),
+  );
+}
+
+Widget getToolBar(String title) {
+  return Directionality(
+    textDirection: TextDirection.rtl,
+    child: Row(
+      children: [
+        SizedBox(
+          width: 24,
+        ),
+        Expanded(
+          child: Stack(
+            children: [
+              Container(
+                width: 24,
+                height: 24,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(4),
+                  color: Color(txfColor),
+                ),
+                child: Icon(Icons.arrow_back,
+                    textDirection: TextDirection.rtl, color: Colors.white),
+              ),
+              Center(
+                child: Text(
+                  title,
+                  style: TextStyle(
+                      fontFamily: "IranSans",
+                      fontSize: 20,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.black87),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
     ),
   );
 }

@@ -1,4 +1,5 @@
 import 'package:book_shop/constants/strings.dart';
+import 'package:book_shop/ui/account_tab.dart';
 import 'package:book_shop/ui/home_tab.dart';
 import 'package:book_shop/ui/horizontal_card.dart';
 import 'package:book_shop/ui/title_tab.dart';
@@ -33,9 +34,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         child: MotionTabBarView(
             controller: _bottomNavController,
             children: <Widget>[
-              Container(
-                child: Text('3'),
-              ),
+              AccountTab(),
               TitleTab(),
               HomeTab(),
             ]),

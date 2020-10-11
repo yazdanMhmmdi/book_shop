@@ -5,5 +5,6 @@ class Assets {
   static final String historyImage = "assets/images/hourglass.png";
   static final String sportImage = "assets/images/trophy.png";
   static final String labToolImage = "assets/images/lab_tool.png";
+  static final String femaleAvatarImage = "assets/images/femle_avatar.png";
 
 }

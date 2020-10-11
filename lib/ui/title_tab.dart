@@ -6,48 +6,11 @@ import 'package:flutter/material.dart';
 class TitleTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
     return SingleChildScrollView(
       child: Column(
         children: [
           SizedBox(height: 23),
-          Directionality(
-            textDirection: TextDirection.rtl,
-            child: Row(
-              children: [
-                SizedBox(
-                  width: 24,
-                ),
-                Expanded(
-                  child: Stack(
-                    children: [
-                      Container(
-                        width: 24,
-                        height: 24,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(4),
-                          color: Color(txfColor),
-                        ),
-                        child: Icon(Icons.arrow_back,
-                            textDirection: TextDirection.rtl,
-                            color: Colors.white),
-                      ),
-                      Center(
-                        child: Text(
-                          '${Strings.titleLabel}',
-                          style: TextStyle(
-                              fontFamily: "IranSans",
-                              fontSize: 20,
-                              fontWeight: FontWeight.w700,
-                              color: Colors.black87),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
+          getToolBar(Strings.titleLabel),
           Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 18),
               child: GridView.count(
@@ -56,7 +19,8 @@ class TitleTab extends StatelessWidget {
                 physics: NeverScrollableScrollPhysics(),
                 crossAxisSpacing: 16,
                 mainAxisSpacing: 16,
-                childAspectRatio: (MediaQuery.of(context).size.width / (MediaQuery.of(context).size.height / 2)),
+                childAspectRatio: (MediaQuery.of(context).size.width /
+                    (MediaQuery.of(context).size.height / 2)),
                 children: <Widget>[
                   Container(
                     decoration: BoxDecoration(
@@ -70,7 +34,7 @@ class TitleTab extends StatelessWidget {
                       color: Color(txfColor).withOpacity(0.15),
                       borderRadius: BorderRadius.circular(18),
                     ),
-                    child: getTiles(Assets.labToolImage,Strings.titleScience),
+                    child: getTiles(Assets.labToolImage, Strings.titleScience),
                   ),
                   Container(
                     decoration: BoxDecoration(
@@ -118,7 +82,9 @@ class TitleTab extends StatelessWidget {
           width: 45,
           height: 45,
         ),
-        SizedBox(height: 5,),
+        SizedBox(
+          height: 5,
+        ),
         Text(
           "$title",
           style: TextStyle(

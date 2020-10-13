@@ -20,7 +20,7 @@ Container(
 class _TitleSelectorState extends State<TitleSelector> {
   int _currentIndex = 0;
   bool _isSelected;
-  double rightPadding = 38;
+  double _rightPadding = 15;
   int temp = 0;
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,7 @@ class _TitleSelectorState extends State<TitleSelector> {
               ),
               AnimatedPositioned(
                   bottom: 2,
-                  right: rightPadding,
+                  right: _rightPadding,
                   child: Container(
                     height: 8,
                     width: 8,
@@ -70,17 +70,17 @@ class _TitleSelectorState extends State<TitleSelector> {
               if (temp > index) {
                 c = temp - c;
                 if (c <= 0) {
-                  rightPadding -= 70;
+                  _rightPadding -= 70;
                 } else {
-                  rightPadding = rightPadding- (c * 70);
+                  _rightPadding = _rightPadding - (c * 70);
                 }
               } else {
                 c = c - temp;
                 print(c);
                 if (c <= 0) {
-                  rightPadding += 70;
+                  _rightPadding += 70;
                 } else {
-                  rightPadding = (c * 70) + rightPadding;
+                  _rightPadding = (c * 70) + _rightPadding;
                 }
               }
               temp = index;

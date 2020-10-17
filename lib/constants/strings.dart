@@ -2,6 +2,8 @@ class Strings {
   //common in all pages
   static final String usernameLabel = "نام کاربری...";
   static final String passwordLabel = "رمز عبور...";
+  static final String jsonPeterson = "جیسون پیترسون";
+  static final String coastToCoastMurders = "قتل های انفجاری";
   //sign up
   static final String signupLabel = "ثبت نام";
   static final String signupAccept = "تایید";
@@ -27,8 +29,13 @@ class Strings {
   //
   static final String detailAboutBook = "درباره کتاب";
   static final String detailABoutPublisher = "درباره ناشر";
+  static final String detailsDescription = "توضیحات";
+  static final String detailsLoremIpsom ="لورم ایپسوم";
+  static final String detailsBuy = "خرید";
   //account
   static final String accountLabel = "حساب کاربری";
   static final String accountEdit = "ویرایش";
   static final String accountWelcome = "خوش آمدید!";
+  
+
 }

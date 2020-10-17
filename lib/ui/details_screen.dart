@@ -1,5 +1,7 @@
 import 'package:book_shop/constants/assets.dart';
 import 'package:book_shop/constants/colors.dart';
+import 'package:book_shop/constants/strings.dart';
+import 'package:book_shop/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 class DetailsScreen extends StatelessWidget {
@@ -30,21 +32,23 @@ class DetailsScreen extends StatelessWidget {
                               child: Column(
                                 children: [
                                   Text(
-                                    'جیسون پیترسون',
+                                    "${Strings.jsonPeterson}",
                                     style: TextStyle(
                                         fontFamily: "iranSans",
                                         fontSize: 20,
                                         color: Colors.black38),
                                   ),
                                   Text(
-                                    'قتل های انفجاری',
+                                    "${Strings.coastToCoastMurders}",
                                     style: TextStyle(
                                         fontFamily: "iranSans",
                                         fontSize: 24,
                                         fontWeight: FontWeight.w700,
                                         color: Colors.black87),
                                   ),
-                                  SizedBox(height: 10,),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
                                   Divider(
                                     height: 20,
                                     color: IColors.grey,
@@ -52,14 +56,25 @@ class DetailsScreen extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            SizedBox(height: 8,),
+                            SizedBox(
+                              height: 8,
+                            ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Column(
                                   children: [
-                                    Text('درباره کتاب'),
-                                    SizedBox(height: 4,),
+                                    Text(
+                                      Strings.detailAboutBook,
+                                      style: TextStyle(
+                                          fontFamily: "iranSans",
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w700,
+                                          color: Colors.black87),
+                                    ),
+                                    SizedBox(
+                                      height: 4,
+                                    ),
                                     Container(
                                       width: 58,
                                       height: 3,
@@ -70,11 +85,19 @@ class DetailsScreen extends StatelessWidget {
                                     )
                                   ],
                                 ),
-                                Text('اطلاعات ناشر'),
-
+                                Text(
+                                  Strings.detailABoutPublisher,
+                                  style: TextStyle(
+                                      fontFamily: "iranSans",
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w700,
+                                      color: Colors.black38),
+                                ),
                               ],
                             ),
-                            SizedBox(height: 16,),
+                            SizedBox(
+                              height: 16,
+                            ),
                             Container(
                               width: double.infinity,
                               decoration: BoxDecoration(
@@ -82,52 +105,48 @@ class DetailsScreen extends StatelessWidget {
                                 color: IColors.boldGreen.withOpacity(0.15),
                               ),
                               child: Padding(
-                                padding: const EdgeInsets.symmetric( vertical: 20),
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 20),
                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
                                   children: [
-                                    Column(
-                                      children: [
-                                        Text('زبان'),
-                                        Text('فارسی')
-                                      ],
-                                    ),
-                                    Column(
-                                      children: [
-                                        Text('زبان'),
-                                        Text('فارسی')
-                                      ],
-                                    ),
-                                    Column(
-                                      children: [
-                                        Text('زبان'),
-                                        Text('فارسی')
-                                      ],
-                                    ),
-                                    Column(
-                                      children: [
-                                        Text('زبان'),
-                                        Text('فارسی')
-                                      ],
-                                    ),
+                                    littleDialogBox("فارسی", "زبان"),
+                                    littleDialogBox("جلد", "فیزیکی"),
+                                    littleDialogBox("289", "صفحه"),
+                                    littleDialogBox("4.5", "رای")
                                   ],
                                 ),
                               ),
                             ),
-                            SizedBox(height: 16,),
-                            Text('درباره کتاب'),
-                            SizedBox(height: 8,),
-                            Text('لورم لورم ایپسوم فارسی'),
-                            SizedBox(height: 8,),
-                            Container(
-                              width: double.infinity,
-                              height: 46,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8),
-                                color: IColors.boldGreen,
-                              ),
-                              child: Center(child: Text('خرید')),
-                            )
+                            SizedBox(
+                              height: 16,
+                            ),
+                            Text(
+                              Strings.detailsDescription,
+                              style: TextStyle(
+                                  fontFamily: "iranSans",
+                                  fontSize: 20,
+                                  color: Colors.black87,
+                                  fontWeight: FontWeight.w700),
+                            ),
+                            SizedBox(
+                              height: 8,
+                            ),
+                            Text(
+                              '${Strings.detailsLoremIpsom}',
+                              style: TextStyle(
+                                  fontFamily: "iranSans",
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w700,
+                                  color: Colors.black38),
+                            ),
+                            SizedBox(
+                              height: 8,
+                            ),
+                            button(Strings.detailsBuy,() {
+                              print('sss');
+                            }),
                           ],
                         ),
                       ),
@@ -181,6 +200,54 @@ class DetailsScreen extends StatelessWidget {
           ),
         ],
       )),
+    );
+  }
+
+  Widget littleDialogBox(String title, String subTitle) {
+    return Column(
+      children: [
+        Text(
+          '$title',
+          style: TextStyle(
+            fontFamily: "iranSans",
+            fontSize: 20,
+            fontWeight: FontWeight.w700,
+            color: Colors.black87,
+          ),
+        ),
+        Text(
+          '$subTitle',
+          style: TextStyle(
+              fontFamily: "iranSans", fontSize: 18, color: Colors.black38),
+        )
+      ],
+    );
+  }
+
+  Widget myButton(Function onTap) {
+    return Container(
+      width: double.infinity,
+      height: 46,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8),
+        color: IColors.boldGreen,
+      ),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          borderRadius: BorderRadius.circular(8),
+          onTap: onTap,
+          child: Center(
+              child: Text(
+            'خرید',
+            style: TextStyle(
+                fontFamily: "iranSans",
+                fontSize: 18,
+                color: Colors.white70,
+                fontWeight: FontWeight.w700),
+          )),
+        ),
+      ),
     );
   }
 }

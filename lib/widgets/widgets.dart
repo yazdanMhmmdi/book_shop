@@ -80,29 +80,26 @@ Widget textField(var icon, var text, Color textFieldColor, Function onTap) {
 }
 
 Widget button(String text, Function onTap) {
-  return Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 16),
-    child: Container(
-      width: double.infinity,
-      height: 46,
-      decoration: BoxDecoration(
-        color: Color(btnColor),
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: Material(
-        color: Colors.transparent,
-        child: InkWell(
-            onTap: onTap,
-            child: Center(
-                child: Text(
-              text,
-              style: TextStyle(
-                  color: Colors.white,
-                  fontFamily: "IranSans",
-                  fontSize: 18,
-                  fontWeight: FontWeight.w700),
-            ))),
-      ),
+  return Container(
+    width: double.infinity,
+    height: 46,
+    decoration: BoxDecoration(
+      color: Color(btnColor),
+      borderRadius: BorderRadius.circular(8),
+    ),
+    child: Material(
+      color: Colors.transparent,
+      child: InkWell(
+          onTap: onTap,
+          child: Center(
+              child: Text(
+            text,
+            style: TextStyle(
+                color: Colors.white,
+                fontFamily: "IranSans",
+                fontSize: 18,
+                fontWeight: FontWeight.w700),
+          ))),
     ),
   );
 }

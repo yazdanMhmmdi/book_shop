@@ -8,6 +8,7 @@ class Assets {
   static final String femaleAvatarImage = "assets/images/femle_avatar.png";
   static final String sampleImage_1 = "assets/images/image_1.png";
   static final String sampleImage_2 = "assets/images/image_2.png";
+  static final String sampleBanner = "assets/images/slider_pic.png";
 
 
 }

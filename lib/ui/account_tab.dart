@@ -90,7 +90,10 @@ class AccountTab extends StatelessWidget {
                                           IColors.lowWhite,
                                           () {})),
                                           SizedBox(height: 16,),
-                                          button("ویرایش", () {}),
+                                          Padding(
+                                            padding: const EdgeInsets.symmetric(horizontal: 16),
+                                            child: button("ویرایش", () {}),
+                                          ),
                                 ],
                               ),
                             ),

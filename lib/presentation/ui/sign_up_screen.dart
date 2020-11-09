@@ -1,6 +1,6 @@
 import 'package:book_shop/constants/colors.dart';
 import 'package:book_shop/constants/strings.dart';
-import 'package:book_shop/widgets/widgets.dart';
+import 'package:book_shop/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -13,7 +13,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(bgColor),
+      backgroundColor: Color(bgColor), //TODO: Needs to be replace;
       body: SafeArea(
         child: Stack(
           children: [

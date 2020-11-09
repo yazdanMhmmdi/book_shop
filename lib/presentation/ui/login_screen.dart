@@ -1,5 +1,5 @@
 import 'package:book_shop/constants/strings.dart';
-import 'package:book_shop/widgets/widgets.dart';
+import 'package:book_shop/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/animation.dart';
 

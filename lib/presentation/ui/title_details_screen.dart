@@ -1,8 +1,7 @@
 import 'package:book_shop/constants/assets.dart';
 import 'package:book_shop/constants/strings.dart';
-import 'package:book_shop/ui/horizontal_card.dart';
-import 'package:book_shop/ui/vertical_card.dart';
-import 'package:book_shop/widgets/title_selector.dart';
+import 'package:book_shop/presentation/ui/vertical_card.dart';
+import 'package:book_shop/presentation/widgets/title_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 

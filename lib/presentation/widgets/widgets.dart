@@ -1,4 +1,3 @@
-import 'package:book_shop/constants/strings.dart';
 import 'package:flutter/material.dart';
 
 int bgColor = 0xffA2DE96;

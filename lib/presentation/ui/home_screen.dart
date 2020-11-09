@@ -1,9 +1,8 @@
 import 'package:book_shop/constants/strings.dart';
-import 'package:book_shop/ui/account_tab.dart';
-import 'package:book_shop/ui/home_tab.dart';
-import 'package:book_shop/ui/horizontal_card.dart';
-import 'package:book_shop/ui/title_tab.dart';
-import 'package:book_shop/widgets/widgets.dart';
+import 'package:book_shop/presentation/ui/account_tab.dart';
+import 'package:book_shop/presentation/ui/home_tab.dart';
+import 'package:book_shop/presentation/ui/title_tab.dart';
+import 'package:book_shop/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:motion_tab_bar/MotionTabBarView.dart';
 import 'package:motion_tab_bar/MotionTabController.dart';
@@ -48,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         initialSelectedTab: Strings.bottomNavHome,
 
         tabIconColor: Color(0xffA3A2A8),
-        tabSelectedColor: Color(txfColor),
+        tabSelectedColor: Color(txfColor), //TODO: needs to be replace
         onTabItemSelected: (int value) {
           print(value);
           setState(() {

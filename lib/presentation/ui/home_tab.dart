@@ -1,8 +1,7 @@
 import 'package:book_shop/constants/assets.dart';
 import 'package:book_shop/constants/colors.dart';
 import 'package:book_shop/constants/strings.dart';
-import 'package:book_shop/ui/vertical_card.dart';
-import 'package:book_shop/widgets/widgets.dart';
+import 'package:book_shop/presentation/ui/vertical_card.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:worm_indicator/indicator.dart';

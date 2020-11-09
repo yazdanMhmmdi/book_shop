@@ -1,6 +1,8 @@
+import 'package:book_shop/logic/bloc/auth_bloc.dart';
 import 'package:book_shop/presentation/ui/home_screen.dart';
 import 'package:book_shop/presentation/ui/login_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,7 +19,10 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       routes: {
-        '/': (context) => LoginScreen(),
+        '/': (context) => BlocProvider<AuthBloc>(
+              create: (BuildContext context) => AuthBloc(),
+              child: LoginScreen(),
+            )
       },
     );
   }

@@ -10,6 +10,16 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
+  TextEditingController _usernameController;
+  TextEditingController _passwordController;
+
+  @override
+  void initState() {
+    _usernameController = new TextEditingController();
+    _passwordController = new TextEditingController();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,10 +56,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ),
                         SizedBox(height: 16),
                         textField(Icons.person, Strings.usernameLabel,
-                            IColors.lowedBoldGreen, () {}),
+                            IColors.lowedBoldGreen, _usernameController),
                         SizedBox(height: 16),
                         textField(Icons.lock, Strings.passwordLabel,
-                            IColors.lowedBoldGreen, () {}),
+                            IColors.lowedBoldGreen, _passwordController),
                         SizedBox(
                           height: 16,
                         ),

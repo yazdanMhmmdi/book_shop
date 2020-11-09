@@ -4,7 +4,22 @@ import 'package:book_shop/constants/strings.dart';
 import 'package:book_shop/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
-class AccountTab extends StatelessWidget {
+class AccountTab extends StatefulWidget {
+  @override
+  _AccountTabState createState() => _AccountTabState();
+}
+
+class _AccountTabState extends State<AccountTab> {
+  TextEditingController _usernameController;
+  TextEditingController _passwordController;
+
+  @override
+  void initState() {
+    _usernameController = new TextEditingController();
+    _passwordController = new TextEditingController();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -73,27 +88,34 @@ class AccountTab extends StatelessWidget {
                                         fontSize: 16,
                                         color: Colors.white),
                                   ),
-                                  SizedBox(height: 16,),
+                                  SizedBox(
+                                    height: 16,
+                                  ),
                                   Container(
                                       height: 46,
                                       child: textField(
                                           Icons.person,
                                           Strings.usernameLabel,
                                           IColors.lowWhite,
-                                          () {})),
-                                          SizedBox(height: 16,),
-                                          Container(
+                                          _usernameController)),
+                                  SizedBox(
+                                    height: 16,
+                                  ),
+                                  Container(
                                       height: 46,
                                       child: textField(
                                           Icons.lock,
                                           Strings.passwordLabel,
                                           IColors.lowWhite,
-                                          () {})),
-                                          SizedBox(height: 16,),
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(horizontal: 16),
-                                            child: button("ویرایش", () {}),
-                                          ),
+                                          _passwordController)),
+                                  SizedBox(
+                                    height: 16,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 16),
+                                    child: button("ویرایش", () {}),
+                                  ),
                                 ],
                               ),
                             ),

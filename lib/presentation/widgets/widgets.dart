@@ -35,7 +35,8 @@ Widget backgroundShapes() {
   );
 }
 
-Widget textField(var icon, var text, Color textFieldColor, Function onTap) {
+Widget textField(var icon, var text, Color textFieldColor,
+    TextEditingController _controller) {
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 16),
     child: Directionality(
@@ -51,9 +52,10 @@ Widget textField(var icon, var text, Color textFieldColor, Function onTap) {
           child: Row(
             children: [
               IconButton(
-                  icon: Icon(icon, color: Color(icoColor)), onPressed: onTap),
+                  icon: Icon(icon, color: Color(icoColor)), onPressed: () {}),
               Expanded(
                 child: TextField(
+                  controller: _controller,
                   style: TextStyle(
                     fontSize: 16,
                     fontFamily: "IranSans",

@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         '/': (context) => BlocProvider<AuthBloc>(
-              create: (BuildContext context) => AuthBloc(),
+              create: (BuildContext buildContext) => AuthBloc(),
               child: LoginScreen(),
             )
       },

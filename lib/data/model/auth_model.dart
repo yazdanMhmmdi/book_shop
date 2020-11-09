@@ -8,10 +8,9 @@ class AuthModel {
 
   factory AuthModel.fromJson(Map<String, dynamic> parsedJson) {
     return AuthModel(
-      id: parsedJson['id'],
-      password: parsedJson['password'],
-      username: parsedJson['username'],
-      status: parsedJson['status'],
+      password: parsedJson["password"].toString(),
+      username: parsedJson["username"].toString(),
+      status: parsedJson["status"].toString(),
     );
   }
 }

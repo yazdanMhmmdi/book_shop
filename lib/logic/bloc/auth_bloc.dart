@@ -16,24 +16,17 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   Stream<AuthState> mapEventToState(
     AuthEvent event,
   ) async* {
-    // TODO: implement mapEventToState
     AuthModel _authModel;
     if (event is LoginEvent) {
       try {
         yield AuthLoading();
         print('AuthLoading');
-        _authModel = await _authRepository.login();
-        if (_authModel.status == "true") {
+        _authModel = await _authRepository.login(event.username, event.password);
           yield AuthSuccess(_authModel);
           print('AuthSuccess');
-        } else {
-          yield AuthFailure();
-          print('AuthFailure');
-        }
-      } catch (_) {
+      } catch (e) {
         yield AuthFailure();
-        print('auth failure');
-        throw Exception();
+        print('auth failure ${e.toString()}');
       }
     }
   }

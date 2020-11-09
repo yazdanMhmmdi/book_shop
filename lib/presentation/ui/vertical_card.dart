@@ -1,3 +1,4 @@
+import 'package:book_shop/presentation/widgets/widgets.dart';
 import 'package:book_shop/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +13,7 @@ class VerticalCard extends StatelessWidget {
       child: Container(
         height: 142,
         decoration: BoxDecoration(
-            color: Color(txfColor).withOpacity(0.15),
+            color: Color(txfColor).withOpacity(0.15),// TODO: Needs to be replace;
             borderRadius: BorderRadius.circular(8)),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,

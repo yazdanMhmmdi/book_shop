@@ -76,9 +76,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             Strings.loginAccept,
                             () async {
                               context.bloc<AuthBloc>().add(LoginEvent("username", "password"));
-                              // ApiProvider _s = new ApiProvider();
-                              // final res = await _s.get('http://192.168.1.4/book_shop/api/login_api.php?username=asdd&password=ss');
-                              // print(res);
+                              
                             },
                           ),
                         ),

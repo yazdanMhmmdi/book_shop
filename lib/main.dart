@@ -1,4 +1,5 @@
 import 'package:book_shop/presentation/ui/home_screen.dart';
+import 'package:book_shop/presentation/ui/login_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       routes: {
-        '/homeScreen': (context) => HomeScreen(),
+        '/': (context) => LoginScreen(),
       },
     );
   }

@@ -63,7 +63,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         SizedBox(
                           height: 16,
                         ),
-                        button(Strings.signupAccept, () {}),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          child: button(Strings.signupAccept, () {}),
+                        ),
                         SizedBox(height: 8),
                         Text(
                           Strings.signupDidYouSignedUp,

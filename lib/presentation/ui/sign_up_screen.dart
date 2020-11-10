@@ -1,8 +1,11 @@
+
 import 'package:book_shop/constants/colors.dart';
 import 'package:book_shop/constants/strings.dart';
+import 'package:book_shop/logic/bloc/auth_bloc.dart';
 import 'package:book_shop/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SignUpScreen extends StatefulWidget {
   @override
@@ -65,7 +68,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 16),
-                          child: button(Strings.signupAccept, () {}),
+                          child: button(Strings.signupAccept, () {
+                            context.bloc<AuthBloc>().add(SignUpEvent(
+                               username:  _usernameController.text,
+                               password: _passwordController.text));
+                          }),
                         ),
                         SizedBox(height: 8),
                         Text(

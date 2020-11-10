@@ -11,6 +11,8 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  final AuthBloc _authBloc = new AuthBloc();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -20,12 +22,12 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       routes: {
-        '/login': (context) => BlocProvider<AuthBloc>(
-              create: (BuildContext buildContext) => AuthBloc(),
+        '/login': (context) => BlocProvider.value(
+              value: _authBloc,
               child: LoginScreen(),
             ),
-        '/': (context) => BlocProvider<AuthBloc>(
-              create: (BuildContext buildContext) => AuthBloc(),
+        '/': (context) => BlocProvider.value(
+              value: _authBloc,
               child: SignUpScreen(),
             )
       },

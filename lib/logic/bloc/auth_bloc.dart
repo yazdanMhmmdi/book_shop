@@ -21,9 +21,22 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       try {
         yield AuthLoading();
         print('AuthLoading');
-        _authModel = await _authRepository.login(event.username, event.password);
-          yield AuthSuccess(_authModel);
-          print('AuthSuccess');
+        _authModel =
+            await _authRepository.login(event.username, event.password);
+        yield AuthSuccess(_authModel);
+        print('AuthSuccess');
+      } catch (e) {
+        yield AuthFailure();
+        print('auth failure ${e.toString()}');
+      }
+    } else if (event is SignUpEvent) {
+      try {
+        yield AuthLoading();
+        print('AuthLoading');
+        _authModel = await _authRepository.signUp(
+            username: event.username, password: event.password);
+        yield AuthSuccess(_authModel);
+        print('AuthSuccess');
       } catch (e) {
         yield AuthFailure();
         print('auth failure ${e.toString()}');

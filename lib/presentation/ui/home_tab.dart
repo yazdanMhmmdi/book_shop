@@ -1,17 +1,17 @@
 import 'package:book_shop/constants/assets.dart';
 import 'package:book_shop/constants/colors.dart';
 import 'package:book_shop/constants/strings.dart';
+import 'package:book_shop/data/model/home_model.dart';
+import 'package:book_shop/logic/bloc/home_bloc.dart';
 import 'package:book_shop/presentation/ui/vertical_card.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:worm_indicator/indicator.dart';
-import 'package:worm_indicator/shape.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'horizontal_card.dart';
 
 class HomeTab extends StatelessWidget {
   PageController _carouselController;
-
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -58,18 +58,18 @@ class HomeTab extends StatelessWidget {
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(8),
                                     color: IColors.green),
-                                    child: Row(
-                                      children: [
-                                        Image.asset(Assets.sampleBanner),
-                                      ],
-                                    ),
+                                child: Row(
+                                  children: [
+                                    Image.asset(Assets.sampleBanner),
+                                  ],
+                                ),
                               )
                             ],
                           ),
                         );
                       },
                       options: CarouselOptions(
-                        height: 175,
+                          height: 175,
                           viewportFraction: 0.8,
                           autoPlayInterval: Duration(seconds: 3),
                           autoPlayAnimationDuration:
@@ -78,7 +78,6 @@ class HomeTab extends StatelessWidget {
                           autoPlay: true,
                           initialPage: 0,
                           enlargeCenterPage: true)),
-                  
                 ],
               ),
             ),
@@ -86,14 +85,31 @@ class HomeTab extends StatelessWidget {
             SizedBox(height: 16),
             Container(
               height: 160,
-              child: ListView.builder(
-                padding: EdgeInsets.only(right: 8),
-                itemCount: 41,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) {
-                  return HorizontalCard();
-                },
-              ),
+              child:
+                  BlocBuilder<HomeBloc, HomeState>(builder: (context, state) {
+                if (state is HomeInitial) {
+                  return Container();
+                } else if (state is HomeLoading) {
+                  return CircularProgressIndicator();
+                } else if (state is HomeSuccess) {
+                  List<MostSalesBooks> msList = state.postModel.mostSalesBooks;
+                  return ListView.builder(
+                    padding: EdgeInsets.only(right: 8),
+                    itemCount: state.postModel.freshsBooks.length,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) {
+                      return HorizontalCard(
+                        id: msList[index].id,
+                        name: msList[index].name,
+                        thumbPicture: msList[index].pictureThumb,
+                        writer: msList[index].writer,
+                      );
+                    },
+                  );
+                } else if (state is HomeFailure) {
+                  return Container(); //TODO: Fix this spot
+                }
+              }),
             ),
             SizedBox(height: 16),
             titleText(Strings.homeFresh),

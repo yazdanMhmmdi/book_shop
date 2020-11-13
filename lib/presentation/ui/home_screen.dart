@@ -1,21 +1,24 @@
 import 'package:book_shop/constants/strings.dart';
+import 'package:book_shop/logic/bloc/home_bloc.dart';
 import 'package:book_shop/presentation/ui/account_tab.dart';
 import 'package:book_shop/presentation/ui/home_tab.dart';
 import 'package:book_shop/presentation/ui/title_tab.dart';
 import 'package:book_shop/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:motion_tab_bar/MotionTabBarView.dart';
 import 'package:motion_tab_bar/MotionTabController.dart';
 import 'package:motion_tab_bar/motiontabbar.dart';
 
 class HomeScreen extends StatefulWidget {
+  HomeBloc homeBloc;
   @override
   _HomeScreenState createState() => _HomeScreenState();
+  HomeScreen({@required this.homeBloc});
 }
 
 class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   MotionTabController _bottomNavController;
-
   @override
   void initState() {
     _bottomNavController =
@@ -25,6 +28,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -35,7 +39,10 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             children: <Widget>[
               AccountTab(),
               TitleTab(),
-              HomeTab(),
+              BlocProvider.value(
+                value: widget.homeBloc,
+                child: HomeTab(),
+              ),
             ]),
       )),
       bottomNavigationBar: MotionTabBar(

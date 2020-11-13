@@ -1,6 +1,15 @@
 import 'package:flutter/material.dart';
 
 class HorizontalCard extends StatelessWidget {
+  String id;
+  String writer;
+  String name;
+  String thumbPicture;
+  HorizontalCard(
+      {@required this.id,
+      @required this.name,
+      @required this.thumbPicture,
+      @required this.writer});
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -21,15 +30,17 @@ class HorizontalCard extends StatelessWidget {
             Container(
               width: 71,
               child: Text(
-                'جورک',
+                '${writer}',
                 style: TextStyle(
-                    color: Colors.black38, fontFamily: "IranSans", fontSize: 14),
+                    color: Colors.black38,
+                    fontFamily: "IranSans",
+                    fontSize: 14),
               ),
             ),
             Container(
               width: 71,
               child: Text(
-                'قتل های ',
+                '${name}',
                 style: TextStyle(
                     color: Colors.black87,
                     fontFamily: "IranSans",

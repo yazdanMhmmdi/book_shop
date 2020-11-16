@@ -116,8 +116,31 @@ class HomeTab extends StatelessWidget {
             SizedBox(
               height: 16,
             ),
-            VerticalCard(
-              image: Assets.sampleImage_1,
+            BlocBuilder<HomeBloc, HomeState>(
+              builder: (context, state) {
+                if (state is HomeInitial) {
+                  return Container();
+                } else if (state is HomeSuccess) {
+                  return ListView.builder(
+                    physics: NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: state.postModel.freshsBooks.length,
+                    itemBuilder: (context, index) {
+                      return VerticalCard(
+                        image: Assets.sampleImage_1,
+                        name: state.postModel.freshsBooks[index].name,
+                        thumbImage:
+                            state.postModel.freshsBooks[index].pictureThumb,
+                        writer: state.postModel.freshsBooks[index].writer,
+                      );
+                    },
+                  );
+                } else if (state is HomeLoading) {
+                  return CircularProgressIndicator();
+                } else if (state is HomeFailure) {
+                  return Text('HomeFailure');
+                }
+              },
             ),
           ],
         ),

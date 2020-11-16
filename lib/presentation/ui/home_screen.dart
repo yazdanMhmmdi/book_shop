@@ -1,4 +1,5 @@
 import 'package:book_shop/constants/strings.dart';
+import 'package:book_shop/logic/bloc/account_bloc.dart';
 import 'package:book_shop/logic/bloc/home_bloc.dart';
 import 'package:book_shop/presentation/ui/account_tab.dart';
 import 'package:book_shop/presentation/ui/home_tab.dart';
@@ -28,7 +29,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -37,7 +37,10 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         child: MotionTabBarView(
             controller: _bottomNavController,
             children: <Widget>[
-              AccountTab(),
+              BlocProvider(
+                create: (context) => AccountBloc(),
+                child: AccountTab(),
+              ),
               TitleTab(),
               BlocProvider.value(
                 value: widget.homeBloc,

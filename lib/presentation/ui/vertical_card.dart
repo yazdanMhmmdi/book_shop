@@ -3,7 +3,13 @@ import 'package:flutter/material.dart';
 
 class VerticalCard extends StatelessWidget {
   String image;
-  VerticalCard({@required this.image});
+  String name, writer, thumbImage;
+
+  VerticalCard(
+      {@required this.image,
+      @required this.name,
+      @required this.writer,
+      @required this.thumbImage});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +18,8 @@ class VerticalCard extends StatelessWidget {
       child: Container(
         height: 142,
         decoration: BoxDecoration(
-            color: Color(txfColor).withOpacity(0.15),// TODO: Needs to be replace;
+            color:
+                Color(txfColor).withOpacity(0.15), // TODO: Needs to be replace;
             borderRadius: BorderRadius.circular(8)),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -38,7 +45,7 @@ class VerticalCard extends StatelessWidget {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
                         color: Colors.red),
-                  child: Image.asset(image),
+                    child: Image.asset(image),
                   ),
                 ),
               ),

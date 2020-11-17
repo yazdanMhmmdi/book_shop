@@ -14,6 +14,7 @@ class AccountTab extends StatefulWidget {
 class _AccountTabState extends State<AccountTab> {
   TextEditingController _usernameController;
   TextEditingController _passwordController;
+  String username;
 
   @override
   void initState() {
@@ -34,6 +35,9 @@ class _AccountTabState extends State<AccountTab> {
             } else if (state is AccountSuccess) {
               _usernameController.text = state.accountModel.account.username;
               _passwordController.text = state.accountModel.account.password;
+              setState(() {
+                username = state.accountModel.account.username;
+              });
             } else if (state is AccountLoading) {
             } else if (state is AccountFailure) {}
           },
@@ -87,7 +91,7 @@ class _AccountTabState extends State<AccountTab> {
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Text(
-                                      "یزدان محمدی",
+                                      "${username}",
                                       style: TextStyle(
                                           fontFamily: "IranSans",
                                           fontSize: 18,

@@ -26,6 +26,13 @@ class HorizontalCard extends StatelessWidget {
                 color: Colors.red,
                 borderRadius: BorderRadius.circular(8),
               ),
+              child: Material(
+                color: Colors.transparent,
+                child: InkWell(
+                  splashColor: Colors.black12,
+                  onTap: () => print('hi'),
+                ),
+              ),
             ),
             Container(
               width: 71,

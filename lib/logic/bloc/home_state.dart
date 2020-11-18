@@ -1,4 +1,6 @@
-part of 'home_bloc.dart';
+
+import 'package:book_shop/data/model/home_model.dart';
+import 'package:equatable/equatable.dart';
 
 abstract class HomeState extends Equatable {
   const HomeState();

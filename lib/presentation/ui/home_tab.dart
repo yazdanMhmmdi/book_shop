@@ -3,6 +3,7 @@ import 'package:book_shop/constants/colors.dart';
 import 'package:book_shop/constants/strings.dart';
 import 'package:book_shop/data/model/home_model.dart';
 import 'package:book_shop/logic/bloc/home_bloc.dart';
+import 'package:book_shop/logic/bloc/home_state.dart';
 import 'package:book_shop/presentation/ui/vertical_card.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';

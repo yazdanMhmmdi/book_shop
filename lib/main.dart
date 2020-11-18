@@ -1,11 +1,15 @@
 import 'package:book_shop/logic/bloc/account_bloc.dart';
 import 'package:book_shop/logic/bloc/auth_bloc.dart';
 import 'package:book_shop/logic/bloc/home_bloc.dart';
+
+import 'package:book_shop/logic/bloc/home_event.dart';
 import 'package:book_shop/presentation/ui/home_screen.dart';
 import 'package:book_shop/presentation/ui/login_screen.dart';
 import 'package:book_shop/presentation/ui/sign_up_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'logic/bloc/home_bloc.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -34,12 +38,10 @@ class MyApp extends StatelessWidget {
               value: _authBloc,
               child: SignUpScreen(),
             ),
-        '/': (context) => BlocProvider.value(
-            value: _homeBloc,
-            child: HomeScreen(
+        '/': (context) => HomeScreen(
               homeBloc: _homeBloc..add(FetchEvent()),
-              accountBloc: _accountBloc,
-            )),
+              accountBloc: _accountBloc..add(GetDefaultEvent("1")),
+            )
       },
     );
   }

@@ -13,9 +13,10 @@ import 'package:motion_tab_bar/motiontabbar.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeBloc homeBloc;
+  AccountBloc accountBloc;
   @override
   _HomeScreenState createState() => _HomeScreenState();
-  HomeScreen({@required this.homeBloc});
+  HomeScreen({@required this.homeBloc, @required this.accountBloc});
 }
 
 class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
@@ -37,8 +38,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         child: MotionTabBarView(
             controller: _bottomNavController,
             children: <Widget>[
-              BlocProvider(
-                create: (context) => AccountBloc(),
+              BlocProvider.value(
+                value: widget.accountBloc,
                 child: AccountTab(),
               ),
               TitleTab(),

@@ -20,3 +20,15 @@ class AccountSuccess extends AccountState {
 }
 
 class AccountFailure extends AccountState {}
+
+class AccountEditingLoading extends AccountState {}
+
+class AccountEditingSuccess extends AccountState {
+  ResponseModel _responseModel;
+
+  AccountEditingSuccess(this._responseModel);
+  @override
+  List<Object> get props => [_responseModel];
+}
+
+class AccountEditingFailure extends AccountState {}

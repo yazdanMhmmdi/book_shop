@@ -26,58 +26,69 @@ class HomeTab extends StatelessWidget {
             Container(
               child: Column(
                 children: [
-                  CarouselSlider.builder(
-                      itemCount: 4,
-                      itemBuilder: (context, index) {
-                        return Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: Stack(
-                            children: [
-                              Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 18),
-                                child: Container(
-                                  height: 147,
-                                  decoration: BoxDecoration(
-                                      color: Colors.transparent,
-                                      borderRadius: BorderRadius.circular(8),
-                                      boxShadow: [
-                                        BoxShadow(
-                                            offset: Offset(0, 10),
-                                            spreadRadius: -2,
-                                            blurRadius: 20,
-                                            color: IColors.boldGreen
-                                                .withOpacity(0.75))
-                                      ]),
-                                ),
+                  BlocBuilder<HomeBloc, HomeState>(builder: (context, state) {
+                    if (state is HomeInitial) {
+                      return Container();
+                    } else if (state is HomeSuccess) {
+                      return CarouselSlider.builder(
+                          itemCount: state.postModel.poster.length,
+                          itemBuilder: (context, index) {
+                            return Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8),
                               ),
-                              Container(
-                                height: 147,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8),
-                                    color: IColors.green),
-                                child: Row(
-                                  children: [
-                                    Image.asset(Assets.sampleBanner),
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
-                        );
-                      },
-                      options: CarouselOptions(
-                          height: 175,
-                          viewportFraction: 0.8,
-                          autoPlayInterval: Duration(seconds: 3),
-                          autoPlayAnimationDuration:
-                              Duration(milliseconds: 800),
-                          autoPlayCurve: Curves.fastOutSlowIn,
-                          autoPlay: true,
-                          initialPage: 0,
-                          enlargeCenterPage: true)),
+                              child: Stack(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 18),
+                                    child: Container(
+                                      height: 147,
+                                      decoration: BoxDecoration(
+                                          color: Colors.transparent,
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                          boxShadow: [
+                                            BoxShadow(
+                                                offset: Offset(0, 10),
+                                                spreadRadius: -2,
+                                                blurRadius: 20,
+                                                color: IColors.boldGreen
+                                                    .withOpacity(0.75))
+                                          ]),
+                                    ),
+                                  ),
+                                  Container(
+                                    height: 147,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(8),
+                                        color: IColors.green),
+                                    child: Row(
+                                      children: [
+                                        Image.asset(Assets.sampleBanner),
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              ),
+                            );
+                          },
+                          options: CarouselOptions(
+                              height: 175,
+                              viewportFraction: 0.8,
+                              autoPlayInterval: Duration(seconds: 3),
+                              autoPlayAnimationDuration:
+                                  Duration(milliseconds: 800),
+                              autoPlayCurve: Curves.fastOutSlowIn,
+                              autoPlay: true,
+                              initialPage: 0,
+                              enlargeCenterPage: true));
+                    } else if (state is HomeLoading) {
+                      return Text('loading');
+                    } else if (state is HomeFailure) {
+                      return Text('failure');
+                    }
+                  }),
                 ],
               ),
             ),

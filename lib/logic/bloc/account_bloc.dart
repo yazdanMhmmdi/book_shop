@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:book_shop/data/model/account_model.dart';
+import 'package:book_shop/data/model/response_model.dart';
 import 'package:book_shop/data/repository/account_repository.dart';
 import 'package:book_shop/networking/api_provider.dart';
 import 'package:equatable/equatable.dart';
@@ -32,11 +33,15 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
         print('AccountFailure');
       }
     } else if (event is EditEvent) {
-      yield AccountInitial();
-      yield AccountLoading();
-      AccountModel _accountModel = new AccountModel();
-      yield AccountSuccess(_accountModel);
-      yield AccountFailure();
+      yield AccountEditingLoading();
+
+      try {
+        ResponseModel _responseModel =
+            await _accountRepository.edit(event.userId, event.newUsername);
+        yield AccountEditingSuccess(_responseModel);
+      } catch (_) {
+        yield AccountEditingFailure();
+      }
     }
   }
 }

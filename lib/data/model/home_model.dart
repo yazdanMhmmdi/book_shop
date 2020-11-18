@@ -1,6 +1,7 @@
 class HomeModel {
   List<MostSalesBooks> mostSalesBooks;
   List<FreshBooks> freshsBooks;
+  List<Poster> poster;
 
   HomeModel({this.mostSalesBooks, this.freshsBooks});
 
@@ -17,6 +18,12 @@ class HomeModel {
         freshsBooks.add(new FreshBooks.fromJson(v));
       });
     }
+    if (json['poster'] != null) {
+      poster = new List<Poster>();
+      json['poster'].forEach((v) {
+        poster.add(new Poster.fromJson(v));
+      });
+    }
   }
 
   Map<String, dynamic> toJson() {
@@ -27,6 +34,10 @@ class HomeModel {
     }
     if (this.freshsBooks != null) {
       data['freshsBooks'] = this.freshsBooks.map((v) => v.toJson()).toList();
+    }
+
+    if (this.poster != null) {
+      data['poster'] = this.poster.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -99,6 +110,29 @@ class FreshBooks {
     data['picture_thumb'] = this.pictureThumb;
     data['name'] = this.name;
     data['writer'] = this.writer;
+    return data;
+  }
+}
+
+class Poster {
+  String id;
+  String picture;
+  String name;
+
+  Poster({this.id, this.picture, this.name});
+
+  Poster.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    picture = json['picture'];
+    name = json['name'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+
+    data['id'] = this.id;
+    data['picture_thumb'] = this.picture;
+    data['name'] = this.name;
     return data;
   }
 }

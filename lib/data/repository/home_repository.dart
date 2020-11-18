@@ -11,4 +11,6 @@ class HomeRepository {
 
     return HomeModel.fromJson(response);
   }
+
+  
 }

@@ -20,12 +20,13 @@ class _AccountTabState extends State<AccountTab> {
   void initState() {
     _usernameController = new TextEditingController();
     _passwordController = new TextEditingController();
+    context.bloc<AccountBloc>().add(GetDefaultEvent("1"));
+
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    context.bloc<AccountBloc>().add(GetDefaultEvent("1"));
     return SingleChildScrollView(
       child: SafeArea(
         child: BlocListener(
@@ -131,7 +132,14 @@ class _AccountTabState extends State<AccountTab> {
                                     Padding(
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 16),
-                                      child: button("ویرایش", () {}),
+                                      child: button(
+                                          "ویرایش",
+                                          () => context.bloc<AccountBloc>().add(
+                                              EditEvent(
+                                                  userId: "1",
+                                                  newUsername:
+                                                      _usernameController
+                                                          .text))),
                                     ),
                                   ],
                                 ),

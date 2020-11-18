@@ -1,3 +1,4 @@
+import 'package:book_shop/logic/bloc/account_bloc.dart';
 import 'package:book_shop/logic/bloc/auth_bloc.dart';
 import 'package:book_shop/logic/bloc/home_bloc.dart';
 import 'package:book_shop/presentation/ui/home_screen.dart';
@@ -14,6 +15,7 @@ void main() {
 class MyApp extends StatelessWidget {
   final AuthBloc _authBloc = new AuthBloc();
   final HomeBloc _homeBloc = new HomeBloc();
+  final AccountBloc _accountBloc = new AccountBloc();
 
   @override
   Widget build(BuildContext context) {
@@ -33,10 +35,11 @@ class MyApp extends StatelessWidget {
               child: SignUpScreen(),
             ),
         '/': (context) => BlocProvider.value(
-          value: _homeBloc,
-          child: HomeScreen(
-            homeBloc: _homeBloc..add(FetchEvent()),
-          )),
+            value: _homeBloc,
+            child: HomeScreen(
+              homeBloc: _homeBloc..add(FetchEvent()),
+              accountBloc: _accountBloc,
+            )),
       },
     );
   }

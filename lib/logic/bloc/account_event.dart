@@ -14,4 +14,9 @@ class GetDefaultEvent extends AccountEvent {
   List<Object> get props => [userId];
 }
 
-class EditEvent extends AccountEvent {}
+class EditEvent extends AccountEvent {
+  String userId, newUsername;
+  EditEvent({this.userId, this.newUsername});
+  @override
+  List<Object> get props => [userId, newUsername];
+}

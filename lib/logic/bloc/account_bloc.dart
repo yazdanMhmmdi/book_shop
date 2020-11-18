@@ -13,6 +13,7 @@ part 'account_state.dart';
 class AccountBloc extends Bloc<AccountEvent, AccountState> {
   AccountBloc() : super(AccountInitial());
   AccountRepository _accountRepository = new AccountRepository(); 
+  AccountModel _glo;
   @override
   Stream<AccountState> mapEventToState(
     AccountEvent event,
@@ -26,6 +27,7 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
       try {
         AccountModel _accountModel =
             await _accountRepository.getUsernameAndPassword(event.userId);
+            _glo = _accountModel;
         yield AccountSuccess(_accountModel);
         print('AccountSuccess');
       } catch (_) {
@@ -34,7 +36,6 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
       }
     } else if (event is EditEvent) {
       yield AccountEditingLoading();
-
       try {
         ResponseModel _responseModel = await _accountRepository.edit(
             event.userId, event.newUsername, event.newPassword);

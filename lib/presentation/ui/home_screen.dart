@@ -58,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           Strings.bottomNavHome
         ], //"خانه", "موضوعات", "حساب کاربری"
         initialSelectedTab: Strings.bottomNavHome,
-
+        
         tabIconColor: Color(0xffA3A2A8),
         tabSelectedColor: Color(txfColor), //TODO: needs to be replace
         onTabItemSelected: (int value) {

@@ -16,9 +16,16 @@ void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   final AuthBloc _authBloc = new AuthBloc();
+
   final HomeBloc _homeBloc = new HomeBloc();
+
   final AccountBloc _accountBloc = new AccountBloc();
 
   @override

@@ -12,14 +12,12 @@ class AccountTab extends StatefulWidget {
 }
 
 class _AccountTabState extends State<AccountTab> {
-  TextEditingController _usernameController;
-  TextEditingController _passwordController;
+  TextEditingController _usernameController = new TextEditingController();
+  TextEditingController _passwordController = new TextEditingController();
   String username;
 
   @override
   void initState() {
-    _usernameController = new TextEditingController();
-    _passwordController = new TextEditingController();
     // context.bloc<AccountBloc>().add(GetDefaultEvent("1"));
 
     super.initState();
@@ -30,23 +28,28 @@ class _AccountTabState extends State<AccountTab> {
     return SingleChildScrollView(
       child: SafeArea(
         child: Container(
-          child: BlocListener<AccountBloc, AccountState>(
+          child: BlocConsumer<AccountBloc, AccountState>(
             cubit: context.bloc<AccountBloc>(),
-              listener: (context, state) {
-                if (state is AccountInitial) {
-                } else if (state is AccountLoading) {
-                } else if (state is AccountSuccess) {
-                  _usernameController.text =
-                      state.accountModel.account.username;
-                  _passwordController.text =
-                      state.accountModel.account.password;
-                  setState(() {
-                    username = state.accountModel.account.username;
-                  });
-                } else if (state is AccountFailure) {
-                } else {}
-              },
-              child: Column(
+            listener: (context, state) {
+              if (state is AccountInitial) {
+              } else if (state is AccountLoading) {
+              } else if (state is AccountSuccess) {
+                _usernameController.text = state.accountModel.account.username;
+                _passwordController.text = state.accountModel.account.password;
+                setState(() {
+                  username = state.accountModel.account.username;
+                });
+              } else if (state is AccountFailure) {
+              } else {}
+            },
+            builder: (context, state) {
+              print('build account tab');
+              if (state is AccountSuccess) {
+                _usernameController.text = state.accountModel.account.username;
+                _passwordController.text = state.accountModel.account.password;
+                  username = state.accountModel.account.username;
+              }
+              return Column(
                 children: [
                   SizedBox(
                     height: 23,
@@ -176,7 +179,9 @@ class _AccountTabState extends State<AccountTab> {
                     ),
                   )
                 ],
-              )),
+              );
+            },
+          ),
         ),
       ),
     );

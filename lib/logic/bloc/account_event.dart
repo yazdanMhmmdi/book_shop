@@ -15,8 +15,8 @@ class GetDefaultEvent extends AccountEvent {
 }
 
 class EditEvent extends AccountEvent {
-  String userId, newUsername;
-  EditEvent({this.userId, this.newUsername});
+  String userId, newUsername, newPassword;
+  EditEvent({this.userId, this.newUsername, this.newPassword});
   @override
-  List<Object> get props => [userId, newUsername];
+  List<Object> get props => [userId, newUsername, newPassword];
 }

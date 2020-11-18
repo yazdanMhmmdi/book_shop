@@ -138,7 +138,9 @@ class _AccountTabState extends State<AccountTab> {
                                               EditEvent(
                                                   userId: "1",
                                                   newUsername:
-                                                      _usernameController
+                                                      _usernameController.text,
+                                                  newPassword:
+                                                      _passwordController
                                                           .text))),
                                     ),
                                   ],

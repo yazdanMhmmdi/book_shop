@@ -1,8 +1,10 @@
 import 'package:book_shop/logic/bloc/account_bloc.dart';
 import 'package:book_shop/logic/bloc/auth_bloc.dart';
+import 'package:book_shop/logic/bloc/details_bloc.dart';
 import 'package:book_shop/logic/bloc/home_bloc.dart';
 
 import 'package:book_shop/logic/bloc/home_event.dart';
+import 'package:book_shop/presentation/ui/details_screen.dart';
 import 'package:book_shop/presentation/ui/home_screen.dart';
 import 'package:book_shop/presentation/ui/login_screen.dart';
 import 'package:book_shop/presentation/ui/sign_up_screen.dart';
@@ -48,8 +50,20 @@ class _MyAppState extends State<MyApp> {
         '/': (context) => HomeScreen(
               homeBloc: _homeBloc..add(FetchEvent()),
               accountBloc: _accountBloc..add(GetDefaultEvent("1")),
-            )
+            ),
+        '/details': (context) => BlocProvider(
+            create: (context) => DetailsBloc(),
+            // create: (context) => ,
+            child: DetailsScreen()),
       },
     );
+  }
+
+  @override
+  void dispose() {
+    _authBloc.close();
+    _homeBloc.close();
+    _accountBloc.close();
+    super.dispose();
   }
 }

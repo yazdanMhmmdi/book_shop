@@ -30,7 +30,7 @@ class Strings {
   static final String detailAboutBook = "درباره کتاب";
   static final String detailABoutPublisher = "درباره ناشر";
   static final String detailsDescription = "توضیحات";
-  static final String detailsLoremIpsom ="لورم ایپسوم";
+  static final String detailsLoremIpsom =" لورم ایپسوملورم ایپسوملورم ایپسوملورم ایپسوملورم ایپسوملورم ایپسوملورم ایپسوملورم ایپسوملورم ایپسوملورم ایپسوملورم ایپسوملورمایپسوملورمایپسوملورمایپسوملورمایپسوملورمایپسوملورمایپسوملورمایپسوملورمایپسوملورمایپسوملورمایپسوملورمایپسوملورمایپسوملورمایپسوملورمایپسوملورمایپسوملورمایپسوملورم ایپسوم";
   static final String detailsBuy = "خرید";
   //account
   static final String accountLabel = "حساب کاربری";

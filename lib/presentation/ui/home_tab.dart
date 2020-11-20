@@ -96,7 +96,7 @@ class HomeTab extends StatelessWidget {
             titleText(Strings.homeMostSales),
             SizedBox(height: 16),
             Container(
-              height: 160,
+              height: 170,
               child:
                   BlocBuilder<HomeBloc, HomeState>(builder: (context, state) {
                 if (state is HomeInitial) {
@@ -139,6 +139,7 @@ class HomeTab extends StatelessWidget {
                     itemCount: state.postModel.freshsBooks.length,
                     itemBuilder: (context, index) {
                       return VerticalCard(
+                        id: state.postModel.freshsBooks[index].id,
                         image: Assets.sampleImage_1,
                         name: state.postModel.freshsBooks[index].name,
                         thumbImage:

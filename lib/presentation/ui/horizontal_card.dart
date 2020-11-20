@@ -1,3 +1,5 @@
+import 'package:book_shop/networking/api_provider.dart';
+import 'package:book_shop/networking/image_address_provider.dart';
 import 'package:flutter/material.dart';
 
 class HorizontalCard extends StatelessWidget {
@@ -12,6 +14,7 @@ class HorizontalCard extends StatelessWidget {
       @required this.writer});
   @override
   Widget build(BuildContext context) {
+    print("picture : ${ApiProvider.URL_IP + thumbPicture}");
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Directionality(
@@ -30,7 +33,9 @@ class HorizontalCard extends StatelessWidget {
                 color: Colors.transparent,
                 child: InkWell(
                   splashColor: Colors.black12,
-                  onTap: () => print('hi'),
+                  onTap: () => Navigator.pushNamed(context, '/details',
+                      arguments: <String, String>{'HorizontalCard: post_id': "${id}"}),
+                  child: Image.network(ImageAddressProvider.imageURL + thumbPicture),
                 ),
               ),
             ),
@@ -45,7 +50,7 @@ class HorizontalCard extends StatelessWidget {
               ),
             ),
             Container(
-              width: 71,
+              width: 111,
               child: Text(
                 '${name}',
                 style: TextStyle(

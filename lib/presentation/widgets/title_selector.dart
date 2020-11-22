@@ -1,8 +1,11 @@
+import 'package:book_shop/logic/bloc/title_bloc.dart';
+import 'package:book_shop/presentation/ui/title_details_screen.dart';
 import 'package:flutter/material.dart';
 
 class TitleSelector extends StatefulWidget {
   List<String> titles;
-  TitleSelector({@required this.titles});
+  TitleBloc bloc;
+  TitleSelector({@required this.titles, @required this.bloc});
   @override
   _TitleSelectorState createState() => _TitleSelectorState();
 }
@@ -21,6 +24,8 @@ class _TitleSelectorState extends State<TitleSelector> {
   bool _isSelected;
   double _rightPadding = 15;
   int temp = 0;
+  bool sience = true, medicine = true;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -83,7 +88,29 @@ class _TitleSelectorState extends State<TitleSelector> {
                 }
               }
               temp = index;
+              // TitleDetailsScreen.currentTab = _currentIndex.toString();
             });
+            int blocIndex = _currentIndex + 1;
+
+            print('index; ${blocIndex}');
+            widget.bloc.add(FetchBooks(blocIndex));
+
+            // switch (blocIndex) {
+            //   case 1:
+            //     if (sience) {
+            //       widget.bloc.add(FetchBooks(blocIndex));
+            //       sience = false;
+            //       print('bloc.add sience');
+            //     }
+            //     break;
+            //   case 2:
+            //     if (medicine) {
+            //       widget.bloc.add(FetchBooks(blocIndex));
+            //       medicine = false;
+            //       print('bloc.add medicine');
+            //     }
+            //     break;
+            // }
           },
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.center, children: [

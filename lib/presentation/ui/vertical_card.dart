@@ -54,8 +54,7 @@ class VerticalCard extends StatelessWidget {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
                             color: Colors.red),
-                        child: Image.network(
-                            ImageAddressProvider.imageURL + thumbImage),
+                        // child: Image.network(image),
                       ),
                     ),
                   ),

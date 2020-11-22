@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class ApiProvider {
-  static const String URL_IP = "192.168.1.4";
+  static const String URL_IP = "192.168.1.3";
   final String _BASE_URL = "http://$URL_IP/book_shop/api/";
 
   Future<dynamic> get(String url) async {

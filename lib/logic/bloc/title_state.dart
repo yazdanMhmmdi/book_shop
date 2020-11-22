@@ -21,3 +21,10 @@ class TitleSuccess extends TitleState {
 class TitleFailure extends TitleState {}
 
 class TitleNothingFound extends TitleState {}
+
+class TitlePagination extends TitleState {
+  List<Books> model;
+  TitlePagination(this.model);
+  @override
+  List<Object> get props => [model];
+}

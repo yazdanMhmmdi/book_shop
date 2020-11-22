@@ -23,6 +23,8 @@ class TitleBloc extends Bloc<TitleEvent, TitleState> {
   ) async* {
     if (event is FetchBooks) {
       yield TitleLoading();
+      print('TitleLOading');
+
       // try {
       //   _model = await _titleRepository.getTitle(
       //       page.toString(), event.title.toString());
@@ -35,7 +37,7 @@ class TitleBloc extends Bloc<TitleEvent, TitleState> {
           page++;
         }
 
-        if (event.title == 1 && siencePage <= _model.data.totalPages) {
+        if (event.title == 1) {
           if (sience) {
             sience = false;
             TitleModel _modelSience = await _titleRepository.getTitle(
@@ -47,7 +49,8 @@ class TitleBloc extends Bloc<TitleEvent, TitleState> {
             siencePage++;
           }
           yield TitleSuccess(_model.sience);
-        } else if (event.title == 2 && medicinePage <= _model.data.totalPages) {
+          print('TitleSuccess sience');
+        } else if (event.title == 2) {
           if (medicine) {
             medicine = false;
 
@@ -60,12 +63,27 @@ class TitleBloc extends Bloc<TitleEvent, TitleState> {
             medicinePage++;
           }
           yield TitleSuccess(_model.medicine);
+          print('TitleSuccess medicine');
         } else {
           yield TitleNothingFound();
         }
       } catch (_) {
         print('why : ${_.toString()}');
         yield TitleFailure();
+        print('TitleFailure');
+      }
+    } else if (event is PaginationBooks) {
+      if (event.title == 1 && siencePage <= _model.data.totalPages) {
+        yield TitlePagination(_model.sience);
+        TitleModel _modelSience = await _titleRepository.getTitle(
+            siencePage.toString(), event.title.toString());
+
+        _modelSience.books.forEach((e) {
+          _model.sience.add(e);
+        });
+        siencePage++;
+        yield TitleSuccess(_model.sience);
+        print('TitleSuccess sience');
       }
     }
   }

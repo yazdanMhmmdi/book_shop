@@ -14,3 +14,11 @@ class FetchBooks extends TitleEvent {
   @override
   List<Object> get props => [title];
 }
+
+class PaginationBooks extends TitleEvent {
+  int title;
+  PaginationBooks(this.title);
+
+  @override
+  List<Object> get props => [title];
+}

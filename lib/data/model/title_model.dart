@@ -3,6 +3,10 @@ class TitleModel {
   List<Books> books;
   List<Books> medicine = new List<Books>();
   List<Books> sience = new List<Books>();
+  List<Books> history = new List<Books>();
+  List<Books> law = new List<Books>();
+  List<Books> food = new List<Books>();
+  List<Books> sport = new List<Books>();
 
 
   TitleModel({this.data, this.books});

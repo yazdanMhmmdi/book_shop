@@ -24,7 +24,8 @@ class TitleNothingFound extends TitleState {}
 
 class TitlePagination extends TitleState {
   List<Books> model;
-  TitlePagination(this.model);
+  int tabNumber = 1;
+  TitlePagination(this.model, this.tabNumber);
   @override
   List<Object> get props => [model];
 }

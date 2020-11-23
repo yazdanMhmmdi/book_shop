@@ -9,6 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 
+int tabNumber = 1;
+
 class TitleDetailsScreen extends StatefulWidget {
   @override
   _TitleDetailsScreenState createState() => _TitleDetailsScreenState();
@@ -30,7 +32,7 @@ class _TitleDetailsScreenState extends State<TitleDetailsScreen> {
     _controller.addListener(() {
       if (_controller.position.pixels == _controller.position.maxScrollExtent) {
         print('end of page');
-        _sienceTitleBloc.add(PaginationBooks(1));
+        _sienceTitleBloc.add(PaginationBooks(tabNumber));
       }
     });
   }
@@ -64,8 +66,8 @@ class _TitleDetailsScreenState extends State<TitleDetailsScreen> {
                       titles: [
                         Strings.titleScience,
                         Strings.titleMedicine,
-                        Strings.titleLaw,
                         Strings.titleHistoric,
+                        Strings.titleLaw,
                         Strings.titleFood,
                         Strings.titleSport
                       ],

@@ -119,6 +119,7 @@ class _TitleSelectorState extends State<TitleSelector> {
 
   void onTapping(int index) {
     setState(() {
+      tabNumber = index + 1;
       _currentIndex = index;
       print('cu : $_currentIndex and indx: $index temp = $temp');
       int c = index;

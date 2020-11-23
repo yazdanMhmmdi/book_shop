@@ -70,6 +70,7 @@ class _TitleDetailsScreenState extends State<TitleDetailsScreen> {
                         Strings.titleSport
                       ],
                       bloc: _sienceTitleBloc,
+                      firstTab: 1,
                     ),
                   ),
                   BlocBuilder<TitleBloc, TitleState>(

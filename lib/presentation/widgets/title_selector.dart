@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 class TitleSelector extends StatefulWidget {
   List<String> titles;
   TitleBloc bloc;
-  TitleSelector({@required this.titles, @required this.bloc});
+  int firstTab = 1;
+  TitleSelector(
+      {@required this.titles, @required this.bloc, @required this.firstTab});
   @override
   _TitleSelectorState createState() => _TitleSelectorState();
 }
@@ -25,6 +27,18 @@ class _TitleSelectorState extends State<TitleSelector> {
   double _rightPadding = 15;
   int temp = 0;
   bool sience = true, medicine = true;
+
+  @override
+  void initState() {
+    widget.firstTab = widget.firstTab - 1;
+    // _rightPadding = _rightPadding + (widget.firstTab * 70);
+    if (widget.firstTab == 0) {
+      widget.bloc.add(FetchBooks(widget.firstTab + 1));
+    } else {
+      onTapping(widget.firstTab);
+    }
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

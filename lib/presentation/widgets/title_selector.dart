@@ -65,35 +65,9 @@ class _TitleSelectorState extends State<TitleSelector> {
         padding: EdgeInsets.only(left: 35),
         child: GestureDetector(
           onTap: () {
-            setState(() {
-              _currentIndex = index;
-              print('cu : $_currentIndex and indx: $index temp = $temp');
-              int c = index;
-              print(c);
-
-              if (temp > index) {
-                c = temp - c;
-                if (c <= 0) {
-                  _rightPadding -= 70;
-                } else {
-                  _rightPadding = _rightPadding - (c * 70);
-                }
-              } else {
-                c = c - temp;
-                print(c);
-                if (c <= 0) {
-                  _rightPadding += 70;
-                } else {
-                  _rightPadding = (c * 70) + _rightPadding;
-                }
-              }
-              temp = index;
-              // TitleDetailsScreen.currentTab = _currentIndex.toString();
-            });
-            int blocIndex = _currentIndex + 1;
-
-            print('index; ${blocIndex}');
-            widget.bloc.add(FetchBooks(blocIndex));
+            if (temp != index) {
+              onTapping(index);
+            }
 
             // switch (blocIndex) {
             //   case 1:
@@ -127,5 +101,37 @@ class _TitleSelectorState extends State<TitleSelector> {
         ),
       );
     }).toList();
+  }
+
+  void onTapping(int index) {
+    setState(() {
+      _currentIndex = index;
+      print('cu : $_currentIndex and indx: $index temp = $temp');
+      int c = index;
+      print(c);
+
+      if (temp > index) {
+        c = temp - c;
+        if (c <= 0) {
+          _rightPadding -= 70;
+        } else {
+          _rightPadding = _rightPadding - (c * 70);
+        }
+      } else {
+        c = c - temp;
+        print(c);
+        if (c <= 0) {
+          _rightPadding += 70;
+        } else {
+          _rightPadding = (c * 70) + _rightPadding;
+        }
+      }
+      temp = index;
+      // TitleDetailsScreen.currentTab = _currentIndex.toString();
+    });
+    int blocIndex = _currentIndex + 1;
+
+    print('index; ${blocIndex}');
+    widget.bloc.add(FetchBooks(blocIndex));
   }
 }

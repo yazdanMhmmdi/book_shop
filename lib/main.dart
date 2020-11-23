@@ -49,7 +49,7 @@ class _MyAppState extends State<MyApp> {
               value: _authBloc,
               child: SignUpScreen(),
             ),
-        '/home': (context) => HomeScreen(
+        '/': (context) => HomeScreen(
               homeBloc: _homeBloc..add(FetchEvent()),
               accountBloc: _accountBloc..add(GetDefaultEvent("1")),
             ),
@@ -57,7 +57,7 @@ class _MyAppState extends State<MyApp> {
             create: (context) => DetailsBloc(),
             // create: (context) => ,
             child: DetailsScreen()),
-        '/': (context) => BlocProvider(
+        '/title': (context) => BlocProvider(
             create: (context) => TitleBloc(), child: TitleDetailsScreen()),
       },
     );

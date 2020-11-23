@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class TitleSelector extends StatefulWidget {
   List<String> titles;
   TitleBloc bloc;
-  int firstTab = 1;
+  int firstTab = 2;
   TitleSelector(
       {@required this.titles, @required this.bloc, @required this.firstTab});
   @override

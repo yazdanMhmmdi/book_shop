@@ -23,7 +23,7 @@ class _TitleDetailsScreenState extends State<TitleDetailsScreen> {
 
   ScrollController _controller = new ScrollController();
   bool progress = false;
-
+  int firstTabState = 1;
   @override
   void initState() {
     super.initState();
@@ -39,6 +39,12 @@ class _TitleDetailsScreenState extends State<TitleDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Map<String, String> arguments = ModalRoute.of(context).settings.arguments;
+
+    setState(() {
+      print('titleDetails argument : ');
+      firstTabState = int.tryParse(arguments["category"]);
+    });
     return Scaffold(
       body: SafeArea(
         child: BlocListener<TitleBloc, TitleState>(
@@ -72,7 +78,7 @@ class _TitleDetailsScreenState extends State<TitleDetailsScreen> {
                         Strings.titleSport
                       ],
                       bloc: _sienceTitleBloc,
-                      firstTab: 1,
+                      firstTab: firstTabState,
                     ),
                   ),
                   BlocBuilder<TitleBloc, TitleState>(

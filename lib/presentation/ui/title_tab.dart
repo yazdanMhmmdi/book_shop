@@ -32,7 +32,12 @@ class TitleTab extends StatelessWidget {
                         child: InkWell(
                             splashColor: Colors.black12,
                             borderRadius: BorderRadius.circular(18),
-                            onTap: () => print('medicine'),
+                            onTap: () {
+                              Navigator.pushNamed(context, '/title',
+                                  arguments: <String, String>{
+                                    'category': "2",
+                                  });
+                            },
                             child: getTiles(
                                 Assets.drugImage, Strings.titleMedicine))),
                   ),
@@ -46,7 +51,12 @@ class TitleTab extends StatelessWidget {
                         child: InkWell(
                             splashColor: Colors.black12,
                             borderRadius: BorderRadius.circular(18),
-                            onTap: () => print('science'),
+                            onTap: () {
+                              Navigator.pushNamed(context, '/title',
+                                  arguments: <String, String>{
+                                    'category': "1",
+                                  });
+                            },
                             child: getTiles(
                                 Assets.labToolImage, Strings.titleScience))),
                   ),
@@ -60,7 +70,12 @@ class TitleTab extends StatelessWidget {
                         child: InkWell(
                             splashColor: Colors.black12,
                             borderRadius: BorderRadius.circular(18),
-                            onTap: () => print('historic'),
+                            onTap: () {
+                              Navigator.pushNamed(context, '/title',
+                                  arguments: <String, String>{
+                                    'category': "3",
+                                  });
+                            },
                             child: getTiles(
                                 Assets.historyImage, Strings.titleHistoric))),
                   ),
@@ -74,7 +89,12 @@ class TitleTab extends StatelessWidget {
                         child: InkWell(
                             splashColor: Colors.black12,
                             borderRadius: BorderRadius.circular(18),
-                            onTap: () => print('law'),
+                            onTap: () {
+                              Navigator.pushNamed(context, '/title',
+                                  arguments: <String, String>{
+                                    'category': "4",
+                                  });
+                            },
                             child:
                                 getTiles(Assets.lawImage, Strings.titleLaw))),
                   ),
@@ -88,7 +108,12 @@ class TitleTab extends StatelessWidget {
                         child: InkWell(
                             splashColor: Colors.black12,
                             borderRadius: BorderRadius.circular(18),
-                            onTap: () => print('sport'),
+                            onTap: () {
+                              Navigator.pushNamed(context, '/title',
+                                  arguments: <String, String>{
+                                    'category': "6",
+                                  });
+                            },
                             child: getTiles(
                                 Assets.sportImage, Strings.titleSport))),
                   ),
@@ -100,7 +125,12 @@ class TitleTab extends StatelessWidget {
                     child: Material(
                         color: Colors.transparent,
                         child: InkWell(
-                            onTap: () => print('food'),
+                            onTap: () {
+                              Navigator.pushNamed(context, '/title',
+                                  arguments: <String, String>{
+                                    'category': "5",
+                                  });
+                            },
                             splashColor: Colors.black12,
                             borderRadius: BorderRadius.circular(18),
                             child:

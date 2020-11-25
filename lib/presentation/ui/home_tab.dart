@@ -26,6 +26,7 @@ class HomeTab extends StatelessWidget {
           );
         } else if (state is HomeSuccess) {
           List<MostSalesBooks> msList = state.postModel.mostSalesBooks;
+          List<FreshBooks> fbList = state.postModel.freshsBooks;
           return SingleChildScrollView(
             child: Directionality(
               textDirection: TextDirection.rtl,
@@ -75,10 +76,11 @@ class HomeTab extends StatelessWidget {
                                       child: Row(
                                         children: [
                                           Image.network(
-                                              ImageAddressProvider.imageURL +
-                                                  state.postModel.poster[index]
-                                                      .picture,
-                                                      fit: BoxFit.fitWidth,),
+                                            ImageAddressProvider.imageURL +
+                                                state.postModel.poster[index]
+                                                    .picture,
+                                            fit: BoxFit.fitWidth,
+                                          ),
                                         ],
                                       ),
                                     )
@@ -114,6 +116,10 @@ class HomeTab extends StatelessWidget {
                           thumbPicture: msList[index].pictureThumb,
                           writer: msList[index].writer,
                           voteCount: msList[index].voteCount,
+                          description: msList[index].description,
+                          language: msList[index].language,
+                          coverType: msList[index].coverType,
+                          pagesCount: msList[index].pagesCount,
                         );
                       },
                     ),
@@ -123,35 +129,25 @@ class HomeTab extends StatelessWidget {
                   SizedBox(
                     height: 16,
                   ),
-                  BlocBuilder<HomeBloc, HomeState>(
-                    builder: (context, state) {
-                      if (state is HomeInitial) {
-                        return Container();
-                      } else if (state is HomeSuccess) {
-                        return ListView.builder(
-                          physics: NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          itemCount: state.postModel.freshsBooks.length,
-                          itemBuilder: (context, index) {
-                            return VerticalCard(
-                                id: state.postModel.freshsBooks[index].id,
-                                image: Assets.sampleImage_1,
-                                name: state.postModel.freshsBooks[index].name,
-                                thumbImage: state
-                                    .postModel.freshsBooks[index].pictureThumb,
-                                writer:
-                                    state.postModel.freshsBooks[index].writer,
-                                vote_count: state
-                                    .postModel.freshsBooks[index].voteCount);
-                          },
-                        );
-                      } else if (state is HomeLoading) {
-                        return CircularProgressIndicator();
-                      } else if (state is HomeFailure) {
-                        return Text('HomeFailure');
-                      }
+                  ListView.builder(
+                    physics: NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: state.postModel.freshsBooks.length,
+                    itemBuilder: (context, index) {
+                      return VerticalCard(
+                        id: fbList[index].id,
+                        image: fbList[index].pictureThumb,
+                        name: fbList[index].name,
+                        thumbImage: fbList[index].pictureThumb,
+                        writer: fbList[index].writer,
+                        voteCount: fbList[index].voteCount,
+                        coverType: fbList[index].coverType,
+                        description: fbList[index].description,
+                        language: fbList[index].language,
+                        pagesCount: fbList[index].pagesCount,
+                      );
                     },
-                  ),
+                  )
                 ],
               ),
             ),

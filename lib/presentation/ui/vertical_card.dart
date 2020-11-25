@@ -8,19 +8,27 @@ class VerticalCard extends StatelessWidget {
   String image;
   String name, writer, thumbImage;
   String id;
-  double vote_count;
+  double voteCount;
+  String description;
+  String pagesCount;
+  String language;
+  String coverType;
   VerticalCard({
     @required this.id,
     @required this.image,
     @required this.name,
     @required this.writer,
     @required this.thumbImage,
-    @required this.vote_count,
+    @required this.voteCount,
+    @required this.pagesCount,
+    @required this.coverType,
+    @required this.language,
+    @required this.description,
   });
 
   @override
   Widget build(BuildContext context) {
-    print("star :  ${vote_count}");
+    print("star :  ${voteCount}");
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Container(
@@ -35,7 +43,17 @@ class VerticalCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(8),
             splashColor: Colors.black12,
             onTap: () => Navigator.pushNamed(context, '/details',
-                arguments: <String, String>{'post_id': "${id}"}),
+                arguments: <String, String>{
+                  'post_id': "${id}",
+                  'name': "${name}",
+                  'writer': "${writer}",
+                  'description': "${description}",
+                  'voteCount': "${voteCount}",
+                  'thumbPicture': "${thumbImage}",
+                  'language': "${language}",
+                  'coverType': "${coverType}",
+                  'pagesCount': "${pagesCount}",
+                }),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -56,12 +74,15 @@ class VerticalCard extends StatelessWidget {
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(5),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            color: Colors.red),
-                        child: Image.network(
-                            ImageAddressProvider.imageURL + thumbImage),
+                      child: Hero(
+                        tag: "post_${id}_", //TODO: delete it and add some unrelated posts 
+                        child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              color: Colors.transparent),
+                          child: Image.network(
+                              ImageAddressProvider.imageURL + thumbImage),
+                        ),
                       ),
                     ),
                   ),
@@ -93,7 +114,7 @@ class VerticalCard extends StatelessWidget {
                       SizedBox(
                         height: 8,
                       ),
-                      MyRatingBar(vote_count, 13),
+                      MyRatingBar(voteCount, 13),
                     ],
                   ),
                 ),

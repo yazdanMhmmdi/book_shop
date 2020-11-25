@@ -53,6 +53,10 @@ class MostSalesBooks {
   String name;
   String writer;
   double voteCount;
+  String description;
+  String language;
+  String pagesCount;
+  String coverType;
 
   MostSalesBooks(
       {this.s0,
@@ -63,6 +67,10 @@ class MostSalesBooks {
       this.pictureThumb,
       this.name,
       this.writer,
+      this.description,
+      this.language,
+      this.pagesCount,
+      this.coverType,
       this.voteCount});
 
   MostSalesBooks.fromJson(Map<String, dynamic> json) {
@@ -74,7 +82,11 @@ class MostSalesBooks {
     pictureThumb = json['picture_thumb'];
     name = json['name'];
     writer = json['writer'];
+    description = json['description'];
+    language = json['language'];
     voteCount = double.tryParse(json['vote_count']);
+    pagesCount = json['pages_count'];
+    coverType = json['cover_type'];
   }
 
   Map<String, dynamic> toJson() {
@@ -98,15 +110,31 @@ class FreshBooks {
   String name;
   String writer;
   double voteCount;
+  String description;
+  String language;
+  String pagesCount;
+  String coverType;
 
   FreshBooks(
-      {this.id, this.pictureThumb, this.name, this.writer, this.voteCount});
+      {this.id,
+      this.pictureThumb,
+      this.name,
+      this.writer,
+      this.voteCount,
+      this.language,
+      this.description,
+      this.coverType,
+      this.pagesCount});
 
   FreshBooks.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     pictureThumb = json['picture_thumb'];
     name = json['name'];
     writer = json['writer'];
+    description = json['description'];
+    language = json['language'];
+    pagesCount = json['pages_count'];
+    coverType = json['cover_type'];
     voteCount = double.tryParse(json['vote_count']);
   }
 

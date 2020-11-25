@@ -25,6 +25,7 @@ class DetailsBloc extends Bloc<DetailsEvent, DetailsState> {
             await _detailsRepository.getDetails(event.post_id);
         yield DetailsSuccess(_detailsModel);
       } catch (_) {
+        print('detailsBloc : ${_}');
         yield DetailsFailure();
       }
     }

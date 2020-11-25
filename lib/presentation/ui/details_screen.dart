@@ -151,8 +151,8 @@ class DetailsScreen extends StatelessWidget {
                                             "${state.detailsModel.details.language}",
                                             "زبان"),
                                         littleDialogBox(
-                                            "${state.detailsModel.details.cover}",
-                                            "جلد"),
+                                            "${state.detailsModel.details.coverType}",
+                                            "جلد"), 
                                         littleDialogBox(
                                             "${state.detailsModel.details.pagesCount}",
                                             "صفحه"),
@@ -238,7 +238,7 @@ class DetailsScreen extends StatelessWidget {
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
                                 color: Colors.redAccent),
-                            child: Image.network(
+                            child: Image.network( //TODO: change pictureThumb to picture cause of quality
                               ImageAddressProvider.imageURL +
                                   state.detailsModel.details.pictureThumb,
                               fit: BoxFit.fill,

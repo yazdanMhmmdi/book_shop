@@ -39,7 +39,7 @@ class HorizontalCard extends StatelessWidget {
                   splashColor: Colors.black12,
                   onTap: () => Navigator.pushNamed(context, '/details',
                       arguments: <String, String>{
-                        'HorizontalCard: post_id': "${id}"
+                        'post_id': "${id}"
                       }),
                   child: Image.network(
                       ImageAddressProvider.imageURL + thumbPicture),

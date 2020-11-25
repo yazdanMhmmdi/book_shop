@@ -4,6 +4,7 @@ import 'package:book_shop/constants/strings.dart';
 import 'package:book_shop/data/model/home_model.dart';
 import 'package:book_shop/logic/bloc/home_bloc.dart';
 import 'package:book_shop/logic/bloc/home_state.dart';
+import 'package:book_shop/networking/image_address_provider.dart';
 import 'package:book_shop/presentation/ui/vertical_card.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -73,7 +74,11 @@ class HomeTab extends StatelessWidget {
                                           color: IColors.green),
                                       child: Row(
                                         children: [
-                                          Image.asset(Assets.sampleBanner),
+                                          Image.network(
+                                              ImageAddressProvider.imageURL +
+                                                  state.postModel.poster[index]
+                                                      .picture,
+                                                      fit: BoxFit.fitWidth,),
                                         ],
                                       ),
                                     )

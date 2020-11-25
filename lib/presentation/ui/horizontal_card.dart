@@ -1,5 +1,6 @@
 import 'package:book_shop/networking/api_provider.dart';
 import 'package:book_shop/networking/image_address_provider.dart';
+import 'package:book_shop/presentation/widgets/rating_bar.dart';
 import 'package:flutter/material.dart';
 
 class HorizontalCard extends StatelessWidget {
@@ -7,11 +8,14 @@ class HorizontalCard extends StatelessWidget {
   String writer;
   String name;
   String thumbPicture;
-  HorizontalCard(
-      {@required this.id,
-      @required this.name,
-      @required this.thumbPicture,
-      @required this.writer});
+  double voteCount;
+  HorizontalCard({
+    @required this.id,
+    @required this.name,
+    @required this.thumbPicture,
+    @required this.writer,
+    @required this.voteCount,
+  });
   @override
   Widget build(BuildContext context) {
     print("picture : ${ApiProvider.URL_IP + thumbPicture}");
@@ -34,8 +38,11 @@ class HorizontalCard extends StatelessWidget {
                 child: InkWell(
                   splashColor: Colors.black12,
                   onTap: () => Navigator.pushNamed(context, '/details',
-                      arguments: <String, String>{'HorizontalCard: post_id': "${id}"}),
-                  child: Image.network(ImageAddressProvider.imageURL + thumbPicture),
+                      arguments: <String, String>{
+                        'HorizontalCard: post_id': "${id}"
+                      }),
+                  child: Image.network(
+                      ImageAddressProvider.imageURL + thumbPicture),
                 ),
               ),
             ),
@@ -60,6 +67,7 @@ class HorizontalCard extends StatelessWidget {
                     fontWeight: FontWeight.w700),
               ),
             ),
+            MyRatingBar(voteCount, 13),
           ],
         ),
       ),

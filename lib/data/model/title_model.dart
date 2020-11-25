@@ -8,7 +8,6 @@ class TitleModel {
   List<Books> food = new List<Books>();
   List<Books> sport = new List<Books>();
 
-
   TitleModel({this.data, this.books});
 
   TitleModel.fromJson(Map<String, dynamic> json) {
@@ -59,7 +58,7 @@ class Books {
   String id;
   String cover;
   String pagesCount;
-  String voteCount;
+  double voteCount;
   String writer;
   String description;
   String name;
@@ -93,7 +92,7 @@ class Books {
     id = json['id'];
     cover = json['cover'];
     pagesCount = json['pages_count'];
-    voteCount = json['vote_count'];
+    voteCount = double.tryParse(json['vote_count']);
     writer = json['writer'];
     description = json['description'];
     name = json['name'];

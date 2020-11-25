@@ -18,7 +18,7 @@ class TitleDetailsTab extends StatelessWidget {
           name: _books[index].name,
           id: _books[index].id,
           writer: _books[index].writer,
-          thumbImage: _books[index].pictureThumb,
+          thumbImage: _books[index].pictureThumb, vote_count: _books[index].voteCount,
         );
       },
     );

@@ -1,20 +1,26 @@
 import 'package:book_shop/networking/image_address_provider.dart';
+import 'package:book_shop/presentation/widgets/rating_bar.dart';
 import 'package:book_shop/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class VerticalCard extends StatelessWidget {
   String image;
   String name, writer, thumbImage;
   String id;
-  VerticalCard(
-      {@required this.id,
-      @required this.image,
-      @required this.name,
-      @required this.writer,
-      @required this.thumbImage});
+  double vote_count;
+  VerticalCard({
+    @required this.id,
+    @required this.image,
+    @required this.name,
+    @required this.writer,
+    @required this.thumbImage,
+    @required this.vote_count,
+  });
 
   @override
   Widget build(BuildContext context) {
+    print("star :  ${vote_count}");
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Container(
@@ -54,7 +60,8 @@ class VerticalCard extends StatelessWidget {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
                             color: Colors.red),
-                        // child: Image.network(image),
+                        child: Image.network(
+                            ImageAddressProvider.imageURL + thumbImage),
                       ),
                     ),
                   ),
@@ -83,6 +90,10 @@ class VerticalCard extends StatelessWidget {
                             fontSize: 14,
                             color: Colors.black38),
                       ),
+                      SizedBox(
+                        height: 8,
+                      ),
+                      MyRatingBar(vote_count, 13),
                     ],
                   ),
                 ),

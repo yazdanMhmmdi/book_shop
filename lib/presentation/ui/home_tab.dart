@@ -15,149 +15,146 @@ class HomeTab extends StatelessWidget {
   PageController _carouselController;
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Directionality(
-        textDirection: TextDirection.rtl,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              height: 28,
-            ),
-            Container(
+    return BlocBuilder<HomeBloc, HomeState>(
+      builder: (context, state) {
+        if (state is HomeInitial) {
+          return Container();
+        } else if (state is HomeLoading) {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        } else if (state is HomeSuccess) {
+          List<MostSalesBooks> msList = state.postModel.mostSalesBooks;
+          return SingleChildScrollView(
+            child: Directionality(
+              textDirection: TextDirection.rtl,
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  BlocBuilder<HomeBloc, HomeState>(builder: (context, state) {
-                    if (state is HomeInitial) {
-                      return Container();
-                    } else if (state is HomeSuccess) {
-                      return CarouselSlider.builder(
-                          itemCount: state.postModel.poster.length,
-                          itemBuilder: (context, index) {
-                            return Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              child: Stack(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 18),
-                                    child: Container(
+                  SizedBox(
+                    height: 28,
+                  ),
+                  Container(
+                    child: Column(
+                      children: [
+                        CarouselSlider.builder(
+                            itemCount: state.postModel.poster.length,
+                            itemBuilder: (context, index) {
+                              return Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                child: Stack(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 18),
+                                      child: Container(
+                                        height: 147,
+                                        decoration: BoxDecoration(
+                                            color: Colors.transparent,
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                            boxShadow: [
+                                              BoxShadow(
+                                                  offset: Offset(0, 10),
+                                                  spreadRadius: -2,
+                                                  blurRadius: 20,
+                                                  color: IColors.boldGreen
+                                                      .withOpacity(0.75))
+                                            ]),
+                                      ),
+                                    ),
+                                    Container(
                                       height: 147,
                                       decoration: BoxDecoration(
-                                          color: Colors.transparent,
                                           borderRadius:
                                               BorderRadius.circular(8),
-                                          boxShadow: [
-                                            BoxShadow(
-                                                offset: Offset(0, 10),
-                                                spreadRadius: -2,
-                                                blurRadius: 20,
-                                                color: IColors.boldGreen
-                                                    .withOpacity(0.75))
-                                          ]),
-                                    ),
-                                  ),
-                                  Container(
-                                    height: 147,
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(8),
-                                        color: IColors.green),
-                                    child: Row(
-                                      children: [
-                                        Image.asset(Assets.sampleBanner),
-                                      ],
-                                    ),
-                                  )
-                                ],
-                              ),
-                            );
+                                          color: IColors.green),
+                                      child: Row(
+                                        children: [
+                                          Image.asset(Assets.sampleBanner),
+                                        ],
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              );
+                            },
+                            options: CarouselOptions(
+                                height: 175,
+                                viewportFraction: 0.8,
+                                autoPlayInterval: Duration(seconds: 3),
+                                autoPlayAnimationDuration:
+                                    Duration(milliseconds: 800),
+                                autoPlayCurve: Curves.fastOutSlowIn,
+                                autoPlay: true,
+                                initialPage: 0,
+                                enlargeCenterPage: true))
+                      ],
+                    ),
+                  ),
+                  titleText(Strings.homeMostSales),
+                  SizedBox(height: 16),
+                  Container(
+                    height: 170,
+                    child: ListView.builder(
+                      padding: EdgeInsets.only(right: 8),
+                      itemCount: state.postModel.freshsBooks.length,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) {
+                        return HorizontalCard(
+                          id: msList[index].id,
+                          name: msList[index].name,
+                          thumbPicture: msList[index].pictureThumb,
+                          writer: msList[index].writer,
+                          voteCount: msList[index].voteCount,
+                        );
+                      },
+                    ),
+                  ),
+                  SizedBox(height: 16),
+                  titleText(Strings.homeFresh),
+                  SizedBox(
+                    height: 16,
+                  ),
+                  BlocBuilder<HomeBloc, HomeState>(
+                    builder: (context, state) {
+                      if (state is HomeInitial) {
+                        return Container();
+                      } else if (state is HomeSuccess) {
+                        return ListView.builder(
+                          physics: NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemCount: state.postModel.freshsBooks.length,
+                          itemBuilder: (context, index) {
+                            return VerticalCard(
+                                id: state.postModel.freshsBooks[index].id,
+                                image: Assets.sampleImage_1,
+                                name: state.postModel.freshsBooks[index].name,
+                                thumbImage: state
+                                    .postModel.freshsBooks[index].pictureThumb,
+                                writer:
+                                    state.postModel.freshsBooks[index].writer,
+                                vote_count: state
+                                    .postModel.freshsBooks[index].voteCount);
                           },
-                          options: CarouselOptions(
-                              height: 175,
-                              viewportFraction: 0.8,
-                              autoPlayInterval: Duration(seconds: 3),
-                              autoPlayAnimationDuration:
-                                  Duration(milliseconds: 800),
-                              autoPlayCurve: Curves.fastOutSlowIn,
-                              autoPlay: true,
-                              initialPage: 0,
-                              enlargeCenterPage: true));
-                    } else if (state is HomeLoading) {
-                      return Text('loading');
-                    } else if (state is HomeFailure) {
-                      return Text('failure');
-                    }
-                  }),
+                        );
+                      } else if (state is HomeLoading) {
+                        return CircularProgressIndicator();
+                      } else if (state is HomeFailure) {
+                        return Text('HomeFailure');
+                      }
+                    },
+                  ),
                 ],
               ),
             ),
-            titleText(Strings.homeMostSales),
-            SizedBox(height: 16),
-            Container(
-              height: 170,
-              child:
-                  BlocBuilder<HomeBloc, HomeState>(builder: (context, state) {
-                if (state is HomeInitial) {
-                  return Container();
-                } else if (state is HomeLoading) {
-                  return CircularProgressIndicator();
-                } else if (state is HomeSuccess) {
-                  List<MostSalesBooks> msList = state.postModel.mostSalesBooks;
-                  return ListView.builder(
-                    padding: EdgeInsets.only(right: 8),
-                    itemCount: state.postModel.freshsBooks.length,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      return HorizontalCard(
-                        id: msList[index].id,
-                        name: msList[index].name,
-                        thumbPicture: msList[index].pictureThumb,
-                        writer: msList[index].writer,
-                      );
-                    },
-                  );
-                } else if (state is HomeFailure) {
-                  return Container(); //TODO: Fix this spot
-                }
-              }),
-            ),
-            SizedBox(height: 16),
-            titleText(Strings.homeFresh),
-            SizedBox(
-              height: 16,
-            ),
-            BlocBuilder<HomeBloc, HomeState>(
-              builder: (context, state) {
-                if (state is HomeInitial) {
-                  return Container();
-                } else if (state is HomeSuccess) {
-                  return ListView.builder(
-                    physics: NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemCount: state.postModel.freshsBooks.length,
-                    itemBuilder: (context, index) {
-                      return VerticalCard(
-                        id: state.postModel.freshsBooks[index].id,
-                        image: Assets.sampleImage_1,
-                        name: state.postModel.freshsBooks[index].name,
-                        thumbImage:
-                            state.postModel.freshsBooks[index].pictureThumb,
-                        writer: state.postModel.freshsBooks[index].writer,
-                      );
-                    },
-                  );
-                } else if (state is HomeLoading) {
-                  return CircularProgressIndicator();
-                } else if (state is HomeFailure) {
-                  return Text('HomeFailure');
-                }
-              },
-            ),
-          ],
-        ),
-      ),
+          );
+        } else if (state is HomeFailure) {
+          return Text('Failure');
+        }
+      },
     );
   }
 

@@ -52,6 +52,7 @@ class MostSalesBooks {
   String pictureThumb;
   String name;
   String writer;
+  double voteCount;
 
   MostSalesBooks(
       {this.s0,
@@ -61,7 +62,8 @@ class MostSalesBooks {
       this.id,
       this.pictureThumb,
       this.name,
-      this.writer});
+      this.writer,
+      this.voteCount});
 
   MostSalesBooks.fromJson(Map<String, dynamic> json) {
     s0 = json['0'];
@@ -72,6 +74,7 @@ class MostSalesBooks {
     pictureThumb = json['picture_thumb'];
     name = json['name'];
     writer = json['writer'];
+    voteCount = double.tryParse(json['vote_count']);
   }
 
   Map<String, dynamic> toJson() {
@@ -84,6 +87,7 @@ class MostSalesBooks {
     data['picture_thumb'] = this.pictureThumb;
     data['name'] = this.name;
     data['writer'] = this.writer;
+    data['vote_count'] = this.voteCount;
     return data;
   }
 }
@@ -93,14 +97,17 @@ class FreshBooks {
   String pictureThumb;
   String name;
   String writer;
+  double voteCount;
 
-  FreshBooks({this.id, this.pictureThumb, this.name, this.writer});
+  FreshBooks(
+      {this.id, this.pictureThumb, this.name, this.writer, this.voteCount});
 
   FreshBooks.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     pictureThumb = json['picture_thumb'];
     name = json['name'];
     writer = json['writer'];
+    voteCount = double.tryParse(json['vote_count']);
   }
 
   Map<String, dynamic> toJson() {
@@ -110,6 +117,7 @@ class FreshBooks {
     data['picture_thumb'] = this.pictureThumb;
     data['name'] = this.name;
     data['writer'] = this.writer;
+    data['vote_count'] = this.voteCount;
     return data;
   }
 }

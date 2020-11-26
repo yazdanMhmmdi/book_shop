@@ -1,3 +1,6 @@
+import 'dart:math';
+import 'dart:ui';
+
 import 'package:book_shop/constants/assets.dart';
 import 'package:book_shop/constants/colors.dart';
 import 'package:book_shop/constants/strings.dart';
@@ -6,7 +9,11 @@ import 'package:book_shop/logic/bloc/home_bloc.dart';
 import 'package:book_shop/logic/bloc/home_state.dart';
 import 'package:book_shop/networking/image_address_provider.dart';
 import 'package:book_shop/presentation/ui/vertical_card.dart';
+import 'package:book_shop/presentation/widgets/loading_bar.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flare_flutter/flare.dart';
+import 'package:flare_flutter/flare_actor.dart';
+import 'package:flare_flutter/flare_controls.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -14,6 +21,7 @@ import 'horizontal_card.dart';
 
 class HomeTab extends StatelessWidget {
   PageController _carouselController;
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeBloc, HomeState>(
@@ -21,9 +29,7 @@ class HomeTab extends StatelessWidget {
         if (state is HomeInitial) {
           return Container();
         } else if (state is HomeLoading) {
-          return Center(
-            child: CircularProgressIndicator(),
-          );
+          return MyLoadingBar(animation: "Untitled");
         } else if (state is HomeSuccess) {
           List<MostSalesBooks> msList = state.postModel.mostSalesBooks;
           List<FreshBooks> fbList = state.postModel.freshsBooks;

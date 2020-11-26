@@ -93,7 +93,7 @@ class _TitleDetailsScreenState extends State<TitleDetailsScreen> {
                         return Container(
                           height: MediaQuery.of(context).size.height,
                           child: Center(
-                            child: MyLoadingBar(animation: "Untitled"),
+                            child: new MyLoadingBar(animation: "Untitled"),
                           ),
                         );
                       } else if (state is TitleSuccess)

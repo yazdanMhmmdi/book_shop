@@ -81,11 +81,12 @@ class HomeTab extends StatelessWidget {
                                           color: IColors.green),
                                       child: Row(
                                         children: [
-                                          Image.network(
-                                            ImageAddressProvider.imageURL +
-                                                state.postModel.poster[index]
-                                                    .picture,
-                                            fit: BoxFit.fitWidth,
+                                          Expanded(
+                                            child: Image.network(
+                                              ImageAddressProvider.imageURL +
+                                                  state.postModel.poster[index]
+                                                      .picture,
+                                            ),
                                           ),
                                         ],
                                       ),

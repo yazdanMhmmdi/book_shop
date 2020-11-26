@@ -10,4 +10,5 @@ class Assets {
   static final String sampleImage_2 = "assets/images/image_2.png";
   static final String sampleBanner = "assets/images/slider_pic.png";
   static final String bookLoading = "assets/flare/loading_book.flr";
+  static final String bookDropping = "assets/flare/book_dropping.flr";
 }

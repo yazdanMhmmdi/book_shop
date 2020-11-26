@@ -64,7 +64,11 @@ class TitleBloc extends Bloc<TitleEvent, TitleState> {
             });
             siencePage++;
           }
-          yield TitleSuccess(_model.sience);
+          if (_model.sience.length == 0) {
+            yield TitleNothingFound();
+          } else {
+            yield TitleSuccess(_model.sience);
+          }
           print('TitleSuccess sience');
         } else if (event.title == 2) {
           if (medicine) {
@@ -78,7 +82,12 @@ class TitleBloc extends Bloc<TitleEvent, TitleState> {
             });
             medicinePage++;
           }
-          yield TitleSuccess(_model.medicine);
+
+          if (_model.medicine.length == 0) {
+            yield TitleNothingFound();
+          } else {
+            yield TitleSuccess(_model.medicine);
+          }
           print('TitleSuccess medicine');
         } else if (event.title == 3) {
           if (history) {
@@ -92,7 +101,12 @@ class TitleBloc extends Bloc<TitleEvent, TitleState> {
             });
             historyPage++;
           }
-          yield TitleSuccess(_model.history);
+          if (_model.history.length == 0) {
+            yield TitleNothingFound();
+          } else {
+            yield TitleSuccess(_model.history);
+          }
+
           print('TitleSuccess medicine');
         } else if (event.title == 4) {
           if (law) {
@@ -106,7 +120,11 @@ class TitleBloc extends Bloc<TitleEvent, TitleState> {
             });
             lawPage++;
           }
-          yield TitleSuccess(_model.law);
+          if (_model.law.length == 0) {
+            yield TitleNothingFound();
+          } else {
+            yield TitleSuccess(_model.law);
+          }
           print('TitleSuccess medicine');
         } else if (event.title == 5) {
           if (food) {
@@ -114,13 +132,16 @@ class TitleBloc extends Bloc<TitleEvent, TitleState> {
             TitleModel _foodModel = await _titleRepository.getTitle(
                 foodPage.toString(), event.title.toString());
             foodTotalPage = _foodModel.data.totalPages;
-
             _foodModel.books.forEach((e) {
               _model.food.add(e);
             });
             foodPage++;
           }
-          yield TitleSuccess(_model.food);
+          if (_model.food.length == 0) {
+            yield TitleNothingFound();
+          } else {
+            yield TitleSuccess(_model.food);
+          }
           print('TitleSuccess medicine');
         } else if (event.title == 6) {
           if (sport) {
@@ -134,7 +155,11 @@ class TitleBloc extends Bloc<TitleEvent, TitleState> {
             });
             sportPage++;
           }
-          yield TitleSuccess(_model.sport);
+          if (_model.sport.length == 0) {
+            yield TitleNothingFound();
+          } else {
+            yield TitleSuccess(_model.sport);
+          }
           print('TitleSuccess medicine');
         } else {
           yield TitleNothingFound();

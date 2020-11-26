@@ -3,8 +3,12 @@ import 'package:book_shop/constants/strings.dart';
 import 'package:book_shop/logic/bloc/title_bloc.dart';
 import 'package:book_shop/presentation/ui/title_tab.dart';
 import 'package:book_shop/presentation/ui/vertical_card.dart';
+import 'package:book_shop/presentation/widgets/loading_bar.dart';
+import 'package:book_shop/presentation/widgets/not_found_bar.dart';
 import 'package:book_shop/presentation/widgets/title_details_tab.dart';
 import 'package:book_shop/presentation/widgets/title_selector.dart';
+import 'package:flare_flutter/flare_actor.dart';
+import 'package:flare_loading/flare_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/screenutil.dart';
@@ -88,14 +92,33 @@ class _TitleDetailsScreenState extends State<TitleDetailsScreen> {
                       } else if (state is TitleLoading) {
                         return Container(
                           height: MediaQuery.of(context).size.height,
-                          child: Center(child: CircularProgressIndicator()),
+                          child: Center(
+                            child: MyLoadingBar(animation: "Untitled"),
+                          ),
                         );
                       } else if (state is TitleSuccess)
                         return TitleDetailsTab(state.model);
                       else if (state is TitleFailure) {
                         return Text('failureXXX');
                       } else if (state is TitleNothingFound) {
-                        return Text('چیزی پیدا نشد');
+                        return Center(
+                          child: Container(
+                            width: 150,
+                            height: MediaQuery.of(context).size.height,
+                            child: Center(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  NotFoundBar(),
+                                  SizedBox(
+                                    height: 8,
+                                  ),
+                                  Text('ss'),
+                                ],
+                              ),
+                            ),
+                          ),
+                        );
                       } else if (state is TitlePagination) {
                         return TitleDetailsTab(state.model);
                       }

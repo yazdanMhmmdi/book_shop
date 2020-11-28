@@ -1,5 +1,6 @@
 import 'package:book_shop/constants/assets.dart';
 import 'package:book_shop/constants/strings.dart';
+import 'package:book_shop/presentation/widgets/my_tool_bar.dart';
 import 'package:book_shop/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +11,7 @@ class TitleTab extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(height: 23),
-          getToolBar(Strings.titleLabel),
+          MyToolBar(title: Strings.titleLabel),
           Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 18),
               child: GridView.count(

@@ -2,6 +2,7 @@ import 'package:book_shop/constants/assets.dart';
 import 'package:book_shop/constants/colors.dart';
 import 'package:book_shop/constants/strings.dart';
 import 'package:book_shop/logic/bloc/account_bloc.dart';
+import 'package:book_shop/presentation/widgets/my_tool_bar.dart';
 import 'package:book_shop/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -47,14 +48,14 @@ class _AccountTabState extends State<AccountTab> {
               if (state is AccountSuccess) {
                 _usernameController.text = state.accountModel.account.username;
                 _passwordController.text = state.accountModel.account.password;
-                  username = state.accountModel.account.username;
+                username = state.accountModel.account.username;
               }
               return Column(
                 children: [
                   SizedBox(
                     height: 23,
                   ),
-                  getToolBar(Strings.accountLabel),
+                  MyToolBar(title: Strings.accountLabel),
                   SizedBox(
                     height: 16,
                   ),

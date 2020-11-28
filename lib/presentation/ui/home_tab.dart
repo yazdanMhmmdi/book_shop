@@ -10,10 +10,12 @@ import 'package:book_shop/logic/bloc/home_state.dart';
 import 'package:book_shop/networking/image_address_provider.dart';
 import 'package:book_shop/presentation/ui/vertical_card.dart';
 import 'package:book_shop/presentation/widgets/loading_bar.dart';
+import 'package:book_shop/presentation/widgets/server_failure_flare.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flare_flutter/flare.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flare_flutter/flare_controls.dart';
+import 'package:flare_loading/flare_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -160,7 +162,7 @@ class HomeTab extends StatelessWidget {
             ),
           );
         } else if (state is HomeFailure) {
-          return Text('Failure');
+          return ServerFailureFlare();
         }
       },
     );

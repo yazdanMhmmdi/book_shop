@@ -66,6 +66,7 @@ class HorizontalCard extends StatelessWidget {
                 width: 71,
                 child: Text(
                   '${writer}',
+                  overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                       color: Colors.black38,
                       fontFamily: "IranSans",
@@ -76,9 +77,10 @@ class HorizontalCard extends StatelessWidget {
                 height: 4,
               ),
               Container(
-                width: 111,
+                width: 71,
                 child: Text(
                   '${name}',
+                  overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                       color: Colors.black87,
                       fontFamily: "IranSans",

@@ -53,6 +53,7 @@ class VerticalCard extends StatelessWidget {
                   'language': "${language}",
                   'coverType': "${coverType}",
                   'pagesCount': "${pagesCount}",
+                  'hero_type': "v",
                 }),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -75,7 +76,8 @@ class VerticalCard extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(5),
                       child: Hero(
-                        tag: "post_${id}_", //TODO: delete it and add some unrelated posts 
+                        tag:
+                            "post_${id}_v", //TODO: delete it and add some unrelated posts
                         child: Container(
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8),

@@ -228,7 +228,7 @@ class DetailsScreen extends StatelessWidget {
                               ]),
                         ),
                         Hero(
-                          tag: "post_${id}",
+                          tag: "post_${id}_${arguments["hero_type"]}", //TODO: check hero types
                           child: Container(
                             width: 136,
                             height: 200,

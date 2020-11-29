@@ -44,12 +44,13 @@ class HorizontalCard extends StatelessWidget {
                 'language': "${language}",
                 'coverType': "${coverType}",
                 'pagesCount': "${pagesCount}",
+                'hero_type': "h",
               }),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Hero(
-                tag: "post_${id}",
+                tag: "post_${id}_h",
                 child: Container(
                   width: 71,
                   height: 110,

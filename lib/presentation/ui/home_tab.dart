@@ -113,8 +113,10 @@ class HomeTab extends StatelessWidget {
                   titleText(Strings.homeMostSales),
                   SizedBox(height: 16),
                   Container(
-                    height: 170,
+                    height: 180,
                     child: ListView.builder(
+                      shrinkWrap: true,
+                      physics: BouncingScrollPhysics(),
                       padding: EdgeInsets.only(right: 8),
                       itemCount: state.postModel.freshsBooks.length,
                       scrollDirection: Axis.horizontal,

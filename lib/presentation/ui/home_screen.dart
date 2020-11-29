@@ -28,7 +28,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   MotionTabController _bottomNavController;
-  bool bottomStatus = true;
+  bool bottomInternetStatus = true, bottomFailureStatus = true;
   bool failureInFirstTry = false;
   final _noNetworkFlare = new NoNetworkFlare();
   @override
@@ -49,12 +49,12 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         listener: (context, state) {
           if (state is HomeFailure) {
             setState(() {
-              bottomStatus = false;
+              bottomFailureStatus = false;
             });
             print('HomeFAilure status bar should be false');
           } else if (state is HomeSuccess) {
             setState(() {
-              bottomStatus = true;
+              bottomFailureStatus = true;
             });
             print('HomeSuccess status bar should be true');
           }
@@ -64,11 +64,11 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           listener: (context, state) {
             if (state is InternetConnected) {
               setState(() {
-                bottomStatus = true;
+                bottomInternetStatus = true;
               });
             } else if (state is InternetDisconnected) {
               setState(() {
-                bottomStatus = false;
+                bottomInternetStatus = false;
               });
             }
           },
@@ -98,7 +98,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           },
         ),
       )),
-      bottomNavigationBar: bottomStatus
+      bottomNavigationBar: bottomInternetStatus && bottomFailureStatus
           ? MotionTabBar(
               labels: [
                 Strings.bottomNavAccount,

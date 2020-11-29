@@ -72,6 +72,9 @@ class HorizontalCard extends StatelessWidget {
                       fontSize: 14),
                 ),
               ),
+              SizedBox(
+                height: 4,
+              ),
               Container(
                 width: 111,
                 child: Text(
@@ -82,6 +85,9 @@ class HorizontalCard extends StatelessWidget {
                       fontSize: 16,
                       fontWeight: FontWeight.w700),
                 ),
+              ),
+              SizedBox(
+                height: 6,
               ),
               MyRatingBar(voteCount, 13),
             ],

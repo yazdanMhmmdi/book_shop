@@ -1,3 +1,4 @@
+import 'dart:async';
 
 import 'package:book_shop/presentation/widgets/widgets.dart';
 import "package:flutter/material.dart";
@@ -5,6 +6,9 @@ import "package:flutter/material.dart";
 class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    Timer(Duration(seconds: 3), () {
+      Navigator.pushNamed(context, '/login');
+    });
     return Scaffold(
       backgroundColor: Color(0xffA2DE96),
       body: SafeArea(
@@ -23,6 +27,4 @@ class SplashScreen extends StatelessWidget {
       ),
     );
   }
-
-
 }

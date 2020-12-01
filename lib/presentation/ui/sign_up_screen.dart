@@ -1,7 +1,8 @@
-
 import 'package:book_shop/constants/colors.dart';
 import 'package:book_shop/constants/strings.dart';
 import 'package:book_shop/logic/bloc/auth_bloc.dart';
+import 'package:book_shop/presentation/widgets/my_button.dart';
+import 'package:book_shop/presentation/widgets/my_text_field.dart';
 import 'package:book_shop/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -58,20 +59,28 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               fontWeight: FontWeight.w700),
                         ),
                         SizedBox(height: 16),
-                        textField(Icons.person, Strings.usernameLabel,
-                            IColors.lowedBoldGreen, _usernameController),
+                        MyTextFiled(
+                            icon: Icons.person,
+                            text: Strings.usernameLabel,
+                            textFieldColor: IColors.lowedBoldGreen,
+                            controller: _usernameController),
                         SizedBox(height: 16),
-                        textField(Icons.lock, Strings.passwordLabel,
-                            IColors.lowedBoldGreen, _passwordController),
+                        MyTextFiled(
+                            icon: Icons.lock,
+                            text: Strings.passwordLabel,
+                            textFieldColor: IColors.lowedBoldGreen,
+                            controller: _passwordController),
                         SizedBox(
                           height: 16,
                         ),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 16),
-                          child: button(Strings.signupAccept, () {
+                          child: MyButton(
+                            text: Strings.signupAccept, 
+                            onTap: (state) {
                             context.bloc<AuthBloc>().add(SignUpEvent(
-                               username:  _usernameController.text,
-                               password: _passwordController.text));
+                                username: _usernameController.text,
+                                password: _passwordController.text));
                           }),
                         ),
                         SizedBox(height: 8),

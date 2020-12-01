@@ -18,5 +18,8 @@ class AuthSuccess extends AuthState {
   @override
   List<Object> get props => [_authModel];
 }
+class AuthWrong extends AuthState {
+  
+}
 
 class AuthFailure extends AuthState {}

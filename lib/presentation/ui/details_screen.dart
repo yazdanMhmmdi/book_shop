@@ -3,6 +3,7 @@ import 'package:book_shop/constants/colors.dart';
 import 'package:book_shop/constants/strings.dart';
 import 'package:book_shop/logic/bloc/details_bloc.dart';
 import 'package:book_shop/networking/image_address_provider.dart';
+import 'package:book_shop/presentation/widgets/my_button.dart';
 import 'package:book_shop/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -183,9 +184,11 @@ class DetailsScreen extends StatelessWidget {
                               SizedBox(
                                 height: 8,
                               ),
-                              button(Strings.detailsBuy, () {
-                                print('sss');
-                              }),
+                              MyButton(
+                                  text: Strings.detailsBuy,
+                                  onTap: (state) {
+                                    print('sss');
+                                  }),
                               SizedBox(
                                 height: 45,
                               ),
@@ -228,7 +231,8 @@ class DetailsScreen extends StatelessWidget {
                               ]),
                         ),
                         Hero(
-                          tag: "post_${id}_${arguments["hero_type"]}", //TODO: check hero types
+                          tag:
+                              "post_${id}_${arguments["hero_type"]}", //TODO: check hero types
                           child: Container(
                             width: 136,
                             height: 200,

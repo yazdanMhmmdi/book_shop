@@ -10,6 +10,7 @@ import 'package:book_shop/presentation/ui/details_screen.dart';
 import 'package:book_shop/presentation/ui/home_screen.dart';
 import 'package:book_shop/presentation/ui/login_screen.dart';
 import 'package:book_shop/presentation/ui/sign_up_screen.dart';
+import 'package:book_shop/presentation/ui/splash_screen.dart';
 import 'package:book_shop/presentation/ui/title_details_screen.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
@@ -36,6 +37,7 @@ class _MyAppState extends State<MyApp> {
 
   final InternetCubit _internetCubit =
       new InternetCubit(connectivity: Connectivity());
+  final _loginScreen = LoginScreen();
 
   @override
   Widget build(BuildContext context) {
@@ -46,15 +48,16 @@ class _MyAppState extends State<MyApp> {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       routes: {
+        '/': (context) => SplashScreen(),
         '/login': (context) => BlocProvider.value(
               value: _authBloc,
-              child: LoginScreen(),
+              child: _loginScreen,
             ),
         '/sign_up': (context) => BlocProvider.value(
               value: _authBloc,
               child: SignUpScreen(),
             ),
-        '/': (context) => BlocProvider.value(
+        '/home': (context) => BlocProvider.value(
               value: _internetCubit,
               child: HomeScreen(
                 homeBloc: _homeBloc..add(FetchEvent()),

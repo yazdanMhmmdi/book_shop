@@ -2,6 +2,8 @@ import 'package:book_shop/constants/assets.dart';
 import 'package:book_shop/constants/colors.dart';
 import 'package:book_shop/constants/strings.dart';
 import 'package:book_shop/logic/bloc/account_bloc.dart';
+import 'package:book_shop/presentation/widgets/my_button.dart';
+import 'package:book_shop/presentation/widgets/my_text_field.dart';
 import 'package:book_shop/presentation/widgets/my_tool_bar.dart';
 import 'package:book_shop/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -120,30 +122,34 @@ class _AccountTabState extends State<AccountTab> {
                                         ),
                                         Container(
                                             height: 46,
-                                            child: textField(
-                                                Icons.person,
-                                                Strings.usernameLabel,
-                                                IColors.lowWhite,
-                                                _usernameController)),
+                                            child: MyTextFiled(
+                                                icon: Icons.person,
+                                                text: Strings.usernameLabel,
+                                                textFieldColor:
+                                                    IColors.lowWhite,
+                                                controller:
+                                                    _usernameController)),
                                         SizedBox(
                                           height: 16,
                                         ),
                                         Container(
                                             height: 46,
-                                            child: textField(
-                                                Icons.lock,
-                                                Strings.passwordLabel,
-                                                IColors.lowWhite,
-                                                _passwordController)),
+                                            child: MyTextFiled(
+                                                icon: Icons.lock,
+                                                text: Strings.passwordLabel,
+                                                textFieldColor:
+                                                    IColors.lowWhite,
+                                                controller:
+                                                    _passwordController)),
                                         SizedBox(
                                           height: 16,
                                         ),
                                         Padding(
                                           padding: const EdgeInsets.symmetric(
                                               horizontal: 16),
-                                          child: button(
-                                              "ویرایش",
-                                              () => context
+                                          child: MyButton(
+                                              text: "${Strings.accountEdit}",
+                                              onTap: (state) => context
                                                   .bloc<AccountBloc>()
                                                   .add(EditEvent(
                                                       userId: "1",

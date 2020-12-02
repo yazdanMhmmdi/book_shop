@@ -47,6 +47,9 @@ class _LoginScreenState extends State<LoginScreen> {
           setState(() {
             buttonState = ButtonState.success;
           });
+          Timer(Duration(seconds: 2), () {
+            Navigator.pushNamed(context, '/home');
+          });
         } else if (state is AuthWrong) {
           setState(() {
             buttonState = ButtonState.fail;
@@ -124,12 +127,19 @@ class _LoginScreenState extends State<LoginScreen> {
                                           _passwordController.text));
                                     })),
                             SizedBox(height: 8),
-                            Text(
-                              Strings.loginNeedSignUp,
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontFamily: "IranSans",
-                                color: Color(0xff000000).withOpacity(0.55),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.pushNamedAndRemoveUntil(
+                                    context, '/sign_up', (e) => false);
+                                
+                              },
+                              child: Text(
+                                Strings.loginNeedSignUp,
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontFamily: "IranSans",
+                                  color: Color(0xff000000).withOpacity(0.55),
+                                ),
                               ),
                             ),
                             SizedBox(height: 16),
@@ -147,7 +157,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   void dispose() {
-    context.bloc<AuthBloc>().close();
+    print('dispose login');
     super.dispose();
   }
 }

@@ -12,7 +12,7 @@ Widget backgroundShapes() {
   Future.delayed(Duration(seconds: 1), () {
     width = 200;
     height = 250;
-    print('Delat $width');
+    // print('Delat $width');
   });
   return Hero(
     tag: heroTag,

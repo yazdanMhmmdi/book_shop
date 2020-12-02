@@ -1,10 +1,11 @@
 import 'package:book_shop/constants/assets.dart';
 import 'package:book_shop/networking/api_provider.dart';
 import 'package:book_shop/networking/image_address_provider.dart';
+import 'package:book_shop/presentation/animation/fade_in_animation.dart';
 import 'package:book_shop/presentation/widgets/rating_bar.dart';
 import 'package:flutter/material.dart';
 
-class HorizontalCard extends StatelessWidget {
+class HorizontalCard extends StatefulWidget {
   String id;
   String writer;
   String name;
@@ -25,9 +26,26 @@ class HorizontalCard extends StatelessWidget {
     @required this.pagesCount,
     @required this.language,
   });
+
+  @override
+  _HorizontalCardState createState() => _HorizontalCardState();
+}
+
+class _HorizontalCardState extends State<HorizontalCard> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    print("picture : ${ApiProvider.URL_IP + thumbPicture}");
+    print("picture : ${ApiProvider.URL_IP + widget.thumbPicture}");
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Directionality(
@@ -35,22 +53,22 @@ class HorizontalCard extends StatelessWidget {
         child: GestureDetector(
           onTap: () => Navigator.pushNamed(context, '/details',
               arguments: <String, String>{
-                'post_id': "${id}",
-                'name': "${name}",
-                'writer': "${writer}",
-                'description': "${description}",
-                'voteCount': "${voteCount}",
-                'thumbPicture': "${thumbPicture}",
-                'language': "${language}",
-                'coverType': "${coverType}",
-                'pagesCount': "${pagesCount}",
+                'post_id': "${widget.id}",
+                'name': "${widget.name}",
+                'writer': "${widget.writer}",
+                'description': "${widget.description}",
+                'voteCount': "${widget.voteCount}",
+                'thumbPicture': "${widget.thumbPicture}",
+                'language': "${widget.language}",
+                'coverType': "${widget.coverType}",
+                'pagesCount': "${widget.pagesCount}",
                 'hero_type': "h",
               }),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Hero(
-                tag: "post_${id}_h",
+                tag: "post_${widget.id}_h",
                 child: Container(
                   width: 71,
                   height: 110,
@@ -59,14 +77,14 @@ class HorizontalCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Image.network(
-                    ImageAddressProvider.imageURL + thumbPicture,
+                    ImageAddressProvider.imageURL + widget.thumbPicture,
                   ),
                 ),
               ),
               Container(
                 width: 71,
                 child: Text(
-                  '${writer}',
+                  '${widget.writer}',
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                       color: Colors.black38,
@@ -80,7 +98,7 @@ class HorizontalCard extends StatelessWidget {
               Container(
                 width: 71,
                 child: Text(
-                  '${name}',
+                  '${widget.name}',
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                       color: Colors.black87,
@@ -92,7 +110,7 @@ class HorizontalCard extends StatelessWidget {
               SizedBox(
                 height: 6,
               ),
-              MyRatingBar(voteCount, 13),
+              MyRatingBar(widget.voteCount, 13),
             ],
           ),
         ),

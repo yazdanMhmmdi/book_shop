@@ -2,6 +2,7 @@ import 'package:book_shop/constants/assets.dart';
 import 'package:book_shop/constants/colors.dart';
 import 'package:book_shop/constants/strings.dart';
 import 'package:book_shop/logic/bloc/account_bloc.dart';
+import 'package:book_shop/presentation/animation/fade_in_animation.dart';
 import 'package:book_shop/presentation/widgets/my_button.dart';
 import 'package:book_shop/presentation/widgets/my_text_field.dart';
 import 'package:book_shop/presentation/widgets/my_tool_bar.dart';
@@ -57,131 +58,137 @@ class _AccountTabState extends State<AccountTab> {
                   SizedBox(
                     height: 23,
                   ),
-                  MyToolBar(title: Strings.accountLabel),
+                  FadeInAnimation(
+                              0.25, MyToolBar(title: Strings.accountLabel)),
                   SizedBox(
                     height: 16,
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: Container(
-                      height: 358,
-                      child: Stack(
-                        children: [
-                          Align(
-                            alignment: Alignment.bottomCenter,
-                            child: Container(
-                              height: 315,
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                color: Color(bgColor),
-                                borderRadius: BorderRadius.circular(32),
-                              ),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 16, vertical: 16),
-                                    child: Container(
-                                      width: 28,
-                                      height: 28,
-                                      decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        color: Colors.white54,
-                                      ),
-                                      child: Icon(
-                                        Icons.edit,
-                                        color: Colors.white,
-                                        size: 14,
-                                      ),
-                                    ),
+                    child: FadeInAnimation(
+                              0.5, Container(
+                        height: 358,
+                        child: Stack(
+                          children: [
+                            Align(
+                              alignment: Alignment.bottomCenter,
+                              child: FadeInAnimation(
+                                0.75,
+                                Container(
+                                  height: 315,
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                    color: Color(bgColor),
+                                    borderRadius: BorderRadius.circular(32),
                                   ),
-                                  Center(
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          "${username}",
-                                          style: TextStyle(
-                                              fontFamily: "IranSans",
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.w700,
-                                              color: Colors.white),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 16, vertical: 16),
+                                        child: Container(
+                                          width: 28,
+                                          height: 28,
+                                          decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            color: Colors.white54,
+                                          ),
+                                          child: Icon(
+                                            Icons.edit,
+                                            color: Colors.white,
+                                            size: 14,
+                                          ),
                                         ),
-                                        Text(
-                                          Strings.accountWelcome,
-                                          style: TextStyle(
-                                              fontFamily: "IranSans",
-                                              fontSize: 16,
-                                              color: Colors.white),
+                                      ),
+                                      Center(
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              "${username}",
+                                              style: TextStyle(
+                                                  fontFamily: "IranSans",
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.w700,
+                                                  color: Colors.white),
+                                            ),
+                                            Text(
+                                              Strings.accountWelcome,
+                                              style: TextStyle(
+                                                  fontFamily: "IranSans",
+                                                  fontSize: 16,
+                                                  color: Colors.white),
+                                            ),
+                                            SizedBox(
+                                              height: 16,
+                                            ),
+                                            Container(
+                                                height: 46,
+                                                child: MyTextFiled(
+                                                    icon: Icons.person,
+                                                    text: Strings.usernameLabel,
+                                                    textFieldColor:
+                                                        IColors.lowWhite,
+                                                    controller:
+                                                        _usernameController)),
+                                            SizedBox(
+                                              height: 16,
+                                            ),
+                                            Container(
+                                                height: 46,
+                                                child: MyTextFiled(
+                                                    icon: Icons.lock,
+                                                    text: Strings.passwordLabel,
+                                                    textFieldColor:
+                                                        IColors.lowWhite,
+                                                    controller:
+                                                        _passwordController)),
+                                            SizedBox(
+                                              height: 16,
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.symmetric(
+                                                  horizontal: 16),
+                                              child: MyButton(
+                                                  text: "${Strings.accountEdit}",
+                                                  onTap: (state) => context
+                                                      .bloc<AccountBloc>()
+                                                      .add(EditEvent(
+                                                          userId: "1",
+                                                          newUsername:
+                                                              _usernameController
+                                                                  .text,
+                                                          newPassword:
+                                                              _passwordController
+                                                                  .text))),
+                                            ),
+                                          ],
                                         ),
-                                        SizedBox(
-                                          height: 16,
-                                        ),
-                                        Container(
-                                            height: 46,
-                                            child: MyTextFiled(
-                                                icon: Icons.person,
-                                                text: Strings.usernameLabel,
-                                                textFieldColor:
-                                                    IColors.lowWhite,
-                                                controller:
-                                                    _usernameController)),
-                                        SizedBox(
-                                          height: 16,
-                                        ),
-                                        Container(
-                                            height: 46,
-                                            child: MyTextFiled(
-                                                icon: Icons.lock,
-                                                text: Strings.passwordLabel,
-                                                textFieldColor:
-                                                    IColors.lowWhite,
-                                                controller:
-                                                    _passwordController)),
-                                        SizedBox(
-                                          height: 16,
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 16),
-                                          child: MyButton(
-                                              text: "${Strings.accountEdit}",
-                                              onTap: (state) => context
-                                                  .bloc<AccountBloc>()
-                                                  .add(EditEvent(
-                                                      userId: "1",
-                                                      newUsername:
-                                                          _usernameController
-                                                              .text,
-                                                      newPassword:
-                                                          _passwordController
-                                                              .text))),
-                                        ),
-                                      ],
-                                    ),
+                                      ),
+                                    ],
                                   ),
-                                ],
+                                ),
                               ),
                             ),
-                          ),
-                          Align(
-                            alignment: Alignment.topCenter,
-                            child: Container(
-                              width: 94,
-                              height: 94,
-                              decoration: BoxDecoration(
-                                  shape: BoxShape.circle, color: Colors.white),
-                              child: Image.asset(
-                                Assets.femaleAvatarImage,
+                            Align(
+                              alignment: Alignment.topCenter,
+                              child: Container(
                                 width: 94,
-                                height: 88,
+                                height: 94,
+                                decoration: BoxDecoration(
+                                    shape: BoxShape.circle, color: Colors.white),
+                                child: Image.asset(
+                                  Assets.femaleAvatarImage,
+                                  width: 94,
+                                  height: 88,
+                                ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   )

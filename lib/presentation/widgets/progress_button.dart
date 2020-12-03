@@ -123,6 +123,9 @@ class _ProgressButtonState extends State<ProgressButton>
     if (newState == ButtonState.loading) {
       width = widget.minWidth;
       widget.radius = 100;
+    } else if (newState == ButtonState.idle) {
+      width = widget.maxWidth;
+      widget.radius = 8;
     } else if (newState == ButtonState.fail) {
       width = widget.minWidth;
       widget.radius = 100;

@@ -36,30 +36,7 @@ class _AccountTabState extends State<AccountTab> {
     return BlocListener(
       cubit: context.bloc<AccountBloc>(),
       listener: (context, state) {
-        if (state is AccountEditingLoading) {
-          setState(() {
-            _buttonState = ButtonState.loading;
-          });
-        } else if (state is AccountEditingSuccess) {
-          setState(() {
-            _buttonState = ButtonState.success;
-          });
-
-          Timer(Duration(seconds: 2), () {
-            setState(() {
-              _buttonState = ButtonState.idle;
-            });
-          });
-        } else if (state is AccountEditingFailure) {
-          setState(() {
-            _buttonState = ButtonState.fail;
-          });
-          Timer(Duration(seconds: 4), () {
-            setState(() {
-              _buttonState = ButtonState.idle;
-            });
-          });
-        }
+        _accountButtonStateListener(state);
       },
       child: SingleChildScrollView(
         child: SafeArea(
@@ -126,17 +103,20 @@ class _AccountTabState extends State<AccountTab> {
                                         Padding(
                                           padding: const EdgeInsets.symmetric(
                                               horizontal: 16, vertical: 16),
-                                          child: Container(
-                                            width: 28,
-                                            height: 28,
-                                            decoration: BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              color: Colors.white54,
-                                            ),
-                                            child: Icon(
-                                              Icons.edit,
-                                              color: Colors.white,
-                                              size: 14,
+                                          child: Opacity(
+                                            opacity: 0,
+                                            child: Container(
+                                              width: 28,
+                                              height: 28,
+                                              decoration: BoxDecoration(
+                                                shape: BoxShape.circle,
+                                                color: Colors.white54,
+                                              ),
+                                              child: Icon(
+                                                Icons.edit,
+                                                color: Colors.white,
+                                                size: 14,
+                                              ),
                                             ),
                                           ),
                                         ),
@@ -248,5 +228,32 @@ class _AccountTabState extends State<AccountTab> {
         ),
       ),
     );
+  }
+
+  void _accountButtonStateListener(state) {
+    if (state is AccountEditingLoading) {
+      setState(() {
+        _buttonState = ButtonState.loading;
+      });
+    } else if (state is AccountEditingSuccess) {
+      setState(() {
+        _buttonState = ButtonState.success;
+      });
+
+      Timer(Duration(seconds: 2), () {
+        setState(() {
+          _buttonState = ButtonState.idle;
+        });
+      });
+    } else if (state is AccountEditingFailure) {
+      setState(() {
+        _buttonState = ButtonState.fail;
+      });
+      Timer(Duration(seconds: 4), () {
+        setState(() {
+          _buttonState = ButtonState.idle;
+        });
+      });
+    }
   }
 }

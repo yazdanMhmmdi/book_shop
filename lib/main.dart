@@ -48,7 +48,7 @@ class _MyAppState extends State<MyApp> {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       routes: {
-        '/': (context) => SplashScreen(),
+        '/splash': (context) => SplashScreen(), 
         '/login': (context) => BlocProvider.value(
               value: _authBloc,
               child: _loginScreen,
@@ -57,7 +57,7 @@ class _MyAppState extends State<MyApp> {
               value: _authBloc,
               child: SignUpScreen(),
             ),
-        '/home': (context) => BlocProvider.value(
+        '/': (context) => BlocProvider.value(
               value: _internetCubit,
               child: HomeScreen(
                 homeBloc: _homeBloc..add(FetchEvent()),

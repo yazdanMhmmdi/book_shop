@@ -2,7 +2,7 @@ import 'package:book_shop/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class MyTextFiled extends StatelessWidget {
+class MyTextFiled extends StatefulWidget {
   var icon;
   var text;
   Color textFieldColor;
@@ -12,6 +12,14 @@ class MyTextFiled extends StatelessWidget {
       @required this.icon,
       @required this.text,
       @required this.textFieldColor});
+
+  @override
+  _MyTextFiledState createState() => _MyTextFiledState();
+}
+
+class _MyTextFiledState extends State<MyTextFiled> {
+    final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -22,27 +30,35 @@ class MyTextFiled extends StatelessWidget {
           width: double.infinity,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
-            color: textFieldColor,
+            color: widget.textFieldColor,
           ),
           child: Padding(
             padding: const EdgeInsets.all(0.0),
             child: Row(
               children: [
                 IconButton(
-                    icon: Icon(icon, color: Color(icoColor)), onPressed: () {}),
+                    icon: Icon(widget.icon, color: Color(icoColor)),
+                    onPressed: () {}),
                 Expanded(
-                  child: TextField(
-                    controller: controller,
+                  child: TextFormField(
+                    controller: widget.controller,
+                    validator: (value) {
+                      if (value.isEmpty) {
+                        return "yes";
+                      }
+                      return "no";
+                    },
                     style: TextStyle(
                       fontSize: 16,
                       fontFamily: "IranSans",
                     ),
                     decoration: InputDecoration(
                       border: InputBorder.none,
-                      hintText: '$text',
+                      hintText: '${widget.text}',
                     ),
                     inputFormatters: [
-                      new FilteringTextInputFormatter.allow(RegExp(r'^[a-zA-Z0-9]+$')),
+                      new FilteringTextInputFormatter.allow(
+                          RegExp(r'^[a-zA-Z0-9]+$')),
                     ],
                   ),
                 ),

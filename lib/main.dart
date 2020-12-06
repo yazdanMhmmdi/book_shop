@@ -48,13 +48,30 @@ class _MyAppState extends State<MyApp> {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       routes: {
-        '/': (context) => SplashScreen(), 
-        '/login': (context) => BlocProvider.value(
-              value: _authBloc,
+        '/': (context) => BlocProvider.value(
+              value: _internetCubit,
+              child: SplashScreen(), //_authBloc
+            ),
+        '/login': (context) => MultiBlocProvider(
+              providers: [
+                BlocProvider.value(
+                  value: _authBloc,
+                ),
+                BlocProvider.value(
+                  value: _internetCubit,
+                ),
+              ],
               child: _loginScreen,
             ),
-        '/sign_up': (context) => BlocProvider.value(
-              value: _authBloc,
+        '/sign_up': (context) => MultiBlocProvider(
+              providers: [
+                BlocProvider.value(
+                  value: _authBloc,
+                ),
+                BlocProvider.value(
+                  value: _internetCubit,
+                ),
+              ],
               child: SignUpScreen(),
             ),
         '/home': (context) => BlocProvider.value(
@@ -64,12 +81,28 @@ class _MyAppState extends State<MyApp> {
                 accountBloc: _accountBloc..add(GetDefaultEvent("1")),
               ),
             ),
-        '/details': (context) => BlocProvider(
-            create: (context) => DetailsBloc(),
-            // create: (context) => ,
-            child: DetailsScreen()),
-        '/title': (context) => BlocProvider(
-            create: (context) => TitleBloc(), child: TitleDetailsScreen()),
+        '/details': (context) => MultiBlocProvider(
+              providers: [
+                BlocProvider(
+                  create: (context) => DetailsBloc(),
+                ),
+                BlocProvider.value(
+                  value: _internetCubit,
+                ),
+              ],
+              child: DetailsScreen(),
+            ),
+        '/title': (context) => MultiBlocProvider(
+              providers: [
+                BlocProvider.value(
+                  value: _internetCubit,
+                ),
+                BlocProvider(
+                  create: (context) => TitleBloc(),
+                )
+              ],
+              child: TitleDetailsScreen(),
+            ),
       },
     );
   }

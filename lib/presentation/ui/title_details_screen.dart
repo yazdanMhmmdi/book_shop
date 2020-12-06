@@ -1,9 +1,11 @@
 import 'package:book_shop/constants/assets.dart';
 import 'package:book_shop/constants/strings.dart';
 import 'package:book_shop/logic/bloc/title_bloc.dart';
+import 'package:book_shop/logic/cubit/internet_cubit.dart';
 import 'package:book_shop/presentation/ui/title_tab.dart';
 import 'package:book_shop/presentation/ui/vertical_card.dart';
 import 'package:book_shop/presentation/widgets/loading_bar.dart';
+import 'package:book_shop/presentation/widgets/no_network_flare.dart';
 import 'package:book_shop/presentation/widgets/not_found_bar.dart';
 import 'package:book_shop/presentation/widgets/title_details_tab.dart';
 import 'package:book_shop/presentation/widgets/title_selector.dart';
@@ -30,6 +32,7 @@ class _TitleDetailsScreenState extends State<TitleDetailsScreen> {
   int firstTabState = 1;
   bool loading = true;
   bool nothingFound = false;
+  Color backgroundColor = Colors.white;
   @override
   void initState() {
     super.initState();
@@ -52,109 +55,123 @@ class _TitleDetailsScreenState extends State<TitleDetailsScreen> {
       firstTabState = int.tryParse(arguments["category"]);
     });
     return Scaffold(
+      backgroundColor: backgroundColor,
       body: SafeArea(
         child: BlocListener<TitleBloc, TitleState>(
-          cubit: _sienceTitleBloc,
-          listener: (context, state) {
-            if (state is TitlePagination) {
-              setState(() {
-                progress = true;
-              });
-            } else if (state is TitleSuccess) {
-              setState(() {
-                progress = false;
-                loading = false;
-              });
-            } else if (state is TitleLoading) {
-              setState(() {
-                loading = true;
-              });
-            } else if (state is TitleNothingFound) {
-              setState(() {
-                loading = false;
-                nothingFound = true;
-              });
-            }
-          },
-          child: SingleChildScrollView(
-            controller: _controller,
-            child: Directionality(
-              textDirection: TextDirection.rtl,
-              child: Stack(
-                children: [
-                  Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 16, bottom: 8),
-                        child: TitleSelector(
-                          titles: [
-                            Strings.titleScience,
-                            Strings.titleMedicine,
-                            Strings.titleHistoric,
-                            Strings.titleLaw,
-                            Strings.titleFood,
-                            Strings.titleSport
-                          ],
-                          bloc: _sienceTitleBloc,
-                          firstTab: firstTabState,
-                        ),
-                      ),
-                      BlocBuilder<TitleBloc, TitleState>(
-                        builder: (context, state) {
-                          if (state is TitleInitial) {
-                            return Container();
-                          } else if (state is TitleLoading) {
-                            return Container();
-                          } else if (state is TitleSuccess)
-                            return TitleDetailsTab(state.model);
-                          else if (state is TitleFailure) {
-                            return Text('failure');
-                          } else if (state is TitleNothingFound) {
-                            return Container();
-                          } else if (state is TitlePagination) {
-                            return TitleDetailsTab(state.model);
-                          }
-                        },
-                      ),
-                      progress ? CircularProgressIndicator() : Container(),
-                    ],
-                  ),
-                  loading
-                      ? Container(
-                          height: MediaQuery.of(context).size.height,
-                          child: Center(
-                            child: new MyLoadingBar(animation: "Untitled"),
-                          ),
-                        )
-                      : Container(),
-                  nothingFound
-                      ? Container(
-                          height: MediaQuery.of(context).size.height,
-                          child: Center(
-                            child: Container(
-                              width: 150,
-                              height: MediaQuery.of(context).size.height,
-                              child: Center(
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    NotFoundBar(),
-                                    SizedBox(
-                                      height: 8,
-                                    ),
-                                    Text('ss'),
+            cubit: _sienceTitleBloc,
+            listener: (context, state) {
+              if (state is TitlePagination) {
+                setState(() {
+                  progress = true;
+                });
+              } else if (state is TitleSuccess) {
+                setState(() {
+                  progress = false;
+                  loading = false;
+                });
+              } else if (state is TitleLoading) {
+                setState(() {
+                  loading = true;
+                });
+              } else if (state is TitleNothingFound) {
+                setState(() {
+                  loading = false;
+                  nothingFound = true;
+                });
+              }
+            },
+            child: BlocBuilder<InternetCubit, InternetState>(
+              builder: (context, state) {
+                if (state is InternetConnected) {
+                  return SingleChildScrollView(
+                    controller: _controller,
+                    child: Directionality(
+                      textDirection: TextDirection.rtl,
+                      child: Stack(
+                        children: [
+                          Column(
+                            children: [
+                              Padding(
+                                padding:
+                                    const EdgeInsets.only(top: 16, bottom: 8),
+                                child: TitleSelector(
+                                  titles: [
+                                    Strings.titleScience,
+                                    Strings.titleMedicine,
+                                    Strings.titleHistoric,
+                                    Strings.titleLaw,
+                                    Strings.titleFood,
+                                    Strings.titleSport
                                   ],
+                                  bloc: _sienceTitleBloc,
+                                  firstTab: firstTabState,
                                 ),
                               ),
-                            ),
+                              BlocBuilder<TitleBloc, TitleState>(
+                                builder: (context, state) {
+                                  if (state is TitleInitial) {
+                                    return Container();
+                                  } else if (state is TitleLoading) {
+                                    return Container();
+                                  } else if (state is TitleSuccess)
+                                    return TitleDetailsTab(state.model);
+                                  else if (state is TitleFailure) {
+                                    return Text('failure');
+                                  } else if (state is TitleNothingFound) {
+                                    return Container();
+                                  } else if (state is TitlePagination) {
+                                    return TitleDetailsTab(state.model);
+                                  }
+                                },
+                              ),
+                              progress
+                                  ? CircularProgressIndicator()
+                                  : Container(),
+                            ],
                           ),
-                        )
-                      : Container(),
-                ],
-              ),
-            ),
-          ),
-        ),
+                          loading
+                              ? Container(
+                                  height: MediaQuery.of(context).size.height,
+                                  child: Center(
+                                    child:
+                                        new MyLoadingBar(animation: "Untitled"),
+                                  ),
+                                )
+                              : Container(),
+                          nothingFound
+                              ? Container(
+                                  height: MediaQuery.of(context).size.height,
+                                  child: Center(
+                                    child: Container(
+                                      width: 150,
+                                      height:
+                                          MediaQuery.of(context).size.height,
+                                      child: Center(
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            NotFoundBar(),
+                                            SizedBox(
+                                              height: 8,
+                                            ),
+                                            Text('ss'),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              : Container(),
+                        ],
+                      ),
+                    ),
+                  );
+                } else {
+                  return NoNetworkFlare();
+                }
+              },
+            )),
       ),
     );
   }

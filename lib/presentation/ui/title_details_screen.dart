@@ -28,6 +28,8 @@ class _TitleDetailsScreenState extends State<TitleDetailsScreen> {
   ScrollController _controller = new ScrollController();
   bool progress = false;
   int firstTabState = 1;
+  bool loading = true;
+  bool nothingFound = false;
   @override
   void initState() {
     super.initState();
@@ -61,6 +63,16 @@ class _TitleDetailsScreenState extends State<TitleDetailsScreen> {
             } else if (state is TitleSuccess) {
               setState(() {
                 progress = false;
+                loading = false;
+              });
+            } else if (state is TitleLoading) {
+              setState(() {
+                loading = true;
+              });
+            } else if (state is TitleNothingFound) {
+              setState(() {
+                loading = false;
+                nothingFound = true;
               });
             }
           },
@@ -68,63 +80,76 @@ class _TitleDetailsScreenState extends State<TitleDetailsScreen> {
             controller: _controller,
             child: Directionality(
               textDirection: TextDirection.rtl,
-              child: Column(
+              child: Stack(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 16, bottom: 8),
-                    child: TitleSelector(
-                      titles: [
-                        Strings.titleScience,
-                        Strings.titleMedicine,
-                        Strings.titleHistoric,
-                        Strings.titleLaw,
-                        Strings.titleFood,
-                        Strings.titleSport
-                      ],
-                      bloc: _sienceTitleBloc,
-                      firstTab: firstTabState,
-                    ),
+                  Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 16, bottom: 8),
+                        child: TitleSelector(
+                          titles: [
+                            Strings.titleScience,
+                            Strings.titleMedicine,
+                            Strings.titleHistoric,
+                            Strings.titleLaw,
+                            Strings.titleFood,
+                            Strings.titleSport
+                          ],
+                          bloc: _sienceTitleBloc,
+                          firstTab: firstTabState,
+                        ),
+                      ),
+                      BlocBuilder<TitleBloc, TitleState>(
+                        builder: (context, state) {
+                          if (state is TitleInitial) {
+                            return Container();
+                          } else if (state is TitleLoading) {
+                            return Container();
+                          } else if (state is TitleSuccess)
+                            return TitleDetailsTab(state.model);
+                          else if (state is TitleFailure) {
+                            return Text('failure');
+                          } else if (state is TitleNothingFound) {
+                            return Container();
+                          } else if (state is TitlePagination) {
+                            return TitleDetailsTab(state.model);
+                          }
+                        },
+                      ),
+                      progress ? CircularProgressIndicator() : Container(),
+                    ],
                   ),
-                  BlocBuilder<TitleBloc, TitleState>(
-                    builder: (context, state) {
-                      if (state is TitleInitial) {
-                        return Container();
-                      } else if (state is TitleLoading) {
-                        return Container(
+                  loading
+                      ? Container(
                           height: MediaQuery.of(context).size.height,
                           child: Center(
                             child: new MyLoadingBar(animation: "Untitled"),
                           ),
-                        );
-                      } else if (state is TitleSuccess)
-                        return TitleDetailsTab(state.model);
-                      else if (state is TitleFailure) {
-                        return Text('failureXXX');
-                      } else if (state is TitleNothingFound) {
-                        return Center(
-                          child: Container(
-                            width: 150,
-                            height: MediaQuery.of(context).size.height,
-                            child: Center(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  NotFoundBar(),
-                                  SizedBox(
-                                    height: 8,
-                                  ),
-                                  Text('ss'),
-                                ],
+                        )
+                      : Container(),
+                  nothingFound
+                      ? Container(
+                          height: MediaQuery.of(context).size.height,
+                          child: Center(
+                            child: Container(
+                              width: 150,
+                              height: MediaQuery.of(context).size.height,
+                              child: Center(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    NotFoundBar(),
+                                    SizedBox(
+                                      height: 8,
+                                    ),
+                                    Text('ss'),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
-                        );
-                      } else if (state is TitlePagination) {
-                        return TitleDetailsTab(state.model);
-                      }
-                    },
-                  ),
-                  progress ? CircularProgressIndicator() : Container(),
+                        )
+                      : Container(),
                 ],
               ),
             ),

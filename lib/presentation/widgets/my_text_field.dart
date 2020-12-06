@@ -5,10 +5,12 @@ import 'package:flutter/services.dart';
 class MyTextFiled extends StatefulWidget {
   var icon;
   var text;
+  var obscureText;
   Color textFieldColor;
   TextEditingController controller;
   MyTextFiled(
       {@required this.controller,
+      @required this.obscureText,
       @required this.icon,
       @required this.text,
       @required this.textFieldColor});
@@ -18,7 +20,7 @@ class MyTextFiled extends StatefulWidget {
 }
 
 class _MyTextFiledState extends State<MyTextFiled> {
-    final _formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -42,6 +44,7 @@ class _MyTextFiledState extends State<MyTextFiled> {
                 Expanded(
                   child: TextFormField(
                     controller: widget.controller,
+                    obscureText: widget.obscureText,
                     validator: (value) {
                       if (value.isEmpty) {
                         return "yes";

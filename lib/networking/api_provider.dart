@@ -3,15 +3,15 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class ApiProvider {
-  static const String URL_IP = "192.168.43.237";
-  final String _BASE_URL = "http://$URL_IP/book_shop/api/";
+  static const String URL_IP = "yazdanmohammadi.ir";
+  final String _BASE_URL = "https://$URL_IP/book_shop/api/";
 
   Future<dynamic> get(String url) async {
     try {
       final response = await http.get(_BASE_URL + url);
       return await decodeResponse(response);
     } catch (_) {
-      print('connection failure $_BASE_URL');
+      print('connection failure $_BASE_URL' + url);
     }
   }
 

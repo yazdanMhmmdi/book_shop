@@ -148,6 +148,7 @@ class _AccountTabState extends State<AccountTab> {
                                                 child: MyTextFiled(
                                                     icon: Icons.person,
                                                     text: Strings.usernameLabel,
+                                                    obscureText: false,
                                                     textFieldColor:
                                                         IColors.lowWhite,
                                                     controller:
@@ -171,6 +172,7 @@ class _AccountTabState extends State<AccountTab> {
                                                 child: MyTextFiled(
                                                     icon: Icons.lock,
                                                     text: Strings.passwordLabel,
+                                                    obscureText: true,
                                                     textFieldColor:
                                                         IColors.lowWhite,
                                                     controller:

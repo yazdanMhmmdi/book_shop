@@ -99,6 +99,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             MyTextFiled(
                                 icon: Icons.person,
                                 text: Strings.usernameLabel,
+                                obscureText: false,
                                 textFieldColor:
                                     Color(txfColor).withOpacity(0.15),
                                 controller: _usernameController),
@@ -106,6 +107,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             MyTextFiled(
                                 icon: Icons.lock,
                                 text: Strings.passwordLabel,
+                                obscureText: true,
                                 textFieldColor:
                                     Color(txfColor).withOpacity(0.15),
                                 controller: _passwordController),

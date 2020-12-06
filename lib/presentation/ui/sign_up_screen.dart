@@ -103,6 +103,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             MyTextFiled(
                                 icon: Icons.person,
                                 text: Strings.usernameLabel,
+                                obscureText: false,
                                 textFieldColor: IColors.lowedBoldGreen,
                                 controller: _usernameController),
                             _usernameStatus
@@ -113,6 +114,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             MyTextFiled(
                                 icon: Icons.lock,
                                 text: Strings.passwordLabel,
+                                obscureText: true,
                                 textFieldColor: IColors.lowedBoldGreen,
                                 controller: _passwordController),
                             _passwordStatus

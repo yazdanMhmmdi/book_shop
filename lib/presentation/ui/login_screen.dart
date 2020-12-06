@@ -119,7 +119,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     const EdgeInsets.symmetric(horizontal: 16),
                                 child: MyButton(
                                     buttonState: buttonState,
-                                    text: "تاییی",
+                                    text: "تایید",
                                     onTap: () {
                                       // setState(() {
                                       //   _buttonState = ButtonState.loading;
@@ -133,15 +133,29 @@ class _LoginScreenState extends State<LoginScreen> {
                               onTap: () {
                                 Navigator.pushNamedAndRemoveUntil(
                                     context, '/sign_up', (e) => false);
-                                
                               },
-                              child: Text(
-                                Strings.loginNeedSignUp,
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  fontFamily: "IranSans",
-                                  color: Color(0xff000000).withOpacity(0.55),
-                                ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "ثبت نام",
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      fontFamily: "IranSans",
+                                      color: IColors.boldGreen,
+                                    ),
+                                  ),
+                                  Text(
+                                    Strings.loginNeedSignUp,
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      fontFamily: "IranSans",
+                                      color:
+                                          Color(0xff000000).withOpacity(0.55),
+                                    ),
+                                  ),
+                                  
+                                ],
                               ),
                             ),
                             SizedBox(height: 16),

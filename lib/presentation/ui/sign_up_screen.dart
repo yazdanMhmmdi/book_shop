@@ -150,12 +150,32 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   }),
                             ),
                             SizedBox(height: 8),
-                            Text(
-                              Strings.signupDidYouSignedUp,
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontFamily: "IranSans",
-                                color: Color(0xff000000).withOpacity(0.55),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.pushNamedAndRemoveUntil(
+                                    context, '/login', (e) => false);
+                              },
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "ورود",
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      fontFamily: "IranSans",
+                                      color: IColors.boldGreen,
+                                    ),
+                                  ),
+                                  Text(
+                                    Strings.signupDidYouSignedUp,
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      fontFamily: "IranSans",
+                                      color:
+                                          Color(0xff000000).withOpacity(0.55),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                             SizedBox(height: 16),

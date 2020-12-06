@@ -7,13 +7,13 @@ class Strings {
   //sign up
   static final String signupLabel = "ثبت نام";
   static final String signupAccept = "تایید";
-  static final String signupDidYouSignedUp = "ثبت نام کرده اید؟ورود";
+  static final String signupDidYouSignedUp = "ثبت نام کرده اید؟";
   static final String signupUsernameWarning = "نام کاربری حداقل باید 5 کارکتر باشد";
   static final String signUpPasswordWarning = "رمز عبور حداقل باید 8 و حداکثر 16 کارکتر باشد";
   //login
   static final String loginLabel = "ورود";
   static final String loginAccept = "تایید";
-  static final String loginNeedSignUp = "حساب کاربری ندارید؟ ثبت نام";
+  static final String loginNeedSignUp = "حساب کاربری ندارید؟";
   //home
   static final String homeMostSales = "پرفروش ترین ها";
   static final String homeFresh = "تازه ها";

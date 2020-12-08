@@ -6,6 +6,7 @@ import 'package:book_shop/presentation/widgets/no_network_flare.dart';
 import 'package:book_shop/presentation/widgets/widgets.dart';
 import "package:flutter/material.dart";
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -32,8 +33,12 @@ class _SplashScreenState extends State<SplashScreen> {
                 setState(() {
                   backgroundColor = IColors.green;
                 });
-                Timer(Duration(seconds: 3), () {
-                  Navigator.pushNamed(context, '/login');
+                Timer(Duration(seconds: 3), () async {
+                  if (await getSharedPrefs() == "") {
+                    Navigator.pushNamed(context, '/login');
+                  } else {
+                    Navigator.pushNamed(context, '/home');
+                  }
                 });
               } else if (state is InternetLoading) {
                 return Container();
@@ -63,5 +68,14 @@ class _SplashScreenState extends State<SplashScreen> {
         ],
       )),
     );
+  }
+
+  Future<String> getSharedPrefs() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    String id = "";
+
+    id = (prefs.getString('id') == null ? "" : prefs.getString('id'));
+    print('sharedPrefs : $id');
+    return id;
   }
 }

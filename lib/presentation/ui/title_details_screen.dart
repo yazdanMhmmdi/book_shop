@@ -68,10 +68,12 @@ class _TitleDetailsScreenState extends State<TitleDetailsScreen> {
                 setState(() {
                   progress = false;
                   loading = false;
+                  nothingFound = false;
                 });
               } else if (state is TitleLoading) {
                 setState(() {
                   loading = true;
+                  nothingFound = false;
                 });
               } else if (state is TitleNothingFound) {
                 setState(() {

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:book_shop/constants/colors.dart';
 import 'package:book_shop/logic/cubit/internet_cubit.dart';
+import 'package:book_shop/presentation/widgets/background_shapes.dart';
 import 'package:book_shop/presentation/widgets/no_network_flare.dart';
 import 'package:book_shop/presentation/widgets/widgets.dart';
 import "package:flutter/material.dart";
@@ -55,7 +56,7 @@ class _SplashScreenState extends State<SplashScreen> {
                         height: 109,
                       ),
                     ),
-                    backgroundShapes(),
+                    BackgroundShapes(),
                   ],
                 );
               } else if (state is InternetDisconnected) {

@@ -6,6 +6,7 @@ import 'package:book_shop/logic/bloc/auth_bloc.dart';
 import 'package:book_shop/logic/cubit/internet_cubit.dart';
 import 'package:book_shop/networking/api_provider.dart';
 import 'package:book_shop/presentation/animation/fade_in_animation.dart';
+import 'package:book_shop/presentation/widgets/background_shapes.dart';
 import 'package:book_shop/presentation/widgets/my_button.dart';
 import 'package:book_shop/presentation/widgets/my_text_field.dart';
 import 'package:book_shop/presentation/widgets/no_network_flare.dart';
@@ -83,7 +84,7 @@ class _LoginScreenState extends State<LoginScreen> {
             if (state is InternetConnected) {
               return Stack(
                 children: [
-                  backgroundShapes(),
+                  BackgroundShapes(),
                   Center(
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16),

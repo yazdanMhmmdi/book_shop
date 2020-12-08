@@ -1,3 +1,4 @@
+import 'package:book_shop/data/repository/shared_prefs_repository.dart';
 import 'package:book_shop/logic/bloc/account_bloc.dart';
 import 'package:book_shop/logic/bloc/auth_bloc.dart';
 import 'package:book_shop/logic/bloc/details_bloc.dart';
@@ -78,7 +79,10 @@ class _MyAppState extends State<MyApp> {
               value: _internetCubit,
               child: HomeScreen(
                 homeBloc: _homeBloc..add(FetchEvent()),
-                accountBloc: _accountBloc..add(GetDefaultEvent("1")),
+                accountBloc: _accountBloc
+                  ..add(
+                    GetDefaultEvent(),
+                  ),
               ),
             ),
         '/details': (context) => MultiBlocProvider(

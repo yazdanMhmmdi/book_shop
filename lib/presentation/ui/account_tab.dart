@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:book_shop/constants/assets.dart';
 import 'package:book_shop/constants/colors.dart';
 import 'package:book_shop/constants/strings.dart';
+import 'package:book_shop/data/repository/account_repository.dart';
+import 'package:book_shop/data/repository/shared_prefs_repository.dart';
 import 'package:book_shop/logic/bloc/account_bloc.dart';
 import 'package:book_shop/presentation/animation/fade_in_animation.dart';
 import 'package:book_shop/presentation/widgets/my_button.dart';
@@ -55,8 +57,7 @@ class _AccountTabState extends State<AccountTab> {
                 setState(() {
                   username = state.accountModel.account.username;
                 });
-              } else if (state is AccountFailure) {
-              } else {}
+              } else if (state is AccountFailure) {}
             },
             builder: (context, state) {
               print('build account tab');
@@ -193,7 +194,7 @@ class _AccountTabState extends State<AccountTab> {
                                                   buttonState: _buttonState,
                                                   text:
                                                       "${Strings.accountEdit}",
-                                                  onTap: () {
+                                                  onTap: () async {
                                                     // print('s')
                                                     authValidatiors();
                                                     if (widget
@@ -203,7 +204,6 @@ class _AccountTabState extends State<AccountTab> {
                                                       context
                                                           .bloc<AccountBloc>()
                                                           .add(EditEvent(
-                                                              userId: "1",
                                                               newUsername:
                                                                   usernameController
                                                                       .text,
@@ -258,6 +258,7 @@ class _AccountTabState extends State<AccountTab> {
     } else if (state is AccountEditingSuccess) {
       setState(() {
         _buttonState = ButtonState.success;
+        username = usernameController.text;
       });
 
       Timer(Duration(seconds: 2), () {

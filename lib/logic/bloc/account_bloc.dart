@@ -25,8 +25,8 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
 
       print('AccountLoading');
       try {
-        AccountModel _accountModel =
-            await _accountRepository.getUsernameAndPassword(event.userId);
+        AccountModel _accountModel = await _accountRepository
+            .getUsernameAndPassword(await _accountRepository.getSharedPrefs());
         _glo = _accountModel;
         yield AccountSuccess(_accountModel);
         print('AccountSuccess');
@@ -39,7 +39,9 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
       print('AccountEditingLoading');
       try {
         ResponseModel _responseModel = await _accountRepository.edit(
-            event.userId, event.newUsername, event.newPassword);
+            await _accountRepository.getSharedPrefs(),
+            event.newUsername,
+            event.newPassword);
         yield AccountEditingSuccess(_responseModel);
         print('AccountEditingSuccess');
       } catch (_) {

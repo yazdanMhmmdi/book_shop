@@ -12,6 +12,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class DetailsScreen extends StatefulWidget {
+  Map<String, String> args;
+  DetailsScreen({@required this.args});
   @override
   _DetailsScreenState createState() => _DetailsScreenState();
 }
@@ -44,7 +46,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    arguments = ModalRoute.of(context).settings.arguments;
+    arguments = widget.args;
     // _detailsBloc.add(GetDetails(post_id: arguments["post_id"]));
     _getArguments();
     return Scaffold(

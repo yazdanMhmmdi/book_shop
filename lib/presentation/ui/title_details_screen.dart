@@ -18,6 +18,8 @@ import 'package:flutter_screenutil/screenutil.dart';
 int tabNumber = 1;
 
 class TitleDetailsScreen extends StatefulWidget {
+  int category;
+  TitleDetailsScreen({@required this.category});
   @override
   _TitleDetailsScreenState createState() => _TitleDetailsScreenState();
 }
@@ -48,11 +50,10 @@ class _TitleDetailsScreenState extends State<TitleDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Map<String, String> arguments = ModalRoute.of(context).settings.arguments;
 
     setState(() {
       print('titleDetails argument : ');
-      firstTabState = int.tryParse(arguments["category"]);
+      firstTabState = widget.category;
     });
     return Scaffold(
       backgroundColor: backgroundColor,

@@ -25,7 +25,7 @@ class AppRouter {
   final InternetCubit _internetCubit =
       new InternetCubit(connectivity: Connectivity());
   final _loginScreen = LoginScreen();
-  
+
   Route onGeneratedRoute(RouteSettings settings) {
     switch (settings.name) {
       case '/':
@@ -114,8 +114,12 @@ class AppRouter {
       case '/title':
         final Map<String, String> args = settings.arguments;
 
-        return MaterialPageRoute(
-          builder: (_) => MultiBlocProvider(
+        return PageRouteBuilder(
+          transitionDuration: Duration(milliseconds: 300),
+          transitionsBuilder: (context, animation, animationTime, child) {
+            return FadeTransition(opacity: animation, child: child);
+          },
+          pageBuilder: (_, __, ___) => MultiBlocProvider(
             providers: [
               BlocProvider.value(
                 value: _internetCubit,

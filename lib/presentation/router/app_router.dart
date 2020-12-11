@@ -25,6 +25,7 @@ class AppRouter {
   final InternetCubit _internetCubit =
       new InternetCubit(connectivity: Connectivity());
   final _loginScreen = LoginScreen();
+  
   Route onGeneratedRoute(RouteSettings settings) {
     switch (settings.name) {
       case '/':
@@ -66,24 +67,36 @@ class AppRouter {
         );
         break;
       case '/home':
-        return MaterialPageRoute(
-          builder: (_) => BlocProvider.value(
-            value: _internetCubit,
-            child: HomeScreen(
-              homeBloc: _homeBloc..add(FetchEvent()),
-              accountBloc: _accountBloc
-                ..add(
-                  GetDefaultEvent(),
+        return PageRouteBuilder(
+            transitionDuration: Duration(milliseconds: 450),
+            transitionsBuilder: (context, aniamtion, animationTime, child) {
+              return FadeTransition(
+                opacity: aniamtion,
+                child: child,
+              );
+            },
+            pageBuilder: (context, aniamtion, animationTime) {
+              return BlocProvider.value(
+                value: _internetCubit,
+                child: HomeScreen(
+                  homeBloc: _homeBloc..add(FetchEvent()),
+                  accountBloc: _accountBloc
+                    ..add(
+                      GetDefaultEvent(),
+                    ),
                 ),
-            ),
-          ),
-        );
+              );
+            });
         break;
       case '/details':
         final Map<String, String> args = settings.arguments;
 
-        return MaterialPageRoute(
-          builder: (_) => MultiBlocProvider(
+        return PageRouteBuilder(
+          transitionDuration: Duration(milliseconds: 300),
+          transitionsBuilder: (context, ainmation, animationTime, child) {
+            return FadeTransition(opacity: ainmation, child: child);
+          },
+          pageBuilder: (_, __, ___) => MultiBlocProvider(
             providers: [
               BlocProvider(
                 create: (context) => DetailsBloc(),

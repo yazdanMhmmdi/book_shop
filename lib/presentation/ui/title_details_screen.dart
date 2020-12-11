@@ -50,7 +50,6 @@ class _TitleDetailsScreenState extends State<TitleDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     setState(() {
       print('titleDetails argument : ');
       firstTabState = widget.category;
@@ -146,19 +145,27 @@ class _TitleDetailsScreenState extends State<TitleDetailsScreen> {
                                   height: MediaQuery.of(context).size.height,
                                   child: Center(
                                     child: Container(
-                                      width: 150,
+                                      width: 170,
                                       height:
                                           MediaQuery.of(context).size.height,
                                       child: Center(
                                         child: Column(
                                           mainAxisAlignment:
                                               MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
                                           children: [
                                             NotFoundBar(),
                                             SizedBox(
                                               height: 8,
                                             ),
-                                            Text('ss'),
+                                            Text(
+                                              'کتابی در این رابطه پیدا نشد !',
+                                              style: TextStyle(
+                                                  fontFamily: "IranSans",
+                                                  fontSize: 18,
+                                                  color: Colors.black87),
+                                            ),
                                           ],
                                         ),
                                       ),

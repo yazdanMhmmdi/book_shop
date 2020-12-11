@@ -24,7 +24,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   TextEditingController _usernameController;
   TextEditingController _passwordController;
-  String id; //TODO: add sharedPrefrences
+  String id;
   ButtonState buttonState = ButtonState.idle;
   Color backgroundColor = IColors.green;
 
@@ -41,12 +41,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return BlocListener<AuthBloc, AuthState>(
       cubit: context.bloc<AuthBloc>(),
       listener: (context, state) {
-        if (state is AuthInitial) {
-          // setState(() {
-          //   _buttonState = ButtonState.loading;
-          // });
-
-        }
+        if (state is AuthInitial) {}
         if (state is AuthSuccess) {
           setState(() {
             buttonState = ButtonState.success;
@@ -138,7 +133,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                         horizontal: 16),
                                     child: MyButton(
                                         buttonState: buttonState,
-                                        text: "تایید",
+                                        text: "${Strings.loginAccept}",
                                         onTap: () {
                                           // setState(() {
                                           //   _buttonState = ButtonState.loading;
@@ -158,7 +153,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
-                                        "ثبت نام",
+                                        "${Strings.loginNSU}",
                                         style: TextStyle(
                                           fontSize: 14,
                                           fontFamily: "IranSans",

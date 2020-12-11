@@ -160,7 +160,7 @@ class _TitleDetailsScreenState extends State<TitleDetailsScreen> {
                                               height: 8,
                                             ),
                                             Text(
-                                              'کتابی در این رابطه پیدا نشد !',
+                                              '${Strings.bookNotFound}',
                                               style: TextStyle(
                                                   fontFamily: "IranSans",
                                                   fontSize: 18,

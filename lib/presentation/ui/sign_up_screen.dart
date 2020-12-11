@@ -152,9 +152,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       text: Strings.signupAccept,
                                       onTap: () {
                                         if (_passwordStatus &&
-                                            _usernameStatus) {
-                                          print('OK LETS GO');
-                                        }
+                                            _usernameStatus) {}
                                         if (_usernameStatus &&
                                             _passwordStatus) {
                                           if (_usernameController.text.length !=
@@ -183,7 +181,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
-                                        "ورود",
+                                        "${Strings.signupNLO}",
                                         style: TextStyle(
                                           fontSize: 14,
                                           fontFamily: "IranSans",

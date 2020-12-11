@@ -36,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     _bottomNavController =
         new MotionTabController(initialIndex: 0, vsync: this);
     _bottomNavController.index = 2;
-    // widget.accountBloc.add(GetDefaultEvent("1"));
+    
   }
 
   @override
@@ -104,7 +104,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 Strings.bottomNavAccount,
                 Strings.bottomNavTitle,
                 Strings.bottomNavHome
-              ], //"خانه", "موضوعات", "حساب کاربری"
+              ], 
               initialSelectedTab: Strings.bottomNavHome,
 
               tabIconColor: Color(0xffA3A2A8),

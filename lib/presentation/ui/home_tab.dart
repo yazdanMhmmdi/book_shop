@@ -105,7 +105,7 @@ class HomeTab extends StatelessWidget {
                               options: CarouselOptions(
                                   height: 175,
                                   viewportFraction: 0.8,
-                                  autoPlayInterval: Duration(seconds: 3),
+                                  autoPlayInterval: Duration(seconds: 6),
                                   autoPlayAnimationDuration:
                                       Duration(milliseconds: 800),
                                   autoPlayCurve: Curves.fastOutSlowIn,

@@ -36,9 +36,9 @@ class _SplashScreenState extends State<SplashScreen> {
                 });
                 Timer(Duration(seconds: 3), () async {
                   if (await getSharedPrefs() == "") {
-                    Navigator.pushNamed(context, '/login');
+                    Navigator.pushNamedAndRemoveUntil(context, '/login', (e) => false);
                   } else {
-                    Navigator.pushNamed(context, '/home');
+                    Navigator.pushNamedAndRemoveUntil(context, '/home', (e) => false);
                   }
                 });
               } else if (state is InternetLoading) {

@@ -45,7 +45,7 @@ class _DetailsScreenState extends State<DetailsScreen>
   @override
   void initState() {
     _pullUpController = new AnimationController(
-        vsync: this, duration: Duration(milliseconds: 200));
+        vsync: this, duration: Duration(milliseconds: 400));
     _pullUpController.forward();
     super.initState();
   }
@@ -103,6 +103,7 @@ class _DetailsScreenState extends State<DetailsScreen>
                         SlideTransition(
                           position: Tween<Offset>(
                                   begin: Offset(0, 1), end: Offset.zero)
+                              
                               .animate(_pullUpController),
                           child: Container(
                             width: double.infinity,

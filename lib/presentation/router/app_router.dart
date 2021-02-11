@@ -68,7 +68,7 @@ class AppRouter {
         break;
       case '/home':
         return PageRouteBuilder(
-            transitionDuration: Duration(milliseconds: 450),
+            transitionDuration: Duration(milliseconds: 300),
             transitionsBuilder: (context, aniamtion, animationTime, child) {
               return FadeTransition(
                 opacity: aniamtion,

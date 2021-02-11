@@ -92,7 +92,7 @@ class AppRouter {
         final Map<String, String> args = settings.arguments;
 
         return PageRouteBuilder(
-          transitionDuration: Duration(milliseconds: 300),
+          transitionDuration: Duration(milliseconds: 350),
           transitionsBuilder: (context, ainmation, animationTime, child) {
             return FadeTransition(opacity: ainmation, child: child);
           },

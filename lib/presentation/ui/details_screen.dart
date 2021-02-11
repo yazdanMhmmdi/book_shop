@@ -45,7 +45,7 @@ class _DetailsScreenState extends State<DetailsScreen>
   @override
   void initState() {
     _pullUpController = new AnimationController(
-        vsync: this, duration: Duration(milliseconds: 400));
+        vsync: this, duration: Duration(milliseconds: 300));
     _pullUpController.forward();
     super.initState();
   }

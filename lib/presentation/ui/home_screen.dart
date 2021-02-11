@@ -36,7 +36,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     _bottomNavController =
         new MotionTabController(initialIndex: 0, vsync: this);
     _bottomNavController.index = 2;
-    
   }
 
   @override
@@ -74,21 +73,24 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           },
           builder: (context, state) {
             if (state is InternetConnected) {
-              return Directionality(
-                textDirection: TextDirection.rtl,
-                child: MotionTabBarView(
-                    controller: _bottomNavController,
-                    children: <Widget>[
-                      BlocProvider.value(
-                        value: widget.accountBloc,
-                        child: AccountTab(),
-                      ),
-                      TitleTab(),
-                      BlocProvider.value(
-                        value: widget.homeBloc,
-                        child: HomeTab(),
-                      ),
-                    ]),
+              return Stack(
+                children: [
+                  
+                  MotionTabBarView(
+                      controller: _bottomNavController,
+                      children: <Widget>[
+                        BlocProvider.value(
+                          value: widget.accountBloc,
+                          child: AccountTab(),
+                        ),
+                        TitleTab(),
+                        BlocProvider.value(
+                          value: widget.homeBloc,
+                          child: HomeTab(),
+                        ),
+                      ]),
+                 
+                ],
               );
             } else if (state is InternetDisconnected) {
               return NoNetworkFlare();
@@ -104,7 +106,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 Strings.bottomNavAccount,
                 Strings.bottomNavTitle,
                 Strings.bottomNavHome
-              ], 
+              ],
               initialSelectedTab: Strings.bottomNavHome,
 
               tabIconColor: Color(0xffA3A2A8),
@@ -123,6 +125,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   fontWeight: FontWeight.w700),
             )
           : null,
+    
+    
     );
   }
 

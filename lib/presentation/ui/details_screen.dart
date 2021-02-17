@@ -315,8 +315,8 @@ class _DetailsScreenState extends State<DetailsScreen>
                                         style: TextStyle(
                                             fontFamily: "iranSans",
                                             fontSize: 16,
-                                            fontWeight: FontWeight.w700,
-                                            color: Colors.black38),
+                                            height: 1.4,
+                                            color: IColors.balck35),
                                       ),
                                       SizedBox(
                                         height: 8,

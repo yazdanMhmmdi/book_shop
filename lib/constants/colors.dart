@@ -8,4 +8,5 @@ class IColors {
   static final Color boldGreen = Color(0xff3CA59E);
   static final Color lowedBoldGreen = Color(0xff3CA59E).withOpacity(0.15); 
   static final Color grey = Color(0xffF4F4F4);
+  static final Color balck35 = Color(0xff000000).withOpacity(0.35);
 }

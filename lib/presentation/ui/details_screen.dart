@@ -486,7 +486,7 @@ class _DetailsScreenState extends State<DetailsScreen>
       _sliderLeftTextColor = Colors.black87;
       _sliderRightTextColor = Colors.black38;
       _sliderObjectAlignment = Alignment.centerLeft;
-      _pageCarouselController.nextPage(
+      _pageCarouselController.previousPage(
           duration: Duration(milliseconds: _sliderTextDuration));
     });
   }
@@ -496,7 +496,7 @@ class _DetailsScreenState extends State<DetailsScreen>
       _sliderLeftTextColor = Colors.black38;
       _sliderRightTextColor = Colors.black87;
       _sliderObjectAlignment = Alignment.centerRight;
-      _pageCarouselController.previousPage(
+      _pageCarouselController.nextPage(
           duration: Duration(milliseconds: _sliderTextDuration));
     });
   }

@@ -8,6 +8,7 @@ import 'package:book_shop/presentation/ui/details_screen.dart';
 import 'package:book_shop/presentation/ui/home_screen.dart';
 import 'package:book_shop/presentation/ui/login_screen.dart';
 import 'package:book_shop/presentation/ui/sign_up_screen.dart';
+import 'package:book_shop/presentation/ui/socket_test_screen.dart';
 import 'package:book_shop/presentation/ui/splash_screen.dart';
 import 'package:book_shop/presentation/ui/title_details_screen.dart';
 import 'package:connectivity/connectivity.dart';
@@ -92,7 +93,7 @@ class AppRouter {
         final Map<String, String> args = settings.arguments;
 
         return PageRouteBuilder(
-          transitionDuration: Duration(milliseconds: 350),
+          transitionDuration: Duration(milliseconds: 400),
           transitionsBuilder: (context, ainmation, animationTime, child) {
             return FadeTransition(opacity: ainmation, child: child);
           },
@@ -132,6 +133,12 @@ class AppRouter {
               category: int.tryParse(args["category"].toString()),
             ),
           ),
+        );
+        break;
+
+      case '/socket':
+        return MaterialPageRoute(
+          builder: (_) => SocketTextScreen(),
         );
         break;
 

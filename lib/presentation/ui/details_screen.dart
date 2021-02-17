@@ -341,7 +341,14 @@ class _DetailsScreenState extends State<DetailsScreen>
                                     topLeft: Radius.circular(38),
                                     topRight: Radius.circular(38),
                                     bottomLeft: Radius.zero,
-                                    bottomRight: Radius.zero)),
+                                    bottomRight: Radius.zero),
+                                boxShadow: [
+                                  BoxShadow(
+                                    offset: Offset(1, -1),
+                                    blurRadius: 4,
+                                    color: IColors.borderShadow,
+                                  )
+                                ]),
                           ),
                         )
                       ],

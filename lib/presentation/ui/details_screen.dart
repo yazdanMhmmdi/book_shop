@@ -136,6 +136,7 @@ class _DetailsScreenState extends State<DetailsScreen>
                                                   fontFamily: "iranSans",
                                                   fontSize: 20,
                                                   color: Colors.black38),
+                                              textAlign: TextAlign.center,
                                             ),
                                             Text(
                                               "${name}",
@@ -144,6 +145,7 @@ class _DetailsScreenState extends State<DetailsScreen>
                                                   fontSize: 24,
                                                   fontWeight: FontWeight.w700,
                                                   color: Colors.black87),
+                                              textAlign: TextAlign.center,
                                             ),
                                             SizedBox(
                                               height: 10,

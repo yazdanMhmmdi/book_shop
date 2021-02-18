@@ -152,6 +152,7 @@ class _DetailsScreenState extends State<DetailsScreen>
                                             ),
                                             Divider(
                                               height: 20,
+                                              thickness: 3,
                                               color: IColors.grey,
                                             )
                                           ],

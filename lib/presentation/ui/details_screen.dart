@@ -249,6 +249,7 @@ class _DetailsScreenState extends State<DetailsScreen>
                                               autoPlay: false,
                                               height: 90,
                                               viewportFraction: 1,
+                                              initialPage: 1,
                                               enableInfiniteScroll: false),
                                           items: [1, 2].map((e) {
                                             return Builder(builder:

@@ -1,4 +1,5 @@
 import 'package:book_shop/constants/assets.dart';
+import 'package:book_shop/constants/colors.dart';
 import 'package:book_shop/constants/strings.dart';
 import 'package:book_shop/logic/bloc/title_bloc.dart';
 import 'package:book_shop/logic/cubit/internet_cubit.dart';
@@ -127,7 +128,14 @@ class _TitleDetailsScreenState extends State<TitleDetailsScreen> {
                                 },
                               ),
                               progress
-                                  ? CircularProgressIndicator()
+                                  ? Padding(
+                                    padding: const EdgeInsets.only(bottom: 8, top: 4),
+                                    child: CircularProgressIndicator(
+                                        valueColor:
+                                            new AlwaysStoppedAnimation<Color>(
+                                                IColors.boldGreen),
+                                      ),
+                                  )
                                   : Container(),
                             ],
                           ),

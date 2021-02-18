@@ -372,7 +372,7 @@ class _DetailsScreenState extends State<DetailsScreen>
                                 height: 200,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10),
-                                    color: Colors.blue[200],
+                                    color: Colors.transparent,
                                     boxShadow: [
                                       BoxShadow(
                                           offset: Offset(0, 12),

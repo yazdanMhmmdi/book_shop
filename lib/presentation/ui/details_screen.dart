@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:book_shop/constants/assets.dart';
 import 'package:book_shop/constants/colors.dart';
@@ -47,12 +48,18 @@ class _DetailsScreenState extends State<DetailsScreen>
   int _sliderTextDuration = 300;
   AlignmentGeometry _sliderObjectAlignment = Alignment.centerRight;
   CarouselController _pageCarouselController = CarouselController();
+  Random _random = new Random();
+  int _randAge, _randBookCount, _randCategory, _randVote;
 
   ///
   int _animationDuration = 300;
 
   @override
   void initState() {
+    _randAge = _random.nextInt(90);
+    _randBookCount = _random.nextInt(20);
+    _randCategory = _random.nextInt(5);
+    _randVote = _random.nextInt(5);
     _pullUpController = new AnimationController(
         vsync: this, duration: Duration(milliseconds: 300));
 
@@ -248,56 +255,31 @@ class _DetailsScreenState extends State<DetailsScreen>
                                               disableCenter: true,
                                               scrollDirection: Axis.horizontal,
                                               autoPlay: false,
-                                              height: 90,
+                                              height: 88,
                                               viewportFraction: 1,
                                               initialPage: 1,
                                               enableInfiniteScroll: false),
-                                          items: [1, 2].map((e) {
-                                            return Builder(builder:
-                                                (BuildContext context) {
-                                              return Padding(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                        horizontal: 4),
-                                                child: Container(
-                                                  width: MediaQuery.of(context)
-                                                      .size
-                                                      .width,
-                                                  decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            8),
-                                                    color: IColors.boldGreen
-                                                        .withOpacity(0.15),
-                                                  ),
-                                                  child: Padding(
-                                                    padding: const EdgeInsets
-                                                            .symmetric(
-                                                        vertical: 20),
-                                                    child: Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceEvenly,
-                                                      children: [
-                                                        littleDialogBox(
-                                                            "${language}",
-                                                            "زبان"),
-                                                        littleDialogBox(
-                                                            "${coverType}",
-                                                            "جلد"),
-                                                        littleDialogBox(
-                                                            "${pagesCount}",
-                                                            "صفحه"),
-                                                        littleDialogBox(
-                                                            "${voteCount}",
-                                                            "رای")
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ),
-                                              );
-                                            });
-                                          }).toList(),
+                                          items: [
+                                            objectSliderItem(
+                                                "سن",
+                                                _randAge.toString(),
+                                                "تعداد کتاب",
+                                                (_randBookCount.toString() +
+                                                    " جلد "),
+                                                "دسته بندی",
+                                                _randCategory.toString(),
+                                                "مجموع آرا",
+                                                (_randVote.toString())),
+                                            objectSliderItem(
+                                                "زبان",
+                                                language,
+                                                "جلد",
+                                                coverType,
+                                                "صفحه",
+                                                pagesCount,
+                                                "رای",
+                                                voteCount),
+                                          ],
                                         ),
                                       ),
                                       SizedBox(
@@ -500,6 +482,41 @@ class _DetailsScreenState extends State<DetailsScreen>
       _sliderObjectAlignment = Alignment.centerRight;
       _pageCarouselController.nextPage(
           duration: Duration(milliseconds: _sliderTextDuration));
+    });
+  }
+
+  Widget objectSliderItem(
+      String first,
+      String second,
+      String third,
+      String fourth,
+      String fifth,
+      String sixth,
+      String seventh,
+      String eighth) {
+    return Builder(builder: (BuildContext context) {
+      return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 4),
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+            color: IColors.boldGreen.withOpacity(0.15),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                littleDialogBox("${second}", "$first"),
+                littleDialogBox("${fourth}", "$third"),
+                littleDialogBox("${sixth}", "$fifth"),
+                littleDialogBox("${eighth}", "$seventh")
+              ],
+            ),
+          ),
+        ),
+      );
     });
   }
 }

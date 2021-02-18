@@ -89,37 +89,47 @@ class VerticalCard extends StatelessWidget {
                     ),
                   ),
                 ),
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 26),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        '${name}',
-                        style: TextStyle(
-                            fontFamily: "IranSans",
-                            fontSize: 16,
-                            color: Colors.black87,
-                            fontWeight: FontWeight.w700),
+                Builder(builder: (BuildContext context) {
+                  return Container(
+                    width: MediaQuery.of(context).size.width - 150,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 26),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            child: Text(
+                              '${name}',
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
+                              style: TextStyle(
+                                  fontFamily: "IranSans",
+                                  fontSize: 16,
+                                  color: Colors.black87,
+                                  fontWeight: FontWeight.w700),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Text(
+                            "$writer",
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                                fontFamily: "IranSans",
+                                fontSize: 14,
+                                color: Colors.black38),
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          MyRatingBar(voteCount, 13),
+                        ],
                       ),
-                      SizedBox(
-                        height: 8,
-                      ),
-                      Text(
-                        "$writer",
-                        style: TextStyle(
-                            fontFamily: "IranSans",
-                            fontSize: 14,
-                            color: Colors.black38),
-                      ),
-                      SizedBox(
-                        height: 8,
-                      ),
-                      MyRatingBar(voteCount, 13),
-                    ],
-                  ),
-                ),
+                    ),
+                  );
+                }),
               ],
             ),
           ),

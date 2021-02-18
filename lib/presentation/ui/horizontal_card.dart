@@ -103,7 +103,7 @@ class _HorizontalCardState extends State<HorizontalCard> {
                   style: TextStyle(
                       color: Colors.black87,
                       fontFamily: "IranSans",
-                      fontSize: 16,
+                      fontSize: 14,
                       fontWeight: FontWeight.w700),
                 ),
               ),

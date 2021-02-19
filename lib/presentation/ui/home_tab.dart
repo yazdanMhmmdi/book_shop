@@ -93,6 +93,7 @@ class HomeTab extends StatelessWidget {
                                                 ImageAddressProvider.imageURL +
                                                     state.postModel
                                                         .poster[index].picture,
+                                                fit: BoxFit.fill,
                                               ),
                                             ),
                                           ],

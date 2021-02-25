@@ -4,7 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:book_shop/data/model/account_model.dart';
 import 'package:book_shop/data/model/response_model.dart';
 import 'package:book_shop/data/repository/account_repository.dart';
-import 'package:book_shop/networking/api_provider.dart';
+import 'package:book_shop/networking/api_provider.dart'; 
 import 'package:equatable/equatable.dart';
 
 part 'account_event.dart';

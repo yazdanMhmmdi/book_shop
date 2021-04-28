@@ -77,8 +77,15 @@ class AppRouter {
               );
             },
             pageBuilder: (context, aniamtion, animationTime) {
-              return BlocProvider.value(
-                value: _internetCubit,
+              return MultiBlocProvider(
+                providers: [
+                  BlocProvider.value(
+                    value: _internetCubit,
+                  ),
+                  BlocProvider.value(
+                    value: _homeBloc,
+                  )
+                ],
                 child: HomeScreen(
                   homeBloc: _homeBloc..add(FetchEvent()),
                   accountBloc: _accountBloc

@@ -1,16 +1,10 @@
-# book_shop
+# Book shop version 1.0.0
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- animated login & sign up page
+- responsive ui
+- compatibility with tablet, desktop ...
+- animated dot tab view
+- lazy load on every category
+- use BLoC as design pattern & separate folder to logic, presentation and data
+# Info
+Flutter SDK version 2.2.0-11.0.pre master

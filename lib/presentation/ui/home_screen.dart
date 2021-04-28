@@ -44,7 +44,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       backgroundColor: Colors.white,
       body: SafeArea(
           child: BlocListener<HomeBloc, HomeState>(
-        cubit: widget.homeBloc,
         listener: (context, state) {
           if (state is HomeFailure) {
             setState(() {
@@ -59,7 +58,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           }
         },
         child: BlocConsumer<InternetCubit, InternetState>(
-          cubit: context.bloc<InternetCubit>(),
           listener: (context, state) {
             if (state is InternetConnected) {
               setState(() {
@@ -75,7 +73,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             if (state is InternetConnected) {
               return Stack(
                 children: [
-                  
                   MotionTabBarView(
                       controller: _bottomNavController,
                       children: <Widget>[
@@ -89,7 +86,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                           child: HomeTab(),
                         ),
                       ]),
-                 
                 ],
               );
             } else if (state is InternetDisconnected) {
@@ -125,8 +121,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   fontWeight: FontWeight.w700),
             )
           : null,
-    
-    
     );
   }
 

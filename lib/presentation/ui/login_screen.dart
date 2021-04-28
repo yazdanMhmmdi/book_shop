@@ -39,7 +39,6 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocListener<AuthBloc, AuthState>(
-      cubit: context.bloc<AuthBloc>(),
       listener: (context, state) {
         if (state is AuthInitial) {}
         if (state is AuthSuccess) {
@@ -138,8 +137,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                           // setState(() {
                                           //   _buttonState = ButtonState.loading;
                                           // });
-                                          context.bloc<AuthBloc>().add(
-                                              LoginEvent(
+                                          BlocProvider.of<AuthBloc>(context)
+                                              .add(LoginEvent(
                                                   _usernameController.text,
                                                   _passwordController.text));
                                         })),

@@ -73,7 +73,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
         backgroundColor: backgroundColor, //TODO: Needs to be replace;
         body: SafeArea(
             child: BlocConsumer<InternetCubit, InternetState>(
-          cubit: context.bloc<InternetCubit>(),
           listener: (context, state) {
             if (state is InternetConnected) {
               setState(() {
@@ -159,8 +158,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                                   0 &&
                                               _passwordController.text.length !=
                                                   0) {
-                                            context.bloc<AuthBloc>().add(
-                                                SignUpEvent(
+                                            BlocProvider.of<AuthBloc>(context)
+                                                .add(SignUpEvent(
                                                     username:
                                                         _usernameController
                                                             .text,

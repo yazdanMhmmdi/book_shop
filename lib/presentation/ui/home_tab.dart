@@ -54,7 +54,7 @@ class HomeTab extends StatelessWidget {
                           0.25,
                           CarouselSlider.builder(
                               itemCount: state.postModel.poster.length,
-                              itemBuilder: (context, index) {
+                              itemBuilder: (context, index, realIndex) {
                                 return Container(
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(8),

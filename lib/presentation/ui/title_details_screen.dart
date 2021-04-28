@@ -14,7 +14,6 @@ import 'package:flare_flutter/flare_actor.dart';
 import 'package:flare_loading/flare_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/screenutil.dart';
 
 int tabNumber = 1;
 
@@ -40,7 +39,7 @@ class _TitleDetailsScreenState extends State<TitleDetailsScreen> {
   void initState() {
     super.initState();
 
-    _sienceTitleBloc = context.bloc<TitleBloc>();
+    _sienceTitleBloc = BlocProvider.of<TitleBloc>(context);
     _controller.addListener(() {
       if (_controller.position.pixels == _controller.position.maxScrollExtent) {
         print('end of page');
@@ -59,7 +58,6 @@ class _TitleDetailsScreenState extends State<TitleDetailsScreen> {
       backgroundColor: backgroundColor,
       body: SafeArea(
         child: BlocListener<TitleBloc, TitleState>(
-            cubit: _sienceTitleBloc,
             listener: (context, state) {
               if (state is TitlePagination) {
                 setState(() {
@@ -129,13 +127,14 @@ class _TitleDetailsScreenState extends State<TitleDetailsScreen> {
                               ),
                               progress
                                   ? Padding(
-                                    padding: const EdgeInsets.only(bottom: 8, top: 4),
-                                    child: CircularProgressIndicator(
+                                      padding: const EdgeInsets.only(
+                                          bottom: 8, top: 4),
+                                      child: CircularProgressIndicator(
                                         valueColor:
                                             new AlwaysStoppedAnimation<Color>(
                                                 IColors.boldGreen),
                                       ),
-                                  )
+                                    )
                                   : Container(),
                             ],
                           ),

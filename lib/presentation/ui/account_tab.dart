@@ -45,7 +45,6 @@ class _AccountTabState extends State<AccountTab> {
       child: SafeArea(
         child: Container(
           child: BlocConsumer<AccountBloc, AccountState>(
-            cubit: context.bloc<AccountBloc>(),
             listener: (context, state) {
               _accountButtonStateListener(state);
 
@@ -201,8 +200,9 @@ class _AccountTabState extends State<AccountTab> {
                                                             ._usernameStatus &&
                                                         widget
                                                             ._passwordStatus) {
-                                                      context
-                                                          .bloc<AccountBloc>()
+                                                      BlocProvider.of<
+                                                                  AccountBloc>(
+                                                              context)
                                                           .add(EditEvent(
                                                               newUsername:
                                                                   usernameController

@@ -1,4 +1,6 @@
 class Strings {
+  //global font
+  static final String fontIranSans = "IranSans";
   //common in all pages
   static final String usernameLabel = "نام کاربری...";
   static final String passwordLabel = "رمز عبور...";

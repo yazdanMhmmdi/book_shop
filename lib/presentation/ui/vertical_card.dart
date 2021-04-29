@@ -1,3 +1,5 @@
+import 'package:book_shop/constants/colors.dart';
+import 'package:book_shop/constants/strings.dart';
 import 'package:book_shop/networking/image_address_provider.dart';
 import 'package:book_shop/presentation/widgets/rating_bar.dart';
 import 'package:book_shop/presentation/widgets/widgets.dart';
@@ -13,6 +15,7 @@ class VerticalCard extends StatelessWidget {
   String pagesCount;
   String language;
   String coverType;
+  String price;
   VerticalCard({
     @required this.id,
     @required this.image,
@@ -24,6 +27,7 @@ class VerticalCard extends StatelessWidget {
     @required this.coverType,
     @required this.language,
     @required this.description,
+    @required this.price,
   });
 
   @override
@@ -54,6 +58,7 @@ class VerticalCard extends StatelessWidget {
                   'coverType': "${coverType}",
                   'pagesCount': "${pagesCount}",
                   'hero_type': "v",
+                  'price': '${price}',
                 }),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -76,8 +81,7 @@ class VerticalCard extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(5),
                       child: Hero(
-                        tag:
-                            "post_${id}_v", //TODO: delete it and add some unrelated posts
+                        tag: "post_${id}_v",
                         child: Container(
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8),
@@ -95,36 +99,51 @@ class VerticalCard extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 16, vertical: 26),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                      child: Stack(
                         children: [
-                          Container(
-                            child: Text(
-                              '${name}',
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 1,
-                              style: TextStyle(
-                                  fontFamily: "IranSans",
-                                  fontSize: 16,
-                                  color: Colors.black87,
-                                  fontWeight: FontWeight.w700),
-                            ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                child: Text(
+                                  '${name}',
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 1,
+                                  style: TextStyle(
+                                      fontFamily: "IranSans",
+                                      fontSize: 16,
+                                      color: Colors.black87,
+                                      fontWeight: FontWeight.w700),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 8,
+                              ),
+                              Text(
+                                "$writer",
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                    fontFamily: "IranSans",
+                                    fontSize: 14,
+                                    color: Colors.black38),
+                              ),
+                              SizedBox(
+                                height: 8,
+                              ),
+                              MyRatingBar(voteCount, 13),
+                            ],
                           ),
-                          SizedBox(
-                            height: 8,
-                          ),
-                          Text(
-                            "$writer",
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                                fontFamily: "IranSans",
-                                fontSize: 14,
-                                color: Colors.black38),
-                          ),
-                          SizedBox(
-                            height: 8,
-                          ),
-                          MyRatingBar(voteCount, 13),
+                          Positioned(
+                              bottom: 0,
+                              left: 0,
+                              child: Text(
+                                "${price}" + " تومان",
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    fontFamily: Strings.fontIranSans,
+                                    color: IColors.boldGreen,
+                                    fontWeight: FontWeight.w700),
+                              )),
                         ],
                       ),
                     ),

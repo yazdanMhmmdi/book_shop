@@ -57,12 +57,10 @@ class MostSalesBooks {
   String language;
   String pagesCount;
   String coverType;
+  String price;
 
   MostSalesBooks(
-      {this.s0,
-      this.s1,
-      this.s2,
-      this.s3,
+      {this.price,
       this.id,
       this.pictureThumb,
       this.name,
@@ -74,10 +72,7 @@ class MostSalesBooks {
       this.voteCount});
 
   MostSalesBooks.fromJson(Map<String, dynamic> json) {
-    s0 = json['0'];
-    s1 = json['1'];
-    s2 = json['2'];
-    s3 = json['3'];
+
     id = json['id'];
     pictureThumb = json['picture_thumb'];
     name = json['name'];
@@ -87,19 +82,18 @@ class MostSalesBooks {
     voteCount = double.tryParse(json['vote_count']);
     pagesCount = json['pages_count'];
     coverType = json['cover_type'];
+    price = json['price'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['0'] = this.s0;
-    data['1'] = this.s1;
-    data['2'] = this.s2;
-    data['3'] = this.s3;
+
     data['id'] = this.id;
     data['picture_thumb'] = this.pictureThumb;
     data['name'] = this.name;
     data['writer'] = this.writer;
     data['vote_count'] = this.voteCount;
+    data['price'] = this.price;
     return data;
   }
 }
@@ -114,6 +108,7 @@ class FreshBooks {
   String language;
   String pagesCount;
   String coverType;
+  String price;
 
   FreshBooks(
       {this.id,
@@ -124,7 +119,9 @@ class FreshBooks {
       this.language,
       this.description,
       this.coverType,
-      this.pagesCount});
+      this.pagesCount,
+      this.price
+      });
 
   FreshBooks.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -136,6 +133,7 @@ class FreshBooks {
     pagesCount = json['pages_count'];
     coverType = json['cover_type'];
     voteCount = double.tryParse(json['vote_count']);
+    price = json['price'];
   }
 
   Map<String, dynamic> toJson() {
@@ -146,6 +144,7 @@ class FreshBooks {
     data['name'] = this.name;
     data['writer'] = this.writer;
     data['vote_count'] = this.voteCount;
+    data['price'] = this.price;
     return data;
   }
 }

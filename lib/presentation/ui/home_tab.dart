@@ -169,6 +169,7 @@ class HomeTab extends StatelessWidget {
                           description: fbList[index].description,
                           language: fbList[index].language,
                           pagesCount: fbList[index].pagesCount,
+                          price: fbList[index].price,
                         ),
                       );
                     },

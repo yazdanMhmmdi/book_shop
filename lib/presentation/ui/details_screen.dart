@@ -35,6 +35,7 @@ class _DetailsScreenState extends State<DetailsScreen>
   String thumbPicture;
   String name;
   String writer;
+  String price;
   String id;
   Map<String, String> arguments;
   ButtonState _buttonState = ButtonState.idle;
@@ -316,6 +317,7 @@ class _DetailsScreenState extends State<DetailsScreen>
     writer = arguments['writer'];
     voteCount = arguments['voteCount'];
     name = arguments['name'];
+    price = arguments['price'];
   }
 
   void _pullDownAnimation() {

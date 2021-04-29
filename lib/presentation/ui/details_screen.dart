@@ -194,7 +194,7 @@ class _DetailsScreenState extends State<DetailsScreen>
                                       MyButton(
                                           buttonState: _buttonState,
                                           text: Strings.detailsBuy,
-                                          onTap: (state) {
+                                          onTap: () {
                                             print('sss');
                                           }),
                                       SizedBox(

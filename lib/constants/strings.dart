@@ -27,6 +27,7 @@ class Strings {
   static final String bottomNavHome = "خانه";
   static final String bottomNavTitle = "موضوعات";
   static final String bottomNavAccount = "حساب کاربری";
+  static final String bottomNavBasket = "سبد خرید";
   static final String titleScience = "علمی";
   static final String titleMedicine = "دارویی";
   static final String titleLaw = "قضایی";
@@ -48,4 +49,11 @@ class Strings {
 
   //title details s
   static final String bookNotFound = "کتابی در این رابطه پیدا نشد !";
+
+  //basket
+  static final String basketLabel = "سبد خرید";
+  static final String basketPay = "مبلغ قابل پرداخت";
+  static final String basketTax = "مالیات";
+  static final String basketDeliveryCost = "هزینه ارسال";
+  static final String basketPayit = "پرداخت";
 }

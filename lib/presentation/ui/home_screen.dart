@@ -7,6 +7,7 @@ import 'package:book_shop/logic/bloc/home_state.dart';
 import 'package:book_shop/logic/bloc/home_event.dart';
 import 'package:book_shop/logic/cubit/internet_cubit.dart';
 import 'package:book_shop/presentation/ui/account_tab.dart';
+import 'package:book_shop/presentation/ui/basket_tab.dart';
 import 'package:book_shop/presentation/ui/home_tab.dart';
 import 'package:book_shop/presentation/ui/title_tab.dart';
 import 'package:book_shop/presentation/widgets/no_network_flare.dart';
@@ -34,8 +35,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   @override
   void initState() {
     _bottomNavController =
-        new MotionTabController(initialIndex: 0, vsync: this);
-    _bottomNavController.index = 2;
+        new MotionTabController(initialIndex: 0, vsync: this, length: 4);
+    _bottomNavController.index = 3;
   }
 
   @override
@@ -80,6 +81,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                           value: widget.accountBloc,
                           child: AccountTab(),
                         ),
+                        BasketTab(),
                         TitleTab(),
                         BlocProvider.value(
                           value: widget.homeBloc,
@@ -100,8 +102,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           ? MotionTabBar(
               labels: [
                 Strings.bottomNavAccount,
+                Strings.bottomNavBasket,
                 Strings.bottomNavTitle,
-                Strings.bottomNavHome
+                Strings.bottomNavHome,
               ],
               initialSelectedTab: Strings.bottomNavHome,
 
@@ -113,7 +116,12 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   _bottomNavController.index = value;
                 });
               },
-              icons: [Icons.person, Icons.book, Icons.home],
+              icons: [
+                Icons.person,
+                Icons.shopping_basket,
+                Icons.book,
+                Icons.home,
+              ],
               textStyle: TextStyle(
                   color: Colors.black87,
                   fontFamily: "IranSans",

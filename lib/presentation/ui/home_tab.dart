@@ -158,7 +158,7 @@ class HomeTab extends StatelessWidget {
                       _animationDelay2 = _animationDelay2 + 0.3;
                       return FadeInAnimation(
                         _animationDelay2,
-                        VerticalCard(
+                        VerticalCard( 
                           id: fbList[index].id,
                           image: fbList[index].pictureThumb,
                           name: fbList[index].name,

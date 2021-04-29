@@ -5,6 +5,7 @@ import 'package:book_shop/presentation/widgets/rating_bar.dart';
 import 'package:book_shop/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:intl/intl.dart';
 
 class VerticalCard extends StatelessWidget {
   String image;
@@ -137,7 +138,9 @@ class VerticalCard extends StatelessWidget {
                               bottom: 0,
                               left: 0,
                               child: Text(
-                                "${price}" + " تومان",
+                                NumberFormat("#,##0.##")
+                                        .format(double.parse(price)) +
+                                    " تومان",
                                 style: TextStyle(
                                     fontSize: 16,
                                     fontFamily: Strings.fontIranSans,

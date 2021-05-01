@@ -7,6 +7,7 @@ import 'package:book_shop/data/repository/account_repository.dart';
 import 'package:book_shop/data/repository/shared_prefs_repository.dart';
 import 'package:book_shop/logic/bloc/account_bloc.dart';
 import 'package:book_shop/presentation/animation/fade_in_animation.dart';
+import 'package:book_shop/presentation/widgets/account_item.dart';
 import 'package:book_shop/presentation/widgets/my_button.dart';
 import 'package:book_shop/presentation/widgets/my_text_field.dart';
 import 'package:book_shop/presentation/widgets/my_tool_bar.dart';
@@ -92,7 +93,7 @@ class _AccountTabState extends State<AccountTab> {
                                   height: 345,
                                   width: double.infinity,
                                   decoration: BoxDecoration(
-                                    color: Color(bgColor),
+                                    color: IColors.green,
                                     borderRadius: BorderRadius.circular(32),
                                   ),
                                   child: Column(
@@ -240,7 +241,9 @@ class _AccountTabState extends State<AccountTab> {
                         ),
                       ),
                     ),
-                  )
+                  ),
+                  SizedBox(height: 16),
+                  FadeInAnimation(0.75, AccountItem(onTap: () {})),
                 ],
               );
             },

@@ -36,8 +36,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   @override
   void initState() {
     _bottomNavController =
-        new MotionTabController(initialIndex: 0, vsync: this, length: 5);
-    _bottomNavController.index = 4;
+        new MotionTabController(initialIndex: 0, vsync: this, length: 4);
+    _bottomNavController.index = 3;
   }
 
   @override
@@ -82,7 +82,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                           value: widget.accountBloc,
                           child: AccountTab(),
                         ),
-                        ChatListTab(),
+                        // ChatListTab(),
                         BasketTab(),
                         TitleTab(),
                         BlocProvider.value(
@@ -104,7 +104,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           ? MotionTabBar(
               labels: [
                 Strings.bottomNavAccount,
-                Strings.bottomNavListofConversations,
+                // Strings.bottomNavListofConversations,
                 Strings.bottomNavBasket,
                 Strings.bottomNavTitle,
                 Strings.bottomNavHome,
@@ -121,7 +121,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               },
               icons: [
                 Icons.person,
-                Icons.chat,
+                // Icons.chat,
                 Icons.shopping_basket,
                 Icons.book,
                 Icons.home,

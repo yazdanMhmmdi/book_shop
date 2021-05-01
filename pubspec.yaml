@@ -86,6 +86,7 @@ flutter:
     - assets/images/image_1.png
     - assets/images/image_2.png
     - assets/images/slider_pic.png
+    - assets/images/customer_agent.png
     - assets/flare/loading_book.flr
     - assets/flare/book_dropping.flr
     - assets/flare/no_network.flr

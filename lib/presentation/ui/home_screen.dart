@@ -8,6 +8,7 @@ import 'package:book_shop/logic/bloc/home_event.dart';
 import 'package:book_shop/logic/cubit/internet_cubit.dart';
 import 'package:book_shop/presentation/ui/account_tab.dart';
 import 'package:book_shop/presentation/ui/basket_tab.dart';
+import 'package:book_shop/presentation/ui/chat_list_tab.dart';
 import 'package:book_shop/presentation/ui/home_tab.dart';
 import 'package:book_shop/presentation/ui/title_tab.dart';
 import 'package:book_shop/presentation/widgets/no_network_flare.dart';
@@ -35,8 +36,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   @override
   void initState() {
     _bottomNavController =
-        new MotionTabController(initialIndex: 0, vsync: this, length: 4);
-    _bottomNavController.index = 3;
+        new MotionTabController(initialIndex: 0, vsync: this, length: 5);
+    _bottomNavController.index = 4;
   }
 
   @override
@@ -81,6 +82,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                           value: widget.accountBloc,
                           child: AccountTab(),
                         ),
+                        ChatListTab(),
                         BasketTab(),
                         TitleTab(),
                         BlocProvider.value(
@@ -102,6 +104,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           ? MotionTabBar(
               labels: [
                 Strings.bottomNavAccount,
+                Strings.bottomNavListofConversations,
                 Strings.bottomNavBasket,
                 Strings.bottomNavTitle,
                 Strings.bottomNavHome,
@@ -118,6 +121,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               },
               icons: [
                 Icons.person,
+                Icons.chat,
                 Icons.shopping_basket,
                 Icons.book,
                 Icons.home,

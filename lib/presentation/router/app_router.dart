@@ -4,6 +4,7 @@ import 'package:book_shop/logic/bloc/details_bloc.dart';
 import 'package:book_shop/logic/bloc/home_bloc.dart';
 import 'package:book_shop/logic/bloc/title_bloc.dart';
 import 'package:book_shop/logic/cubit/internet_cubit.dart';
+import 'package:book_shop/presentation/ui/chat_screen.dart';
 import 'package:book_shop/presentation/ui/details_screen.dart';
 import 'package:book_shop/presentation/ui/home_screen.dart';
 import 'package:book_shop/presentation/ui/login_screen.dart';
@@ -148,6 +149,18 @@ class AppRouter {
           builder: (_) => SocketTextScreen(),
         );
         break;
+      case '/chat':
+        final Map<String, String> args = settings.arguments;
+
+        return PageRouteBuilder(
+          transitionDuration: Duration(milliseconds: 400),
+          transitionsBuilder: (context, ainmation, animationTime, child) {
+            return FadeTransition(opacity: ainmation, child: child);
+          },
+          pageBuilder: (_, __, ___) => ChatScreen(
+            args: args,
+          ),
+        );
 
       default:
         return null;

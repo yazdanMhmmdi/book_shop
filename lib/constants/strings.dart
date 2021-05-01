@@ -28,6 +28,7 @@ class Strings {
   static final String bottomNavTitle = "موضوعات";
   static final String bottomNavAccount = "حساب کاربری";
   static final String bottomNavBasket = "سبد خرید";
+  static final String bottomNavListofConversations = "لیست گفتگو ها";
   static final String titleScience = "علمی";
   static final String titleMedicine = "دارویی";
   static final String titleLaw = "قضایی";
@@ -56,4 +57,9 @@ class Strings {
   static final String basketTax = "مالیات";
   static final String basketDeliveryCost = "هزینه ارسال";
   static final String basketPayit = "پرداخت";
+
+  //chat list
+  static final String chatLabel = "لیست گفتگو ها";
+  //chat
+  static final String chatSpeakWithSeller = "گفتگو با فروشنده";
 }

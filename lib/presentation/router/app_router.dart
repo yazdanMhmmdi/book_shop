@@ -4,6 +4,7 @@ import 'package:book_shop/logic/bloc/details_bloc.dart';
 import 'package:book_shop/logic/bloc/home_bloc.dart';
 import 'package:book_shop/logic/bloc/title_bloc.dart';
 import 'package:book_shop/logic/cubit/internet_cubit.dart';
+import 'package:book_shop/presentation/ui/chat_list_screen.dart';
 import 'package:book_shop/presentation/ui/chat_screen.dart';
 import 'package:book_shop/presentation/ui/details_screen.dart';
 import 'package:book_shop/presentation/ui/home_screen.dart';
@@ -153,7 +154,7 @@ class AppRouter {
         final Map<String, String> args = settings.arguments;
 
         return PageRouteBuilder(
-          transitionDuration: Duration(milliseconds: 400),
+          transitionDuration: Duration(milliseconds: 30),
           transitionsBuilder: (context, ainmation, animationTime, child) {
             return FadeTransition(opacity: ainmation, child: child);
           },
@@ -161,7 +162,16 @@ class AppRouter {
             args: args,
           ),
         );
+      case '/chatList':
+        final Map<String, String> args = settings.arguments;
 
+        return PageRouteBuilder(
+          transitionDuration: Duration(milliseconds: 30),
+          transitionsBuilder: (context, ainmation, animationTime, child) {
+            return FadeTransition(opacity: ainmation, child: child);
+          },
+          pageBuilder: (_, __, ___) => ChatListScreen(),
+        );
       default:
         return null;
     }

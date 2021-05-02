@@ -3,7 +3,9 @@ import 'package:book_shop/constants/strings.dart';
 import 'package:book_shop/networking/image_address_provider.dart';
 import 'package:book_shop/presentation/animation/fade_in_animation.dart';
 import 'package:book_shop/presentation/widgets/customer_agent_widget.dart';
+import 'package:book_shop/presentation/widgets/from_message_bubble.dart';
 import 'package:book_shop/presentation/widgets/my_tool_bar.dart';
+import 'package:book_shop/presentation/widgets/user_message_bubble.dart';
 import 'package:flutter/material.dart';
 
 class ChatScreen extends StatefulWidget {
@@ -26,6 +28,7 @@ class _ChatScreenState extends State<ChatScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: IColors.backgroundColor,
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -120,6 +123,19 @@ class _ChatScreenState extends State<ChatScreen> {
                 ),
               ),
             ),
+            SizedBox(
+              height: 22,
+            ),
+            Container(
+              color: Colors.white,
+              child: Container(
+                  child: ListView(
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                children: [UserMessageBubble(), FromMessageBubble()],
+              )),
+            )
           ],
         ),
       ),

@@ -8,7 +8,7 @@ import 'package:book_shop/logic/bloc/home_event.dart';
 import 'package:book_shop/logic/cubit/internet_cubit.dart';
 import 'package:book_shop/presentation/ui/account_tab.dart';
 import 'package:book_shop/presentation/ui/basket_tab.dart';
-import 'package:book_shop/presentation/ui/chat_list_tab.dart';
+import 'package:book_shop/presentation/ui/chat_list_screen.dart';
 import 'package:book_shop/presentation/ui/home_tab.dart';
 import 'package:book_shop/presentation/ui/title_tab.dart';
 import 'package:book_shop/presentation/widgets/no_network_flare.dart';

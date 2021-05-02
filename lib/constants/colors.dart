@@ -11,4 +11,6 @@ class IColors {
   static final Color balck15 = Color(0xff000000).withOpacity(0.15);
   static final Color balck85 = Color(0xff000000).withOpacity(0.85);
   static final Color borderShadow = Color(0xff000000).withOpacity(0.10);
+  static final Color white90 = Color(0xff000000).withOpacity(0.90);
+  
 }

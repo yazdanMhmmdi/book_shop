@@ -1,6 +1,8 @@
+import 'package:book_shop/constants/colors.dart';
 import 'package:book_shop/constants/strings.dart';
 import 'package:book_shop/presentation/animation/fade_in_animation.dart';
 import 'package:book_shop/presentation/ui/vertical_card_support.dart';
+import 'package:book_shop/presentation/widgets/back_button_widget.dart';
 import 'package:book_shop/presentation/widgets/my_tool_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +21,29 @@ class _ChatListScreenState extends State<ChatListScreen> {
             SizedBox(
               height: 23,
             ),
-            FadeInAnimation(0.25, MyToolBar(title: Strings.chatLabel)),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  FadeInAnimation(
+                    0.5,
+                    BackButtonWidget(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                    ),
+                  ),
+                  FadeInAnimation(0.25, MyToolBar(title: Strings.chatLabel)),
+                  Container(
+                    width: 25,
+                    height: 25,
+                    color: Colors.transparent,
+                  ),
+                ],
+              ),
+            ),
             SizedBox(
               height: 16,
             ),

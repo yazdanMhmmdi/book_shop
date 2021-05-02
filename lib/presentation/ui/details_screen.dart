@@ -46,6 +46,7 @@ class _DetailsScreenState extends State<DetailsScreen>
 
   Random _random = new Random();
   int _randAge, _randBookCount, _randCategory, _randVote;
+  double _screenHeight;
 
   ///
   int _animationDuration = 300;
@@ -54,6 +55,7 @@ class _DetailsScreenState extends State<DetailsScreen>
   void initState() {
     _pullUpController = new AnimationController(
         vsync: this, duration: Duration(milliseconds: 300));
+    _screenHeight = WidgetsBinding.instance.window.physicalSize.height - 128;
 
     _pullUpController.forward();
     super.initState();
@@ -62,6 +64,7 @@ class _DetailsScreenState extends State<DetailsScreen>
   @override
   Widget build(BuildContext context) {
     arguments = widget.args;
+
     // _detailsBloc.add(GetDetails(post_id: arguments["post_id"]));
     _getArguments();
     return WillPopScope(
@@ -117,7 +120,7 @@ class _DetailsScreenState extends State<DetailsScreen>
                       ],
                     ),
                     Column(
-                      mainAxisSize: MainAxisSize.min,
+                      mainAxisSize: MainAxisSize.max,
                       children: [
                         SizedBox(height: 135),
                         SlideTransition(
@@ -126,6 +129,7 @@ class _DetailsScreenState extends State<DetailsScreen>
                               .animate(_pullUpController),
                           child: Container(
                             width: double.infinity,
+                            height: _screenHeight,
                             child: Padding(
                               padding: const EdgeInsets.only(top: 112),
                               child: Directionality(
@@ -192,7 +196,7 @@ class _DetailsScreenState extends State<DetailsScreen>
                                         height: 8,
                                       ),
                                       Text(
-                                        '${description} ',
+                                        '${Strings.detailsLoremIpsom} ',
                                         style: TextStyle(
                                             fontFamily: "iranSans",
                                             fontSize: 16,

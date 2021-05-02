@@ -36,6 +36,7 @@ class _ChatListScreenState extends State<ChatListScreen> {
                     ),
                   ),
                   FadeInAnimation(0.25, MyToolBar(title: Strings.chatLabel)),
+                  //for aligning
                   Container(
                     width: 25,
                     height: 25,
@@ -65,7 +66,7 @@ class _ChatListScreenState extends State<ChatListScreen> {
                       coverType: "coverType",
                       language: "language",
                       description: "description",
-                      price: "20000")
+                      price: "20000"),
                 ],
               ),
             ),

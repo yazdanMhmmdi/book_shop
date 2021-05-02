@@ -88,8 +88,19 @@ class _DetailsScreenState extends State<DetailsScreen>
                 child: Stack(
                   children: [
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 16, left: 24),
+                          child: IconButton(
+                            iconSize: 30,
+                            icon: Icon(
+                              Icons.chat,
+                              color: Colors.white,
+                            ),
+                            onPressed: () {},
+                          ),
+                        ),
                         Padding(
                           padding: const EdgeInsets.only(top: 16, right: 24),
                           child: IconButton(

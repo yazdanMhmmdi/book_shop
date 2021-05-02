@@ -139,6 +139,51 @@ class _ChatScreenState extends State<ChatScreen> {
           ],
         ),
       ),
+      bottomNavigationBar: Container(
+        padding: MediaQuery.of(context).viewInsets,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+          child: Container(
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                color: IColors.lowedBoldGreen,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              padding: EdgeInsets.symmetric(horizontal: 8),
+              margin: EdgeInsets.symmetric(horizontal: 5),
+              child: Directionality(
+                textDirection: TextDirection.rtl,
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.send,
+                      color: IColors.boldGreen,
+                      size: 22,
+                      textDirection: TextDirection.ltr,
+                    ),
+                    SizedBox(
+                      width: 16,
+                    ),
+                    Expanded(
+                      child: TextField(
+                        style: TextStyle(
+                          color: IColors.balck85,
+                          fontFamily: Strings.fontIranSans,
+                          fontSize: 14,
+                        ),
+                        minLines: 1,
+                        maxLines: 6,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: 'یک پیام بنویسید...',
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              )),
+        ),
+      ),
     );
   }
 

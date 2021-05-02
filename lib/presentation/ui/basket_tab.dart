@@ -38,90 +38,99 @@ class _BasketTabState extends State<BasketTab> {
               ),
               Column(
                 children: [
-                  Align(
-                      alignment: Alignment.centerRight,
-                      child: Text(
-                        "صورتحساب",
-                        style: TextStyle(
-                            fontSize: 20,
-                            fontFamily: Strings.fontIranSans,
-                            color: IColors.balck85,
-                            fontWeight: FontWeight.w700),
-                      )),
+                  FadeInAnimation(
+                    0.5,
+                    Align(
+                        alignment: Alignment.centerRight,
+                        child: Text(
+                          "صورتحساب",
+                          style: TextStyle(
+                              fontSize: 20,
+                              fontFamily: Strings.fontIranSans,
+                              color: IColors.balck85,
+                              fontWeight: FontWeight.w700),
+                        )),
+                  ),
                   SizedBox(height: 8),
-                  Container(
-                    width: MediaQuery.of(context).size.width - 32,
-                    decoration: BoxDecoration(
-                      color: IColors.lowedBoldGreen,
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(16),
-                      child: Directionality(
-                        textDirection: TextDirection.rtl,
-                        child: Column(
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  Strings.basketTax,
-                                  style: rightSideTextStyle(),
-                                ),
-                                Text(
-                                  "24000 تومان",
-                                  style: leftSideTextStyle(),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 8,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  Strings.basketDeliveryCost,
-                                  style: rightSideTextStyle(),
-                                ),
-                                Text(
-                                  "24000 تومان",
-                                  style: leftSideTextStyle(),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 8,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  Strings.basketPay,
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    color: IColors.balck85,
-                                    fontFamily: Strings.fontIranSans,
+                  FadeInAnimation(
+                    0.75,
+                    Container(
+                      width: MediaQuery.of(context).size.width - 32,
+                      decoration: BoxDecoration(
+                        color: IColors.lowedBoldGreen,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(16),
+                        child: Directionality(
+                          textDirection: TextDirection.rtl,
+                          child: Column(
+                            children: [
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    Strings.basketTax,
+                                    style: rightSideTextStyle(),
                                   ),
-                                ),
-                                Text(
-                                  "24000 تومان",
-                                  style: TextStyle(
+                                  Text(
+                                    "24000 تومان",
+                                    style: leftSideTextStyle(),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 8,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    Strings.basketDeliveryCost,
+                                    style: rightSideTextStyle(),
+                                  ),
+                                  Text(
+                                    "24000 تومان",
+                                    style: leftSideTextStyle(),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 8,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    Strings.basketPay,
+                                    style: TextStyle(
                                       fontSize: 16,
-                                      color: IColors.boldGreen,
+                                      color: IColors.balck85,
                                       fontFamily: Strings.fontIranSans,
-                                      fontWeight: FontWeight.w700),
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: 16),
-                            MyButton(
-                                buttonState: _buttonState,
-                                text: Strings.basketPayit,
-                                onTap: () {
-                                  print('sss');
-                                }),
-                          ],
+                                    ),
+                                  ),
+                                  Text(
+                                    "24000 تومان",
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        color: IColors.boldGreen,
+                                        fontFamily: Strings.fontIranSans,
+                                        fontWeight: FontWeight.w700),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(height: 16),
+                              MyButton(
+                                  buttonState: _buttonState,
+                                  text: Strings.basketPayit,
+                                  onTap: () {
+                                    print('sss');
+                                  }),
+                            ],
+                          ),
                         ),
                       ),
                     ),

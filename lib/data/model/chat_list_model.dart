@@ -1,10 +1,10 @@
-class ChatList {
+class ChatListModel {
   List<ChatsList> chatsList;
   Data data;
 
-  ChatList({this.chatsList, this.data});
+  ChatListModel({this.chatsList, this.data});
 
-  ChatList.fromJson(Map<String, dynamic> json) {
+  ChatListModel.fromJson(Map<String, dynamic> json) {
     if (json['chatsList'] != null) {
       chatsList = new List<ChatsList>();
       json['chatsList'].forEach((v) {
@@ -27,6 +27,7 @@ class ChatList {
 }
 
 class ChatsList {
+
   String bookIdNum;
   String userId;
   String fromId;
@@ -34,13 +35,15 @@ class ChatsList {
   String newMessageCount;
 
   ChatsList(
-      {this.bookIdNum,
+      {
+      this.bookIdNum,
       this.userId,
       this.fromId,
       this.id,
       this.newMessageCount});
 
   ChatsList.fromJson(Map<String, dynamic> json) {
+
     bookIdNum = json['book_id_num'];
     userId = json['user_id'];
     fromId = json['from_id'];

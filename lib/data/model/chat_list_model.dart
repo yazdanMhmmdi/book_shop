@@ -33,6 +33,11 @@ class ChatsList {
   String fromId;
   String id;
   String newMessageCount;
+  String pictureThumb;
+  String name;
+  String writer;
+  String price;
+  String voteCount;
 
   ChatsList(
       {
@@ -40,7 +45,12 @@ class ChatsList {
       this.userId,
       this.fromId,
       this.id,
-      this.newMessageCount});
+      this.newMessageCount,
+      this.pictureThumb,
+      this.name,
+      this.writer,
+      this.price,
+      this.voteCount});
 
   ChatsList.fromJson(Map<String, dynamic> json) {
 
@@ -49,6 +59,11 @@ class ChatsList {
     fromId = json['from_id'];
     id = json['id'];
     newMessageCount = json['new_message_count'];
+    pictureThumb = json['picture_thumb'];
+    name = json['name'];
+    writer = json['writer'];
+    price = json['price'];
+    voteCount = json['vote_count'];
   }
 
   Map<String, dynamic> toJson() {
@@ -59,6 +74,11 @@ class ChatsList {
     data['from_id'] = this.fromId;
     data['id'] = this.id;
     data['new_message_count'] = this.newMessageCount;
+    data['picture_thumb'] = this.pictureThumb;
+    data['name'] = this.name;
+    data['writer'] = this.writer;
+    data['price'] = this.price;
+    data['vote_count'] = this.voteCount;
     return data;
   }
 }

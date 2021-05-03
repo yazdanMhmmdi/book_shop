@@ -3,6 +3,8 @@ import 'package:book_shop/constants/strings.dart';
 import 'package:flutter/material.dart';
 
 class FromMessageBubble extends StatelessWidget {
+  String message;
+  FromMessageBubble({@required this.message});
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -20,7 +22,7 @@ class FromMessageBubble extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    "Strings.detailsLoremIpsom",
+                    "${message}",
                     style: TextStyle(
                       fontFamily: Strings.fontIranSans,
                       color: IColors.balck85,

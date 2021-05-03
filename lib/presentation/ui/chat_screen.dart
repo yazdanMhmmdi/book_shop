@@ -1,5 +1,6 @@
 import 'package:book_shop/constants/colors.dart';
 import 'package:book_shop/constants/strings.dart';
+import 'package:book_shop/logic/bloc/chat_bloc.dart';
 import 'package:book_shop/networking/image_address_provider.dart';
 import 'package:book_shop/presentation/animation/fade_in_animation.dart';
 import 'package:book_shop/presentation/widgets/back_button_widget.dart';
@@ -8,6 +9,7 @@ import 'package:book_shop/presentation/widgets/from_message_bubble.dart';
 import 'package:book_shop/presentation/widgets/my_tool_bar.dart';
 import 'package:book_shop/presentation/widgets/user_message_bubble.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ChatScreen extends StatefulWidget {
   Map<String, String> args;
@@ -19,10 +21,15 @@ class ChatScreen extends StatefulWidget {
 class _ChatScreenState extends State<ChatScreen> {
   Map<String, String> arguments;
   String thumbImage, id, name, writer;
+  ChatBloc _chatBloc;
+  String userId;
   @override
   void initState() {
     arguments = widget.args;
     _getArguments();
+    _chatBloc = BlocProvider.of<ChatBloc>(context);
+    _chatBloc.add(DisposeChatMessages());
+    _chatBloc.add(GetChatMessages(book_id: id));
     super.initState();
   }
 
@@ -147,12 +154,34 @@ class _ChatScreenState extends State<ChatScreen> {
             ),
             Container(
               color: Colors.white,
-              child: Container(
-                  child: ListView(
-                padding: EdgeInsets.symmetric(horizontal: 16),
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                children: [UserMessageBubble(), FromMessageBubble()],
+              child: Container(child: BlocBuilder<ChatBloc, ChatState>(
+                builder: (context, state) {
+                  if (state is ChatLoading) {
+                    return Container();
+                  } else if (state is ChatSuccess) {
+                    return ListView.builder(
+                      padding: EdgeInsets.symmetric(horizontal: 16),
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: state.chatMessagesModel.chats.length,
+                      itemBuilder: (context, index) {
+                        return state.chatMessagesModel.chats[index].userId ==
+                                userId
+                            ? UserMessageBubble(
+                                message: state
+                                    .chatMessagesModel.chats[index].message,
+                              )
+                            : FromMessageBubble(
+                                message: state
+                                    .chatMessagesModel.chats[index].message);
+                      },
+                    );
+                  } else if (state is ChatEmpty) {
+                    return Container();
+                  } else if (state is ChatFailure) {
+                    return Container();
+                  } else if (state is ChatInitial) {}
+                },
               )),
             )
           ],
@@ -208,6 +237,7 @@ class _ChatScreenState extends State<ChatScreen> {
 
   void _getArguments() {
     thumbImage = arguments['thumbPicture'];
+    userId = arguments['user_id'];
     id = arguments['post_id'];
     name = arguments['name'];
     writer = arguments['writer'];

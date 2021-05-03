@@ -13,9 +13,10 @@ class ChatlistLoading extends ChatlistState {}
 
 class ChatlistSuccess extends ChatlistState {
   ChatListModel chatListModel;
-  ChatlistSuccess({@required this.chatListModel});
+  String userId;
+  ChatlistSuccess({@required this.chatListModel, @required this.userId});
   @override
-  List<Object> get props => [this.chatListModel];
+  List<Object> get props => [this.chatListModel, this.userId];
 }
 
 class ChatlistFailure extends ChatlistState {}

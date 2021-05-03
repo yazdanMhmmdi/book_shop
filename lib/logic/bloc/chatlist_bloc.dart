@@ -34,7 +34,7 @@ class ChatlistBloc extends Bloc<ChatlistEvent, ChatlistState> {
           } else {
             totalPage = int.parse(_model.data.totalPages.toString());
             page++;
-            yield ChatlistSuccess(chatListModel: _model);
+            yield ChatlistSuccess(chatListModel: _model, userId: user_id);
           }
         } else if (page <= totalPage) {
           ChatListModel _tempModel =
@@ -43,7 +43,7 @@ class ChatlistBloc extends Bloc<ChatlistEvent, ChatlistState> {
             _model.chatsList.add(element);
           });
           page++;
-          yield ChatlistSuccess(chatListModel: _model);
+          yield ChatlistSuccess(chatListModel: _model, userId: user_id);
         }
       } catch (err) {
         yield ChatlistFailure();

@@ -17,6 +17,7 @@ class VerticalCardSupport extends StatelessWidget {
   double voteCount;
   String price;
   String newMessageCount;
+  String userId;
   VerticalCardSupport({
     @required this.id,
     @required this.image,
@@ -26,6 +27,7 @@ class VerticalCardSupport extends StatelessWidget {
     @required this.voteCount,
     @required this.price,
     @required this.newMessageCount,
+    @required this.userId,
   });
 
   @override
@@ -55,6 +57,7 @@ class VerticalCardSupport extends StatelessWidget {
                       'thumbPicture': "${thumbImage}",
                       'hero_type': "post_${id}_v",
                       'price': '${price}',
+                      'user_id': "${userId}",
                     }),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,

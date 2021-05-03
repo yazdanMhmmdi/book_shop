@@ -127,6 +127,7 @@ class _ChatListScreenState extends State<ChatListScreen> {
                                         newMessageCount: state.chatListModel
                                             .chatsList[index].newMessageCount
                                             .toString(),
+                                        userId: state.userId,
                                       ),
                                     );
                                   },

@@ -1,5 +1,6 @@
 import 'package:book_shop/logic/bloc/account_bloc.dart';
 import 'package:book_shop/logic/bloc/auth_bloc.dart';
+import 'package:book_shop/logic/bloc/chat_bloc.dart';
 import 'package:book_shop/logic/bloc/chatlist_bloc.dart';
 import 'package:book_shop/logic/bloc/details_bloc.dart';
 import 'package:book_shop/logic/bloc/home_bloc.dart';
@@ -29,6 +30,7 @@ class AppRouter {
   final InternetCubit _internetCubit =
       new InternetCubit(connectivity: Connectivity());
   final _loginScreen = LoginScreen();
+  final ChatBloc _chatBloc = new ChatBloc();
 
   Route onGeneratedRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -159,8 +161,11 @@ class AppRouter {
           transitionsBuilder: (context, ainmation, animationTime, child) {
             return FadeTransition(opacity: ainmation, child: child);
           },
-          pageBuilder: (_, __, ___) => ChatScreen(
-            args: args,
+          pageBuilder: (_, __, ___) => BlocProvider.value(
+            value: _chatBloc,
+            child: ChatScreen(
+              args: args,
+            ),
           ),
         );
       case '/chatList':
@@ -172,8 +177,7 @@ class AppRouter {
             return FadeTransition(opacity: ainmation, child: child);
           },
           pageBuilder: (_, __, ___) => BlocProvider(
-              create: (BuildContext context) =>
-                  ChatlistBloc(),
+              create: (BuildContext context) => ChatlistBloc(),
               child: ChatListScreen()),
         );
       default:

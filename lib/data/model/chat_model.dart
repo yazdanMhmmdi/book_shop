@@ -1,10 +1,10 @@
-class ChatMessagesModel {
+class ChatModel {
   List<Chats> chats;
   Data data;
 
-  ChatMessagesModel({this.chats, this.data});
+  ChatModel({this.chats, this.data});
 
-  ChatMessagesModel.fromJson(Map<String, dynamic> json) {
+  ChatModel.fromJson(Map<String, dynamic> json) {
     if (json['chats'] != null) {
       chats = new List<Chats>();
       json['chats'].forEach((v) {
@@ -36,10 +36,10 @@ class Chats {
   Null date;
   String isRead;
   Null time;
+  String type;
 
   Chats(
-      {
-      this.id,
+      {this.id,
       this.message,
       this.fromId,
       this.userId,
@@ -47,10 +47,10 @@ class Chats {
       this.conversationId,
       this.date,
       this.isRead,
-      this.time});
+      this.time,
+      this.type});
 
   Chats.fromJson(Map<String, dynamic> json) {
-
     id = json['id'];
     message = json['message'];
     fromId = json['from_id'];
@@ -60,6 +60,7 @@ class Chats {
     date = json['date'];
     isRead = json['is_read'];
     time = json['time'];
+    type = json['type'];
   }
 
   Map<String, dynamic> toJson() {
@@ -74,6 +75,7 @@ class Chats {
     data['date'] = this.date;
     data['is_read'] = this.isRead;
     data['time'] = this.time;
+    data['type'] = this.type;
     return data;
   }
 }

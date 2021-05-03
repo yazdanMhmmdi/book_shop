@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:book_shop/data/model/chat_messages_model.dart';
+import 'package:book_shop/data/model/chat_model.dart';
 import 'package:book_shop/data/repository/account_repository.dart';
 import 'package:book_shop/data/repository/chat_repository.dart';
 import 'package:equatable/equatable.dart';
@@ -15,7 +15,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
   ChatRepository _chatRepository = new ChatRepository();
   AccountRepository _accountRepository = new AccountRepository();
   String user_id;
-  ChatMessagesModel _model;
+  ChatModel _model;
   int page = 1;
   int totalPage;
   @override
@@ -37,7 +37,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
             yield ChatSuccess(chatMessagesModel: _model);
           }
         } else if (page <= totalPage) {
-          ChatMessagesModel _tempModel = await _chatRepository.getChatMessages(
+          ChatModel _tempModel = await _chatRepository.getChatMessages(
               user_id, event.book_id, page.toString());
           _tempModel.chats.forEach((element) {
             _model.chats.add(element);
@@ -51,7 +51,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
     } else if (event is DisposeChatMessages) {
       page = 1;
       totalPage = 0;
-      _model = ChatMessagesModel();
+      _model = ChatModel();
     }
   }
 }

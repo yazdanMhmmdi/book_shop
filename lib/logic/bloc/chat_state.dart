@@ -12,7 +12,7 @@ class ChatInitial extends ChatState {}
 class ChatLoading extends ChatState {}
 
 class ChatSuccess extends ChatState {
-  ChatMessagesModel chatMessagesModel;
+  ChatModel chatMessagesModel;
   ChatSuccess({@required this.chatMessagesModel});
   @override
   List<Object> get props => [this.chatMessagesModel];

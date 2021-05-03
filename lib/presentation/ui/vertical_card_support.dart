@@ -40,8 +40,7 @@ class VerticalCardSupport extends StatelessWidget {
           Container(
             height: 142,
             decoration: BoxDecoration(
-                color: Color(txfColor)
-                    .withOpacity(0.15), // TODO: Needs to be replace;
+                color: Color(txfColor).withOpacity(0.15),
                 borderRadius: BorderRadius.circular(8)),
             child: Material(
               color: Colors.transparent,
@@ -55,7 +54,7 @@ class VerticalCardSupport extends StatelessWidget {
                       'writer': "${writer}",
                       'voteCount': "${voteCount}",
                       'thumbPicture': "${thumbImage}",
-                      'hero_type': "post_${id}_v",
+                      'hero_type': "v",
                       'price': '${price}',
                       'user_id': "${userId}",
                     }),

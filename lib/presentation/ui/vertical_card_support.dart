@@ -14,10 +14,6 @@ class VerticalCardSupport extends StatelessWidget {
   String name, writer, thumbImage;
   String id;
   double voteCount;
-  String description;
-  String pagesCount;
-  String language;
-  String coverType;
   String price;
   VerticalCardSupport({
     @required this.id,
@@ -26,10 +22,6 @@ class VerticalCardSupport extends StatelessWidget {
     @required this.writer,
     @required this.thumbImage,
     @required this.voteCount,
-    @required this.pagesCount,
-    @required this.coverType,
-    @required this.language,
-    @required this.description,
     @required this.price,
   });
 
@@ -56,12 +48,8 @@ class VerticalCardSupport extends StatelessWidget {
                       'post_id': "${id}",
                       'name': "${name}",
                       'writer': "${writer}",
-                      'description': "${description}",
                       'voteCount': "${voteCount}",
                       'thumbPicture': "${thumbImage}",
-                      'language': "${language}",
-                      'coverType': "${coverType}",
-                      'pagesCount': "${pagesCount}",
                       'hero_type': "v",
                       'price': '${price}',
                     }),

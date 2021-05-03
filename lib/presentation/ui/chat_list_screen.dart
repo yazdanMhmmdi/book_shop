@@ -1,10 +1,13 @@
 import 'package:book_shop/constants/colors.dart';
 import 'package:book_shop/constants/strings.dart';
+import 'package:book_shop/logic/bloc/chatlist_bloc.dart';
 import 'package:book_shop/presentation/animation/fade_in_animation.dart';
 import 'package:book_shop/presentation/ui/vertical_card_support.dart';
 import 'package:book_shop/presentation/widgets/back_button_widget.dart';
+import 'package:book_shop/presentation/widgets/loading_bar.dart';
 import 'package:book_shop/presentation/widgets/my_tool_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ChatListScreen extends StatefulWidget {
   @override
@@ -12,6 +15,21 @@ class ChatListScreen extends StatefulWidget {
 }
 
 class _ChatListScreenState extends State<ChatListScreen> {
+  ScrollController _controller = ScrollController();
+  ChatlistBloc _chatlistBloc;
+  @override
+  void initState() {
+    _chatlistBloc = BlocProvider.of<ChatlistBloc>(context);
+    _chatlistBloc.add(GetChatList());
+    _controller.addListener(() {
+      if (_controller.position.pixels == _controller.position.maxScrollExtent) {
+        print('end of page');
+        _chatlistBloc.add(GetChatList());
+      }
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,27 +66,49 @@ class _ChatListScreenState extends State<ChatListScreen> {
             SizedBox(
               height: 16,
             ),
-            Directionality(
-              textDirection: TextDirection.rtl,
-              child: ListView(
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                children: [
-                  VerticalCardSupport(
-                      id: "1",
-                      image: "image",
-                      name: "name",
-                      writer: "writer",
-                      thumbImage:
-                          "/book_shop/v1.1/image/what_if_serious_scientific_answers_to_absurd_hypothetical_questions.png",
-                      voteCount: 2.1,
-                      pagesCount: "pagesCount",
-                      coverType: "coverType",
-                      language: "language",
-                      description: "description",
-                      price: "20000"),
-                ],
-              ),
+            BlocBuilder<ChatlistBloc, ChatlistState>(
+              builder: (context, state) {
+                if (state is ChatlistInitial) {
+                  return Container();
+                } else if (state is ChatlistLoading) {
+                  return Center(
+                    child: MyLoadingBar(
+                      animation: 'Untitled',
+                    ),
+                  );
+                } else if (state is ChatlistSuccess) {
+                  return Directionality(
+                    textDirection: TextDirection.rtl,
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      controller: _controller,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: state.chatListModel.chatsList.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return VerticalCardSupport(
+                            id:
+                                "${state.chatListModel.chatsList[index].bookIdNum}",
+                            image: "image",
+                            name:
+                                "${state.chatListModel.chatsList[index].name}",
+                            writer:
+                                "${state.chatListModel.chatsList[index].writer}",
+                            thumbImage:
+                                "${state.chatListModel.chatsList[index].pictureThumb}",
+                            voteCount: double.parse(state
+                                .chatListModel.chatsList[index].voteCount
+                                .toString()),
+                            price:
+                                "${state.chatListModel.chatsList[index].price}");
+                      },
+                    ),
+                  );
+                } else if (state is ChatlistFailure) {
+                  return Container();
+                } else if (state is ChatlistEmpty) {
+                  return Container();
+                }
+              },
             ),
           ],
         ),

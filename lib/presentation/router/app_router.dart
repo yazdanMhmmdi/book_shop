@@ -1,5 +1,6 @@
 import 'package:book_shop/logic/bloc/account_bloc.dart';
 import 'package:book_shop/logic/bloc/auth_bloc.dart';
+import 'package:book_shop/logic/bloc/chatlist_bloc.dart';
 import 'package:book_shop/logic/bloc/details_bloc.dart';
 import 'package:book_shop/logic/bloc/home_bloc.dart';
 import 'package:book_shop/logic/bloc/title_bloc.dart';
@@ -170,7 +171,10 @@ class AppRouter {
           transitionsBuilder: (context, ainmation, animationTime, child) {
             return FadeTransition(opacity: ainmation, child: child);
           },
-          pageBuilder: (_, __, ___) => ChatListScreen(),
+          pageBuilder: (_, __, ___) => BlocProvider(
+              create: (BuildContext context) =>
+                  ChatlistBloc(),
+              child: ChatListScreen()),
         );
       default:
         return null;

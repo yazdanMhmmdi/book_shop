@@ -3,6 +3,7 @@ import 'package:book_shop/constants/colors.dart';
 import 'package:book_shop/constants/strings.dart';
 import 'package:book_shop/networking/image_address_provider.dart';
 import 'package:book_shop/presentation/widgets/customer_agent_widget.dart';
+import 'package:book_shop/presentation/widgets/new_message_notify.dart';
 import 'package:book_shop/presentation/widgets/rating_bar.dart';
 import 'package:book_shop/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,7 @@ class VerticalCardSupport extends StatelessWidget {
   String id;
   double voteCount;
   String price;
+  String newMessageCount;
   VerticalCardSupport({
     @required this.id,
     @required this.image,
@@ -23,6 +25,7 @@ class VerticalCardSupport extends StatelessWidget {
     @required this.thumbImage,
     @required this.voteCount,
     @required this.price,
+    @required this.newMessageCount,
   });
 
   @override
@@ -154,26 +157,9 @@ class VerticalCardSupport extends StatelessWidget {
             top: 5,
             child: CustomerAgentWidget(),
           ),
-          Positioned(
-            left: 16,
-            top: 16,
-            child: Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  color: IColors.boldGreen),
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 14, vertical: 5),
-                child: Text(
-                  "2 پیام جدید",
-                  style: TextStyle(
-                      fontFamily: Strings.fontIranSans,
-                      fontSize: 14,
-                      color: Colors.white),
-                ),
-              ),
-            ),
-          ),
+          newMessageCount == "0"
+              ? Container()
+              : NewMessageNotify(newMessageCount: "2"),
         ],
       ),
     );

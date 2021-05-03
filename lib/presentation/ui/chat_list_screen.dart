@@ -6,6 +6,8 @@ import 'package:book_shop/presentation/ui/vertical_card_support.dart';
 import 'package:book_shop/presentation/widgets/back_button_widget.dart';
 import 'package:book_shop/presentation/widgets/loading_bar.dart';
 import 'package:book_shop/presentation/widgets/my_tool_bar.dart';
+import 'package:book_shop/presentation/widgets/not_found_bar.dart';
+import 'package:book_shop/presentation/widgets/server_failure_flare.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -92,28 +94,31 @@ class _ChatListScreenState extends State<ChatListScreen> {
                         return FadeInAnimation(
                           _animationDelay,
                           VerticalCardSupport(
-                              id:
-                                  "${state.chatListModel.chatsList[index].bookIdNum}",
-                              image: "image",
-                              name:
-                                  "${state.chatListModel.chatsList[index].name}",
-                              writer:
-                                  "${state.chatListModel.chatsList[index].writer}",
-                              thumbImage:
-                                  "${state.chatListModel.chatsList[index].pictureThumb}",
-                              voteCount: double.parse(state
-                                  .chatListModel.chatsList[index].voteCount
-                                  .toString()),
-                              price:
-                                  "${state.chatListModel.chatsList[index].price}"),
+                            id: "${state.chatListModel.chatsList[index].bookIdNum}",
+                            image: "image",
+                            name:
+                                "${state.chatListModel.chatsList[index].name}",
+                            writer:
+                                "${state.chatListModel.chatsList[index].writer}",
+                            thumbImage:
+                                "${state.chatListModel.chatsList[index].pictureThumb}",
+                            voteCount: double.parse(state
+                                .chatListModel.chatsList[index].voteCount
+                                .toString()),
+                            price:
+                                "${state.chatListModel.chatsList[index].price}",
+                            newMessageCount: state
+                                .chatListModel.chatsList[index].newMessageCount
+                                .toString(),
+                          ),
                         );
                       },
                     ),
                   );
                 } else if (state is ChatlistFailure) {
-                  return Container();
+                  return Center(child: ServerFailureFlare());
                 } else if (state is ChatlistEmpty) {
-                  return Container();
+                  return Center(child: NotFoundBar());
                 }
               },
             ),

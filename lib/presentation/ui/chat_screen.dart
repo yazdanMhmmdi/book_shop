@@ -108,8 +108,7 @@ class _ChatScreenState extends State<ChatScreen> {
                                     borderRadius: BorderRadius.circular(8),
                                     color: Colors.transparent),
                                 child: Image.network(
-                                    ImageAddressProvider.imageURL +
-                                        thumbImage),
+                                    ImageAddressProvider.imageURL + thumbImage),
                               ),
                             ),
                           ),
@@ -167,17 +166,14 @@ class _ChatScreenState extends State<ChatScreen> {
                       padding: EdgeInsets.symmetric(horizontal: 16),
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
-                      itemCount: state.chatMessagesModel.chats.length,
+                      itemCount: state.chatModel.chats.length,
                       itemBuilder: (context, index) {
-                        return state.chatMessagesModel.chats[index].userId ==
-                                userId
+                        return state.chatModel.chats[index].userId == userId
                             ? UserMessageBubble(
-                                message: state
-                                    .chatMessagesModel.chats[index].message,
+                                message: state.chatModel.chats[index].message,
                               )
                             : FromMessageBubble(
-                                message: state
-                                    .chatMessagesModel.chats[index].message);
+                                message: state.chatModel.chats[index].message);
                       },
                     );
                   } else if (state is ChatEmpty) {

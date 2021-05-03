@@ -34,7 +34,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
           } else {
             totalPage = int.parse(_model.data.totalPages.toString());
             page++;
-            yield ChatSuccess(chatMessagesModel: _model);
+            yield ChatSuccess(chatModel: _model);
           }
         } else if (page <= totalPage) {
           ChatModel _tempModel = await _chatRepository.getChatMessages(
@@ -43,7 +43,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
             _model.chats.add(element);
           });
           page++;
-          yield ChatSuccess(chatMessagesModel: _model);
+          yield ChatSuccess(chatModel: _model);
         }
       } catch (err) {
         yield ChatFailure();

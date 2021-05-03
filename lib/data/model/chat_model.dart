@@ -33,9 +33,9 @@ class Chats {
   String userId;
   String bookId;
   String conversationId;
-  Null date;
+  String date;
   String isRead;
-  Null time;
+  String time;
   String type;
 
   Chats(

@@ -25,6 +25,7 @@ class ChatlistBloc extends Bloc<ChatlistEvent, ChatlistState> {
   ) async* {
     user_id = await _accountRepository.getSharedPrefs();
     if (event is GetChatList) {
+      yield ChatlistLoading();
       try {
         if (page == 1) {
           _model = await _repository.getChatList(user_id, page.toString());

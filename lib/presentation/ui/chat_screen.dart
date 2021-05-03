@@ -86,29 +86,30 @@ class _ChatScreenState extends State<ChatScreen> {
                   children: [
                     Column(
                       children: [
-                        Container(
-                          width: 81,
-                          height: 120,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            color: Colors.white,
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.black.withOpacity(0.15),
-                                  offset: Offset(7, 7),
-                                  blurRadius: 10)
-                            ],
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(5),
-                            child: Hero(
-                              tag: "post_${id}_v",
+                        Hero(
+                          tag: "post_${id}_v",
+                          child: Container(
+                            width: 81,
+                            height: 120,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              color: Colors.white,
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Colors.black.withOpacity(0.15),
+                                    offset: Offset(7, 7),
+                                    blurRadius: 10)
+                              ],
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(5),
                               child: Container(
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(8),
                                     color: Colors.transparent),
                                 child: Image.network(
-                                    ImageAddressProvider.imageURL + thumbImage),
+                                    ImageAddressProvider.imageURL +
+                                        thumbImage),
                               ),
                             ),
                           ),
@@ -144,7 +145,10 @@ class _ChatScreenState extends State<ChatScreen> {
                     Positioned(
                         top: 94,
                         left: 20,
-                        child: Center(child: CustomerAgentWidget())),
+                        child: Center(
+                            child: Hero(
+                                tag: 'post_${id}_agent',
+                                child: CustomerAgentWidget()))),
                   ],
                 ),
               ),

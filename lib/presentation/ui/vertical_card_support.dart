@@ -63,23 +63,23 @@ class VerticalCardSupport extends StatelessWidget {
                   children: [
                     Padding(
                       padding: const EdgeInsets.all(11),
-                      child: Container(
-                        width: 81,
-                        height: 120,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          color: Colors.white,
-                          boxShadow: [
-                            BoxShadow(
-                                color: Colors.black.withOpacity(0.15),
-                                offset: Offset(7, 7),
-                                blurRadius: 10)
-                          ],
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(5),
-                          child: Hero(
-                            tag: "post_${id}_v",
+                      child: Hero(
+                        tag: "post_${id}_v",
+                        child: Container(
+                          width: 81,
+                          height: 120,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            color: Colors.white,
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.black.withOpacity(0.15),
+                                  offset: Offset(7, 7),
+                                  blurRadius: 10)
+                            ],
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(5),
                             child: Container(
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(8),
@@ -157,7 +157,7 @@ class VerticalCardSupport extends StatelessWidget {
           Positioned(
             right: 58,
             top: 5,
-            child: CustomerAgentWidget(),
+            child: Hero(tag: 'post_${id}_agent', child: CustomerAgentWidget()),
           ),
           newMessageCount == "0"
               ? Container()

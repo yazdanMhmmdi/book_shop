@@ -17,6 +17,8 @@ class ChatListScreen extends StatefulWidget {
 class _ChatListScreenState extends State<ChatListScreen> {
   ScrollController _controller = ScrollController();
   ChatlistBloc _chatlistBloc;
+  double _animationDelay = 0.25;
+
   @override
   void initState() {
     _chatlistBloc = BlocProvider.of<ChatlistBloc>(context);
@@ -77,6 +79,8 @@ class _ChatListScreenState extends State<ChatListScreen> {
                     ),
                   );
                 } else if (state is ChatlistSuccess) {
+                  _animationDelay = _animationDelay + 0.3;
+
                   return Directionality(
                     textDirection: TextDirection.rtl,
                     child: ListView.builder(
@@ -85,21 +89,24 @@ class _ChatListScreenState extends State<ChatListScreen> {
                       physics: NeverScrollableScrollPhysics(),
                       itemCount: state.chatListModel.chatsList.length,
                       itemBuilder: (BuildContext context, int index) {
-                        return VerticalCardSupport(
-                            id:
-                                "${state.chatListModel.chatsList[index].bookIdNum}",
-                            image: "image",
-                            name:
-                                "${state.chatListModel.chatsList[index].name}",
-                            writer:
-                                "${state.chatListModel.chatsList[index].writer}",
-                            thumbImage:
-                                "${state.chatListModel.chatsList[index].pictureThumb}",
-                            voteCount: double.parse(state
-                                .chatListModel.chatsList[index].voteCount
-                                .toString()),
-                            price:
-                                "${state.chatListModel.chatsList[index].price}");
+                        return FadeInAnimation(
+                          _animationDelay,
+                          VerticalCardSupport(
+                              id:
+                                  "${state.chatListModel.chatsList[index].bookIdNum}",
+                              image: "image",
+                              name:
+                                  "${state.chatListModel.chatsList[index].name}",
+                              writer:
+                                  "${state.chatListModel.chatsList[index].writer}",
+                              thumbImage:
+                                  "${state.chatListModel.chatsList[index].pictureThumb}",
+                              voteCount: double.parse(state
+                                  .chatListModel.chatsList[index].voteCount
+                                  .toString()),
+                              price:
+                                  "${state.chatListModel.chatsList[index].price}"),
+                        );
                       },
                     ),
                   );

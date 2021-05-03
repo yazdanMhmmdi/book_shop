@@ -50,7 +50,7 @@ class VerticalCardSupport extends StatelessWidget {
                       'writer': "${writer}",
                       'voteCount': "${voteCount}",
                       'thumbPicture': "${thumbImage}",
-                      'hero_type': "v",
+                      'hero_type': "post_${id}_v",
                       'price': '${price}',
                     }),
                 child: Row(

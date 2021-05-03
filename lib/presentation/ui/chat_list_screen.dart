@@ -36,109 +36,114 @@ class _ChatListScreenState extends State<ChatListScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          progress
-              ? Center(
-                  child: MyLoadingBar(
-                    animation: 'Untitled',
-                  ),
-                )
-              : Container(),
-          SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                SizedBox(
-                  height: 23,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      FadeInAnimation(
-                        0.5,
-                        BackButtonWidget(
-                          onTap: () {
-                            Navigator.pop(context);
-                          },
+    return BlocListener<ChatlistBloc, ChatlistState>(
+      listener: (context, state) {
+        if (state is ChatlistSuccess) {
+          setState(() {
+            progress = false;
+            _animationDelay = _animationDelay + 0.3;
+          });
+        } else {}
+      },
+      child: Scaffold(
+        body: Stack(
+          children: [
+            progress
+                ? Center(
+                    child: MyLoadingBar(
+                      animation: 'Untitled',
+                    ),
+                  )
+                : SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        SizedBox(
+                          height: 23,
                         ),
-                      ),
-                      FadeInAnimation(
-                          0.25, MyToolBar(title: Strings.chatLabel)),
-                      //for aligning
-                      Container(
-                        width: 25,
-                        height: 25,
-                        color: Colors.transparent,
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: 16,
-                ),
-                BlocConsumer<ChatlistBloc, ChatlistState>(
-                  listener: (context, state) {
-                    if (state is ChatlistSuccess) {
-                      setState(() {
-                        progress = false;
-                        _animationDelay = _animationDelay + 0.3;
-                      });
-                    } else {}
-                  },
-                  builder: (context, state) {
-                    if (state is ChatlistInitial) {
-                      return Container();
-                    } else if (state is ChatlistLoading) {
-                      return Container();
-                    } else if (state is ChatlistSuccess) {
-                      return Directionality(
-                        textDirection: TextDirection.rtl,
-                        child: ListView.builder(
-                          shrinkWrap: true,
-                          controller: _controller,
-                          physics: NeverScrollableScrollPhysics(),
-                          itemCount: state.chatListModel.chatsList.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            return FadeInAnimation(
-                              _animationDelay,
-                              VerticalCardSupport(
-                                id: "${state.chatListModel.chatsList[index].bookIdNum}",
-                                image: "image",
-                                name:
-                                    "${state.chatListModel.chatsList[index].name}",
-                                writer:
-                                    "${state.chatListModel.chatsList[index].writer}",
-                                thumbImage:
-                                    "${state.chatListModel.chatsList[index].pictureThumb}",
-                                voteCount: double.parse(state
-                                    .chatListModel.chatsList[index].voteCount
-                                    .toString()),
-                                price:
-                                    "${state.chatListModel.chatsList[index].price}",
-                                newMessageCount: state.chatListModel
-                                    .chatsList[index].newMessageCount
-                                    .toString(),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              FadeInAnimation(
+                                0.5,
+                                BackButtonWidget(
+                                  onTap: () {
+                                    Navigator.pop(context);
+                                  },
+                                ),
                               ),
-                            );
+                              FadeInAnimation(
+                                  0.25, MyToolBar(title: Strings.chatLabel)),
+                              //for aligning
+                              Container(
+                                width: 25,
+                                height: 25,
+                                color: Colors.transparent,
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 16,
+                        ),
+                        BlocBuilder<ChatlistBloc, ChatlistState>(
+                          builder: (context, state) {
+                            if (state is ChatlistInitial) {
+                              return Container();
+                            } else if (state is ChatlistLoading) {
+                              return Container();
+                            } else if (state is ChatlistSuccess) {
+                              return Directionality(
+                                textDirection: TextDirection.rtl,
+                                child: ListView.builder(
+                                  shrinkWrap: true,
+                                  controller: _controller,
+                                  physics: NeverScrollableScrollPhysics(),
+                                  itemCount:
+                                      state.chatListModel.chatsList.length,
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    return FadeInAnimation(
+                                      _animationDelay,
+                                      VerticalCardSupport(
+                                        id: "${state.chatListModel.chatsList[index].bookIdNum}",
+                                        image: "image",
+                                        name:
+                                            "${state.chatListModel.chatsList[index].name}",
+                                        writer:
+                                            "${state.chatListModel.chatsList[index].writer}",
+                                        thumbImage:
+                                            "${state.chatListModel.chatsList[index].pictureThumb}",
+                                        voteCount: double.parse(state
+                                            .chatListModel
+                                            .chatsList[index]
+                                            .voteCount
+                                            .toString()),
+                                        price:
+                                            "${state.chatListModel.chatsList[index].price}",
+                                        newMessageCount: state.chatListModel
+                                            .chatsList[index].newMessageCount
+                                            .toString(),
+                                      ),
+                                    );
+                                  },
+                                ),
+                              );
+                            } else if (state is ChatlistFailure) {
+                              return Center(child: ServerFailureFlare());
+                            } else if (state is ChatlistEmpty) {
+                              return Center(child: NotFoundBar());
+                            }
                           },
                         ),
-                      );
-                    } else if (state is ChatlistFailure) {
-                      return Center(child: ServerFailureFlare());
-                    } else if (state is ChatlistEmpty) {
-                      return Center(child: NotFoundBar());
-                    }
-                  },
-                ),
-              ],
-            ),
-          ),
-        ],
+                      ],
+                    ),
+                  ),
+          ],
+        ),
       ),
     );
   }

@@ -228,7 +228,7 @@ class _ChatScreenState extends State<ChatScreen> {
                         maxLines: 6,
                         decoration: InputDecoration(
                           border: InputBorder.none,
-                          hintText: 'یک پیام بنویسید...',
+                          hintText: '${Strings.chatWriteSomthing}',
                         ),
                       ),
                     ),

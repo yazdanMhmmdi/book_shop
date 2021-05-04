@@ -62,4 +62,5 @@ class Strings {
   static final String chatLabel = "لیست گفتگو ها";
   //chat
   static final String chatSpeakWithSeller = "گفتگو با فروشنده";
+  static final String chatWriteSomthing = "یک پیام بنویسید...";
 }

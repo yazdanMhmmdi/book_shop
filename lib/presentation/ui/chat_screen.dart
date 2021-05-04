@@ -24,6 +24,7 @@ class _ChatScreenState extends State<ChatScreen> {
   ChatBloc _chatBloc;
   String userId;
   ScrollController _scrollController = ScrollController();
+  TextEditingController _messageController = TextEditingController();
   @override
   void initState() {
     arguments = widget.args;
@@ -208,17 +209,24 @@ class _ChatScreenState extends State<ChatScreen> {
                 textDirection: TextDirection.rtl,
                 child: Row(
                   children: [
-                    Icon(
-                      Icons.send,
-                      color: IColors.boldGreen,
-                      size: 22,
-                      textDirection: TextDirection.ltr,
+                    IconButton(
+                      onPressed: () {
+                        print(_messageController.text);
+                        _messageController.text = "";
+                      },
+                      icon: Icon(
+                        Icons.send,
+                        color: IColors.boldGreen,
+                        size: 22,
+                        textDirection: TextDirection.ltr,
+                      ),
                     ),
                     SizedBox(
                       width: 16,
                     ),
                     Expanded(
                       child: TextField(
+                        controller: _messageController,
                         style: TextStyle(
                           color: IColors.balck85,
                           fontFamily: Strings.fontIranSans,

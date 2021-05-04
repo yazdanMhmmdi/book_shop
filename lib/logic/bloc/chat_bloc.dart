@@ -49,7 +49,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
             totalPage = int.parse(_model.data.totalPages.toString());
             page++;
 
-            yield ChatSuccess(chatModel: _model);
+            yield ChatSuccess(chatModel: _model, scrollDown: false);
           }
         } else if (page <= totalPage) {
           ChatModel _tempModel = await _chatRepository.getChatMessages(
@@ -59,7 +59,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
           });
           page++;
 
-          yield ChatSuccess(chatModel: _model);
+          yield ChatSuccess(chatModel: _model, scrollDown: false);
         }
       } catch (err) {
         yield ChatFailure();
@@ -83,7 +83,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
 
         if (_model.chats[_model.chats.length - 1].bookId == event.bookId &&
             _model.chats[_model.chats.length - 1].fromId == user_id) {
-          yield ChatSuccess(chatModel: _model);
+          yield ChatSuccess(chatModel: _model, scrollDown: true);
         } else {}
       } catch (err) {
         print(err);

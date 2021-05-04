@@ -23,6 +23,7 @@ class _ChatScreenState extends State<ChatScreen> {
   String thumbImage, id, name, writer;
   ChatBloc _chatBloc;
   String userId;
+  ScrollController _scrollController = ScrollController();
   @override
   void initState() {
     arguments = widget.args;
@@ -38,6 +39,7 @@ class _ChatScreenState extends State<ChatScreen> {
     return Scaffold(
       backgroundColor: IColors.backgroundColor,
       body: SingleChildScrollView(
+        controller: _scrollController,
         child: Column(
           children: [
             SizedBox(
@@ -162,6 +164,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   if (state is ChatLoading) {
                     return Container();
                   } else if (state is ChatSuccess) {
+                    scrollBottom();
                     return ListView.builder(
                       padding: EdgeInsets.symmetric(horizontal: 16),
                       shrinkWrap: true,
@@ -243,5 +246,13 @@ class _ChatScreenState extends State<ChatScreen> {
     id = arguments['post_id'];
     name = arguments['name'];
     writer = arguments['writer'];
+  }
+
+  void scrollBottom() {
+    _scrollController.animateTo(
+      _scrollController.position.maxScrollExtent + 70,
+      duration: Duration(seconds: 1),
+      curve: Curves.fastOutSlowIn,
+    );
   }
 }

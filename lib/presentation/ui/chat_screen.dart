@@ -165,7 +165,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   if (state is ChatLoading) {
                     return Container();
                   } else if (state is ChatSuccess) {
-                    scrollBottom();
+                    if (state.scrollDown) scrollBottom();
                     return ListView.builder(
                       padding: EdgeInsets.symmetric(horizontal: 16),
                       shrinkWrap: true,
@@ -212,6 +212,8 @@ class _ChatScreenState extends State<ChatScreen> {
                     IconButton(
                       onPressed: () {
                         print(_messageController.text);
+                        _chatBloc.add(SendSocketMessage(
+                            message: _messageController.text));
                         _messageController.text = "";
                       },
                       icon: Icon(
@@ -262,5 +264,11 @@ class _ChatScreenState extends State<ChatScreen> {
       duration: Duration(seconds: 1),
       curve: Curves.fastOutSlowIn,
     );
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
   }
 }

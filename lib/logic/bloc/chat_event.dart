@@ -28,3 +28,11 @@ class SocketMessage extends ChatEvent {
   // TODO: implement props
   List<Object> get props => [this.bookId, this.message];
 }
+
+class SendSocketMessage extends ChatEvent {
+  String message;
+  SendSocketMessage({@required this.message});
+  @override
+  // TODO: implement props
+  List<Object> get props => [this.message];
+}

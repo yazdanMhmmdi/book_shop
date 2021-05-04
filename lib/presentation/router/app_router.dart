@@ -30,7 +30,6 @@ class AppRouter {
   final InternetCubit _internetCubit =
       new InternetCubit(connectivity: Connectivity());
   final _loginScreen = LoginScreen();
-  final ChatBloc _chatBloc = new ChatBloc();
 
   Route onGeneratedRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -161,8 +160,8 @@ class AppRouter {
           transitionsBuilder: (context, ainmation, animationTime, child) {
             return FadeTransition(opacity: ainmation, child: child);
           },
-          pageBuilder: (_, __, ___) => BlocProvider.value(
-            value: _chatBloc,
+          pageBuilder: (_, __, ___) => BlocProvider(
+            create: (BuildContext context) => ChatBloc(),
             child: ChatScreen(
               args: args,
             ),

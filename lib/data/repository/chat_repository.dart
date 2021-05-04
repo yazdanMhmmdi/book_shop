@@ -2,6 +2,7 @@ import 'package:book_shop/data/model/chat_list_model.dart';
 import 'package:book_shop/data/model/chat_model.dart';
 import 'package:book_shop/data/model/details_model.dart';
 import 'package:book_shop/networking/api_provider.dart';
+import 'package:web_socket_channel/io.dart';
 
 class ChatRepository {
   ApiProvider _apiProvider = new ApiProvider();
@@ -12,4 +13,10 @@ class ChatRepository {
         '/chat_messages_api.php?user_id=${user_id}&page=${page}&book_id=${book_id}');
     return ChatModel.fromJson(response);
   }
+
+  Future<ChatModel> getSocketMessages() {
+    
+  }
+
+  socketInitial() async {}
 }

@@ -39,7 +39,8 @@ class Chats {
   String type;
 
   Chats(
-      {this.id,
+      {
+      this.id,
       this.message,
       this.fromId,
       this.userId,
@@ -51,6 +52,7 @@ class Chats {
       this.type});
 
   Chats.fromJson(Map<String, dynamic> json) {
+
     id = json['id'];
     message = json['message'];
     fromId = json['from_id'];
@@ -81,13 +83,15 @@ class Chats {
 }
 
 class Data {
+  String oprationType;
   int totalPages;
   String currentPage;
   int offsetPage;
 
-  Data({this.totalPages, this.currentPage, this.offsetPage});
+  Data({this.oprationType, this.totalPages, this.currentPage, this.offsetPage});
 
   Data.fromJson(Map<String, dynamic> json) {
+    oprationType = json['opration_type'];
     totalPages = json['total_pages'];
     currentPage = json['current_page'];
     offsetPage = json['offset_page'];
@@ -95,6 +99,7 @@ class Data {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['opration_type'] = this.oprationType;
     data['total_pages'] = this.totalPages;
     data['current_page'] = this.currentPage;
     data['offset_page'] = this.offsetPage;

@@ -180,7 +180,9 @@ class _ChatScreenState extends State<ChatScreen> {
                     return Container();
                   } else if (state is ChatFailure) {
                     return Container();
-                  } else if (state is ChatInitial) {}
+                  } else if (state is ChatInitial) {
+                    return Container();
+                  }
                 },
               )),
             )

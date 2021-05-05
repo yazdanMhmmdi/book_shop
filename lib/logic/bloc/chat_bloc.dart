@@ -20,11 +20,10 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
   AccountRepository _accountRepository = new AccountRepository();
   String user_id;
   ChatModel _model;
-  int page = 1;
   int totalPage;
   String bookId;
-  String fromId;
-  String conversationId;
+  String fromId = "0";
+  String conversationId = "0";
 
   var channel =
       IOWebSocketChannel.connect(Uri.parse("${ApiProvider.WEB_SOCKET}"));
@@ -42,27 +41,15 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
       yield ChatLoading();
       user_id = await _accountRepository.getSharedPrefs();
       try {
-        if (page == 1) {
-          _model = await _chatRepository.getChatMessages(
-              user_id, event.book_id, page.toString());
-          if (_model.chats.length == 0) {
-            yield ChatEmpty();
-          } else {
-            totalPage = int.parse(_model.data.totalPages.toString());
-            fromId = _model
-                .chats[0].fromId; //get user id cause he send his id on user id
-            conversationId = _model.chats[0].conversationId;
-            page++;
-
-            yield ChatSuccess(chatModel: _model, scrollDown: false);
-          }
-        } else if (page <= totalPage) {
-          ChatModel _tempModel = await _chatRepository.getChatMessages(
-              user_id, event.book_id, page.toString().trim());
-          _tempModel.chats.forEach((element) {
-            _model.chats.add(element);
-          });
-          page++;
+        _model =
+            await _chatRepository.getChatMessages(user_id, event.book_id, "1");
+        if (_model.chats.length == 0) {
+          yield ChatEmpty();
+        } else {
+          totalPage = int.parse(_model.data.totalPages.toString());
+          fromId = _model
+              .chats[0].fromId; //get user id cause he send his id on user id
+          conversationId = _model.chats[0].conversationId;
 
           yield ChatSuccess(chatModel: _model, scrollDown: false);
         }
@@ -70,7 +57,6 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
         yield ChatFailure();
       }
     } else if (event is DisposeChatMessages) {
-      page = 1;
       totalPage = 0;
       _model = ChatModel();
     } else if (event is SocketMessage) {

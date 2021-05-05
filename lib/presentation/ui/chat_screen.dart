@@ -181,7 +181,22 @@ class _ChatScreenState extends State<ChatScreen> {
                       },
                     );
                   } else if (state is ChatEmpty) {
-                    return Container();
+                    return Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(16),
+                        color: IColors.lowedBoldGreen,
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          "پیامی وجود ندارد",
+                          style: TextStyle(
+                            fontFamily: Strings.fontIranSans,
+                            color: IColors.balck35,
+                          ),
+                        ),
+                      ),
+                    );
                   } else if (state is ChatFailure) {
                     return Container();
                   } else if (state is ChatInitial) {

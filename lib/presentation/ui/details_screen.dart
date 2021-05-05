@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:book_shop/constants/assets.dart';
 import 'package:book_shop/constants/colors.dart';
 import 'package:book_shop/constants/strings.dart';
+import 'package:book_shop/data/repository/account_repository.dart';
 import 'package:book_shop/logic/bloc/details_bloc.dart';
 import 'package:book_shop/logic/cubit/internet_cubit.dart';
 import 'package:book_shop/networking/image_address_provider.dart';
@@ -43,7 +44,8 @@ class _DetailsScreenState extends State<DetailsScreen>
   bool _pullUpAnimationFlag = true;
   bool _fadeAnimationFlag = true;
   AnimationController _pullUpController;
-
+  AccountRepository _accountRepository = AccountRepository();
+  String user_id;
   Random _random = new Random();
   int _randAge, _randBookCount, _randCategory, _randVote;
   double _screenHeight;
@@ -56,7 +58,7 @@ class _DetailsScreenState extends State<DetailsScreen>
     _pullUpController = new AnimationController(
         vsync: this, duration: Duration(milliseconds: 300));
     _screenHeight = WidgetsBinding.instance.window.physicalSize.height - 128;
-
+    getUserId();
     _pullUpController.forward();
     super.initState();
   }
@@ -101,7 +103,18 @@ class _DetailsScreenState extends State<DetailsScreen>
                               Icons.chat,
                               color: Colors.white,
                             ),
-                            onPressed: () {},
+                            onPressed: () => Navigator.pushNamed(
+                                context, '/chat',
+                                arguments: <String, String>{
+                                  'post_id': "${id}",
+                                  'name': "${name}",
+                                  'writer': "${writer}",
+                                  'voteCount': "${voteCount}",
+                                  'thumbPicture': "${thumbPicture}",
+                                  'hero_type': "v",
+                                  'price': '${price}',
+                                  'user_id': "${user_id}",
+                                }),
                           ),
                         ),
                         Padding(
@@ -342,5 +355,9 @@ class _DetailsScreenState extends State<DetailsScreen>
     Timer(Duration(milliseconds: _animationDuration), () {
       _pullUpController.stop();
     });
+  }
+
+  void getUserId() async {
+    user_id = await _accountRepository.getSharedPrefs();
   }
 }

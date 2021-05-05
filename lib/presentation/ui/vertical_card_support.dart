@@ -161,7 +161,9 @@ class VerticalCardSupport extends StatelessWidget {
           ),
           newMessageCount == "0"
               ? Container()
-              : NewMessageNotify(newMessageCount: "$newMessageCount"),
+              : Container()
+              
+              //NewMessageNotify(newMessageCount: "$newMessageCount"),
         ],
       ),
     );

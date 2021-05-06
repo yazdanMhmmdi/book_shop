@@ -19,6 +19,9 @@ class BasketTab extends StatefulWidget {
 class _BasketTabState extends State<BasketTab> {
   ButtonState _buttonState = ButtonState.idle;
   BasketBloc _basketBloc;
+  double _animationDelay = 0.25;
+  bool progress = true;
+
   @override
   void initState() {
     _basketBloc = BlocProvider.of<BasketBloc>(context);
@@ -28,84 +31,110 @@ class _BasketTabState extends State<BasketTab> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              SizedBox(
-                height: 23,
+    return BlocListener<BasketBloc, BasketState>(
+      listener: (context, state) {
+        if (state is BasketSuccess) {
+          setState(() {
+            progress = false;
+            _animationDelay = _animationDelay + 0.3;
+          });
+        } else {}
+      },
+      child: progress
+          ? Center(
+              child: MyLoadingBar(
+                animation: 'Untitled',
               ),
-              FadeInAnimation(0.25, MyToolBar(title: Strings.basketLabel)),
-              SizedBox(
-                height: 16,
+            )
+          : SingleChildScrollView(
+              child: SafeArea(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      SizedBox(
+                        height: 23,
+                      ),
+                      FadeInAnimation(
+                          0.25, MyToolBar(title: Strings.basketLabel)),
+                      SizedBox(
+                        height: 16,
+                      ),
+                      BlocBuilder<BasketBloc, BasketState>(
+                        builder: (context, state) {
+                          if (state is BasketInitial) {
+                            return Container();
+                          } else if (state is BasketLoading) {
+                            return Container();
+                          } else if (state is BasketSuccess) {
+                            return Directionality(
+                              textDirection: TextDirection.rtl,
+                              child: ListView.builder(
+                                  physics: NeverScrollableScrollPhysics(),
+                                  shrinkWrap: true,
+                                  itemCount: state.basketModel.basket.length,
+                                  itemBuilder: (context, index) {
+                                    return FadeInAnimation(
+                                      _animationDelay,
+                                      BasketItem(
+                                          id: state
+                                              .basketModel.basket[index].id,
+                                          image: state.basketModel.basket[index]
+                                              .pictureThumb,
+                                          name: state
+                                              .basketModel.basket[index].name,
+                                          writer: state
+                                              .basketModel.basket[index].writer,
+                                          thumbImage: state.basketModel
+                                              .basket[index].pictureThumb,
+                                          voteCount: double.parse(state
+                                              .basketModel
+                                              .basket[index]
+                                              .voteCount),
+                                          pagesCount: state.basketModel
+                                              .basket[index].pagesCount,
+                                          coverType: state.basketModel
+                                              .basket[index].coverType,
+                                          language: state.basketModel
+                                              .basket[index].language,
+                                          description: state.basketModel
+                                              .basket[index].description,
+                                          price: state
+                                              .basketModel.basket[index].price),
+                                    );
+                                  }),
+                            );
+                          } else if (state is BasketFailure) {
+                            return Container();
+                          } else if (state is BasketEmpty) {
+                            return Container();
+                          }
+                        },
+                      ),
+                      SizedBox(
+                        height: 22,
+                      ),
+                      BlocBuilder<BasketBloc, BasketState>(
+                        builder: (context, state) {
+                          if (state is BasketInitial) {
+                            return Container();
+                          } else if (state is BasketLoading) {
+                            return Container();
+                          } else if (state is BasketSuccess) {
+                            return payCheckWidget(state);
+                          } else if (state is BasketFailure) {
+                            return Container();
+                          } else if (state is BasketEmpty) {
+                            return Container();
+                          }
+                        },
+                      ),
+                    ],
+                  ),
+                ),
               ),
-              BlocBuilder<BasketBloc, BasketState>(
-                builder: (context, state) {
-                  if (state is BasketInitial) {
-                    return Container();
-                  } else if (state is BasketLoading) {
-                    return Center(child: MyLoadingBar(animation: "Untitled"));
-                  } else if (state is BasketSuccess) {
-                    return Directionality(
-                      textDirection: TextDirection.rtl,
-                      child: ListView.builder(
-                          physics: NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          itemCount: state.basketModel.basket.length,
-                          itemBuilder: (context, index) {
-                            return BasketItem(
-                                id: state.basketModel.basket[index].id,
-                                image: state
-                                    .basketModel.basket[index].pictureThumb,
-                                name: state.basketModel.basket[index].name,
-                                writer: state.basketModel.basket[index].writer,
-                                thumbImage: state
-                                    .basketModel.basket[index].pictureThumb,
-                                voteCount: double.parse(
-                                    state.basketModel.basket[index].voteCount),
-                                pagesCount:
-                                    state.basketModel.basket[index].pagesCount,
-                                coverType:
-                                    state.basketModel.basket[index].coverType,
-                                language:
-                                    state.basketModel.basket[index].language,
-                                description:
-                                    state.basketModel.basket[index].description,
-                                price: state.basketModel.basket[index].price);
-                          }),
-                    );
-                  } else if (state is BasketFailure) {
-                    return Container();
-                  } else if (state is BasketEmpty) {
-                    return Container();
-                  }
-                },
-              ),
-              SizedBox(
-                height: 22,
-              ),
-              BlocBuilder<BasketBloc, BasketState>(
-                builder: (context, state) {
-                  if (state is BasketInitial) {
-                    return Container();
-                  } else if (state is BasketLoading) {
-                    return Container();
-                  } else if (state is BasketSuccess) {
-                    return payCheckWidget(state);
-                  } else if (state is BasketFailure) {
-                    return Container();
-                  } else if (state is BasketEmpty) {
-                    return Container();
-                  }
-                },
-              ),
-            ],
-          ),
-        ),
-      ),
+            ),
     );
   }
 

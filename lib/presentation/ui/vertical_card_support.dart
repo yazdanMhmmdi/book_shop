@@ -82,10 +82,14 @@ class VerticalCardSupport extends StatelessWidget {
                             padding: const EdgeInsets.all(5),
                             child: Container(
                               decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(8),
-                                  color: Colors.transparent),
-                              child: Image.network(
-                                  ImageAddressProvider.imageURL + thumbImage),
+                                borderRadius: BorderRadius.circular(8),
+                                color: Colors.transparent,
+                                image: DecorationImage(
+                                  image: NetworkImage(
+                                      ImageAddressProvider.imageURL +
+                                          thumbImage),
+                                ),
+                              ),
                             ),
                           ),
                         ),
@@ -159,11 +163,9 @@ class VerticalCardSupport extends StatelessWidget {
             top: 5,
             child: Hero(tag: 'post_${id}_agent', child: CustomerAgentWidget()),
           ),
-          newMessageCount == "0"
-              ? Container()
-              : Container()
-              
-              //NewMessageNotify(newMessageCount: "$newMessageCount"),
+          newMessageCount == "0" ? Container() : Container()
+
+          //NewMessageNotify(newMessageCount: "$newMessageCount"),
         ],
       ),
     );

@@ -100,10 +100,14 @@ class BasketItem extends StatelessWidget {
                           tag: "post_${id}_v",
                           child: Container(
                             decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8),
-                                color: Colors.transparent),
-                            child: Image.network(
-                                ImageAddressProvider.imageURL + thumbImage),
+                              borderRadius: BorderRadius.circular(8),
+                              color: Colors.transparent,
+                              image: DecorationImage(
+                                image: NetworkImage(
+                                  ImageAddressProvider.imageURL + thumbImage,
+                                ),
+                              ),
+                            ),
                           ),
                         ),
                       ),

@@ -75,9 +75,11 @@ class _HorizontalCardState extends State<HorizontalCard> {
                   decoration: BoxDecoration(
                     color: Colors.transparent,
                     borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Image.network(
-                    ImageAddressProvider.imageURL + widget.thumbPicture,
+                    image: DecorationImage(
+                      image: NetworkImage(
+                        ImageAddressProvider.imageURL + widget.thumbPicture,
+                      ),
+                    ),
                   ),
                 ),
               ),

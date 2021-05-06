@@ -164,8 +164,15 @@ class AppRouter {
           transitionsBuilder: (context, ainmation, animationTime, child) {
             return FadeTransition(opacity: ainmation, child: child);
           },
-          pageBuilder: (_, __, ___) => BlocProvider(
-            create: (BuildContext context) => ChatBloc(),
+          pageBuilder: (_, __, ___) => MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (BuildContext context) => ChatBloc(),
+              ),
+              BlocProvider.value(
+                value: _internetCubit,
+              ),
+            ],
             child: ChatScreen(
               args: args,
             ),
@@ -179,9 +186,14 @@ class AppRouter {
           transitionsBuilder: (context, ainmation, animationTime, child) {
             return FadeTransition(opacity: ainmation, child: child);
           },
-          pageBuilder: (_, __, ___) => BlocProvider(
+          pageBuilder: (_, __, ___) => MultiBlocProvider(providers: [
+            BlocProvider(
               create: (BuildContext context) => ChatlistBloc(),
-              child: ChatListScreen()),
+            ),
+            BlocProvider.value(
+              value: _internetCubit,
+            ),
+          ], child: ChatListScreen()),
         );
       default:
         return null;

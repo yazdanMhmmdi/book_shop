@@ -7,6 +7,13 @@ abstract class BasketEvent extends Equatable {
   List<Object> get props => [];
 }
 
-
 class GetBasket extends BasketEvent {}
 
+class DeleteBasket extends BasketEvent {
+  String book_id;
+  DeleteBasket({@required this.book_id});
+
+  @override
+  // TODO: implement props
+  List<Object> get props => [this.book_id];
+}

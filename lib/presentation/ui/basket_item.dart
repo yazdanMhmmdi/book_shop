@@ -20,6 +20,7 @@ class BasketItem extends StatelessWidget {
   String language;
   String coverType;
   String price;
+  Function onTap;
   BasketItem({
     @required this.id,
     @required this.image,
@@ -32,6 +33,7 @@ class BasketItem extends StatelessWidget {
     @required this.language,
     @required this.description,
     @required this.price,
+    @required this.onTap,
   });
   @override
   Widget build(BuildContext context) {
@@ -44,9 +46,7 @@ class BasketItem extends StatelessWidget {
           color: Colors.red,
           icon: Icons.delete,
           actionBorderRadius: 8,
-          onTap: () {
-            print("item id: ${id} deleted");
-          },
+          onTap: onTap,
         ),
       ],
       child: Padding(

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:book_shop/data/model/basket_model.dart';
+import 'package:book_shop/data/model/functional_model.dart';
 import 'package:book_shop/data/repository/account_repository.dart';
 import 'package:book_shop/data/repository/basket_repository.dart';
 import 'package:equatable/equatable.dart';
@@ -15,6 +16,7 @@ class BasketBloc extends Bloc<BasketEvent, BasketState> {
   BasketRepository _basketRepository = new BasketRepository();
   AccountRepository _accountRepository = new AccountRepository();
   BasketModel _model;
+  String user_id;
   @override
   Stream<BasketState> mapEventToState(
     BasketEvent event,
@@ -22,7 +24,7 @@ class BasketBloc extends Bloc<BasketEvent, BasketState> {
     if (event is GetBasket) {
       yield BasketLoading();
       try {
-        String user_id = await _accountRepository.getSharedPrefs();
+        user_id = await _accountRepository.getSharedPrefs();
         _model = await _basketRepository.getBasket(user_id, "1");
         if (_model.basket.length == 0) {
           yield BasketEmpty();
@@ -31,6 +33,14 @@ class BasketBloc extends Bloc<BasketEvent, BasketState> {
         }
       } catch (err) {
         print('basket error :: ${err.toString()}');
+        yield BasketFailure();
+      }
+    } else if (event is DeleteBasket) {
+      FunctionalModel _tempModel =
+          await _basketRepository.deleteBasket(user_id, event.book_id);
+      if (_tempModel.status == "1") {
+        add(GetBasket());
+      } else {
         yield BasketFailure();
       }
     }

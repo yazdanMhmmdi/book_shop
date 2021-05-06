@@ -78,6 +78,11 @@ class _BasketTabState extends State<BasketTab> {
                                     return FadeInAnimation(
                                       _animationDelay,
                                       BasketItem(
+                                          onTap: () {
+                                            _basketBloc.add(DeleteBasket(
+                                                book_id: state.basketModel
+                                                    .basket[index].id));
+                                          },
                                           id: state
                                               .basketModel.basket[index].id,
                                           image: state.basketModel.basket[index]

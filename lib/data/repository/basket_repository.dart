@@ -16,4 +16,10 @@ class BasketRepository {
         .get('/delete_basket_api.php?user_id=${user_id}&book_id=${book_id}');
     return FunctionalModel.fromJson(response);
   }
+
+    Future<FunctionalModel> addBasket(String user_id, String book_id) async {
+    final response = await _apiProvider
+        .get('/add_basket_api.php?user_id=${user_id}&book_id=${book_id}');
+    return FunctionalModel.fromJson(response);
+  }
 }

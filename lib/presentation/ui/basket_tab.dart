@@ -155,7 +155,7 @@ class _BasketTabState extends State<BasketTab> {
     return Column(
       children: [
         FadeInAnimation(
-          0.5,
+          _animationDelay,
           Align(
               alignment: Alignment.centerRight,
               child: Text(

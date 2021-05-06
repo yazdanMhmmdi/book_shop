@@ -19,7 +19,7 @@ class ApiProvider {
     try {
       return json.decode(response.body);
     } catch (_) {
-      print("json decoding failure");
+      print("json decoding failure :: ${_.toString()}");
     }
   }
   // decodeResponse(bool utf8Support, response) {

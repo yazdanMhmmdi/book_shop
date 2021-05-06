@@ -28,7 +28,6 @@ class BasketModel {
 
 class Basket {
   String id;
-  String cover;
   String pagesCount;
   String voteCount;
   String writer;
@@ -45,7 +44,6 @@ class Basket {
 
   Basket(
       {this.id,
-      this.cover,
       this.pagesCount,
       this.voteCount,
       this.writer,
@@ -62,7 +60,6 @@ class Basket {
 
   Basket.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    cover = json['cover'];
     pagesCount = json['pages_count'];
     voteCount = json['vote_count'];
     writer = json['writer'];
@@ -82,7 +79,6 @@ class Basket {
     final Map<String, dynamic> data = new Map<String, dynamic>();
 
     data['id'] = this.id;
-    data['cover'] = this.cover;
     data['pages_count'] = this.pagesCount;
     data['vote_count'] = this.voteCount;
     data['writer'] = this.writer;

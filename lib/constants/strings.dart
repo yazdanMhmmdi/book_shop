@@ -1,6 +1,8 @@
 class Strings {
   //global font
   static final String fontIranSans = "IranSans";
+  //global strings
+  static final String currencyType = "تومان";
   //common in all pages
   static final String usernameLabel = "نام کاربری...";
   static final String passwordLabel = "رمز عبور...";
@@ -57,6 +59,7 @@ class Strings {
   static final String basketTax = "مالیات";
   static final String basketDeliveryCost = "هزینه ارسال";
   static final String basketPayit = "پرداخت";
+  static final String basketPaymentCheck = "صورتحساب";
 
   //chat list
   static final String chatLabel = "لیست گفتگو ها";

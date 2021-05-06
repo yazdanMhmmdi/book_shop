@@ -1,7 +1,7 @@
 import 'package:book_shop/data/model/basket_model.dart';
 import 'package:book_shop/networking/api_provider.dart';
 
-class ChatListRepository {
+class BasketRepository {
   ApiProvider _apiProvider = new ApiProvider();
 
   Future<BasketModel> getBasket(String user_id, String page) async {

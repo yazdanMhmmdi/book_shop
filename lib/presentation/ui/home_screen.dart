@@ -1,6 +1,7 @@
 import 'package:book_shop/constants/assets.dart';
 import 'package:book_shop/constants/strings.dart';
 import 'package:book_shop/logic/bloc/account_bloc.dart';
+import 'package:book_shop/logic/bloc/basket_bloc.dart';
 import 'package:book_shop/logic/bloc/home_bloc.dart';
 import 'package:book_shop/logic/bloc/home_bloc.dart';
 import 'package:book_shop/logic/bloc/home_state.dart';
@@ -83,7 +84,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                           child: AccountTab(),
                         ),
                         // ChatListTab(),
-                        BasketTab(),
+                        BlocProvider(
+                            create: (BuildContext context) => BasketBloc(),
+                            child: BasketTab()),
                         TitleTab(),
                         BlocProvider.value(
                           value: widget.homeBloc,

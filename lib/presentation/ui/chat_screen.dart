@@ -199,9 +199,11 @@ class _ChatScreenState extends State<ChatScreen> {
                             child: Container(
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(8),
-                                  color: Colors.transparent),
-                              child: Image.network(
-                                  ImageAddressProvider.imageURL + thumbImage),
+                                  color: Colors.transparent,
+                                  image: DecorationImage(
+                                      image: NetworkImage(
+                                          ImageAddressProvider.imageURL +
+                                              thumbImage))),
                             ),
                           ),
                         ),

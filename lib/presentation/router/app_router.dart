@@ -1,5 +1,6 @@
 import 'package:book_shop/logic/bloc/account_bloc.dart';
 import 'package:book_shop/logic/bloc/auth_bloc.dart';
+import 'package:book_shop/logic/bloc/basket_bloc.dart';
 import 'package:book_shop/logic/bloc/chat_bloc.dart';
 import 'package:book_shop/logic/bloc/chatlist_bloc.dart';
 import 'package:book_shop/logic/bloc/details_bloc.dart';
@@ -115,6 +116,9 @@ class AppRouter {
               ),
               BlocProvider.value(
                 value: _internetCubit,
+              ),
+              BlocProvider(
+                create: (context) => BasketBloc(),
               ),
             ],
             child: DetailsScreen(

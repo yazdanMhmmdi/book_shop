@@ -43,6 +43,16 @@ class BasketBloc extends Bloc<BasketEvent, BasketState> {
       } else {
         yield BasketFailure();
       }
+    } else if (event is AddBasket) {
+      yield BasketLoading();
+      user_id = await _accountRepository.getSharedPrefs();
+      FunctionalModel _tempModel =
+          await _basketRepository.addBasket(user_id, event.book_id);
+      if (_tempModel.status == "1") {
+        yield BasketSuccess();
+      } else {
+        yield BasketFailure();
+      }
     }
   }
 }

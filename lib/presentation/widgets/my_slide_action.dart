@@ -201,7 +201,8 @@ class MyIconSlideAction extends ClosableSlideAction {
             style: TextStyle(
                 fontFamily: Strings.fontIranSans,
                 fontSize: 14,
-                color: IColors.white90),
+                color: IColors.white90,
+                fontWeight: FontWeight.w700),
           ),
         ),
       );

@@ -300,12 +300,15 @@ class _DetailsScreenState extends State<DetailsScreen>
                                     width: 136,
                                     height: 200,
                                     decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(10),
-                                        color: Colors.transparent),
-                                    child: Image.network(
-                                      ImageAddressProvider.imageURL +
-                                          thumbPicture,
-                                      fit: BoxFit.fill,
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: Colors.transparent,
+                                      image: DecorationImage(
+                                        fit: BoxFit.fill,
+                                        image: NetworkImage(
+                                          ImageAddressProvider.imageURL +
+                                              thumbPicture,
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ),

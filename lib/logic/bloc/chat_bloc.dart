@@ -22,7 +22,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
   ChatModel _model;
   int totalPage;
   String bookId;
-  String fromId = "0";
+  String fromId = "1";
   String conversationId = "0";
 
   var channel =

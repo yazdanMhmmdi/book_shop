@@ -13,12 +13,14 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc() : super(AuthInitial());
 
   AuthRepository _authRepository = new AuthRepository();
-  Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+  SharedPreferences _prefs;
   @override
   Stream<AuthState> mapEventToState(
     AuthEvent event,
   ) async* {
     AuthModel _authModel;
+
+    _prefs = await SharedPreferences.getInstance();
     if (event is LoginEvent) {
       try {
         print('AuthInitial');
@@ -55,7 +57,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         if (await setSharedPrefes(_authModel)) {
           //executing shared prefs and test input
           print('setting sign up sharedPrefs successfully');
-          final SharedPreferences p = await _prefs;
+          final SharedPreferences p = _prefs;
           print("recoverd sharedPrefs: ${p.getString("id")}");
         }
 
@@ -69,7 +71,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   Future<bool> setSharedPrefes(_model) async {
-    final SharedPreferences prefs = await _prefs;
-    return await prefs.setString("id", _model.id.toString());
+    return await _prefs.setString("id", _model.id.toString());
   }
 }

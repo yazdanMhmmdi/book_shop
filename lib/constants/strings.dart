@@ -60,9 +60,11 @@ class Strings {
   static final String basketDeliveryCost = "هزینه ارسال";
   static final String basketPayit = "پرداخت";
   static final String basketPaymentCheck = "صورتحساب";
+  static final String basketNotFound = "کتابی پیدا نشد";
 
   //chat list
   static final String chatLabel = "لیست گفتگو ها";
+  static final String chatListNotFount = "گفتگویی پیدا نشد";
   //chat
   static final String chatSpeakWithSeller = "گفتگو با فروشنده";
   static final String chatWriteSomthing = "یک پیام بنویسید...";

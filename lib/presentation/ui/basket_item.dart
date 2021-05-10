@@ -1,4 +1,5 @@
 import 'package:book_shop/presentation/widgets/my_slide_action.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:book_shop/constants/colors.dart';
 import 'package:book_shop/constants/strings.dart';
@@ -103,7 +104,7 @@ class BasketItem extends StatelessWidget {
                               borderRadius: BorderRadius.circular(8),
                               color: Colors.transparent,
                               image: DecorationImage(
-                                image: NetworkImage(
+                                image: CachedNetworkImageProvider(
                                   ImageAddressProvider.imageURL + thumbImage,
                                 ),
                               ),

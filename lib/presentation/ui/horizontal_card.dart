@@ -3,6 +3,7 @@ import 'package:book_shop/networking/api_provider.dart';
 import 'package:book_shop/networking/image_address_provider.dart';
 import 'package:book_shop/presentation/animation/fade_in_animation.dart';
 import 'package:book_shop/presentation/widgets/rating_bar.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class HorizontalCard extends StatefulWidget {
@@ -76,7 +77,7 @@ class _HorizontalCardState extends State<HorizontalCard> {
                     color: Colors.transparent,
                     borderRadius: BorderRadius.circular(8),
                     image: DecorationImage(
-                      image: NetworkImage(
+                      image: CachedNetworkImageProvider(
                         ImageAddressProvider.imageURL + widget.thumbPicture,
                       ),
                     ),

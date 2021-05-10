@@ -16,6 +16,7 @@ import 'package:book_shop/presentation/widgets/no_network_flare.dart';
 import 'package:book_shop/presentation/widgets/progress_button.dart';
 import 'package:book_shop/presentation/widgets/slider_object.dart';
 import 'package:book_shop/presentation/widgets/widgets.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -304,7 +305,7 @@ class _DetailsScreenState extends State<DetailsScreen>
                                       color: Colors.transparent,
                                       image: DecorationImage(
                                         fit: BoxFit.fill,
-                                        image: NetworkImage(
+                                        image: CachedNetworkImageProvider(
                                           ImageAddressProvider.imageURL +
                                               thumbPicture,
                                         ),

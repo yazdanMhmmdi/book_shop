@@ -60,7 +60,6 @@ class _DetailsScreenState extends State<DetailsScreen>
   void initState() {
     _pullUpController = new AnimationController(
         vsync: this, duration: Duration(milliseconds: 300));
-    _screenHeight = WidgetsBinding.instance.window.physicalSize.height - 128;
     _basketBloc = BlocProvider.of<BasketBloc>(context);
     getUserId();
     _pullUpController.forward();
@@ -70,7 +69,8 @@ class _DetailsScreenState extends State<DetailsScreen>
   @override
   Widget build(BuildContext context) {
     arguments = widget.args;
-
+    _screenHeight = MediaQuery.of(context).size.height;
+    print("scrennHeight: ${_screenHeight}");
     // _detailsBloc.add(GetDetails(post_id: arguments["post_id"]));
     _getArguments();
     return WillPopScope(
@@ -154,7 +154,6 @@ class _DetailsScreenState extends State<DetailsScreen>
                                 .animate(_pullUpController),
                             child: Container(
                               width: double.infinity,
-                              height: _screenHeight,
                               child: Padding(
                                 padding: const EdgeInsets.only(top: 112),
                                 child: Directionality(
@@ -221,7 +220,7 @@ class _DetailsScreenState extends State<DetailsScreen>
                                           height: 8,
                                         ),
                                         Text(
-                                          '${Strings.detailsLoremIpsom} ',
+                                          '${description} ',
                                           style: TextStyle(
                                               fontFamily: "iranSans",
                                               fontSize: 16,
@@ -245,7 +244,7 @@ class _DetailsScreenState extends State<DetailsScreen>
                                               }),
                                         ),
                                         SizedBox(
-                                          height: 45,
+                                          height: 35,
                                         ),
                                       ],
                                     ),

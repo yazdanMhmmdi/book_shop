@@ -38,6 +38,7 @@ class _MyAppState extends State<MyApp> {
         primarySwatch: Colors.green,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
+      debugShowCheckedModeBanner: false,
       onGenerateRoute: _appRouter.onGeneratedRoute,
     );
   }
@@ -48,4 +49,3 @@ class _MyAppState extends State<MyApp> {
     super.dispose();
   }
 }
-  

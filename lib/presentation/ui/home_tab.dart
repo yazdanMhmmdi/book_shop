@@ -87,14 +87,59 @@ class HomeTab extends StatelessWidget {
                                                 BorderRadius.circular(8),
                                             color: IColors.green),
                                         child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
-                                            Expanded(
-                                              child: Image.network(
-                                                ImageAddressProvider.imageURL +
-                                                    state.postModel
-                                                        .poster[index].picture,
-                                                fit: BoxFit.fill,
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  top: 26, right: 16),
+                                              child: Column(
+                                                children: [
+                                                  Text(
+                                                      "کتاب های مورد علاقه \nشما !",
+                                                      style: TextStyle(
+                                                        fontFamily: Strings
+                                                            .fontIranSans,
+                                                        color: IColors.white90,
+                                                        fontSize: 18,
+                                                        fontWeight:
+                                                            FontWeight.w700,
+                                                      )),
+                                                  SizedBox(
+                                                    height: 26,
+                                                  ),
+                                                  Container(
+                                                    width: 114,
+                                                    height: 26,
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              4),
+                                                      color: IColors.greenTwo,
+                                                    ),
+                                                    child: Center(
+                                                      child: Text(
+                                                        "یافتن",
+                                                        style: TextStyle(
+                                                          color:
+                                                              IColors.white90,
+                                                          fontFamily: Strings
+                                                              .fontIranSans,
+                                                          fontSize: 14,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
                                               ),
+                                            ),
+                                            Image.network(
+                                              ImageAddressProvider.imageURL +
+                                                  state.postModel.poster[index]
+                                                      .picture,
+                                              fit: BoxFit.fill,
+                                              width: 140,
+                                              height: 150,
                                             ),
                                           ],
                                         ),
@@ -158,7 +203,7 @@ class HomeTab extends StatelessWidget {
                       _animationDelay2 = _animationDelay2 + 0.3;
                       return FadeInAnimation(
                         _animationDelay2,
-                        VerticalCard( 
+                        VerticalCard(
                           id: fbList[index].id,
                           image: fbList[index].pictureThumb,
                           name: fbList[index].name,

@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class ApiProvider {
-  static const String URL_IP = "192.168.1.2"; //yazdanmohammadi.ir
-  final String _BASE_URL = "http://$URL_IP/book_shop/v1.1/api/"; //http
+  static const String URL_IP = "yazdanmohammadi.ir"; //192.168.1.2
+  final String _BASE_URL = "https://$URL_IP/book_shop/v1.1/api/"; //http
   static const String WEB_SOCKET =
       "ws://$URL_IP:8080/book_shop/v1.1/api/server/websocket_api.php";
   Future<dynamic> get(String url) async {

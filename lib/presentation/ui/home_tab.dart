@@ -95,8 +95,7 @@ class HomeTab extends StatelessWidget {
                                                   top: 26, right: 16),
                                               child: Column(
                                                 children: [
-                                                  Text(
-                                                      "کتاب های مورد علاقه \nشما !",
+                                                  Text(Strings.homeYourFavBooks,
                                                       style: TextStyle(
                                                         fontFamily: Strings
                                                             .fontIranSans,
@@ -119,7 +118,7 @@ class HomeTab extends StatelessWidget {
                                                     ),
                                                     child: Center(
                                                       child: Text(
-                                                        "یافتن",
+                                                        Strings.homeDiscover,
                                                         style: TextStyle(
                                                           color:
                                                               IColors.white90,
@@ -155,7 +154,7 @@ class HomeTab extends StatelessWidget {
                                   autoPlayAnimationDuration:
                                       Duration(milliseconds: 800),
                                   autoPlayCurve: Curves.fastOutSlowIn,
-                                  autoPlay: true,
+                                  autoPlay: false,
                                   initialPage: 0,
                                   enlargeCenterPage: true)),
                         ),

@@ -25,6 +25,8 @@ class Strings {
   //home
   static final String homeMostSales = "پرفروش ترین ها";
   static final String homeFresh = "تازه ها";
+  static final String homeYourFavBooks = "کتاب های مورد علاقه \nشما !";
+  static final String homeDiscover = "یافتن";
   //title
   static final String bottomNavHome = "خانه";
   static final String bottomNavTitle = "موضوعات";

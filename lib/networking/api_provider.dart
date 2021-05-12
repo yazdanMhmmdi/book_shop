@@ -13,7 +13,7 @@ class ApiProvider {
       return await decodeResponse(response);
     } catch (_) {
       print('connection failure $_BASE_URL' + url);
-    }
+    } 
   }
 
   dynamic decodeResponse(response) {

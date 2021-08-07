@@ -19,7 +19,7 @@
 - delete white screen 
 ## Info
 Flutter SDK version 2.2.0-11.0.pre master for both v1.0.0 & v1.1.0
-## [Download APK v1.0.0](http://yazdanmohammadi.ir/downloads/book_shop_v1.0.0.apk)
-## [Download APK v1.1.0](http://yazdanmohammadi.ir/downloads/book_shop_v1.1.0.Build.02.apk)
+## [Download APK v1.0.0](https://yazdanmohammadi.ir/downloads/book_shop_v1.0.0.apk)
+## [Download APK v1.1.0](https://yazdanmohammadi.ir/downloads/book_shop_v1.1.0.Build.02.apk)
 
 

@@ -19,6 +19,7 @@ import 'package:book_shop/presentation/widgets/widgets.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:progress_state_button/progress_button.dart';
 
 class DetailsScreen extends StatefulWidget {
   late Map<String, String> args;

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:book_shop/constants/colors.dart';
 import 'package:book_shop/presentation/widgets/progress_button.dart';
 import 'package:flutter/material.dart';
+import 'package:progress_state_button/progress_button.dart';
 
 class MyButton extends StatefulWidget {
   late String text;
@@ -49,7 +50,6 @@ class _MyButtonState extends State<MyButton> {
       progressIndicator: CircularProgressIndicator(
         valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
       ),
-      progressIndicatorAligment: MainAxisAlignment.center,
       stateWidgets: {
         ButtonState.idle: Text(
           "${widget.text}",

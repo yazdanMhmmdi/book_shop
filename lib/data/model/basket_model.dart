@@ -74,21 +74,7 @@ class Basket {
 
   Map<String, dynamic> toJson() {
     final _data = <String, dynamic>{};
-    _data['0'] = 0;
-    _data['1'] = 1;
-    _data['2'] = 2;
-    _data['3'] = 3;
-    _data['4'] = 4;
-    _data['5'] = 5;
-    _data['6'] = 6;
-    _data['7'] = 7;
-    _data['8'] = 8;
-    _data['9'] = 9;
-    _data['10'] = 10;
-    _data['11'] = 11;
-    _data['12'] = 12;
-    _data['13'] = 13;
-    _data['14'] = 14;
+
     _data['id'] = id;
     _data['cover'] = cover;
     _data['pages_count'] = pagesCount;
@@ -127,13 +113,13 @@ class Data {
   late final int fullCost;
 
   Data.fromJson(Map<String, dynamic> json) {
-    totalPages = json['total_pages'];
-    currentPage = json['current_page'];
-    offsetPage = json['offset_page'];
-    taxPercent = json['tax_percent'];
-    tax = json['tax'];
-    deliveryCost = json['delivery_cost'];
-    fullCost = json['full_cost'];
+    totalPages = json['total_pages'] ?? 0;
+    currentPage = json['current_page'] ?? "0";
+    offsetPage = json['offset_page'] ?? 0;
+    taxPercent = json['tax_percent'] ?? "0";
+    tax = json['tax'] ?? 0;
+    deliveryCost = json['delivery_cost'] ?? 0;
+    fullCost = json['full_cost'] ?? 0;
   }
 
   Map<String, dynamic> toJson() {

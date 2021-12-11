@@ -14,9 +14,5 @@ class ChatRepository {
     return ChatModel.fromJson(response);
   }
 
-  Future<ChatModel> getSocketMessages() {
-    
-  }
-
   socketInitial() async {}
 }

@@ -7,7 +7,7 @@ class TitleSelector extends StatefulWidget {
   TitleBloc bloc;
   int firstTab = 2;
   TitleSelector(
-      {@required this.titles, @required this.bloc, @required this.firstTab});
+      {required this.titles, required this.bloc, required this.firstTab});
   @override
   _TitleSelectorState createState() => _TitleSelectorState();
 }
@@ -23,7 +23,7 @@ Container(
 */
 class _TitleSelectorState extends State<TitleSelector> {
   int _currentIndex = 0;
-  bool _isSelected;
+  late bool _isSelected;
   double _rightPadding = 15;
   int temp = 0;
   bool sience = true, medicine = true;

@@ -8,10 +8,10 @@ import 'package:carousel_slider/carousel_slider.dart';
 class SliderObject extends StatefulWidget {
   String coverType, voteCount, pageCount, language;
   SliderObject(
-      {@required this.coverType,
-      @required this.voteCount,
-      @required this.pageCount,
-      @required this.language});
+      {required this.coverType,
+      required this.voteCount,
+      required this.pageCount,
+      required this.language});
   @override
   _SliderObjectState createState() => _SliderObjectState();
 }
@@ -24,7 +24,7 @@ class _SliderObjectState extends State<SliderObject> {
   AlignmentGeometry _sliderObjectAlignment = Alignment.centerRight;
   CarouselController _pageCarouselController = CarouselController();
   Random _random = new Random();
-  int _randAge, _randBookCount, _randCategory, _randVote;
+  late int _randAge, _randBookCount, _randCategory, _randVote;
   @override
   void initState() {
     _randAge = _random.nextInt(90);
@@ -127,8 +127,8 @@ class _SliderObjectState extends State<SliderObject> {
                   _randCategory.toString(),
                   "مجموع آرا",
                   (_randVote.toString())),
-              objectSliderItem("زبان", widget.language, "جلد", widget.coverType, "صفحه",
-                  widget.pageCount, "رای", widget.voteCount),
+              objectSliderItem("زبان", widget.language, "جلد", widget.coverType,
+                  "صفحه", widget.pageCount, "رای", widget.voteCount),
             ],
           ),
         ),

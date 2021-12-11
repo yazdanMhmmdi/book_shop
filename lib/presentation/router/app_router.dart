@@ -87,22 +87,19 @@ class AppRouter {
                   BlocProvider.value(
                     value: _internetCubit,
                   ),
+                  BlocProvider(
+                    create: (_) => HomeBloc(),
+                  ),
                   BlocProvider.value(
-                    value: _homeBloc,
+                    value: _accountBloc,
                   )
                 ],
-                child: HomeScreen(
-                  homeBloc: _homeBloc..add(FetchEvent()),
-                  accountBloc: _accountBloc
-                    ..add(
-                      GetDefaultEvent(),
-                    ),
-                ),
+                child: HomeScreen(),
               );
             });
-        break;
       case '/details':
-        final Map<String, String> args = settings.arguments;
+        final Map<String, String> args =
+            settings.arguments as Map<String, String>;
 
         return PageRouteBuilder(
           transitionDuration: Duration(milliseconds: 400),
@@ -128,7 +125,8 @@ class AppRouter {
         );
         break;
       case '/title':
-        final Map<String, String> args = settings.arguments;
+        final Map<String, String> args =
+            settings.arguments as Map<String, String>;
 
         return PageRouteBuilder(
           transitionDuration: Duration(milliseconds: 300),
@@ -145,7 +143,7 @@ class AppRouter {
               )
             ],
             child: TitleDetailsScreen(
-              category: int.tryParse(args["category"].toString()),
+              category: int.tryParse(args["category"].toString())!,
             ),
           ),
         );
@@ -157,7 +155,8 @@ class AppRouter {
         );
         break;
       case '/chat':
-        final Map<String, String> args = settings.arguments;
+        final Map<String, String> args =
+            settings.arguments as Map<String, String>;
 
         return PageRouteBuilder(
           transitionDuration: Duration(milliseconds: 400),
@@ -179,7 +178,8 @@ class AppRouter {
           ),
         );
       case '/chatList':
-        final Map<String, String> args = settings.arguments;
+        final Map<String, String> args =
+            settings.arguments as Map<String, String>;
 
         return PageRouteBuilder(
           transitionDuration: Duration(milliseconds: 30),
@@ -196,7 +196,12 @@ class AppRouter {
           ], child: ChatListScreen()),
         );
       default:
-        return null;
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider.value(
+            value: _internetCubit,
+            child: SplashScreen(), //_authBloc
+          ),
+        );
     }
   }
 

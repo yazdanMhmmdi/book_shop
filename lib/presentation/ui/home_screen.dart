@@ -17,28 +17,33 @@ import 'package:book_shop/presentation/widgets/widgets.dart';
 import 'package:flare_loading/flare_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:motion_tab_bar/MotionTabBarView.dart';
-import 'package:motion_tab_bar/MotionTabController.dart';
-import 'package:motion_tab_bar/motiontabbar.dart';
+import 'package:motion_tab_bar_v2/motion-tab-bar.dart';
+import 'package:motion_tab_bar_v2/motion-badge.widget.dart'; //optional
 
 class HomeScreen extends StatefulWidget {
-  HomeBloc homeBloc;
-  AccountBloc accountBloc;
   @override
   _HomeScreenState createState() => _HomeScreenState();
-  HomeScreen({@required this.homeBloc, @required this.accountBloc});
 }
 
 class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
-  MotionTabController _bottomNavController;
+  late TabController _bottomNavController;
   bool bottomInternetStatus = true, bottomFailureStatus = true;
   bool failureInFirstTry = false;
   final _noNetworkFlare = new NoNetworkFlare();
+
+  late HomeBloc _homeBloc;
+  late AccountBloc _accountBloc;
   @override
   void initState() {
     _bottomNavController =
-        new MotionTabController(initialIndex: 0, vsync: this, length: 4);
+        new TabController(initialIndex: 0, vsync: this, length: 4);
     _bottomNavController.index = 3;
+
+    _homeBloc = BlocProvider.of<HomeBloc>(context);
+    _accountBloc = BlocProvider.of<AccountBloc>(context);
+
+    _homeBloc.add(FetchEvent());
+    _accountBloc.add(GetDefaultEvent());
   }
 
   @override
@@ -76,11 +81,11 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             if (state is InternetConnected) {
               return Stack(
                 children: [
-                  MotionTabBarView(
+                  TabBarView(
                       controller: _bottomNavController,
                       children: <Widget>[
                         BlocProvider.value(
-                          value: widget.accountBloc,
+                          value: _accountBloc,
                           child: AccountTab(),
                         ),
                         // ChatListTab(),
@@ -89,7 +94,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                             child: BasketTab()),
                         TitleTab(),
                         BlocProvider.value(
-                          value: widget.homeBloc,
+                          value: _homeBloc,
                           child: HomeTab(),
                         ),
                       ]),
@@ -98,6 +103,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             } else if (state is InternetDisconnected) {
               return NoNetworkFlare();
             } else if (state is InternetLoading) {
+              return Container();
+            } else {
               return Container();
             }
           },

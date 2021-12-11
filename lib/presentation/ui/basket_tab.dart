@@ -19,7 +19,7 @@ class BasketTab extends StatefulWidget {
 
 class _BasketTabState extends State<BasketTab> {
   ButtonState _buttonState = ButtonState.idle;
-  BasketBloc _basketBloc;
+  late BasketBloc _basketBloc;
   double _animationDelay = 0.25;
   bool progress = true;
   bool isEmpty = false;
@@ -123,6 +123,8 @@ class _BasketTabState extends State<BasketTab> {
                                   return Container();
                                 } else if (state is BasketEmpty) {
                                   return Container();
+                                } else {
+                                  return Container();
                                 }
                               },
                             ),
@@ -140,6 +142,8 @@ class _BasketTabState extends State<BasketTab> {
                                 } else if (state is BasketFailure) {
                                   return Container();
                                 } else if (state is BasketEmpty) {
+                                  return Container();
+                                } else {
                                   return Container();
                                 }
                               },

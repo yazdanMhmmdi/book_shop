@@ -9,11 +9,11 @@ class MyTextFiled extends StatefulWidget {
   Color textFieldColor;
   TextEditingController controller;
   MyTextFiled(
-      {@required this.controller,
-      @required this.obscureText,
-      @required this.icon,
-      @required this.text,
-      @required this.textFieldColor});
+      {required this.controller,
+      required this.obscureText,
+      required this.icon,
+      required this.text,
+      required this.textFieldColor});
 
   @override
   _MyTextFiledState createState() => _MyTextFiledState();
@@ -46,7 +46,7 @@ class _MyTextFiledState extends State<MyTextFiled> {
                     controller: widget.controller,
                     obscureText: widget.obscureText,
                     validator: (value) {
-                      if (value.isEmpty) {
+                      if (value == "") {
                         return "yes";
                       }
                       return "no";

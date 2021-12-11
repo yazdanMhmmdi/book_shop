@@ -21,35 +21,50 @@ class BasketItem extends StatelessWidget {
   String language;
   String coverType;
   String price;
-  Function onTap;
+  late Function() onTap;
   BasketItem({
-    @required this.id,
-    @required this.image,
-    @required this.name,
-    @required this.writer,
-    @required this.thumbImage,
-    @required this.voteCount,
-    @required this.pagesCount,
-    @required this.coverType,
-    @required this.language,
-    @required this.description,
-    @required this.price,
-    @required this.onTap,
+    required this.id,
+    required this.image,
+    required this.name,
+    required this.writer,
+    required this.thumbImage,
+    required this.voteCount,
+    required this.pagesCount,
+    required this.coverType,
+    required this.language,
+    required this.description,
+    required this.price,
+    required this.onTap,
   });
   @override
   Widget build(BuildContext context) {
     return Slidable(
-      actionPane: SlidableDrawerActionPane(),
-      actionExtentRatio: 0.25,
-      secondaryActions: <Widget>[
-        MyIconSlideAction(
-          caption: 'حذف',
-          color: Colors.red,
-          icon: Icons.delete,
-          actionBorderRadius: 8,
-          onTap: onTap,
-        ),
-      ],
+      startActionPane: ActionPane(
+        motion: const DrawerMotion(),
+        extentRatio: 0.25,
+        children: [
+          SlidableAction(
+            label: 'Archive',
+            backgroundColor: Colors.blue,
+            icon: Icons.archive,
+            onPressed: (context) {},
+          ),
+        ],
+      ),
+      endActionPane: ActionPane(
+        motion: const DrawerMotion(),
+        extentRatio: 0.25,
+        children: [
+          MyIconSlideAction(
+            iconWidget: Text("iconWidget"),
+            caption: 'حذف',
+            color: Colors.red,
+            icon: Icons.delete,
+            actionBorderRadius: 8,
+            onTap: onTap,
+          ),
+        ],
+      ),
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8),
         child: Container(

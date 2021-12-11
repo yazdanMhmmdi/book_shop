@@ -17,7 +17,7 @@ class LoginEvent extends AuthEvent {
 
 class SignUpEvent extends AuthEvent {
   String username, password;
-  SignUpEvent({this.username, this.password});
+  SignUpEvent({required this.username,required this.password});
   
   @override
   List<Object> get props => [username, password];

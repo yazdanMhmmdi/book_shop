@@ -13,7 +13,7 @@ class BasketLoading extends BasketState {}
 
 class BasketSuccess extends BasketState {
   BasketModel basketModel;
-  BasketSuccess({this.basketModel});
+  BasketSuccess({required this.basketModel});
   @override
   // TODO: implement props
   List<Object> get props => [this.basketModel];

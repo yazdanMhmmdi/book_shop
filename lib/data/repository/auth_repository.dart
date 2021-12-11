@@ -11,7 +11,8 @@ class AuthRepository {
     return AuthModel.fromJson(response);
   }
 
-  Future<AuthModel> signUp({String username, String password}) async {
+  Future<AuthModel> signUp(
+      {required String username, required String password}) async {
     final response = await _apiProvider
         .get('sign_up_api.php?username=${username}&password=${password}');
     return AuthModel.fromJson(response);

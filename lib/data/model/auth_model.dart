@@ -1,8 +1,8 @@
 class AuthModel {
-  int id;
-  String status;
+  late final int id;
+  late final String status;
 
-  AuthModel({this.id, this.status});
+  AuthModel({required this.id, required this.status});
 
   factory AuthModel.fromJson(Map<String, dynamic> parsedJson) {
     return AuthModel(

@@ -19,17 +19,17 @@ class VerticalCard extends StatelessWidget {
   String coverType;
   String price;
   VerticalCard({
-    @required this.id,
-    @required this.image,
-    @required this.name,
-    @required this.writer,
-    @required this.thumbImage,
-    @required this.voteCount,
-    @required this.pagesCount,
-    @required this.coverType,
-    @required this.language,
-    @required this.description,
-    @required this.price,
+    required this.id,
+    required this.image,
+    required this.name,
+    required this.writer,
+    required this.thumbImage,
+    required this.voteCount,
+    required this.pagesCount,
+    required this.coverType,
+    required this.language,
+    required this.description,
+    required this.price,
   });
 
   @override

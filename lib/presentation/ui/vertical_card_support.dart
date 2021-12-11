@@ -20,15 +20,15 @@ class VerticalCardSupport extends StatelessWidget {
   String newMessageCount;
   String userId;
   VerticalCardSupport({
-    @required this.id,
-    @required this.image,
-    @required this.name,
-    @required this.writer,
-    @required this.thumbImage,
-    @required this.voteCount,
-    @required this.price,
-    @required this.newMessageCount,
-    @required this.userId,
+    required this.id,
+    required this.image,
+    required this.name,
+    required this.writer,
+    required this.thumbImage,
+    required this.voteCount,
+    required this.price,
+    required this.newMessageCount,
+    required this.userId,
   });
 
   @override

@@ -12,13 +12,13 @@ part 'chatlist_state.dart';
 
 class ChatlistBloc extends Bloc<ChatlistEvent, ChatlistState> {
   ChatlistBloc() : super(ChatlistInitial());
-  ChatListRepository _repository = new ChatListRepository();
-  AccountRepository _accountRepository = new AccountRepository();
+  late ChatListRepository _repository = new ChatListRepository();
+  late AccountRepository _accountRepository = new AccountRepository();
 
-  ChatListModel _model;
-  int page = 1;
-  int totalPage;
-  String user_id;
+  late ChatListModel _model;
+  late int page = 1;
+  late int totalPage;
+  late String user_id;
   @override
   Stream<ChatlistState> mapEventToState(
     ChatlistEvent event,

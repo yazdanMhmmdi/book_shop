@@ -15,8 +15,8 @@ class BasketBloc extends Bloc<BasketEvent, BasketState> {
   BasketBloc() : super(BasketInitial());
   BasketRepository _basketRepository = new BasketRepository();
   AccountRepository _accountRepository = new AccountRepository();
-  BasketModel _model;
-  String user_id;
+  late BasketModel _model;
+  late String user_id;
   @override
   Stream<BasketState> mapEventToState(
     BasketEvent event,
@@ -49,7 +49,7 @@ class BasketBloc extends Bloc<BasketEvent, BasketState> {
       FunctionalModel _tempModel =
           await _basketRepository.addBasket(user_id, event.book_id);
       if (_tempModel.status == "1") {
-        yield BasketSuccess();
+        yield BasketSuccess(basketModel: _model);
       } else {
         yield BasketFailure();
       }

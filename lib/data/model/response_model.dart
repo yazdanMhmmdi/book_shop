@@ -1,8 +1,10 @@
 class ResponseModel {
-  String status;
-  String body;
-
-  ResponseModel({this.status, this.body});
+  ResponseModel({
+    required this.status,
+    required this.body,
+  });
+  late final String status;
+  late final String body;
 
   ResponseModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
@@ -10,9 +12,9 @@ class ResponseModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['status'] = this.status;
-    data['body'] = this.body;
-    return data;
+    final _data = <String, dynamic>{};
+    _data['status'] = status;
+    _data['body'] = body;
+    return _data;
   }
 }

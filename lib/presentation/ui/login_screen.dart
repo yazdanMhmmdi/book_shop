@@ -22,9 +22,9 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  TextEditingController _usernameController;
-  TextEditingController _passwordController;
-  String id;
+  late TextEditingController _usernameController;
+  late TextEditingController _passwordController;
+  late String id;
   ButtonState buttonState = ButtonState.idle;
   Color backgroundColor = IColors.green;
 

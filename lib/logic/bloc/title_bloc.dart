@@ -11,28 +11,28 @@ part 'title_state.dart';
 class TitleBloc extends Bloc<TitleEvent, TitleState> {
   TitleBloc() : super(TitleInitial());
   TitleRepository _titleRepository = new TitleRepository();
-  int siencePage = 1;
-  int medicinePage = 1;
-  int historyPage = 1;
-  int foodPage = 1;
-  int lawPage = 1;
-  int sportPage = 1;
-  int page = 1;
-  TitleModel _model;
+  late int siencePage = 1;
+  late int medicinePage = 1;
+  late int historyPage = 1;
+  late int foodPage = 1;
+  late int lawPage = 1;
+  late int sportPage = 1;
+  late int page = 1;
+  late TitleModel _model;
 
-  bool sience = true;
-  bool medicine = true;
-  bool history = true;
-  bool law = true;
-  bool food = true;
-  bool sport = true;
+  late bool sience = true;
+  late bool medicine = true;
+  late bool history = true;
+  late bool law = true;
+  late bool food = true;
+  late bool sport = true;
   //totalPages
-  int sienceTotalPage = 0;
-  int medicineTotalPage = 0;
-  int historyTotalPage = 0;
-  int lawTotalPage = 0;
-  int foodTotalPage = 0;
-  int sportTotalPage = 0;
+  late int sienceTotalPage = 0;
+  late int medicineTotalPage = 0;
+  late int historyTotalPage = 0;
+  late int lawTotalPage = 0;
+  late int foodTotalPage = 0;
+  late int sportTotalPage = 0;
   @override
   Stream<TitleState> mapEventToState(
     TitleEvent event,

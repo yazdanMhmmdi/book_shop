@@ -22,8 +22,8 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
-  TextEditingController _usernameController;
-  TextEditingController _passwordController;
+  late TextEditingController _usernameController;
+  late TextEditingController _passwordController;
   ButtonState _buttonState = ButtonState.idle;
   bool _usernameStatus = true;
   bool _passwordStatus = true;

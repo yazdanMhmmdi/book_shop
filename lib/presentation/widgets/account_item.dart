@@ -3,8 +3,8 @@ import 'package:book_shop/constants/strings.dart';
 import 'package:flutter/material.dart';
 
 class AccountItem extends StatelessWidget {
-  Function onTap;
-  AccountItem({@required this.onTap});
+  Function() onTap;
+  AccountItem({required this.onTap});
   @override
   Widget build(BuildContext context) {
     return Material(

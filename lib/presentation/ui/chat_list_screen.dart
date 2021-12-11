@@ -20,7 +20,7 @@ class ChatListScreen extends StatefulWidget {
 
 class _ChatListScreenState extends State<ChatListScreen> {
   ScrollController _controller = ScrollController();
-  ChatlistBloc _chatlistBloc;
+  late ChatlistBloc _chatlistBloc;
   double _animationDelay = 0.25;
   bool progress = true;
   bool isEmpty = false;
@@ -59,6 +59,8 @@ class _ChatListScreenState extends State<ChatListScreen> {
           return internetConnectedUI();
         } else if (state is InternetDisconnected) {
           return internetDisconnectedUI();
+        } else {
+          return Container();
         }
       })),
     );
@@ -159,6 +161,8 @@ class _ChatListScreenState extends State<ChatListScreen> {
                                 return Center(child: ServerFailureFlare());
                               } else if (state is ChatlistEmpty) {
                                 return Center(child: NotFoundBar());
+                              } else {
+                                return Container();
                               }
                             },
                           ),

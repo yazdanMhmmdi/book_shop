@@ -1,11 +1,12 @@
-class AccountModel {
-  Account account;
+import 'package:flutter/material.dart';
 
-  AccountModel({this.account});
+class AccountModel {
+  late final Account account;
+
+  AccountModel({required this.account});
 
   AccountModel.fromJson(Map<String, dynamic> json) {
-    account =
-        json['account'] != null ? new Account.fromJson(json['account']) : null;
+    account = json['account'] = Account.fromJson(json['account']);
   }
 
   Map<String, dynamic> toJson() {
@@ -18,35 +19,20 @@ class AccountModel {
 }
 
 class Account {
-  String s0;
-  String s1;
-  String s2;
-  String s3;
-  String s4;
-  String id;
-  String username;
-  String password;
-  String picture;
-  String thumbPicture;
+  late final String id;
+  late final String username;
+  late final String password;
+  late final String picture;
+  late final String thumbPicture;
 
   Account(
-      {this.s0,
-      this.s1,
-      this.s2,
-      this.s3,
-      this.s4,
-      this.id,
-      this.username,
-      this.password,
-      this.picture,
-      this.thumbPicture});
+      {required this.id,
+      required this.username,
+      required this.password,
+      required this.picture,
+      required this.thumbPicture});
 
   Account.fromJson(Map<String, dynamic> json) {
-    s0 = json['0'];
-    s1 = json['1'];
-    s2 = json['2'];
-    s3 = json['3'];
-    s4 = json['4'];
     id = json['id'];
     username = json['username'];
     password = json['password'];
@@ -56,11 +42,6 @@ class Account {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['0'] = this.s0;
-    data['1'] = this.s1;
-    data['2'] = this.s2;
-    data['3'] = this.s3;
-    data['4'] = this.s4;
     data['id'] = this.id;
     data['username'] = this.username;
     data['password'] = this.password;

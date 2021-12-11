@@ -14,7 +14,7 @@ class ChatLoading extends ChatState {}
 class ChatSuccess extends ChatState {
   ChatModel chatModel;
   bool scrollDown;
-  ChatSuccess({@required this.chatModel, @required this.scrollDown});
+  ChatSuccess({required this.chatModel, required this.scrollDown});
   @override
   List<Object> get props => [this.chatModel];
 }

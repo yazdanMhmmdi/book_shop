@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class WarningBar extends StatelessWidget {
   String text;
-  WarningBar({@required this.text});
+  WarningBar({required this.text});
   @override
   Widget build(BuildContext context) {
     return Padding(

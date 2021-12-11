@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class MyToolBar extends StatelessWidget {
   String title;
-  MyToolBar({@required this.title});
+  MyToolBar({required this.title});
   @override
   Widget build(BuildContext context) {
     return Directionality(

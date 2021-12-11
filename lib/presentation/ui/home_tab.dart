@@ -10,6 +10,7 @@ import 'package:book_shop/logic/bloc/home_state.dart';
 import 'package:book_shop/networking/image_address_provider.dart';
 import 'package:book_shop/presentation/animation/fade_in_animation.dart';
 import 'package:book_shop/presentation/ui/vertical_card.dart';
+import 'package:book_shop/presentation/widgets/custom_scroll_behavior.dart';
 import 'package:book_shop/presentation/widgets/loading_bar.dart';
 import 'package:book_shop/presentation/widgets/server_failure_flare.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -23,7 +24,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'horizontal_card.dart';
 
 class HomeTab extends StatelessWidget {
-  PageController _carouselController;
+  late PageController _carouselController;
   double _animationDelay = 0.25;
   double _animationDelay2 = 1.0;
 
@@ -37,193 +38,201 @@ class HomeTab extends StatelessWidget {
           return MyLoadingBar(animation: "Untitled");
         } else if (state is HomeSuccess) {
           List<MostSalesBooks> msList = state.postModel.mostSalesBooks;
-          List<FreshBooks> fbList = state.postModel.freshsBooks;
-          return SingleChildScrollView(
-            child: Directionality(
-              textDirection: TextDirection.rtl,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    height: 28,
-                  ),
-                  Container(
-                    child: Column(
-                      children: [
-                        FadeInAnimation(
-                          0.25,
-                          CarouselSlider.builder(
-                              itemCount: state.postModel.poster.length,
-                              itemBuilder: (context, index, realIndex) {
-                                return Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  child: Stack(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 18),
-                                        child: Container(
+          List<FreshsBooks> fbList = state.postModel.freshsBooks;
+          return ScrollConfiguration(
+            behavior: MyCustomScrollBehavior(),
+            child: SingleChildScrollView(
+              child: Directionality(
+                textDirection: TextDirection.rtl,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      height: 28,
+                    ),
+                    Container(
+                      child: Column(
+                        children: [
+                          FadeInAnimation(
+                            0.25,
+                            CarouselSlider.builder(
+                                itemCount: state.postModel.poster.length,
+                                itemBuilder: (context, index, realIndex) {
+                                  return Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    child: Stack(
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 18),
+                                          child: Container(
+                                            height: 147,
+                                            decoration: BoxDecoration(
+                                                color: Colors.transparent,
+                                                borderRadius:
+                                                    BorderRadius.circular(8),
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                      offset: Offset(0, 10),
+                                                      spreadRadius: -2,
+                                                      blurRadius: 20,
+                                                      color: IColors.boldGreen
+                                                          .withOpacity(0.75))
+                                                ]),
+                                          ),
+                                        ),
+                                        Container(
                                           height: 147,
                                           decoration: BoxDecoration(
-                                              color: Colors.transparent,
                                               borderRadius:
                                                   BorderRadius.circular(8),
-                                              boxShadow: [
-                                                BoxShadow(
-                                                    offset: Offset(0, 10),
-                                                    spreadRadius: -2,
-                                                    blurRadius: 20,
-                                                    color: IColors.boldGreen
-                                                        .withOpacity(0.75))
-                                              ]),
-                                        ),
-                                      ),
-                                      Container(
-                                        height: 147,
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(8),
-                                            color: IColors.green),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  top: 26, right: 16),
-                                              child: Column(
-                                                children: [
-                                                  Text(Strings.homeYourFavBooks,
-                                                      style: TextStyle(
-                                                        fontFamily: Strings
-                                                            .fontIranSans,
-                                                        color: IColors.white90,
-                                                        fontSize: 18,
-                                                        fontWeight:
-                                                            FontWeight.w700,
-                                                      )),
-                                                  SizedBox(
-                                                    height: 26,
-                                                  ),
-                                                  Container(
-                                                    width: 114,
-                                                    height: 26,
-                                                    decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              4),
-                                                      color: IColors.greenTwo,
-                                                    ),
-                                                    child: Center(
-                                                      child: Text(
-                                                        Strings.homeDiscover,
+                                              color: IColors.green),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    top: 26, right: 16),
+                                                child: Column(
+                                                  children: [
+                                                    Text(
+                                                        Strings
+                                                            .homeYourFavBooks,
                                                         style: TextStyle(
-                                                          color:
-                                                              IColors.white90,
                                                           fontFamily: Strings
                                                               .fontIranSans,
-                                                          fontSize: 14,
+                                                          color:
+                                                              IColors.white90,
+                                                          fontSize: 18,
+                                                          fontWeight:
+                                                              FontWeight.w700,
+                                                        )),
+                                                    SizedBox(
+                                                      height: 26,
+                                                    ),
+                                                    Container(
+                                                      width: 114,
+                                                      height: 26,
+                                                      decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(4),
+                                                        color: IColors.greenTwo,
+                                                      ),
+                                                      child: Center(
+                                                        child: Text(
+                                                          Strings.homeDiscover,
+                                                          style: TextStyle(
+                                                            color:
+                                                                IColors.white90,
+                                                            fontFamily: Strings
+                                                                .fontIranSans,
+                                                            fontSize: 14,
+                                                          ),
                                                         ),
                                                       ),
                                                     ),
-                                                  ),
-                                                ],
+                                                  ],
+                                                ),
                                               ),
-                                            ),
-                                            Image.network(
-                                              ImageAddressProvider.imageURL +
-                                                  state.postModel.poster[index]
-                                                      .picture,
-                                              fit: BoxFit.fill,
-                                              width: 140,
-                                              height: 150,
-                                            ),
-                                          ],
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                );
-                              },
-                              options: CarouselOptions(
-                                  height: 175,
-                                  viewportFraction: 0.8,
-                                  autoPlayInterval: Duration(seconds: 6),
-                                  autoPlayAnimationDuration:
-                                      Duration(milliseconds: 800),
-                                  autoPlayCurve: Curves.fastOutSlowIn,
-                                  autoPlay: false,
-                                  initialPage: 0,
-                                  enlargeCenterPage: true)),
-                        ),
-                      ],
+                                              Image.network(
+                                                ImageAddressProvider.imageURL +
+                                                    state.postModel
+                                                        .poster[index].picture,
+                                                fit: BoxFit.fill,
+                                                width: 140,
+                                                height: 150,
+                                              ),
+                                            ],
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  );
+                                },
+                                options: CarouselOptions(
+                                    height: 175,
+                                    viewportFraction: 0.8,
+                                    autoPlayInterval: Duration(seconds: 6),
+                                    autoPlayAnimationDuration:
+                                        Duration(milliseconds: 800),
+                                    autoPlayCurve: Curves.fastOutSlowIn,
+                                    autoPlay: false,
+                                    initialPage: 0,
+                                    enlargeCenterPage: true)),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                  FadeInAnimation(0.5, titleText(Strings.homeMostSales)),
-                  SizedBox(height: 16),
-                  Container(
-                    height: 180,
-                    child: ListView.builder(
+                    FadeInAnimation(0.5, titleText(Strings.homeMostSales)),
+                    SizedBox(height: 16),
+                    Container(
+                      height: 180,
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        physics: BouncingScrollPhysics(),
+                        padding: EdgeInsets.only(right: 8),
+                        itemCount: state.postModel.freshsBooks.length,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, index) {
+                          _animationDelay = _animationDelay + 0.3;
+                          return FadeInAnimation(
+                              _animationDelay,
+                              HorizontalCard(
+                                id: msList[index].id,
+                                name: msList[index].name,
+                                thumbPicture: msList[index].pictureThumb,
+                                writer: msList[index].writer,
+                                voteCount: msList[index].voteCount,
+                                description: msList[index].description,
+                                language: msList[index].language,
+                                coverType: msList[index].coverType,
+                                pagesCount: msList[index].pagesCount,
+                              ));
+                        },
+                      ),
+                    ),
+                    SizedBox(height: 16),
+                    FadeInAnimation(1, titleText(Strings.homeFresh)),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    ListView.builder(
+                      physics: NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
-                      physics: BouncingScrollPhysics(),
-                      padding: EdgeInsets.only(right: 8),
                       itemCount: state.postModel.freshsBooks.length,
-                      scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
-                        _animationDelay = _animationDelay + 0.3;
+                        _animationDelay2 = _animationDelay2 + 0.3;
                         return FadeInAnimation(
-                            _animationDelay,
-                            HorizontalCard(
-                              id: msList[index].id,
-                              name: msList[index].name,
-                              thumbPicture: msList[index].pictureThumb,
-                              writer: msList[index].writer,
-                              voteCount: msList[index].voteCount,
-                              description: msList[index].description,
-                              language: msList[index].language,
-                              coverType: msList[index].coverType,
-                              pagesCount: msList[index].pagesCount,
-                            ));
+                          _animationDelay2,
+                          VerticalCard(
+                            id: fbList[index].id,
+                            image: fbList[index].pictureThumb,
+                            name: fbList[index].name,
+                            thumbImage: fbList[index].pictureThumb,
+                            writer: fbList[index].writer,
+                            voteCount: fbList[index].voteCount,
+                            coverType: fbList[index].coverType,
+                            description: fbList[index].description,
+                            language: fbList[index].language,
+                            pagesCount: fbList[index].pagesCount,
+                            price: fbList[index].price.toString(),
+                          ),
+                        );
                       },
-                    ),
-                  ),
-                  SizedBox(height: 16),
-                  FadeInAnimation(1, titleText(Strings.homeFresh)),
-                  SizedBox(
-                    height: 16,
-                  ),
-                  ListView.builder(
-                    physics: NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemCount: state.postModel.freshsBooks.length,
-                    itemBuilder: (context, index) {
-                      _animationDelay2 = _animationDelay2 + 0.3;
-                      return FadeInAnimation(
-                        _animationDelay2,
-                        VerticalCard(
-                          id: fbList[index].id,
-                          image: fbList[index].pictureThumb,
-                          name: fbList[index].name,
-                          thumbImage: fbList[index].pictureThumb,
-                          writer: fbList[index].writer,
-                          voteCount: fbList[index].voteCount,
-                          coverType: fbList[index].coverType,
-                          description: fbList[index].description,
-                          language: fbList[index].language,
-                          pagesCount: fbList[index].pagesCount,
-                          price: fbList[index].price,
-                        ),
-                      );
-                    },
-                  )
-                ],
+                    )
+                  ],
+                ),
               ),
             ),
           );
         } else if (state is HomeFailure) {
           return ServerFailureFlare();
+        } else {
+          return Container();
         }
       },
     );

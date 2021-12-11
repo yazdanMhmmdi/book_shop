@@ -7,7 +7,7 @@ part 'internet_state.dart';
 
 class InternetCubit extends Cubit<InternetState> {
   final Connectivity connectivity;
-  InternetCubit({@required this.connectivity}) : super(InternetLoading()) {
+  InternetCubit({required this.connectivity}) : super(InternetLoading()) {
     connectivity.onConnectivityChanged.listen((connectivityResult) {
       if (connectivityResult == ConnectivityResult.mobile ||
           connectivityResult == ConnectivityResult.wifi) {

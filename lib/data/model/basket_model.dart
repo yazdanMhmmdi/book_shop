@@ -1,65 +1,62 @@
 class BasketModel {
-  List<Basket> basket;
-  Data data;
-
-  BasketModel({this.basket, this.data});
+  BasketModel({
+    required this.basket,
+    required this.data,
+  });
+  late final List<Basket> basket;
+  late final Data data;
 
   BasketModel.fromJson(Map<String, dynamic> json) {
-    if (json['basket'] != null) {
-      basket = new List<Basket>();
-      json['basket'].forEach((v) {
-        basket.add(new Basket.fromJson(v));
-      });
-    }
-    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+    basket = List.from(json['basket']).map((e) => Basket.fromJson(e)).toList();
+    data = Data.fromJson(json['data']);
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.basket != null) {
-      data['basket'] = this.basket.map((v) => v.toJson()).toList();
-    }
-    if (this.data != null) {
-      data['data'] = this.data.toJson();
-    }
-    return data;
+    final _data = <String, dynamic>{};
+    _data['basket'] = basket.map((e) => e.toJson()).toList();
+    _data['data'] = data.toJson();
+    return _data;
   }
 }
 
 class Basket {
-  String id;
-  String pagesCount;
-  String voteCount;
-  String writer;
-  String description;
-  String name;
-  String price;
-  String language;
-  String coverType;
-  String pictureThumb;
-  String picture;
-  String salesCount;
-  String isBanner;
-  String categoryId;
+  Basket({
+    required this.id,
+    required this.cover,
+    required this.pagesCount,
+    required this.voteCount,
+    required this.writer,
+    required this.description,
+    required this.name,
+    required this.price,
+    required this.language,
+    required this.coverType,
+    required this.pictureThumb,
+    required this.picture,
+    required this.salesCount,
+    required this.isBanner,
+    required this.categoryId,
+  });
 
-  Basket(
-      {this.id,
-      this.pagesCount,
-      this.voteCount,
-      this.writer,
-      this.description,
-      this.name,
-      this.price,
-      this.language,
-      this.coverType,
-      this.pictureThumb,
-      this.picture,
-      this.salesCount,
-      this.isBanner,
-      this.categoryId});
+  late final String id;
+  late final String cover;
+  late final String pagesCount;
+  late final String voteCount;
+  late final String writer;
+  late final String description;
+  late final String name;
+  late final String price;
+  late final String language;
+  late final String coverType;
+  late final String pictureThumb;
+  late final String picture;
+  late final String salesCount;
+  late final String isBanner;
+  late final String categoryId;
 
   Basket.fromJson(Map<String, dynamic> json) {
     id = json['id'];
+    cover = json['cover'];
     pagesCount = json['pages_count'];
     voteCount = json['vote_count'];
     writer = json['writer'];
@@ -76,43 +73,58 @@ class Basket {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-
-    data['id'] = this.id;
-    data['pages_count'] = this.pagesCount;
-    data['vote_count'] = this.voteCount;
-    data['writer'] = this.writer;
-    data['description'] = this.description;
-    data['name'] = this.name;
-    data['price'] = this.price;
-    data['language'] = this.language;
-    data['cover_type'] = this.coverType;
-    data['picture_thumb'] = this.pictureThumb;
-    data['picture'] = this.picture;
-    data['sales_count'] = this.salesCount;
-    data['is_banner'] = this.isBanner;
-    data['category_id'] = this.categoryId;
-    return data;
+    final _data = <String, dynamic>{};
+    _data['0'] = 0;
+    _data['1'] = 1;
+    _data['2'] = 2;
+    _data['3'] = 3;
+    _data['4'] = 4;
+    _data['5'] = 5;
+    _data['6'] = 6;
+    _data['7'] = 7;
+    _data['8'] = 8;
+    _data['9'] = 9;
+    _data['10'] = 10;
+    _data['11'] = 11;
+    _data['12'] = 12;
+    _data['13'] = 13;
+    _data['14'] = 14;
+    _data['id'] = id;
+    _data['cover'] = cover;
+    _data['pages_count'] = pagesCount;
+    _data['vote_count'] = voteCount;
+    _data['writer'] = writer;
+    _data['description'] = description;
+    _data['name'] = name;
+    _data['price'] = price;
+    _data['language'] = language;
+    _data['cover_type'] = coverType;
+    _data['picture_thumb'] = pictureThumb;
+    _data['picture'] = picture;
+    _data['sales_count'] = salesCount;
+    _data['is_banner'] = isBanner;
+    _data['category_id'] = categoryId;
+    return _data;
   }
 }
 
 class Data {
-  int totalPages;
-  String currentPage;
-  int offsetPage;
-  String taxPercent;
-  int tax;
-  int deliveryCost;
-  int fullCost;
-
-  Data(
-      {this.totalPages,
-      this.currentPage,
-      this.offsetPage,
-      this.taxPercent,
-      this.tax,
-      this.deliveryCost,
-      this.fullCost});
+  Data({
+    required this.totalPages,
+    required this.currentPage,
+    required this.offsetPage,
+    required this.taxPercent,
+    required this.tax,
+    required this.deliveryCost,
+    required this.fullCost,
+  });
+  late final int totalPages;
+  late final String currentPage;
+  late final int offsetPage;
+  late final String taxPercent;
+  late final int tax;
+  late final int deliveryCost;
+  late final int fullCost;
 
   Data.fromJson(Map<String, dynamic> json) {
     totalPages = json['total_pages'];
@@ -125,14 +137,14 @@ class Data {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['total_pages'] = this.totalPages;
-    data['current_page'] = this.currentPage;
-    data['offset_page'] = this.offsetPage;
-    data['tax_percent'] = this.taxPercent;
-    data['tax'] = this.tax;
-    data['delivery_cost'] = this.deliveryCost;
-    data['full_cost'] = this.fullCost;
-    return data;
+    final _data = <String, dynamic>{};
+    _data['total_pages'] = totalPages;
+    _data['current_page'] = currentPage;
+    _data['offset_page'] = offsetPage;
+    _data['tax_percent'] = taxPercent;
+    _data['tax'] = tax;
+    _data['delivery_cost'] = deliveryCost;
+    _data['full_cost'] = fullCost;
+    return _data;
   }
 }

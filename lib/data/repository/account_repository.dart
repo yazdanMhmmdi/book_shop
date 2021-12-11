@@ -22,12 +22,12 @@ class AccountRepository {
 
   Future<String> getSharedPrefs() async {
     SharedPreferences prefs = await _prefs;
-    
-    String id = (prefs.getString("id") == null ? "" : prefs.getString("id"));
+
+    String id = (prefs.getString("id") ?? "");
     return id;
   }
 
-  void deletePrefs() async{
+  void deletePrefs() async {
     SharedPreferences prefs = await _prefs;
     prefs.clear();
   }

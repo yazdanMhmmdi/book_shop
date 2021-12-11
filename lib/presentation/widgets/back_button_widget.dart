@@ -2,8 +2,8 @@ import 'package:book_shop/constants/colors.dart';
 import 'package:flutter/material.dart';
 
 class BackButtonWidget extends StatelessWidget {
-  Function onTap;
-  BackButtonWidget({@required this.onTap});
+  Function() onTap;
+  BackButtonWidget({required this.onTap});
   @override
   Widget build(BuildContext context) {
     return Material(

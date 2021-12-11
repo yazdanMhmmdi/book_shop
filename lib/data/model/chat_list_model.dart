@@ -1,58 +1,51 @@
 class ChatListModel {
-  List<ChatsList> chatsList;
-  Data data;
-
-  ChatListModel({this.chatsList, this.data});
-
-  ChatListModel.fromJson(Map<String, dynamic> json) {
-    if (json['chatsList'] != null) {
-      chatsList = new List<ChatsList>();
-      json['chatsList'].forEach((v) {
-        chatsList.add(new ChatsList.fromJson(v));
-      });
-    }
-    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+  ChatListModel({
+    required this.chatsList,
+    required this.data,
+  });
+  late final List<ChatsList> chatsList;
+  late final Data data;
+  
+  ChatListModel.fromJson(Map<String, dynamic> json){
+    chatsList = List.from(json['chatsList']).map((e)=>ChatsList.fromJson(e)).toList();
+    data = Data.fromJson(json['data']);
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.chatsList != null) {
-      data['chatsList'] = this.chatsList.map((v) => v.toJson()).toList();
-    }
-    if (this.data != null) {
-      data['data'] = this.data.toJson();
-    }
-    return data;
+    final _data = <String, dynamic>{};
+    _data['chatsList'] = chatsList.map((e)=>e.toJson()).toList();
+    _data['data'] = data.toJson();
+    return _data;
   }
 }
 
 class ChatsList {
+  ChatsList({
 
-  String bookIdNum;
-  String userId;
-  String fromId;
-  String id;
-  String newMessageCount;
-  String pictureThumb;
-  String name;
-  String writer;
-  String price;
-  String voteCount;
+    required this.bookIdNum,
+    required this.userId,
+    required this.fromId,
+    required this.id,
+    required this.newMessageCount,
+    required this.pictureThumb,
+    required this.name,
+    required this.writer,
+    required this.price,
+    required this.voteCount,
+  });
 
-  ChatsList(
-      {
-      this.bookIdNum,
-      this.userId,
-      this.fromId,
-      this.id,
-      this.newMessageCount,
-      this.pictureThumb,
-      this.name,
-      this.writer,
-      this.price,
-      this.voteCount});
-
-  ChatsList.fromJson(Map<String, dynamic> json) {
+  late final String bookIdNum;
+  late final String userId;
+  late final String fromId;
+  late final String id;
+  late final String newMessageCount;
+  late final String pictureThumb;
+  late final String name;
+  late final String writer;
+  late final String price;
+  late final String voteCount;
+  
+  ChatsList.fromJson(Map<String, dynamic> json){
 
     bookIdNum = json['book_id_num'];
     userId = json['user_id'];
@@ -67,40 +60,47 @@ class ChatsList {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-
-    data['book_id_num'] = this.bookIdNum;
-    data['user_id'] = this.userId;
-    data['from_id'] = this.fromId;
-    data['id'] = this.id;
-    data['new_message_count'] = this.newMessageCount;
-    data['picture_thumb'] = this.pictureThumb;
-    data['name'] = this.name;
-    data['writer'] = this.writer;
-    data['price'] = this.price;
-    data['vote_count'] = this.voteCount;
-    return data;
+    final _data = <String, dynamic>{};
+    _data['0'] = 0;
+    _data['1'] = 1;
+    _data['2'] = 2;
+    _data['3'] = 3;
+    _data['4'] = 4;
+    _data['book_id_num'] = bookIdNum;
+    _data['user_id'] = userId;
+    _data['from_id'] = fromId;
+    _data['id'] = id;
+    _data['new_message_count'] = newMessageCount;
+    _data['picture_thumb'] = pictureThumb;
+    _data['name'] = name;
+    _data['writer'] = writer;
+    _data['price'] = price;
+    _data['vote_count'] = voteCount;
+    return _data;
   }
 }
 
 class Data {
-  int totalPages;
-  String currentPage;
-  int offsetPage;
-
-  Data({this.totalPages, this.currentPage, this.offsetPage});
-
-  Data.fromJson(Map<String, dynamic> json) {
+  Data({
+    required this.totalPages,
+    required this.currentPage,
+    required this.offsetPage,
+  });
+  late final int totalPages;
+  late final String currentPage;
+  late final int offsetPage;
+  
+  Data.fromJson(Map<String, dynamic> json){
     totalPages = json['total_pages'];
     currentPage = json['current_page'];
     offsetPage = json['offset_page'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['total_pages'] = this.totalPages;
-    data['current_page'] = this.currentPage;
-    data['offset_page'] = this.offsetPage;
-    return data;
+    final _data = <String, dynamic>{};
+    _data['total_pages'] = totalPages;
+    _data['current_page'] = currentPage;
+    _data['offset_page'] = offsetPage;
+    return _data;
   }
 }

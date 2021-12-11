@@ -13,7 +13,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc() : super(AuthInitial());
 
   AuthRepository _authRepository = new AuthRepository();
-  SharedPreferences _prefs;
+  late SharedPreferences _prefs;
   @override
   Stream<AuthState> mapEventToState(
     AuthEvent event,

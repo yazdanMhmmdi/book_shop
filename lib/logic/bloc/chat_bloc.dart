@@ -16,14 +16,14 @@ part 'chat_state.dart';
 
 class ChatBloc extends Bloc<ChatEvent, ChatState> {
   ChatBloc() : super(ChatInitial());
-  ChatRepository _chatRepository = new ChatRepository();
-  AccountRepository _accountRepository = new AccountRepository();
-  String user_id;
-  ChatModel _model;
-  int totalPage;
-  String bookId;
-  String fromId = "1";
-  String conversationId = "0";
+  late ChatRepository _chatRepository = new ChatRepository();
+  late AccountRepository _accountRepository = new AccountRepository();
+  late String user_id;
+  late ChatModel _model;
+  late int totalPage;
+  late String bookId;
+  late String fromId = "1";
+  late String conversationId = "0";
 
   var channel =
       IOWebSocketChannel.connect(Uri.parse("${ApiProvider.WEB_SOCKET}"));
@@ -58,7 +58,13 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
       }
     } else if (event is DisposeChatMessages) {
       totalPage = 0;
-      _model = ChatModel();
+      _model = new ChatModel(
+          chats: [],
+          data: Data(
+              currentPage: "0",
+              offsetPage: 0,
+              oprationType: "0",
+              totalPages: 0));
     } else if (event is SocketMessage) {
       yield ChatLoading();
       print(event.message);
@@ -85,8 +91,14 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
       yield ChatLoading();
       channel.sink.add(
           '{"chats":[{"id":"17","0":"17","message":"${event.message}","1":"${event.message}","from_id":"${fromId}","2":"2","user_id":"${user_id}","3":"1","book_id":"${bookId}","4":"108","conversation_id":"${conversationId}","5":"3","date":null,"6":null,"is_read":"1","7":"1","time":null,"8":null,"type":"chat"}],"data":{"opration_type":"chat","total_pages":1,"current_page":"1","offset_page":0}}');
-      _model.chats.add(
-          new Chats(message: event.message, fromId: fromId, userId: user_id));
+      _model.chats.add(new Chats(
+          message: event.message,
+          fromId: fromId,
+          userId: user_id,
+          bookId: bookId,
+          conversationId: conversationId,
+          id: '1',
+          isRead: '0'));
       yield ChatSuccess(chatModel: _model, scrollDown: true);
     }
   }

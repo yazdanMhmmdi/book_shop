@@ -3,8 +3,8 @@ import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 
 class MyLoadingBar extends StatelessWidget {
-  String animation = "";
-  MyLoadingBar({@required this.animation});
+  late String animation = "";
+  MyLoadingBar({required this.animation});
   @override
   Widget build(BuildContext context) {
     return Center(

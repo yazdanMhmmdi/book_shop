@@ -25,9 +25,9 @@ class AccountTab extends StatefulWidget {
 }
 
 class _AccountTabState extends State<AccountTab> {
-  TextEditingController usernameController;
-  TextEditingController passwordController;
-  String username;
+  late TextEditingController usernameController;
+  late TextEditingController passwordController;
+  late String username;
   ButtonState _buttonState = ButtonState.idle;
 
   @override

@@ -1,9 +1,11 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 
 class FadeInTransition extends StatefulWidget {
   final Widget child;
 
-  const FadeInTransition({@required this.child});
+  const FadeInTransition({required this.child});
 
   @override
   _FadeInTransitionState createState() => _FadeInTransitionState();
@@ -11,8 +13,8 @@ class FadeInTransition extends StatefulWidget {
 
 class _FadeInTransitionState extends State<FadeInTransition>
     with SingleTickerProviderStateMixin {
-  AnimationController _animationController;
-  Animation _animation;
+  late AnimationController _animationController;
+  late Animation<double> _animation;
 
   @override
   void initState() {
@@ -21,7 +23,7 @@ class _FadeInTransitionState extends State<FadeInTransition>
         duration: Duration(
           milliseconds: 300,
         ));
-    _animation = Tween(
+    _animation = Tween<double>(
       begin: 0.0,
       end: 1.0,
     ).animate(_animationController);

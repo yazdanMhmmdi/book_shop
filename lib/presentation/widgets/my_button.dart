@@ -5,7 +5,7 @@ import 'package:book_shop/presentation/widgets/progress_button.dart';
 import 'package:flutter/material.dart';
 
 class MyButton extends StatefulWidget {
-  String text;
+  late String text;
   Function onTap;
   var buttonState = ButtonState.idle;
 
@@ -17,7 +17,7 @@ class MyButton extends StatefulWidget {
   }
 
   MyButton(
-      {@required this.text, @required this.onTap, @required this.buttonState});
+      {required this.text, required this.onTap, required this.buttonState});
 
   @override
   _MyButtonState createState() => _MyButtonState();
@@ -25,7 +25,7 @@ class MyButton extends StatefulWidget {
 
 class _MyButtonState extends State<MyButton> {
   double buttonRadius = 8.0;
-  double maxWidth;
+  late double maxWidth;
   bool maxWidthFlag = true;
   @override
   void initState() {
@@ -45,6 +45,7 @@ class _MyButtonState extends State<MyButton> {
       height: 46.0,
       maxWidth: maxWidth,
       radius: buttonRadius,
+      onAnimationEnd: () {},
       progressIndicator: CircularProgressIndicator(
         valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
       ),

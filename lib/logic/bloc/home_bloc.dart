@@ -7,25 +7,25 @@ import 'package:book_shop/logic/bloc/home_state.dart';
 import 'package:book_shop/logic/bloc/home_event.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
-  HomeBloc() : super(HomeInitial());
   HomeRepository _mostSalesRepository = new HomeRepository();
-  @override
-  Stream<HomeState> mapEventToState(
-    HomeEvent event,
-  ) async* {
-    if (event is FetchEvent) {
-      yield HomeLoading();
-      try {
-        final HomeModel homeModel =
-            await _mostSalesRepository.fetchHome("sss");
+  HomeBloc() : super(HomeInitial()) {
+    on<HomeEvent>((event, emit) async {
+      if (event is FetchEvent) {
+        emit(HomeLoading());
+        try {
+          final HomeModel homeModel =
+              await _mostSalesRepository.fetchHome("sss");
 
-        print(
-            'MOstSalesSucces data : ' + homeModel.freshsBooks[0].id + " : XXX");
+          print('MOstSalesSucces data : ' +
+              homeModel.freshsBooks[0].id +
+              " : XXX");
 
-        yield HomeSuccess(homeModel);
-      } catch (_) {
-        yield HomeFailure();
+          emit(HomeSuccess(homeModel));
+        } catch (_) {
+          print(_);
+          emit(HomeFailure());
+        }
       }
-    }
+    });
   }
 }

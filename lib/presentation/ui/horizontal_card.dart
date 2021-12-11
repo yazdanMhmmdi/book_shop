@@ -17,15 +17,15 @@ class HorizontalCard extends StatefulWidget {
   String language;
   String coverType;
   HorizontalCard({
-    @required this.id,
-    @required this.name,
-    @required this.thumbPicture,
-    @required this.writer,
-    @required this.voteCount,
-    @required this.description,
-    @required this.coverType,
-    @required this.pagesCount,
-    @required this.language,
+    required this.id,
+    required this.name,
+    required this.thumbPicture,
+    required this.writer,
+    required this.voteCount,
+    required this.description,
+    required this.coverType,
+    required this.pagesCount,
+    required this.language,
   });
 
   @override

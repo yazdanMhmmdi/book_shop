@@ -5,7 +5,7 @@ import 'package:book_shop/presentation/ui/vertical_card.dart';
 import 'package:flutter/material.dart';
 
 class TitleDetailsTab extends StatelessWidget {
-  List<Books> _books = new List<Books>();
+  List<Books> _books = [];
   double _animationDelay = 0.25;
   TitleDetailsTab(this._books);
   @override

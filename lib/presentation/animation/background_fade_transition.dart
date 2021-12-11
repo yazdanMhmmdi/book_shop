@@ -11,7 +11,7 @@ class BackgroundFadeTransition extends StatefulWidget {
 
 class _BackgroundFadeTransitionState extends State<BackgroundFadeTransition>
     with SingleTickerProviderStateMixin {
-  AnimationController _animationController;
+  late AnimationController _animationController;
 
   @override
   void initState() {

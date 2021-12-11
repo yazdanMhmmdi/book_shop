@@ -1,53 +1,54 @@
 class DetailsModel {
-  Details details;
-
-  DetailsModel({this.details});
+  DetailsModel({
+    required this.details,
+  });
+  late final Details details;
 
   DetailsModel.fromJson(Map<String, dynamic> json) {
-    details =
-        json['details'] != null ? new Details.fromJson(json['details']) : null;
+    details = Details.fromJson(json['details']);
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.details != null) {
-      data['details'] = this.details.toJson();
-    }
-    return data;
+    final _data = <String, dynamic>{};
+    _data['details'] = details.toJson();
+    return _data;
   }
 }
 
 class Details {
-  String id;
-  String cover;
-  String pagesCount;
-  String voteCount;
-  String writer;
-  String description;
-  String name;
-  String price;
-  String language;
-  String coverType;
-  String pictureThumb;
-  String picture;
-  String salesCount;
-  String isBanner;
+  Details({
+    required this.id,
+    required this.cover,
+    required this.pagesCount,
+    required this.voteCount,
+    required this.writer,
+    required this.description,
+    required this.name,
+    required this.price,
+    required this.language,
+    required this.coverType,
+    required this.pictureThumb,
+    required this.picture,
+    required this.salesCount,
+    required this.isBanner,
+    required this.categoryId,
+  });
 
-  Details(
-      {this.id,
-      this.cover,
-      this.pagesCount,
-      this.voteCount,
-      this.writer,
-      this.description,
-      this.name,
-      this.price,
-      this.language,
-      this.coverType,
-      this.pictureThumb,
-      this.picture,
-      this.salesCount,
-      this.isBanner});
+  late final String id;
+  late final String cover;
+  late final String pagesCount;
+  late final String voteCount;
+  late final String writer;
+  late final String description;
+  late final String name;
+  late final String price;
+  late final String language;
+  late final String coverType;
+  late final String pictureThumb;
+  late final String picture;
+  late final String salesCount;
+  late final String isBanner;
+  late final String categoryId;
 
   Details.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -64,25 +65,26 @@ class Details {
     picture = json['picture'];
     salesCount = json['sales_count'];
     isBanner = json['is_banner'];
+    categoryId = json['category_id'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-
-    data['id'] = this.id;
-    data['cover'] = this.cover;
-    data['pages_count'] = this.pagesCount;
-    data['vote_count'] = this.voteCount;
-    data['writer'] = this.writer;
-    data['description'] = this.description;
-    data['name'] = this.name;
-    data['price'] = this.price;
-    data['language'] = this.language;
-    data['cover_type'] = this.coverType;
-    data['picture_thumb'] = this.pictureThumb;
-    data['picture'] = this.picture;
-    data['sales_count'] = this.salesCount;
-    data['is_banner'] = this.isBanner;
-    return data;
+    final _data = <String, dynamic>{};
+    _data['id'] = id;
+    _data['cover'] = cover;
+    _data['pages_count'] = pagesCount;
+    _data['vote_count'] = voteCount;
+    _data['writer'] = writer;
+    _data['description'] = description;
+    _data['name'] = name;
+    _data['price'] = price;
+    _data['language'] = language;
+    _data['cover_type'] = coverType;
+    _data['picture_thumb'] = pictureThumb;
+    _data['picture'] = picture;
+    _data['sales_count'] = salesCount;
+    _data['is_banner'] = isBanner;
+    _data['category_id'] = categoryId;
+    return _data;
   }
 }

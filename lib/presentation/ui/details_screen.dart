@@ -21,37 +21,37 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class DetailsScreen extends StatefulWidget {
-  Map<String, String> args;
-  DetailsScreen({@required this.args});
+  late Map<String, String> args;
+  DetailsScreen({required this.args});
   @override
   _DetailsScreenState createState() => _DetailsScreenState();
 }
 
 class _DetailsScreenState extends State<DetailsScreen>
     with SingleTickerProviderStateMixin {
-  DetailsBloc _detailsBloc;
-  String voteCount;
-  String description;
-  String pagesCount;
-  String language;
-  String coverType;
-  String thumbPicture;
-  String name;
-  String writer;
-  String price;
-  String id;
-  Map<String, String> arguments;
+  late DetailsBloc _detailsBloc;
+  late String voteCount;
+  late String description;
+  late String pagesCount;
+  late String language;
+  late String coverType;
+  late String thumbPicture;
+  late String name;
+  late String writer;
+  late String price;
+  late String id;
+  late Map<String, String> arguments;
   ButtonState _buttonState = ButtonState.idle;
   Color backgroundColor = IColors.green;
   bool _pullUpAnimationFlag = true;
   bool _fadeAnimationFlag = true;
-  AnimationController _pullUpController;
+  late AnimationController _pullUpController;
   AccountRepository _accountRepository = AccountRepository();
-  String user_id;
+  late String user_id;
   Random _random = new Random();
-  int _randAge, _randBookCount, _randCategory, _randVote;
-  double _screenHeight;
-  BasketBloc _basketBloc;
+  late int _randAge, _randBookCount, _randCategory, _randVote;
+  late double _screenHeight;
+  late BasketBloc _basketBloc;
 
   ///
   int _animationDuration = 300;
@@ -74,8 +74,9 @@ class _DetailsScreenState extends State<DetailsScreen>
     // _detailsBloc.add(GetDetails(post_id: arguments["post_id"]));
     _getArguments();
     return WillPopScope(
-      onWillPop: () {
+      onWillPop: () async {
         _pullDownAnimation();
+        return true;
       },
       child: Scaffold(
         backgroundColor: backgroundColor,
@@ -330,7 +331,7 @@ class _DetailsScreenState extends State<DetailsScreen>
     );
   }
 
-  Widget myButton(Function onTap) {
+  Widget myButton(Function() onTap) {
     return Container(
       width: double.infinity,
       height: 46,
@@ -358,16 +359,16 @@ class _DetailsScreenState extends State<DetailsScreen>
   }
 
   void _getArguments() {
-    description = arguments['description'];
-    pagesCount = arguments['pagesCount'];
-    language = arguments['language'];
-    coverType = arguments['coverType'];
-    thumbPicture = arguments['thumbPicture'];
-    id = arguments["post_id"];
-    writer = arguments['writer'];
-    voteCount = arguments['voteCount'];
-    name = arguments['name'];
-    price = arguments['price'];
+    description = arguments['description']!;
+    pagesCount = arguments['pagesCount']!;
+    language = arguments['language']!;
+    coverType = arguments['coverType']!;
+    thumbPicture = arguments['thumbPicture']!;
+    id = arguments["post_id"]!;
+    writer = arguments['writer']!;
+    voteCount = arguments['voteCount']!;
+    name = arguments['name']!;
+    price = arguments['price']!;
   }
 
   void _pullDownAnimation() {

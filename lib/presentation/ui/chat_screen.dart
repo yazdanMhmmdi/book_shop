@@ -15,19 +15,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ChatScreen extends StatefulWidget {
-  Map<String, String> args;
+  late Map<String, String> args;
   @override
   _ChatScreenState createState() => _ChatScreenState();
-  ChatScreen({this.args});
+  ChatScreen({required this.args});
 }
 
 class _ChatScreenState extends State<ChatScreen> {
-  Map<String, String> arguments;
-  String thumbImage, id, name, writer;
-  ChatBloc _chatBloc;
-  String userId;
-  ScrollController _scrollController = ScrollController();
-  TextEditingController _messageController = TextEditingController();
+  late Map<String, String> arguments;
+  late String thumbImage, id, name, writer;
+  late ChatBloc _chatBloc;
+  late String userId;
+  late ScrollController _scrollController = ScrollController();
+  late TextEditingController _messageController = TextEditingController();
   @override
   void initState() {
     arguments = widget.args;
@@ -48,6 +48,8 @@ class _ChatScreenState extends State<ChatScreen> {
             return internetConnectedUI();
           } else if (state is InternetDisconnected) {
             return internetDisConnectedUI();
+          } else {
+            return Container();
           }
         },
       ),
@@ -109,11 +111,11 @@ class _ChatScreenState extends State<ChatScreen> {
   }
 
   void _getArguments() {
-    thumbImage = arguments['thumbPicture'];
-    userId = arguments['user_id'];
-    id = arguments['post_id'];
-    name = arguments['name'];
-    writer = arguments['writer'];
+    thumbImage = arguments['thumbPicture']!;
+    userId = arguments['user_id']!;
+    id = arguments['post_id']!;
+    name = arguments['name']!;
+    writer = arguments['writer']!;
   }
 
   void scrollBottom() {
@@ -295,6 +297,8 @@ class _ChatScreenState extends State<ChatScreen> {
                   } else if (state is ChatFailure) {
                     return Container();
                   } else if (state is ChatInitial) {
+                    return Container();
+                  } else {
                     return Container();
                   }
                 },

@@ -19,15 +19,15 @@ int tabNumber = 1;
 
 class TitleDetailsScreen extends StatefulWidget {
   int category;
-  TitleDetailsScreen({@required this.category});
+  TitleDetailsScreen({required this.category});
   @override
   _TitleDetailsScreenState createState() => _TitleDetailsScreenState();
 }
 
 class _TitleDetailsScreenState extends State<TitleDetailsScreen> {
-  TitleBloc _sienceTitleBloc;
+  late TitleBloc _sienceTitleBloc;
 
-  TitleBloc _medicineTitleBloc;
+  late TitleBloc _medicineTitleBloc;
 
   ScrollController _controller = new ScrollController();
   bool progress = false;
@@ -57,138 +57,135 @@ class _TitleDetailsScreenState extends State<TitleDetailsScreen> {
     return Scaffold(
       backgroundColor: backgroundColor,
       body: SafeArea(
-        child: BlocListener<TitleBloc, TitleState>(
-            listener: (context, state) {
-              if (state is TitlePagination) {
-                setState(() {
-                  progress = true;
-                });
-              } else if (state is TitleSuccess) {
-                setState(() {
-                  progress = false;
-                  loading = false;
-                  nothingFound = false;
-                });
-              } else if (state is TitleLoading) {
-                setState(() {
-                  loading = true;
-                  nothingFound = false;
-                });
-              } else if (state is TitleNothingFound) {
-                setState(() {
-                  loading = false;
-                  nothingFound = true;
-                });
-              }
-            },
-            child: BlocBuilder<InternetCubit, InternetState>(
-              builder: (context, state) {
-                if (state is InternetConnected) {
-                  return SingleChildScrollView(
-                    controller: _controller,
-                    child: Directionality(
-                      textDirection: TextDirection.rtl,
-                      child: Stack(
+        child: BlocListener<TitleBloc, TitleState>(listener: (context, state) {
+          if (state is TitlePagination) {
+            setState(() {
+              progress = true;
+            });
+          } else if (state is TitleSuccess) {
+            setState(() {
+              progress = false;
+              loading = false;
+              nothingFound = false;
+            });
+          } else if (state is TitleLoading) {
+            setState(() {
+              loading = true;
+              nothingFound = false;
+            });
+          } else if (state is TitleNothingFound) {
+            setState(() {
+              loading = false;
+              nothingFound = true;
+            });
+          }
+        }, child: BlocBuilder<InternetCubit, InternetState>(
+          builder: (context, state) {
+            if (state is InternetConnected) {
+              return SingleChildScrollView(
+                controller: _controller,
+                child: Directionality(
+                  textDirection: TextDirection.rtl,
+                  child: Stack(
+                    children: [
+                      Column(
                         children: [
-                          Column(
-                            children: [
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(top: 16, bottom: 8),
-                                child: TitleSelector(
-                                  titles: [
-                                    Strings.titleScience,
-                                    Strings.titleMedicine,
-                                    Strings.titleHistoric,
-                                    Strings.titleLaw,
-                                    Strings.titleFood,
-                                    Strings.titleSport
-                                  ],
-                                  bloc: _sienceTitleBloc,
-                                  firstTab: firstTabState,
-                                ),
-                              ),
-                              BlocBuilder<TitleBloc, TitleState>(
-                                builder: (context, state) {
-                                  if (state is TitleInitial) {
-                                    return Container();
-                                  } else if (state is TitleLoading) {
-                                    return Container();
-                                  } else if (state is TitleSuccess)
-                                    return TitleDetailsTab(state.model);
-                                  else if (state is TitleFailure) {
-                                    return Text('failure');
-                                  } else if (state is TitleNothingFound) {
-                                    return Container();
-                                  } else if (state is TitlePagination) {
-                                    return TitleDetailsTab(state.model);
-                                  }
-                                },
-                              ),
-                              progress
-                                  ? Padding(
-                                      padding: const EdgeInsets.only(
-                                          bottom: 8, top: 4),
-                                      child: CircularProgressIndicator(
-                                        valueColor:
-                                            new AlwaysStoppedAnimation<Color>(
-                                                IColors.boldGreen),
-                                      ),
-                                    )
-                                  : Container(),
-                            ],
+                          Padding(
+                            padding: const EdgeInsets.only(top: 16, bottom: 8),
+                            child: TitleSelector(
+                              titles: [
+                                Strings.titleScience,
+                                Strings.titleMedicine,
+                                Strings.titleHistoric,
+                                Strings.titleLaw,
+                                Strings.titleFood,
+                                Strings.titleSport
+                              ],
+                              bloc: _sienceTitleBloc,
+                              firstTab: firstTabState,
+                            ),
                           ),
-                          loading
-                              ? Container(
-                                  height: MediaQuery.of(context).size.height,
-                                  child: Center(
-                                    child:
-                                        new MyLoadingBar(animation: "Untitled"),
-                                  ),
-                                )
-                              : Container(),
-                          nothingFound
-                              ? Container(
-                                  height: MediaQuery.of(context).size.height,
-                                  child: Center(
-                                    child: Container(
-                                      width: 170,
-                                      height:
-                                          MediaQuery.of(context).size.height,
-                                      child: Center(
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          children: [
-                                            NotFoundBar(),
-                                            SizedBox(
-                                              height: 8,
-                                            ),
-                                            Text(
-                                              '${Strings.bookNotFound}',
-                                              style: TextStyle(
-                                                  fontFamily: "IranSans",
-                                                  fontSize: 18,
-                                                  color: Colors.black87),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
+                          BlocBuilder<TitleBloc, TitleState>(
+                            builder: (context, state) {
+                              if (state is TitleInitial) {
+                                return Container();
+                              } else if (state is TitleLoading) {
+                                return Container();
+                              } else if (state is TitleSuccess)
+                                return TitleDetailsTab(state.model);
+                              else if (state is TitleFailure) {
+                                return Text('failure');
+                              } else if (state is TitleNothingFound) {
+                                return Container();
+                              } else if (state is TitlePagination) {
+                                return TitleDetailsTab(state.model);
+                              } else {
+                                return Container();
+                              }
+                            },
+                          ),
+                          progress
+                              ? Padding(
+                                  padding:
+                                      const EdgeInsets.only(bottom: 8, top: 4),
+                                  child: CircularProgressIndicator(
+                                    valueColor:
+                                        new AlwaysStoppedAnimation<Color>(
+                                            IColors.boldGreen),
                                   ),
                                 )
                               : Container(),
                         ],
                       ),
-                    ),
-                  );
-                } else {
-                  return NoNetworkFlare();
-                }
-              },
-            )),
+                      loading
+                          ? Container(
+                              height: MediaQuery.of(context).size.height,
+                              child: Center(
+                                child: new MyLoadingBar(animation: "Untitled"),
+                              ),
+                            )
+                          : Container(),
+                      nothingFound
+                          ? Container(
+                              height: MediaQuery.of(context).size.height,
+                              child: Center(
+                                child: Container(
+                                  width: 170,
+                                  height: MediaQuery.of(context).size.height,
+                                  child: Center(
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        NotFoundBar(),
+                                        SizedBox(
+                                          height: 8,
+                                        ),
+                                        Text(
+                                          '${Strings.bookNotFound}',
+                                          style: TextStyle(
+                                              fontFamily: "IranSans",
+                                              fontSize: 18,
+                                              color: Colors.black87),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            )
+                          : Container(),
+                    ],
+                  ),
+                ),
+              );
+            } else {
+              return NoNetworkFlare();
+            }
+          },
+        )),
       ),
     );
   }

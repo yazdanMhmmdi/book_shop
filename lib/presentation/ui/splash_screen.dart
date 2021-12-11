@@ -36,14 +36,14 @@ class _SplashScreenState extends State<SplashScreen> {
                 });
                 Timer(Duration(seconds: 3), () async {
                   if (await getSharedPrefs() == "") {
-                    Navigator.pushNamedAndRemoveUntil(context, '/login', (e) => false);
+                    Navigator.pushNamedAndRemoveUntil(
+                        context, '/login', (e) => false);
                   } else {
-                    Navigator.pushNamedAndRemoveUntil(context, '/home', (e) => false);
+                    Navigator.pushNamedAndRemoveUntil(
+                        context, '/home', (e) => false);
                   }
                 });
-              } else if (state is InternetLoading) {
-                return Container();
-              }
+              } else if (state is InternetLoading) {}
             },
             builder: (context, state) {
               if (state is InternetConnected) {
@@ -75,7 +75,7 @@ class _SplashScreenState extends State<SplashScreen> {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     String id = "";
 
-    id = (prefs.getString('id') == null ? "" : prefs.getString('id'));
+    id = (prefs.getString('id') ?? "");
     print('sharedPrefs : $id');
     return id;
   }

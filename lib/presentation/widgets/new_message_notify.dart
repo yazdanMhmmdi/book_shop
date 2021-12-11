@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class NewMessageNotify extends StatelessWidget {
   String newMessageCount;
-  NewMessageNotify({@required this.newMessageCount});
+  NewMessageNotify({required this.newMessageCount});
   @override
   Widget build(BuildContext context) {
     return Positioned(

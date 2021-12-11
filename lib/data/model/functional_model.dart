@@ -1,9 +1,12 @@
 class FunctionalModel {
-  String error;
-  String errorMessage;
-  String status;
-
-  FunctionalModel({this.error, this.errorMessage, this.status});
+  FunctionalModel({
+    required this.error,
+    required this.errorMessage,
+    required this.status,
+  });
+  late final String error;
+  late final String errorMessage;
+  late final String status;
 
   FunctionalModel.fromJson(Map<String, dynamic> json) {
     error = json['error'];
@@ -12,10 +15,10 @@ class FunctionalModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['error'] = this.error;
-    data['error_message'] = this.errorMessage;
-    data['status'] = this.status;
-    return data;
+    final _data = <String, dynamic>{};
+    _data['error'] = error;
+    _data['error_message'] = errorMessage;
+    _data['status'] = status;
+    return _data;
   }
 }

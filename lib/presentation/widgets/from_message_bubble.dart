@@ -3,8 +3,8 @@ import 'package:book_shop/constants/strings.dart';
 import 'package:flutter/material.dart';
 
 class FromMessageBubble extends StatelessWidget {
-  String message;
-  FromMessageBubble({@required this.message});
+  late String message;
+  FromMessageBubble({required this.message});
   @override
   Widget build(BuildContext context) {
     return Padding(

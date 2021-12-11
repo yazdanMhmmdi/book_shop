@@ -9,29 +9,29 @@ enum ButtonState { idle, loading, success, fail }
 class ProgressButton extends StatefulWidget {
   final Map<ButtonState, Widget> stateWidgets;
   final Map<ButtonState, Color> stateColors;
-  final Function onPressed;
-  final Function onAnimationEnd;
+  final Function() onPressed;
+  Function onAnimationEnd;
   ButtonState state;
   final minWidth;
   final maxWidth;
   double radius;
   final height;
-  final ProgressIndicator progressIndicator;
+  final CircularProgressIndicator progressIndicator;
   final MainAxisAlignment progressIndicatorAligment;
   final EdgeInsets padding;
 
   ProgressButton({
-    Key key,
-    @required this.stateWidgets,
-    @required this.stateColors,
+    // required Key key,
+    required this.stateWidgets,
+    required this.stateColors,
     this.state = ButtonState.idle,
-    this.onPressed,
-    this.onAnimationEnd,
+    required this.onPressed,
+    required this.onAnimationEnd,
     this.minWidth = 200.0,
     this.maxWidth = 400.0,
     this.radius = 16.0,
     this.height = 53.0,
-    this.progressIndicator,
+    required this.progressIndicator,
     this.progressIndicatorAligment = MainAxisAlignment.spaceBetween,
     this.padding = EdgeInsets.zero,
   })  : assert(
@@ -43,8 +43,8 @@ class ProgressButton extends StatefulWidget {
           stateColors != null &&
               stateColors.keys.toSet().containsAll(ButtonState.values.toSet()),
           'Must be non-null widgetds provided in map of stateWidgets. Missing keys => ${ButtonState.values.toSet().difference(stateColors.keys.toSet())}',
-        ),
-        super(key: key);
+        );
+  // super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -52,18 +52,18 @@ class ProgressButton extends StatefulWidget {
   }
 
   factory ProgressButton.icon({
-    @required Map<ButtonState, IconedButton> iconedButtons,
-    Function onPressed,
+    required Map<ButtonState, IconedButton> iconedButtons,
+    required Function() onPressed,
     ButtonState state = ButtonState.idle,
-    Function animationEnd,
+    required Function animationEnd,
     maxWidth: 170.0,
     minWidth: 58.0,
     height: 30.0,
     radius: 100.0,
     double iconPadding: 4.0,
-    TextStyle textStyle,
-    CircularProgressIndicator progressIndicator,
-    MainAxisAlignment progressIndicatorAligment,
+    TextStyle? textStyle,
+    required CircularProgressIndicator progressIndicator,
+    MainAxisAlignment? progressIndicatorAligment,
     EdgeInsets padding = EdgeInsets.zero,
   }) {
     assert(
@@ -78,19 +78,19 @@ class ProgressButton extends StatefulWidget {
 
     Map<ButtonState, Widget> stateWidgets = {
       ButtonState.idle: buildChildWithIcon(
-          iconedButtons[ButtonState.idle], iconPadding, textStyle),
+          iconedButtons[ButtonState.idle]!, iconPadding, textStyle),
       ButtonState.loading: Column(),
       ButtonState.fail: buildChildWithIcon(
-          iconedButtons[ButtonState.fail], iconPadding, textStyle),
+          iconedButtons[ButtonState.fail]!, iconPadding, textStyle),
       ButtonState.success: buildChildWithIcon(
-          iconedButtons[ButtonState.success], iconPadding, textStyle)
+          iconedButtons[ButtonState.success]!, iconPadding, textStyle)
     };
 
     Map<ButtonState, Color> stateColors = {
-      ButtonState.idle: iconedButtons[ButtonState.idle].color,
-      ButtonState.loading: iconedButtons[ButtonState.loading].color,
-      ButtonState.fail: iconedButtons[ButtonState.fail].color,
-      ButtonState.success: iconedButtons[ButtonState.success].color,
+      ButtonState.idle: iconedButtons[ButtonState.idle]!.color,
+      ButtonState.loading: iconedButtons[ButtonState.loading]!.color,
+      ButtonState.fail: iconedButtons[ButtonState.fail]!.color,
+      ButtonState.success: iconedButtons[ButtonState.success]!.color,
     };
 
     return ProgressButton(
@@ -111,15 +111,15 @@ class ProgressButton extends StatefulWidget {
 
 class _ProgressButtonState extends State<ProgressButton>
     with TickerProviderStateMixin {
-  AnimationController colorAnimationController;
-  Animation<Color> colorAnimation;
-  double width;
+  late AnimationController colorAnimationController;
+  late Animation<Color?> colorAnimation;
+  late double width;
   Duration animationDuration = Duration(milliseconds: 500);
-  Widget progressIndicator;
+  late Widget progressIndicator;
 
   void startAnimations(ButtonState oldState, ButtonState newState) {
-    Color begin = widget.stateColors[oldState];
-    Color end = widget.stateColors[newState];
+    Color begin = widget.stateColors[oldState]!;
+    Color end = widget.stateColors[newState]!;
     if (newState == ButtonState.loading) {
       width = widget.minWidth;
       widget.radius = 100;
@@ -158,9 +158,7 @@ class _ProgressButtonState extends State<ProgressButton>
     colorAnimationController.forward();
   }
 
-  Color get backgroundColor => colorAnimation == null
-      ? widget.stateColors[widget.state]
-      : colorAnimation.value ?? widget.stateColors[widget.state];
+  Color? get backgroundColor => widget.stateColors[widget.state];
 
   @override
   void initState() {
@@ -176,10 +174,7 @@ class _ProgressButtonState extends State<ProgressButton>
       }
     });
 
-    progressIndicator = widget.progressIndicator ??
-        CircularProgressIndicator(
-            backgroundColor: widget.stateColors[widget.state],
-            valueColor: AlwaysStoppedAnimation<Color>(Colors.white));
+    progressIndicator = widget.progressIndicator;
   }
 
   @override
@@ -193,13 +188,13 @@ class _ProgressButtonState extends State<ProgressButton>
     super.didUpdateWidget(oldWidget);
 
     if (oldWidget.state != widget.state) {
-      colorAnimationController?.reset();
+      colorAnimationController.reset();
       startAnimations(oldWidget.state, widget.state);
     }
   }
 
   Widget getButtonChild(bool visibility) {
-    Widget buttonChild = widget.stateWidgets[widget.state];
+    Widget buttonChild = widget.stateWidgets[widget.state]!;
     if (widget.state == ButtonState.loading) {
       return Row(
         mainAxisAlignment: widget.progressIndicatorAligment,

@@ -2,7 +2,7 @@ import 'package:book_shop/constants/colors.dart';
 import 'package:book_shop/constants/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_slidable/src/widgets/slidable.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 
 const bool _kCloseOnTap = true;
 
@@ -13,10 +13,10 @@ abstract class ClosableSlideAction extends StatelessWidget {
   ///
   /// The [closeOnTap] argument must not be null.
   const ClosableSlideAction({
-    Key key,
-    this.color,
-    this.onTap,
-    @required this.actionBorderRadius,
+    Key? key,
+    required this.color,
+    required this.onTap,
+    required this.actionBorderRadius,
     this.closeOnTap = _kCloseOnTap,
   }) : super(key: key);
 
@@ -36,7 +36,7 @@ abstract class ClosableSlideAction extends StatelessWidget {
   /// that encloses the given context.
   void _handleCloseAfterTap(BuildContext context) {
     onTap.call();
-    Slidable.of(context).close();
+    Slidable.of(context)!.close();
   }
 
   @override
@@ -83,26 +83,25 @@ class SlideAction extends ClosableSlideAction {
   ///
   /// The [closeOnTap] argument must not be null.
   SlideAction({
-    Key key,
-    @required this.child,
-    VoidCallback onTap,
-    Color color,
-    double actionBorderRadius,
-    Decoration decoration,
+    required Key key,
+    required this.child,
+    required VoidCallback onTap,
+    required Color color,
+    required double actionBorderRadius,
+    required Decoration decoration,
     bool closeOnTap = _kCloseOnTap,
   })  : assert(decoration == null || decoration.debugAssertIsValid()),
         assert(
             color == null || decoration == null,
             'Cannot provide both a color and a decoration\n'
             'The color argument is just a shorthand for "decoration:  BoxDecoration(color: color)".'),
-        decoration =
-            decoration ?? (color != null ? BoxDecoration(color: color) : null),
+        decoration = decoration,
         super(
           key: key,
           onTap: onTap,
           closeOnTap: closeOnTap,
-          color: color ?? Colors.transparent,
-          actionBorderRadius: actionBorderRadius ?? 0,
+          color: color,
+          actionBorderRadius: actionBorderRadius,
         );
 
   /// The decoration to paint behind the [child].
@@ -133,21 +132,19 @@ class MyIconSlideAction extends ClosableSlideAction {
   ///
   /// The [closeOnTap] argument must not be null.
   const MyIconSlideAction({
-    Key key,
-    this.icon,
-    this.iconWidget,
-    this.caption,
-    Color color,
-    double actionBorderRadius,
-    this.foregroundColor,
-    VoidCallback onTap,
+    required this.icon,
+    required this.iconWidget,
+    required this.caption,
+    required Color color,
+    required double actionBorderRadius,
+    this.foregroundColor = Colors.red,
+    required VoidCallback onTap,
     bool closeOnTap = _kCloseOnTap,
   })  : assert(icon != null || iconWidget != null,
             'Either set icon or iconWidget.'),
         super(
-          key: key,
-          color: color ?? Colors.white,
-          actionBorderRadius: actionBorderRadius ?? 0,
+          color: color,
+          actionBorderRadius: actionBorderRadius,
           onTap: onTap,
           closeOnTap: closeOnTap,
         );
@@ -180,7 +177,7 @@ class MyIconSlideAction extends ClosableSlideAction {
         Flexible(
           child: Icon(
             icon,
-            color: foregroundColor ?? estimatedColor,
+            color: foregroundColor,
           ),
         ),
       );

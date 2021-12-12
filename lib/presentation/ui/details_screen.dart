@@ -360,16 +360,16 @@ class _DetailsScreenState extends State<DetailsScreen>
   }
 
   void _getArguments() {
-    description = arguments['description']!;
-    pagesCount = arguments['pagesCount']!;
-    language = arguments['language']!;
-    coverType = arguments['coverType']!;
-    thumbPicture = arguments['thumbPicture']!;
-    id = arguments["post_id"]!;
-    writer = arguments['writer']!;
-    voteCount = arguments['voteCount']!;
-    name = arguments['name']!;
-    price = arguments['price']!;
+    description = arguments['description'] ?? "";
+    pagesCount = arguments['pagesCount'] ?? "";
+    language = arguments['language'] ?? "";
+    coverType = arguments['coverType'] ?? "";
+    thumbPicture = arguments['thumbPicture'] ?? "";
+    id = arguments["post_id"] ?? "";
+    writer = arguments['writer'] ?? "";
+    voteCount = arguments['voteCount'] ?? "";
+    name = arguments['name'] ?? "";
+    price = arguments['price'] ?? "";
   }
 
   void _pullDownAnimation() {

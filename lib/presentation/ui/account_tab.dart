@@ -47,6 +47,7 @@ class _AccountTabState extends State<AccountTab> {
     return ScrollConfiguration(
       behavior: MyCustomScrollBehavior(),
       child: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
         child: SafeArea(
           child: Container(
             child: BlocConsumer<AccountBloc, AccountState>(

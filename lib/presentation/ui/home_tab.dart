@@ -42,6 +42,7 @@ class HomeTab extends StatelessWidget {
           return ScrollConfiguration(
             behavior: MyCustomScrollBehavior(),
             child: SingleChildScrollView(
+              physics: BouncingScrollPhysics(),
               child: Directionality(
                 textDirection: TextDirection.rtl,
                 child: Column(

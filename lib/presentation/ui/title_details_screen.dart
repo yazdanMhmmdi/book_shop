@@ -86,6 +86,7 @@ class _TitleDetailsScreenState extends State<TitleDetailsScreen> {
               return ScrollConfiguration(
                 behavior: MyCustomScrollBehavior(),
                 child: SingleChildScrollView(
+                  physics: BouncingScrollPhysics(),
                   controller: _controller,
                   child: Directionality(
                     textDirection: TextDirection.rtl,

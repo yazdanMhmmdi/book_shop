@@ -59,6 +59,7 @@ class _BasketTabState extends State<BasketTab> {
                 : ScrollConfiguration(
                     behavior: MyCustomScrollBehavior(),
                     child: SingleChildScrollView(
+                      physics: BouncingScrollPhysics(),
                       child: SafeArea(
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 16),

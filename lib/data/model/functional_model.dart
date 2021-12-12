@@ -9,9 +9,9 @@ class FunctionalModel {
   late final String status;
 
   FunctionalModel.fromJson(Map<String, dynamic> json) {
-    error = json['error'];
-    errorMessage = json['error_message'];
-    status = json['status'];
+    error = json['error'] ?? "";
+    errorMessage = json['error_message'] ?? "";
+    status = json['status'] ?? "";
   }
 
   Map<String, dynamic> toJson() {

@@ -1,4 +1,3 @@
-
 class ChatModel {
   ChatModel({
     required this.chats,
@@ -44,28 +43,19 @@ class Chats {
   late var time;
 
   Chats.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    message = json['message'];
-    fromId = json['from_id'];
-    userId = json['user_id'];
-    bookId = json['book_id'];
-    conversationId = json['conversation_id'];
-    date = null;
-    isRead = json['is_read'];
-    time = null;
+    id = json['id'] ?? "";
+    message = json['message'] ?? "";
+    fromId = json['from_id'] ?? "";
+    userId = json['user_id'] ?? "";
+    bookId = json['book_id'] ?? "";
+    conversationId = json['conversation_id'] ?? "";
+    date = json['data'];
+    isRead = json['is_read'] ?? "";
+    time = json['time'];
   }
 
   Map<String, dynamic> toJson() {
     final _data = <String, dynamic>{};
-    _data['0'] = 0;
-    _data['1'] = 1;
-    _data['2'] = 2;
-    _data['3'] = 3;
-    _data['4'] = 4;
-    _data['5'] = 5;
-    _data['6'] = 6;
-    _data['7'] = 7;
-    _data['8'] = 8;
     _data['id'] = id;
     _data['message'] = message;
     _data['from_id'] = fromId;
@@ -92,10 +82,10 @@ class Data {
   late final int offsetPage;
 
   Data.fromJson(Map<String, dynamic> json) {
-    oprationType = json['opration_type'];
-    totalPages = json['total_pages'];
-    currentPage = json['current_page'];
-    offsetPage = json['offset_page'];
+    oprationType = json['opration_type'] ?? "";
+    totalPages = json['total_pages'] ?? "";
+    currentPage = json['current_page'] ?? "";
+    offsetPage = json['offset_page'] ?? "";
   }
 
   Map<String, dynamic> toJson() {

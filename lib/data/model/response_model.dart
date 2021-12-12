@@ -7,8 +7,8 @@ class ResponseModel {
   late final String body;
 
   ResponseModel.fromJson(Map<String, dynamic> json) {
-    status = json['status'];
-    body = json['body'];
+    status = json['status'] ?? "";
+    body = json['body'] ?? "";
   }
 
   Map<String, dynamic> toJson() {

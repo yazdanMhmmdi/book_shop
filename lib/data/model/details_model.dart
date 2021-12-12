@@ -51,21 +51,21 @@ class Details {
   late final String categoryId;
 
   Details.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    cover = json['cover'];
-    pagesCount = json['pages_count'];
-    voteCount = json['vote_count'];
-    writer = json['writer'];
-    description = json['description'];
-    name = json['name'];
-    price = json['price'];
-    language = json['language'];
-    coverType = json['cover_type'];
-    pictureThumb = json['picture_thumb'];
-    picture = json['picture'];
-    salesCount = json['sales_count'];
-    isBanner = json['is_banner'];
-    categoryId = json['category_id'];
+    id = json['id'] ?? "";
+    cover = json['cover'] ?? "";
+    pagesCount = json['pages_count'] ?? "";
+    voteCount = json['vote_count'] ?? "";
+    writer = json['writer'] ?? "";
+    description = json['description'] ?? "";
+    name = json['name'] ?? "";
+    price = json['price'] ?? "";
+    language = json['language'] ?? "";
+    coverType = json['cover_type'] ?? "";
+    pictureThumb = json['picture_thumb'] ?? "";
+    picture = json['picture'] ?? "";
+    salesCount = json['sales_count'] ?? "";
+    isBanner = json['is_banner'] ?? "";
+    categoryId = json['category_id'] ?? "";
   }
 
   Map<String, dynamic> toJson() {

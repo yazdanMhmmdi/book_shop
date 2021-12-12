@@ -61,21 +61,21 @@ class Books {
   late final String categoryId;
 
   Books.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    cover = json['cover'];
-    pagesCount = json['pages_count'];
-    voteCount = double.parse(json['vote_count']);
-    writer = json['writer'];
-    description = json['description'];
-    name = json['name'];
-    price = json['price'];
-    language = json['language'];
-    coverType = json['cover_type'];
-    pictureThumb = json['picture_thumb'];
-    picture = json['picture'];
+    id = json['id'] ?? "";
+    cover = json['cover'] ?? "";
+    pagesCount = json['pages_count'] ?? "";
+    voteCount = double.parse(json['vote_count'] ?? "0");
+    writer = json['writer'] ?? "";
+    description = json['description'] ?? "";
+    name = json['name'] ?? "";
+    price = json['price'] ?? "";
+    language = json['language'] ?? "";
+    coverType = json['cover_type'] ?? "";
+    pictureThumb = json['picture_thumb'] ?? "";
+    picture = json['picture'] ?? "";
     salesCount = json['sales_count'];
     isBanner = json['is_banner'];
-    categoryId = json['category_id'];
+    categoryId = json['category_id'] ?? "";
   }
 
   Map<String, dynamic> toJson() {
@@ -111,9 +111,9 @@ class Data {
   late final int offsetPage;
 
   Data.fromJson(Map<String, dynamic> json) {
-    totalPages = json['total_pages'];
-    currentPage = json['current_page'];
-    offsetPage = json['offset_page'];
+    totalPages = json['total_pages'] ?? 0;
+    currentPage = json['current_page'] ?? "";
+    offsetPage = json['offset_page'] ?? 0;
   }
 
   Map<String, dynamic> toJson() {

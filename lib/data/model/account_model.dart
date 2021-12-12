@@ -33,11 +33,11 @@ class Account {
       required this.thumbPicture});
 
   Account.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    username = json['username'];
-    password = json['password'];
-    picture = json['picture'];
-    thumbPicture = json['thumb_picture'];
+    id = json['id'] ?? "";
+    username = json['username'] ?? "";
+    password = json['password'] ?? "";
+    picture = json['picture'] ?? "";
+    thumbPicture = json['thumb_picture'] ?? "";
   }
 
   Map<String, dynamic> toJson() {

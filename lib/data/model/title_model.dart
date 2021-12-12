@@ -5,12 +5,12 @@ class TitleModel {
   });
   late final List<Books> books;
   late final Data data;
-  late List<Books> sience;
-  late List<Books> medicine;
-  late List<Books> history;
-  late List<Books> law;
-  late List<Books> food;
-  late List<Books> sport;
+  late List<Books> sience = <Books>[];
+  late List<Books> medicine = <Books>[];
+  late List<Books> history = <Books>[];
+  late List<Books> law = <Books>[];
+  late List<Books> food = <Books>[];
+  late List<Books> sport = <Books>[];
 
   TitleModel.fromJson(Map<String, dynamic> json) {
     books = List.from(json['books']).map((e) => Books.fromJson(e)).toList();

@@ -10,67 +10,65 @@ part 'auth_event.dart';
 part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  AuthBloc() : super(AuthInitial());
+  AuthBloc() : super(AuthInitial()) {
+    AuthRepository _authRepository = new AuthRepository();
+    late SharedPreferences _prefs;
 
-  AuthRepository _authRepository = new AuthRepository();
-  late SharedPreferences _prefs;
-  @override
-  Stream<AuthState> mapEventToState(
-    AuthEvent event,
-  ) async* {
-    AuthModel _authModel;
+    Future<bool> setSharedPrefes(_model) async {
+      return await _prefs.setString("id", _model.id.toString());
+    }
 
-    _prefs = await SharedPreferences.getInstance();
-    if (event is LoginEvent) {
-      try {
-        print('AuthInitial');
-        yield AuthLoading();
-        print('AuthLoading');
-        _authModel =
-            await _authRepository.login(event.username, event.password);
-        if (_authModel.status == "true") {
-          yield AuthSuccess(_authModel);
+    on<AuthEvent>((event, emit) async {
+      AuthModel _authModel;
+
+      _prefs = await SharedPreferences.getInstance();
+      if (event is LoginEvent) {
+        try {
+          print('AuthInitial');
+          emit(AuthLoading());
+          print('AuthLoading');
+          _authModel =
+              await _authRepository.login(event.username, event.password);
+          if (_authModel.status == "true") {
+            emit(AuthSuccess(_authModel));
+
+            if (await setSharedPrefes(_authModel)) {
+              //executing shared prefs and test input
+              print('setting login sharedPrefs successfully');
+              final SharedPreferences p = await _prefs;
+              print("recoverd sharedPrefs: ${p.getString("id")}");
+            }
+
+            print('AuthSuccess');
+          } else {
+            emit(AuthWrong());
+            print('AuthWrong');
+          }
+        } catch (e) {
+          emit(AuthFailure());
+          print('auth failure ${e.toString()}');
+        }
+      } else if (event is SignUpEvent) {
+        try {
+          emit(AuthLoading());
+          print('AuthLoading');
+          _authModel = await _authRepository.signUp(
+              username: event.username, password: event.password);
 
           if (await setSharedPrefes(_authModel)) {
             //executing shared prefs and test input
-            print('setting login sharedPrefs successfully');
-            final SharedPreferences p = await _prefs;
+            print('setting sign up sharedPrefs successfully');
+            final SharedPreferences p = _prefs;
             print("recoverd sharedPrefs: ${p.getString("id")}");
           }
 
+          emit(AuthSuccess(_authModel));
           print('AuthSuccess');
-        } else {
-          yield AuthWrong();
-          print('AuthWrong');
+        } catch (e) {
+          emit(AuthFailure());
+          print('auth failure ${e.toString()}');
         }
-      } catch (e) {
-        yield AuthFailure();
-        print('auth failure ${e.toString()}');
       }
-    } else if (event is SignUpEvent) {
-      try {
-        yield AuthLoading();
-        print('AuthLoading');
-        _authModel = await _authRepository.signUp(
-            username: event.username, password: event.password);
-
-        if (await setSharedPrefes(_authModel)) {
-          //executing shared prefs and test input
-          print('setting sign up sharedPrefs successfully');
-          final SharedPreferences p = _prefs;
-          print("recoverd sharedPrefs: ${p.getString("id")}");
-        }
-
-        yield AuthSuccess(_authModel);
-        print('AuthSuccess');
-      } catch (e) {
-        yield AuthFailure();
-        print('auth failure ${e.toString()}');
-      }
-    }
-  }
-
-  Future<bool> setSharedPrefes(_model) async {
-    return await _prefs.setString("id", _model.id.toString());
+    });
   }
 }

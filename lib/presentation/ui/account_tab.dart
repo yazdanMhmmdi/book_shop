@@ -16,6 +16,7 @@ import 'package:book_shop/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:progress_state_button/progress_button.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AccountTab extends StatefulWidget {
   bool _usernameStatus = true, _passwordStatus = true;
@@ -195,6 +196,8 @@ class _AccountTabState extends State<AccountTab> {
                                                   text:
                                                       "${Strings.accountEdit}",
                                                   onTap: () async {
+                                                      SharedPreferences _prefs = await SharedPreferences.getInstance();
+                                                    _prefs.clear();
                                                     // print('s')
                                                     authValidatiors();
                                                     if (widget

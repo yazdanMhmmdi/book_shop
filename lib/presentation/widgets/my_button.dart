@@ -1,65 +1,48 @@
 import 'dart:async';
 
 import 'package:book_shop/constants/colors.dart';
-import 'package:book_shop/presentation/widgets/progress_button.dart';
 import 'package:flutter/material.dart';
 import 'package:progress_state_button/progress_button.dart';
 
-class MyButton extends StatefulWidget {
+class MyButton extends StatelessWidget {
   late String text;
   Function onTap;
-  var buttonState = ButtonState.idle;
+  ButtonState? buttonState = ButtonState.idle;
+  MyButton({
+    required this.text,
+    required this.onTap,
+    required this.buttonState,
+  });
 
-  void runAnimation(var state) {
-    if (state == ButtonState.loading) {
-    } else if (state == ButtonState.success) {
-    } else if (state == ButtonState.fail) {
-    } else if (state == ButtonState.idle) {}
-  }
-
-  MyButton(
-      {required this.text, required this.onTap, required this.buttonState});
-
-  @override
-  _MyButtonState createState() => _MyButtonState();
-}
-
-class _MyButtonState extends State<MyButton> {
   double buttonRadius = 8.0;
   late double maxWidth;
   bool maxWidthFlag = true;
-  @override
-  void initState() {
-    super.initState();
-  }
-
+  ButtonState? mainButtonState = ButtonState.idle;
   @override
   Widget build(BuildContext context) {
-    setState(() {
-      if (maxWidthFlag) {
-        maxWidth = MediaQuery.of(context).size.width;
-        maxWidthFlag = false;
-      }
-    });
+    if (maxWidthFlag) {
+      maxWidth = MediaQuery.of(context).size.width;
+      maxWidthFlag = false;
+    }
+
     return ProgressButton(
       minWidth: 50.0,
       height: 46.0,
       maxWidth: maxWidth,
       radius: buttonRadius,
-      onAnimationEnd: () {},
       progressIndicator: CircularProgressIndicator(
         valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
       ),
       stateWidgets: {
         ButtonState.idle: Text(
-          "${widget.text}",
+          "${text}",
           style: TextStyle(
               color: Colors.white,
               fontFamily: "IranSans",
               fontWeight: FontWeight.w700,
               fontSize: 16),
         ),
-        ButtonState.loading: Container(),
+        ButtonState.loading: Text("s"),
         ButtonState.fail: Icon(
           Icons.close,
           color: Colors.white,
@@ -79,7 +62,8 @@ class _MyButtonState extends State<MyButton> {
         // setState(() {
         //   buttonState = widget.onTap(); //asdsadsdd
         // });
-        widget.onTap();
+        onTap.call();
+
         // else if (widget.buttonState == ButtonState.idle) {
         //   setState(() {
         //     widget.buttonState = ButtonState.idle;
@@ -94,7 +78,7 @@ class _MyButtonState extends State<MyButton> {
         //   });
         // }
       },
-      state: widget.buttonState,
+      state: buttonState!,
     );
   }
 }

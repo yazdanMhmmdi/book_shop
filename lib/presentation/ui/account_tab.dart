@@ -11,7 +11,6 @@ import 'package:book_shop/presentation/widgets/account_item.dart';
 import 'package:book_shop/presentation/widgets/my_button.dart';
 import 'package:book_shop/presentation/widgets/my_text_field.dart';
 import 'package:book_shop/presentation/widgets/my_tool_bar.dart';
-import 'package:book_shop/presentation/widgets/progress_button.dart';
 import 'package:book_shop/presentation/widgets/warning_bar.dart';
 import 'package:book_shop/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +28,7 @@ class _AccountTabState extends State<AccountTab> {
   late TextEditingController usernameController;
   late TextEditingController passwordController;
   late String username = "";
-  ButtonState _buttonState = ButtonState.idle;
+  ButtonState? _buttonState = ButtonState.idle;
 
   @override
   void initState() {
@@ -256,7 +255,7 @@ class _AccountTabState extends State<AccountTab> {
     );
   }
 
-  void _accountButtonStateListener(state) {
+  void _accountButtonStateListener(AccountState state) {
     if (state is AccountEditingLoading) {
       setState(() {
         _buttonState = ButtonState.loading;

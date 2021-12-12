@@ -5,6 +5,7 @@ import 'package:book_shop/logic/bloc/title_bloc.dart';
 import 'package:book_shop/logic/cubit/internet_cubit.dart';
 import 'package:book_shop/presentation/ui/title_tab.dart';
 import 'package:book_shop/presentation/ui/vertical_card.dart';
+import 'package:book_shop/presentation/widgets/custom_scroll_behavior.dart';
 import 'package:book_shop/presentation/widgets/loading_bar.dart';
 import 'package:book_shop/presentation/widgets/no_network_flare.dart';
 import 'package:book_shop/presentation/widgets/not_found_bar.dart';
@@ -82,102 +83,107 @@ class _TitleDetailsScreenState extends State<TitleDetailsScreen> {
         }, child: BlocBuilder<InternetCubit, InternetState>(
           builder: (context, state) {
             if (state is InternetConnected) {
-              return SingleChildScrollView(
-                controller: _controller,
-                child: Directionality(
-                  textDirection: TextDirection.rtl,
-                  child: Stack(
-                    children: [
-                      Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(top: 16, bottom: 8),
-                            child: TitleSelector(
-                              titles: [
-                                Strings.titleScience,
-                                Strings.titleMedicine,
-                                Strings.titleHistoric,
-                                Strings.titleLaw,
-                                Strings.titleFood,
-                                Strings.titleSport
-                              ],
-                              bloc: _sienceTitleBloc,
-                              firstTab: firstTabState,
-                            ),
-                          ),
-                          BlocBuilder<TitleBloc, TitleState>(
-                            builder: (context, state) {
-                              if (state is TitleInitial) {
-                                return Container();
-                              } else if (state is TitleLoading) {
-                                return Container();
-                              } else if (state is TitleSuccess)
-                                return TitleDetailsTab(state.model);
-                              else if (state is TitleFailure) {
-                                return Text('failure');
-                              } else if (state is TitleNothingFound) {
-                                return Container();
-                              } else if (state is TitlePagination) {
-                                return TitleDetailsTab(state.model);
-                              } else {
-                                return Container();
-                              }
-                            },
-                          ),
-                          progress
-                              ? Padding(
-                                  padding:
-                                      const EdgeInsets.only(bottom: 8, top: 4),
-                                  child: CircularProgressIndicator(
-                                    valueColor:
-                                        new AlwaysStoppedAnimation<Color>(
-                                            IColors.boldGreen),
-                                  ),
-                                )
-                              : Container(),
-                        ],
-                      ),
-                      loading
-                          ? Container(
-                              height: MediaQuery.of(context).size.height,
-                              child: Center(
-                                child: new MyLoadingBar(animation: "Untitled"),
+              return ScrollConfiguration(
+                behavior: MyCustomScrollBehavior(),
+                child: SingleChildScrollView(
+                  controller: _controller,
+                  child: Directionality(
+                    textDirection: TextDirection.rtl,
+                    child: Stack(
+                      children: [
+                        Column(
+                          children: [
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(top: 16, bottom: 8),
+                              child: TitleSelector(
+                                titles: [
+                                  Strings.titleScience,
+                                  Strings.titleMedicine,
+                                  Strings.titleHistoric,
+                                  Strings.titleLaw,
+                                  Strings.titleFood,
+                                  Strings.titleSport
+                                ],
+                                bloc: _sienceTitleBloc,
+                                firstTab: firstTabState,
                               ),
-                            )
-                          : Container(),
-                      nothingFound
-                          ? Container(
-                              height: MediaQuery.of(context).size.height,
-                              child: Center(
-                                child: Container(
-                                  width: 170,
-                                  height: MediaQuery.of(context).size.height,
-                                  child: Center(
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        NotFoundBar(),
-                                        SizedBox(
-                                          height: 8,
-                                        ),
-                                        Text(
-                                          '${Strings.bookNotFound}',
-                                          style: TextStyle(
-                                              fontFamily: "IranSans",
-                                              fontSize: 18,
-                                              color: Colors.black87),
-                                        ),
-                                      ],
+                            ),
+                            BlocBuilder<TitleBloc, TitleState>(
+                              builder: (context, state) {
+                                if (state is TitleInitial) {
+                                  return Container();
+                                } else if (state is TitleLoading) {
+                                  return Container();
+                                } else if (state is TitleSuccess)
+                                  return TitleDetailsTab(state.model);
+                                else if (state is TitleFailure) {
+                                  return Text('failure');
+                                } else if (state is TitleNothingFound) {
+                                  return Container();
+                                } else if (state is TitlePagination) {
+                                  return TitleDetailsTab(state.model);
+                                } else {
+                                  return Container();
+                                }
+                              },
+                            ),
+                            progress
+                                ? Padding(
+                                    padding: const EdgeInsets.only(
+                                        bottom: 8, top: 4),
+                                    child: CircularProgressIndicator(
+                                      valueColor:
+                                          new AlwaysStoppedAnimation<Color>(
+                                              IColors.boldGreen),
+                                    ),
+                                  )
+                                : Container(),
+                          ],
+                        ),
+                        loading
+                            ? Container(
+                                height: MediaQuery.of(context).size.height,
+                                child: Center(
+                                  child:
+                                      new MyLoadingBar(animation: "Untitled"),
+                                ),
+                              )
+                            : Container(),
+                        nothingFound
+                            ? Container(
+                                height: MediaQuery.of(context).size.height,
+                                child: Center(
+                                  child: Container(
+                                    width: 170,
+                                    height: MediaQuery.of(context).size.height,
+                                    child: Center(
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          NotFoundBar(),
+                                          SizedBox(
+                                            height: 8,
+                                          ),
+                                          Text(
+                                            '${Strings.bookNotFound}',
+                                            style: TextStyle(
+                                                fontFamily: "IranSans",
+                                                fontSize: 18,
+                                                color: Colors.black87),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                            )
-                          : Container(),
-                    ],
+                              )
+                            : Container(),
+                      ],
+                    ),
                   ),
                 ),
               );

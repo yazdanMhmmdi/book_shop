@@ -257,9 +257,13 @@ class _AccountTabState extends State<AccountTab> {
                       ),
                     ),
                     SizedBox(height: 16),
-                    FadeInAnimation(0.75, AccountItem(onTap: () {
-                      Navigator.pushNamed(context, '/chatList');
-                    })),
+                    // FadeInAnimation(0.75, 
+                    // AccountItem(onTap: () {
+                    //   Navigator.pushNamed(context, '/chatList');
+                    // }) //TODO: account items
+                    
+                    
+                    // ),
                   ],
                 );
               },

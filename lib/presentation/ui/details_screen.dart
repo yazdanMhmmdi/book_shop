@@ -110,30 +110,30 @@ class _DetailsScreenState extends State<DetailsScreen>
                     child: Stack(
                       children: [
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.only(top: 16, left: 24),
-                              child: IconButton(
-                                iconSize: 30,
-                                icon: Icon(
-                                  Icons.chat,
-                                  color: Colors.white,
-                                ),
-                                onPressed: () => Navigator.pushNamed(
-                                    context, '/chat',
-                                    arguments: <String, String>{
-                                      'post_id': "${id}",
-                                      'name': "${name}",
-                                      'writer': "${writer}",
-                                      'voteCount': "${voteCount}",
-                                      'thumbPicture': "${thumbPicture}",
-                                      'hero_type': "v",
-                                      'price': '${price}',
-                                      'user_id': "${user_id}",
-                                    }),
-                              ),
-                            ),
+                            // Padding( TODO: chat item
+                            //   padding: const EdgeInsets.only(top: 16, left: 24),
+                            //   child: IconButton(
+                            //     iconSize: 30,
+                            //     icon: Icon(
+                            //       Icons.chat,
+                            //       color: Colors.white,
+                            //     ),
+                            //     onPressed: () => Navigator.pushNamed(
+                            //         context, '/chat',
+                            //         arguments: <String, String>{
+                            //           'post_id': "${id}",
+                            //           'name': "${name}",
+                            //           'writer': "${writer}",
+                            //           'voteCount': "${voteCount}",
+                            //           'thumbPicture': "${thumbPicture}",
+                            //           'hero_type': "v",
+                            //           'price': '${price}',
+                            //           'user_id': "${user_id}",
+                            //         }),
+                            //   ),
+                            // ),
                             Padding(
                               padding:
                                   const EdgeInsets.only(top: 16, right: 24),

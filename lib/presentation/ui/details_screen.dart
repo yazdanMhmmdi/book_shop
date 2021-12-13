@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:book_shop/constants/assets.dart';
 import 'package:book_shop/constants/colors.dart';
+import 'package:book_shop/constants/numbers.dart';
 import 'package:book_shop/constants/strings.dart';
 import 'package:book_shop/data/repository/account_repository.dart';
 import 'package:book_shop/logic/bloc/basket_bloc.dart';
@@ -12,10 +13,12 @@ import 'package:book_shop/networking/image_address_provider.dart';
 import 'package:book_shop/presentation/animation/background_fade_transition.dart';
 import 'package:book_shop/presentation/animation/pull_up_transition.dart';
 import 'package:book_shop/presentation/widgets/custom_scroll_behavior.dart';
+import 'package:book_shop/presentation/widgets/detail_slider_widget/detail_slider_container.dart';
+import 'package:book_shop/presentation/widgets/detail_slider_widget/detail_slider_item.dart';
+import 'package:book_shop/presentation/widgets/detail_slider_widget/detail_slider_widget.dart';
 import 'package:book_shop/presentation/widgets/my_button.dart';
 import 'package:book_shop/presentation/widgets/no_network_flare.dart';
 import 'package:book_shop/presentation/widgets/progress_button.dart';
-import 'package:book_shop/presentation/widgets/slider_object.dart';
 import 'package:book_shop/presentation/widgets/widgets.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -72,7 +75,6 @@ class _DetailsScreenState extends State<DetailsScreen>
   Widget build(BuildContext context) {
     arguments = widget.args;
     _screenHeight = MediaQuery.of(context).size.height;
-    print("scrennHeight: ${_screenHeight}");
     // _detailsBloc.add(GetDetails(post_id: arguments["post_id"]));
     _getArguments();
     return WillPopScope(
@@ -206,12 +208,44 @@ class _DetailsScreenState extends State<DetailsScreen>
                                           SizedBox(
                                             height: 8,
                                           ),
-                                          SliderObject(
-                                            coverType: coverType,
-                                            voteCount: voteCount,
-                                            pageCount: pagesCount,
-                                            language: language,
-                                          ),
+                                          DetailSliderWidget(
+                                              duration: Duration(
+                                                  milliseconds: Numbers
+                                                      .animationDuration),
+                                              sliderContainers: [
+                                                DetailSliderContainer(
+                                                  detailSliderItems: [
+                                                    DetailSliderItem(
+                                                        title: "سن",
+                                                        subTitle: "21"),
+                                                    DetailSliderItem(
+                                                        title: "تعداد کتاب",
+                                                        subTitle: "2 جلد"),
+                                                    DetailSliderItem(
+                                                        title: "دسته بندی",
+                                                        subTitle: "3"),
+                                                    DetailSliderItem(
+                                                        title: "مجموع آرا",
+                                                        subTitle: "0")
+                                                  ],
+                                                ),
+                                                DetailSliderContainer(
+                                                  detailSliderItems: [
+                                                    DetailSliderItem(
+                                                        title: "زبان",
+                                                        subTitle: language),
+                                                    DetailSliderItem(
+                                                        title: "جلد",
+                                                        subTitle: coverType),
+                                                    DetailSliderItem(
+                                                        title: "صفحه",
+                                                        subTitle: pagesCount),
+                                                    DetailSliderItem(
+                                                        title: "رای",
+                                                        subTitle: voteCount)
+                                                  ],
+                                                ),
+                                              ]),
                                           SizedBox(
                                             height: 16,
                                           ),
@@ -417,5 +451,11 @@ class _DetailsScreenState extends State<DetailsScreen>
         });
       });
     });
+  }
+
+  @override
+  void dispose() {
+    _pullUpController.dispose();
+    super.dispose();
   }
 }

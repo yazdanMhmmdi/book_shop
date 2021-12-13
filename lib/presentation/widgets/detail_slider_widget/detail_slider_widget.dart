@@ -2,36 +2,29 @@ import 'dart:math';
 
 import 'package:book_shop/constants/colors.dart';
 import 'package:book_shop/constants/strings.dart';
+import 'package:book_shop/presentation/widgets/detail_slider_widget/detail_slider_container.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
-class SliderObject extends StatefulWidget {
-  String coverType, voteCount, pageCount, language;
-  SliderObject(
-      {required this.coverType,
-      required this.voteCount,
-      required this.pageCount,
-      required this.language});
+class DetailSliderWidget extends StatefulWidget {
+  Duration duration;
+  List<DetailSliderContainer> sliderContainers;
+  DetailSliderWidget({
+    required this.sliderContainers,
+    this.duration = const Duration(milliseconds: 350),
+  });
   @override
   _SliderObjectState createState() => _SliderObjectState();
 }
 
-class _SliderObjectState extends State<SliderObject> {
+class _SliderObjectState extends State<DetailSliderWidget> {
   // slider Animation
   Color _sliderLeftTextColor = Colors.black38;
   Color _sliderRightTextColor = Colors.black87;
-  int _sliderTextDuration = 350;
   AlignmentGeometry _sliderObjectAlignment = Alignment.centerRight;
   CarouselController _pageCarouselController = CarouselController();
-  Random _random = new Random();
-  late int _randAge, _randBookCount, _randCategory, _randVote;
   @override
   void initState() {
-    _randAge = _random.nextInt(90);
-    _randBookCount = _random.nextInt(20);
-    _randCategory = _random.nextInt(5);
-    _randVote = _random.nextInt(5);
-
     super.initState();
   }
 
@@ -49,7 +42,7 @@ class _SliderObjectState extends State<SliderObject> {
                     sliderAnimationRightClicked();
                   },
                   child: AnimatedDefaultTextStyle(
-                    duration: Duration(milliseconds: _sliderTextDuration),
+                    duration: widget.duration,
                     child: Text(
                       Strings.detailAboutBook,
                     ),
@@ -70,7 +63,7 @@ class _SliderObjectState extends State<SliderObject> {
                 sliderAnimationLeftClicked();
               },
               child: AnimatedDefaultTextStyle(
-                duration: Duration(milliseconds: _sliderTextDuration),
+                duration: widget.duration,
                 child: Text(
                   Strings.detailABoutPublisher,
                 ),
@@ -86,8 +79,9 @@ class _SliderObjectState extends State<SliderObject> {
         Stack(
           children: [
             AnimatedAlign(
-              duration: Duration(milliseconds: _sliderTextDuration),
+              duration: widget.duration,
               alignment: _sliderObjectAlignment,
+              curve: Curves.ease,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Container(
@@ -113,23 +107,12 @@ class _SliderObjectState extends State<SliderObject> {
                 disableCenter: true,
                 scrollDirection: Axis.horizontal,
                 autoPlay: false,
-                height: 88,
+                height: 90,
+                autoPlayCurve: Curves.ease,
                 viewportFraction: 1,
                 initialPage: 1,
                 enableInfiniteScroll: false),
-            items: [
-              objectSliderItem(
-                  "سن",
-                  _randAge.toString(),
-                  "تعداد کتاب",
-                  (_randBookCount.toString() + " جلد "),
-                  "دسته بندی",
-                  _randCategory.toString(),
-                  "مجموع آرا",
-                  (_randVote.toString())),
-              objectSliderItem("زبان", widget.language, "جلد", widget.coverType,
-                  "صفحه", widget.pageCount, "رای", widget.voteCount),
-            ],
+            items: widget.sliderContainers,
           ),
         ),
       ],
@@ -142,7 +125,7 @@ class _SliderObjectState extends State<SliderObject> {
       _sliderRightTextColor = Colors.black38;
       _sliderObjectAlignment = Alignment.centerLeft;
       _pageCarouselController.previousPage(
-          duration: Duration(milliseconds: _sliderTextDuration));
+          duration: widget.duration, curve: Curves.ease);
     });
   }
 
@@ -152,63 +135,7 @@ class _SliderObjectState extends State<SliderObject> {
       _sliderRightTextColor = Colors.black87;
       _sliderObjectAlignment = Alignment.centerRight;
       _pageCarouselController.nextPage(
-          duration: Duration(milliseconds: _sliderTextDuration));
+          duration: widget.duration, curve: Curves.ease);
     });
-  }
-
-  Widget objectSliderItem(
-      String first,
-      String second,
-      String third,
-      String fourth,
-      String fifth,
-      String sixth,
-      String seventh,
-      String eighth) {
-    return Builder(builder: (BuildContext context) {
-      return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 4),
-        child: Container(
-          width: MediaQuery.of(context).size.width,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8),
-            color: IColors.boldGreen.withOpacity(0.15),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                littleDialogBox("${second}", "$first"),
-                littleDialogBox("${fourth}", "$third"),
-                littleDialogBox("${sixth}", "$fifth"),
-                littleDialogBox("${eighth}", "$seventh")
-              ],
-            ),
-          ),
-        ),
-      );
-    });
-  }
-
-  Widget littleDialogBox(String title, String subTitle) {
-    return Column(
-      children: [
-        Text(
-          '$title',
-          style: TextStyle(
-            fontFamily: "iranSans",
-            fontSize: 20,
-            fontWeight: FontWeight.w700,
-            color: Colors.black87,
-          ),
-        ),
-        Text(
-          '$subTitle',
-          style: TextStyle(
-              fontFamily: "iranSans", fontSize: 18, color: Colors.black38),
-        )
-      ],
-    );
   }
 }

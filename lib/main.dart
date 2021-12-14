@@ -17,6 +17,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'logic/bloc/home_bloc.dart';
+import 'package:sizer/sizer.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,15 +33,17 @@ class _MyAppState extends State<MyApp> {
   final AppRouter _appRouter = new AppRouter();
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'فروشگاه کتاب',
-      theme: ThemeData(
-        primarySwatch: Colors.green,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      debugShowCheckedModeBanner: false,
-      onGenerateRoute: _appRouter.onGeneratedRoute,
-    );
+    return Sizer(builder: (context, orientation, deviceType) {
+      return MaterialApp(
+        title: 'فروشگاه کتاب',
+        theme: ThemeData(
+          primarySwatch: Colors.green,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+        ),
+        debugShowCheckedModeBanner: false,
+        onGenerateRoute: _appRouter.onGeneratedRoute,
+      );
+    });
   }
 
   @override

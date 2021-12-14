@@ -19,14 +19,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:progress_state_button/progress_button.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class AccountTab extends StatefulWidget {
+class SettingsTab extends StatefulWidget {
   bool _usernameStatus = true, _passwordStatus = true;
 
   @override
-  _AccountTabState createState() => _AccountTabState();
+  _SettingsTabState createState() => _SettingsTabState();
 }
 
-class _AccountTabState extends State<AccountTab> {
+class _SettingsTabState extends State<SettingsTab> {
   late TextEditingController usernameController;
   late TextEditingController passwordController;
   late String username = "";
@@ -81,7 +81,7 @@ class _AccountTabState extends State<AccountTab> {
                       height: 23,
                     ),
                     FadeInAnimation(
-                        0.25, MyToolBar(title: Strings.accountLabel)),
+                        0.25, MyToolBar(title: Strings.settingsLabel)),
                     SizedBox(
                       height: 16,
                     ),
@@ -90,15 +90,13 @@ class _AccountTabState extends State<AccountTab> {
                       child: FadeInAnimation(
                         0.5,
                         Container(
-                          height: 388,
                           child: Stack(
                             children: [
-                              Align(
-                                alignment: Alignment.bottomCenter,
+                              Padding(
+                                padding: const EdgeInsets.only(top: 43),
                                 child: FadeInAnimation(
                                   0.75,
                                   Container(
-                                    height: 345,
                                     width: double.infinity,
                                     decoration: BoxDecoration(
                                       color: IColors.green,
@@ -228,6 +226,9 @@ class _AccountTabState extends State<AccountTab> {
                                                       }
                                                     }),
                                               ),
+                                              SizedBox(
+                                                height: 22,
+                                              ),
                                             ],
                                           ),
                                         ),
@@ -257,12 +258,11 @@ class _AccountTabState extends State<AccountTab> {
                       ),
                     ),
                     SizedBox(height: 16),
-                    // FadeInAnimation(0.75, 
+                    // FadeInAnimation(0.75,
                     // AccountItem(onTap: () {
                     //   Navigator.pushNamed(context, '/chatList');
                     // }) //TODO: account items
-                    
-                    
+
                     // ),
                   ],
                 );

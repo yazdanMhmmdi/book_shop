@@ -30,7 +30,7 @@ class Strings {
   //title
   static final String bottomNavHome = "خانه";
   static final String bottomNavTitle = "موضوعات";
-  static final String bottomNavAccount = "حساب کاربری";
+  static final String bottomNavSettings = "تنظیمات";
   static final String bottomNavBasket = "سبد خرید";
   static final String bottomNavListofConversations = "لیست گفتگو ها";
   static final String titleScience = "علمی";
@@ -48,8 +48,8 @@ class Strings {
       " لورم ایپسوملورم ایپسوملورم ایپسوملورم ایپسوملورم ایپسوملورم ایپسوملورم ایپسوملورم ایپسوملورم ایپسوملورم ایپسوملورم ایپسوملورمایپسوملورمایپسوملورمایپسوملورمایپسوملورمایپسوملورمایپسوملورمایپسوملورمایپسوملورمایپسوملورمایپسوملورمایپسوملورمایپسوملورمایپسوملورمایپسوملورمایپسوملورمایپسوملورم ایپسوم";
   static final String detailsBuy = "خرید";
   //account
-  static final String accountLabel = "حساب کاربری";
-  static final String accountEdit = "ویرایش";
+  static final String settingsLabel = "تنظیمات";
+  static final String accountEdit = "ویرایش حساب کاربری";
   static final String accountWelcome = "خوش آمدید!";
 
   //title details s

@@ -7,7 +7,7 @@ import 'package:book_shop/logic/bloc/home_bloc.dart';
 import 'package:book_shop/logic/bloc/home_state.dart';
 import 'package:book_shop/logic/bloc/home_event.dart';
 import 'package:book_shop/logic/cubit/internet_cubit.dart';
-import 'package:book_shop/presentation/ui/account_tab.dart';
+import 'package:book_shop/presentation/ui/settings_tab.dart';
 import 'package:book_shop/presentation/ui/basket_tab.dart';
 import 'package:book_shop/presentation/ui/chat_list_screen.dart';
 import 'package:book_shop/presentation/ui/home_tab.dart';
@@ -86,7 +86,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                       children: <Widget>[
                         BlocProvider.value(
                           value: _accountBloc,
-                          child: AccountTab(),
+                          child: SettingsTab(),
                         ),
                         // ChatListTab(),
                         BlocProvider(
@@ -113,7 +113,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       bottomNavigationBar: bottomInternetStatus && bottomFailureStatus
           ? MotionTabBar(
               labels: [
-                Strings.bottomNavAccount,
+                Strings.bottomNavSettings,
                 // Strings.bottomNavListofConversations,
                 Strings.bottomNavBasket,
                 Strings.bottomNavTitle,
@@ -130,7 +130,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 });
               },
               icons: [
-                Icons.person,
+                Icons.settings,
                 // Icons.chat,
                 Icons.shopping_basket,
                 Icons.book,

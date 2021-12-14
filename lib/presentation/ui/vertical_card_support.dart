@@ -10,6 +10,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:intl/intl.dart';
+import 'package:octo_image/octo_image.dart';
 
 class VerticalCardSupport extends StatelessWidget {
   String image;
@@ -85,11 +86,16 @@ class VerticalCardSupport extends StatelessWidget {
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(8),
                                 color: Colors.transparent,
-                                image: DecorationImage(
-                                  image: CachedNetworkImageProvider(
-                                      ImageAddressProvider.imageURL +
-                                          thumbImage),
+                              ),
+                              child: OctoImage(
+                                image: CachedNetworkImageProvider(
+                                  ImageAddressProvider.imageURL + thumbImage,
                                 ),
+                                placeholderBuilder: OctoPlaceholder.blurHash(
+                                  'LEHV6nWB2yk8pyo0adR*.7kCMdnj',
+                                ),
+                                errorBuilder: OctoError.icon(color: Colors.red),
+                                fit: BoxFit.cover,
                               ),
                             ),
                           ),

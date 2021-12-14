@@ -346,12 +346,12 @@ packages:
     source: hosted
     version: "0.3.0"
   octo_image:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: octo_image
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.0+1"
+    version: "1.0.1"
   path:
     dependency: transitive
     description:

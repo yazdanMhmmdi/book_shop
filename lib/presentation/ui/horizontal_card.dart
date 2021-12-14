@@ -5,8 +5,9 @@ import 'package:book_shop/presentation/animation/fade_in_animation.dart';
 import 'package:book_shop/presentation/widgets/rating_bar.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:octo_image/octo_image.dart';
 
-class HorizontalCard extends StatefulWidget {
+class HorizontalCard extends StatelessWidget {
   String id;
   String writer;
   String name;
@@ -27,26 +28,8 @@ class HorizontalCard extends StatefulWidget {
     required this.pagesCount,
     required this.language,
   });
-
-  @override
-  _HorizontalCardState createState() => _HorizontalCardState();
-}
-
-class _HorizontalCardState extends State<HorizontalCard> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
-    print("picture : ${ApiProvider.URL_IP + widget.thumbPicture}");
-
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Directionality(
@@ -54,32 +37,40 @@ class _HorizontalCardState extends State<HorizontalCard> {
         child: GestureDetector(
           onTap: () => Navigator.pushNamed(context, '/details',
               arguments: <String, String>{
-                'post_id': "${widget.id}",
-                'name': "${widget.name}",
-                'writer': "${widget.writer}",
-                'description': "${widget.description}",
-                'voteCount': "${widget.voteCount}",
-                'thumbPicture': "${widget.thumbPicture}",
-                'language': "${widget.language}",
-                'coverType': "${widget.coverType}",
-                'pagesCount': "${widget.pagesCount}",
+                'post_id': "${id}",
+                'name': "${name}",
+                'writer': "${writer}",
+                'description': "${description}",
+                'voteCount': "${voteCount}",
+                'thumbPicture': "${thumbPicture}",
+                'language': "${language}",
+                'coverType': "${coverType}",
+                'pagesCount': "${pagesCount}",
                 'hero_type': "h",
               }),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Hero(
-                tag: "post_${widget.id}_h",
+                tag: "post_${id}_h",
                 child: Container(
                   width: 71,
                   height: 110,
                   decoration: BoxDecoration(
-                    color: Colors.transparent,
                     borderRadius: BorderRadius.circular(8),
-                    image: DecorationImage(
+                    color: Colors.transparent,
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: OctoImage(
                       image: CachedNetworkImageProvider(
-                        ImageAddressProvider.imageURL + widget.thumbPicture,
+                        ImageAddressProvider.imageURL + thumbPicture,
                       ),
+                      placeholderBuilder: OctoPlaceholder.blurHash(
+                        'LEHV6nWB2yk8pyo0adR*.7kCMdnj',
+                      ),
+                      errorBuilder: OctoError.icon(color: Colors.red),
+                      fit: BoxFit.cover,
                     ),
                   ),
                 ),
@@ -87,7 +78,7 @@ class _HorizontalCardState extends State<HorizontalCard> {
               Container(
                 width: 71,
                 child: Text(
-                  '${widget.writer}',
+                  '${writer}',
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                       color: Colors.black38,
@@ -101,7 +92,7 @@ class _HorizontalCardState extends State<HorizontalCard> {
               Container(
                 width: 71,
                 child: Text(
-                  '${widget.name}',
+                  '${name}',
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                       color: Colors.black87,
@@ -113,7 +104,7 @@ class _HorizontalCardState extends State<HorizontalCard> {
               SizedBox(
                 height: 6,
               ),
-              MyRatingBar(widget.voteCount, 13),
+              MyRatingBar(voteCount, 13),
             ],
           ),
         ),

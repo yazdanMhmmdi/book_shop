@@ -48,6 +48,7 @@ dependencies:
   flutter_slidable: ^1.1.0
   cached_network_image: ^3.2.0
   sizer: ^2.0.15
+  octo_image: ^1.0.1
 
 dev_dependencies:
   flutter_test:

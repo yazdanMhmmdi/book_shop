@@ -11,6 +11,7 @@ import 'package:book_shop/networking/image_address_provider.dart';
 import 'package:book_shop/presentation/animation/fade_in_animation.dart';
 import 'package:book_shop/presentation/ui/vertical_card.dart';
 import 'package:book_shop/presentation/widgets/custom_scroll_behavior.dart';
+import 'package:book_shop/presentation/widgets/home_slider_item.dart';
 import 'package:book_shop/presentation/widgets/loading_bar.dart';
 import 'package:book_shop/presentation/widgets/server_failure_flare.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -59,100 +60,9 @@ class HomeTab extends StatelessWidget {
                             CarouselSlider.builder(
                                 itemCount: state.postModel.poster.length,
                                 itemBuilder: (context, index, realIndex) {
-                                  return Container(
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(8),
-                                    ),
-                                    child: Stack(
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 18),
-                                          child: Container(
-                                            height: 147,
-                                            decoration: BoxDecoration(
-                                                color: Colors.transparent,
-                                                borderRadius:
-                                                    BorderRadius.circular(8),
-                                                boxShadow: [
-                                                  BoxShadow(
-                                                      offset: Offset(0, 10),
-                                                      spreadRadius: -2,
-                                                      blurRadius: 20,
-                                                      color: IColors.boldGreen
-                                                          .withOpacity(0.75))
-                                                ]),
-                                          ),
-                                        ),
-                                        Container(
-                                          height: 147,
-                                          decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(8),
-                                              color: IColors.green),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    top: 26, right: 16),
-                                                child: Column(
-                                                  children: [
-                                                    Text(
-                                                        Strings
-                                                            .homeYourFavBooks,
-                                                        style: TextStyle(
-                                                          fontFamily: Strings
-                                                              .fontIranSans,
-                                                          color:
-                                                              IColors.white90,
-                                                          fontSize: 18,
-                                                          fontWeight:
-                                                              FontWeight.w700,
-                                                        )),
-                                                    SizedBox(
-                                                      height: 26,
-                                                    ),
-                                                    Container(
-                                                      width: 114,
-                                                      height: 26,
-                                                      decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(4),
-                                                        color: IColors.greenTwo,
-                                                      ),
-                                                      child: Center(
-                                                        child: Text(
-                                                          Strings.homeDiscover,
-                                                          style: TextStyle(
-                                                            color:
-                                                                IColors.white90,
-                                                            fontFamily: Strings
-                                                                .fontIranSans,
-                                                            fontSize: 14,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                              Image.network(
-                                                ImageAddressProvider.imageURL +
-                                                    state.postModel
-                                                        .poster[index].picture,
-                                                fit: BoxFit.fill,
-                                                width: 140,
-                                                height: 150,
-                                              ),
-                                            ],
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  );
+                                  return HomeSliderItem(
+                                      picture: state
+                                          .postModel.poster[index].picture);
                                 },
                                 options: CarouselOptions(
                                     height: 175,

@@ -15,9 +15,8 @@ class TitleDetailsTab extends StatelessWidget {
       shrinkWrap: true,
       physics: NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {
-        _animationDelay = _animationDelay + 0.3;
         return FadeInAnimation(
-          _animationDelay,
+          _animationDelay + ((index + 1) * 0.3),
           VerticalCard(
             image: Assets.sampleImage_1,
             name: _books[index].name,

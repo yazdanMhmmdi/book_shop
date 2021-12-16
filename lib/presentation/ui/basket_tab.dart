@@ -40,7 +40,6 @@ class _BasketTabState extends State<BasketTab> {
           if (state is BasketSuccess) {
             setState(() {
               progress = false;
-              _animationDelay = _animationDelay + 0.3;
             });
           } else if (state is BasketEmpty) {
             setState(() {
@@ -91,7 +90,8 @@ class _BasketTabState extends State<BasketTab> {
                                               state.basketModel.basket.length,
                                           itemBuilder: (context, index) {
                                             return FadeInAnimation(
-                                              _animationDelay,
+                                              _animationDelay +
+                                                  ((index + 1) * 0.3),
                                               BasketItem(
                                                   onTap: () {
                                                     _basketBloc.add(

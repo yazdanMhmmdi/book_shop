@@ -89,9 +89,8 @@ class HomeTab extends StatelessWidget {
                         itemCount: state.postModel.freshsBooks.length,
                         scrollDirection: Axis.horizontal,
                         itemBuilder: (context, index) {
-                          _animationDelay = _animationDelay + 0.3;
                           return FadeInAnimation(
-                              _animationDelay,
+                              _animationDelay + ((index + 1) * 0.3),
                               HorizontalCard(
                                 id: msList[index].id,
                                 name: msList[index].name,
@@ -116,9 +115,8 @@ class HomeTab extends StatelessWidget {
                       shrinkWrap: true,
                       itemCount: state.postModel.freshsBooks.length,
                       itemBuilder: (context, index) {
-                        _animationDelay2 = _animationDelay2 + 0.3;
                         return FadeInAnimation(
-                          _animationDelay2,
+                          _animationDelay2 + ((index + 1) * 0.3),
                           VerticalCard(
                             id: fbList[index].id,
                             image: fbList[index].pictureThumb,

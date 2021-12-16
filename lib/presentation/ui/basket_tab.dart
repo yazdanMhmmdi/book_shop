@@ -177,12 +177,15 @@ class _BasketTabState extends State<BasketTab> {
                     SizedBox(
                       height: 8,
                     ),
-                    Text(
-                      '${Strings.basketNotFound}',
-                      style: TextStyle(
-                          fontFamily: "IranSans",
-                          fontSize: 18,
-                          color: Colors.black87),
+                    FadeInAnimation(
+                      0.5,
+                      Text(
+                        '${Strings.basketNotFound}',
+                        style: TextStyle(
+                            fontFamily: "IranSans",
+                            fontSize: 18,
+                            color: Colors.black87),
+                      ),
                     ),
                   ],
                 ),

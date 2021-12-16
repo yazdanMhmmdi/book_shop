@@ -11,6 +11,7 @@ class Assets {
   static final String sampleBanner = "assets/images/slider_pic.png";
   static final String bookLoading = "assets/flare/loading_book.flr";
   static final String bookDropping = "assets/flare/book_dropping.flr";
+  static final String bookEmpty = "assets/flare/book_empty.flr";
   static final String noNetworkAvailable = "assets/flare/no_network.flr";
   static final String cosmos = "assets/flare/cosmos.flr";
   static final String customerAgent = "assets/images/customer_agent.png";

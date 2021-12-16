@@ -67,15 +67,12 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
               totalPages: 0));
     } else if (event is SocketMessage) {
       yield ChatLoading();
-      print(event.message);
 
       try {
         var a = json.decode(event.message);
         a["chats"].forEach((v) {
-          print(v['message']);
           if (v['book_id'] == event.bookId && v['from_id'] == user_id) {
             _model.chats.add(new Chats.fromJson(v));
-            print(_model.chats[_model.chats.length - 1].message);
           }
         });
         if (_model.chats[_model.chats.length - 1].bookId == event.bookId &&

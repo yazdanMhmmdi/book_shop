@@ -121,9 +121,7 @@ class _TitleSelectorState extends State<TitleSelector> {
     setState(() {
       tabNumber = index + 1;
       _currentIndex = index;
-      print('cu : $_currentIndex and indx: $index temp = $temp');
       int c = index;
-      print(c);
 
       if (temp > index) {
         c = temp - c;
@@ -134,7 +132,6 @@ class _TitleSelectorState extends State<TitleSelector> {
         }
       } else {
         c = c - temp;
-        print(c);
         if (c <= 0) {
           _rightPadding += 70;
         } else {
@@ -146,7 +143,6 @@ class _TitleSelectorState extends State<TitleSelector> {
     });
     int blocIndex = _currentIndex + 1;
 
-    print('index; ${blocIndex}');
     widget.bloc.add(FetchBooks(blocIndex));
   }
 }

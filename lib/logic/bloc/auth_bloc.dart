@@ -24,9 +24,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       _prefs = await SharedPreferences.getInstance();
       if (event is LoginEvent) {
         try {
-          print('AuthInitial');
           emit(AuthLoading());
-          print('AuthLoading');
           _authModel =
               await _authRepository.login(event.username, event.password);
           if (_authModel.status == "true") {
@@ -34,39 +32,28 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
             if (await setSharedPrefes(_authModel)) {
               //executing shared prefs and test input
-              print('setting login sharedPrefs successfully');
               final SharedPreferences p = await _prefs;
-              print("recoverd sharedPrefs: ${p.getString("id")}");
             }
-
-            print('AuthSuccess');
           } else {
             emit(AuthWrong());
-            print('AuthWrong');
           }
         } catch (e) {
           emit(AuthFailure());
-          print('auth failure ${e.toString()}');
         }
       } else if (event is SignUpEvent) {
         try {
           emit(AuthLoading());
-          print('AuthLoading');
           _authModel = await _authRepository.signUp(
               username: event.username, password: event.password);
 
           if (await setSharedPrefes(_authModel)) {
             //executing shared prefs and test input
-            print('setting sign up sharedPrefs successfully');
             final SharedPreferences p = _prefs;
-            print("recoverd sharedPrefs: ${p.getString("id")}");
           }
 
           emit(AuthSuccess(_authModel));
-          print('AuthSuccess');
         } catch (e) {
           emit(AuthFailure());
-          print('auth failure ${e.toString()}');
         }
       }
     });

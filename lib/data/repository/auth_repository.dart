@@ -7,7 +7,6 @@ class AuthRepository {
   Future<AuthModel> login(String username, String password) async {
     final response = await _apiProvider
         .get('login_api.php?username=${username}&password=${password}');
-    print('login_api.php?username=${username}&password=${password}');
     return AuthModel.fromJson(response);
   }
 

@@ -71,7 +71,6 @@ class _ChatScreenState extends State<ChatScreen> {
                   children: [
                     IconButton(
                       onPressed: () {
-                        print(_messageController.text);
                         _chatBloc.add(SendSocketMessage(
                             message: _messageController.text));
                         _messageController.text = "";

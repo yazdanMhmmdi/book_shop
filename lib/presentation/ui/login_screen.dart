@@ -57,7 +57,6 @@ class _LoginScreenState extends State<LoginScreen> {
           setState(() {
             buttonState = ButtonState.loading;
           });
-          print('ButtonLoading');
         }
       },
       child: Scaffold(
@@ -193,7 +192,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   void dispose() {
-    print('dispose login');
     super.dispose();
   }
 }

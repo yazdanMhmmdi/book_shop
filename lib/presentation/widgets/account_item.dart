@@ -12,7 +12,6 @@ class AccountItem extends StatelessWidget {
       child: InkWell(
         onTap: () {
           onTap();
-          print("list of conversations");
         },
         child: Container(
           width: MediaQuery.of(context).size.width,

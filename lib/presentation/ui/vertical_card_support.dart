@@ -34,7 +34,6 @@ class VerticalCardSupport extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("star :  ${voteCount}");
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Stack(

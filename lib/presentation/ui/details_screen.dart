@@ -183,8 +183,6 @@ class _DetailsScreenState extends State<DetailsScreen>
                                         100,
                                     2);
                           });
-                          print(
-                              "persent: ${percent} borderRadius: ${borderRadius} : notfyExtend: ${notification.extent}");
                           return false;
                         },
                         child: DraggableScrollableSheet(
@@ -376,11 +374,10 @@ class _DetailsScreenState extends State<DetailsScreen>
                             children: [
                               Padding(
                                 padding: EdgeInsets.only(
-                                        top: ((orientation ==
-                                                    Orientation.portrait
-                                                ? 10.h
-                                                : 5.h) *
-                                            percent)),
+                                    top: ((orientation == Orientation.portrait
+                                            ? 10.h
+                                            : 5.h) *
+                                        percent)),
                                 child: Stack(
                                   alignment: Alignment.center,
                                   children: [
@@ -388,7 +385,8 @@ class _DetailsScreenState extends State<DetailsScreen>
                                       width: 87,
                                       height: 200,
                                       decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
+                                          borderRadius:
+                                              BorderRadius.circular(10),
                                           color: Colors.transparent,
                                           boxShadow: [
                                             BoxShadow(

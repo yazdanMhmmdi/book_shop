@@ -7,7 +7,6 @@ class TitleRepository {
   Future<TitleModel> getTitle(String page,String category_id) async {
     final response =
         await _apiProvider.get('titles_api.php?page=${page}&category_id=${category_id}');
-    print('titles_api.php?page=${page}&category_id=${category_id}');
     return TitleModel.fromJson(response);
   }
 }

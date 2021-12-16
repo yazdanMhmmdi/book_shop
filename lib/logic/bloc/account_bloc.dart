@@ -18,33 +18,26 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
     on<AccountEvent>((event, emit) async {
       if (event is GetDefaultEvent) {
         emit(AccountInitial());
-        print('AccountInitial');
         emit(AccountLoading());
-        print('AccountLoading');
         try {
           AccountModel _accountModel =
               await _accountRepository.getUsernameAndPassword(
                   await _accountRepository.getSharedPrefs());
           _glo = _accountModel;
           emit(AccountSuccess(_accountModel));
-          print('AccountSuccess');
         } catch (_) {
           emit(AccountFailure());
-          print('AccountFailure');
         }
       } else if (event is EditEvent) {
         emit(AccountEditingLoading());
-        print('AccountEditingLoading');
         try {
           ResponseModel _responseModel = await _accountRepository.edit(
               await _accountRepository.getSharedPrefs(),
               event.newUsername,
               event.newPassword);
           emit(AccountEditingSuccess(_responseModel));
-          print('AccountEditingSuccess');
         } catch (_) {
           emit(AccountEditingFailure());
-          print('AccountEditingFailure');
         }
       }
     });

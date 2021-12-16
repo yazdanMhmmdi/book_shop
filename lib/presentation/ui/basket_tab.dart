@@ -295,9 +295,7 @@ class _BasketTabState extends State<BasketTab> {
                     MyButton(
                         buttonState: _buttonState,
                         text: Strings.basketPayit,
-                        onTap: () {
-                          print('sss');
-                        }),
+                        onTap: () {}),
                   ],
                 ),
               ),

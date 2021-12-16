@@ -37,8 +37,6 @@ class TitleBloc extends Bloc<TitleEvent, TitleState> {
     on<TitleEvent>((event, emit) async {
       if (event is FetchBooks) {
         emit(TitleLoading());
-        print('TitleLOading');
-
         // try {
         //   _model = await _titleRepository.getTitle(
         //       page.toString(), event.title.toString());
@@ -67,7 +65,6 @@ class TitleBloc extends Bloc<TitleEvent, TitleState> {
             } else {
               emit(TitleSuccess(_model.sience));
             }
-            print('TitleSuccess sience');
           } else if (event.title == 2) {
             if (medicine) {
               medicine = false;
@@ -86,7 +83,6 @@ class TitleBloc extends Bloc<TitleEvent, TitleState> {
             } else {
               emit(TitleSuccess(_model.medicine));
             }
-            print('TitleSuccess medicine');
           } else if (event.title == 3) {
             if (history) {
               history = false;
@@ -104,8 +100,6 @@ class TitleBloc extends Bloc<TitleEvent, TitleState> {
             } else {
               emit(TitleSuccess(_model.history));
             }
-
-            print('TitleSuccess medicine');
           } else if (event.title == 4) {
             if (law) {
               law = false;
@@ -123,7 +117,6 @@ class TitleBloc extends Bloc<TitleEvent, TitleState> {
             } else {
               emit(TitleSuccess(_model.law));
             }
-            print('TitleSuccess medicine');
           } else if (event.title == 5) {
             if (food) {
               food = false;
@@ -140,7 +133,6 @@ class TitleBloc extends Bloc<TitleEvent, TitleState> {
             } else {
               emit(TitleSuccess(_model.food));
             }
-            print('TitleSuccess medicine');
           } else if (event.title == 6) {
             if (sport) {
               sport = false;
@@ -158,14 +150,12 @@ class TitleBloc extends Bloc<TitleEvent, TitleState> {
             } else {
               emit(TitleSuccess(_model.sport));
             }
-            print('TitleSuccess medicine');
           } else {
             emit(TitleNothingFound());
           }
         } catch (_) {
           print('why : ${_.toString()}');
           emit(TitleFailure());
-          print('TitleFailure');
         }
       } else if (event is PaginationBooks) {
         if (event.title == 1 && siencePage <= sienceTotalPage) {
@@ -178,7 +168,6 @@ class TitleBloc extends Bloc<TitleEvent, TitleState> {
           });
           siencePage++;
           emit(TitleSuccess(_model.sience));
-          print('TitleSuccess sience');
         } else if (event.title == 2 && medicinePage <= medicineTotalPage) {
           emit(TitlePagination(_model.medicine, 2));
           TitleModel _modelMedicine = await _titleRepository.getTitle(
@@ -189,7 +178,6 @@ class TitleBloc extends Bloc<TitleEvent, TitleState> {
           });
           medicinePage++;
           emit(TitleSuccess(_model.medicine));
-          print('TitleSuccess sience');
         } else if (event.title == 3 && historyPage <= historyTotalPage) {
           emit(TitlePagination(_model.history, 3));
           TitleModel _modelHistory = await _titleRepository.getTitle(
@@ -200,7 +188,6 @@ class TitleBloc extends Bloc<TitleEvent, TitleState> {
           });
           historyPage++;
           emit(TitleSuccess(_model.history));
-          print('TitleSuccess sience');
         } else if (event.title == 4 && lawPage <= lawTotalPage) {
           emit(TitlePagination(_model.law, 4));
           TitleModel _modelLaw = await _titleRepository.getTitle(
@@ -211,7 +198,6 @@ class TitleBloc extends Bloc<TitleEvent, TitleState> {
           });
           lawPage++;
           emit(TitleSuccess(_model.law));
-          print('TitleSuccess sience');
         } else if (event.title == 5 && foodPage <= foodTotalPage) {
           emit(TitlePagination(_model.food, 5));
           TitleModel _modelFood = await _titleRepository.getTitle(
@@ -222,7 +208,6 @@ class TitleBloc extends Bloc<TitleEvent, TitleState> {
           });
           foodPage++;
           emit(TitleSuccess(_model.food));
-          print('TitleSuccess sience');
         } else if (event.title == 6 && sportPage <= sportTotalPage) {
           emit(TitlePagination(_model.sport, 6));
           TitleModel _modelSport = await _titleRepository.getTitle(
@@ -233,7 +218,6 @@ class TitleBloc extends Bloc<TitleEvent, TitleState> {
           });
           sportPage++;
           emit(TitleSuccess(_model.sport));
-          print('TitleSuccess sience');
         }
       }
     });

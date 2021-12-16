@@ -15,11 +15,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         try {
           final HomeModel homeModel =
               await _mostSalesRepository.fetchHome("sss");
-
-          print('MOstSalesSucces data : ' +
-              homeModel.freshsBooks[0].id +
-              " : XXX");
-
           emit(HomeSuccess(homeModel));
         } catch (_) {
           print(_);

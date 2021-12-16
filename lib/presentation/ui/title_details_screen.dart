@@ -44,7 +44,6 @@ class _TitleDetailsScreenState extends State<TitleDetailsScreen> {
     _sienceTitleBloc = BlocProvider.of<TitleBloc>(context);
     _controller.addListener(() {
       if (_controller.position.pixels == _controller.position.maxScrollExtent) {
-        print('end of page');
         _sienceTitleBloc.add(PaginationBooks(tabNumber));
       }
     });
@@ -53,7 +52,6 @@ class _TitleDetailsScreenState extends State<TitleDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     setState(() {
-      print('titleDetails argument : ');
       firstTabState = widget.category;
     });
     return Scaffold(

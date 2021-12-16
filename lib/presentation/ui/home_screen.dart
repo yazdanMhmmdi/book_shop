@@ -57,12 +57,10 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             setState(() {
               bottomFailureStatus = false;
             });
-            print('HomeFAilure status bar should be false');
           } else if (state is HomeSuccess) {
             setState(() {
               bottomFailureStatus = true;
             });
-            print('HomeSuccess status bar should be true');
           }
         },
         child: BlocConsumer<InternetCubit, InternetState>(
@@ -124,7 +122,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               tabIconColor: Color(0xffA3A2A8),
               tabSelectedColor: Color(txfColor), //TODO: needs to be replace
               onTabItemSelected: (int value) {
-                print(value);
                 setState(() {
                   _bottomNavController.index = value;
                 });

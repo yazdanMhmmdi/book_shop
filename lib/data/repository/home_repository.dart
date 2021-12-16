@@ -7,7 +7,6 @@ class HomeRepository {
   Future<HomeModel> fetchHome(String username) async {
     final response =
         await _apiProvider.get('home_api.php?username=${username}');
-    print('home_api.php?username=${username}');
 
     return HomeModel.fromJson(response);
   }

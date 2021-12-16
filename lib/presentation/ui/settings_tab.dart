@@ -37,7 +37,6 @@ class _SettingsTabState extends State<SettingsTab> {
     // context.bloc<AccountBloc>().add(GetDefaultEvent("1"));
     usernameController = new TextEditingController();
     passwordController = new TextEditingController();
-    print('ss');
 
     super.initState();
   }
@@ -65,7 +64,6 @@ class _SettingsTabState extends State<SettingsTab> {
                 } else if (state is AccountFailure) {}
               },
               builder: (context, state) {
-                print('build account tab');
                 if (state is AccountSuccess) {
                   if (usernameController.text.isEmpty)
                     usernameController.text =
@@ -207,7 +205,6 @@ class _SettingsTabState extends State<SettingsTab> {
                                                           await SharedPreferences
                                                               .getInstance();
                                                       _prefs.clear();
-                                                      // print('s')
                                                       authValidatiors();
                                                       if (widget
                                                               ._usernameStatus &&
@@ -305,12 +302,10 @@ class _SettingsTabState extends State<SettingsTab> {
   void authValidatiors() {
     if (usernameController.text.length < 17 &&
         usernameController.text.length >= 5) {
-      // print('ready to sign up');
       setState(() {
         widget._usernameStatus = true;
       });
     } else {
-      print('no');
       setState(() {
         widget._usernameStatus = false;
       });

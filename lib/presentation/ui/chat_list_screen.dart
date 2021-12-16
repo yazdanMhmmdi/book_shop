@@ -30,7 +30,6 @@ class _ChatListScreenState extends State<ChatListScreen> {
     _chatlistBloc.add(GetChatList());
     _controller.addListener(() {
       if (_controller.position.pixels == _controller.position.maxScrollExtent) {
-        print('end of page');
         _chatlistBloc.add(GetChatList());
       }
     });

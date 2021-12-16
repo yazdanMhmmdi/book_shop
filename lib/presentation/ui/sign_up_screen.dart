@@ -221,12 +221,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
     _usernameController.addListener(() {
       if (_usernameController.text.length < 17 &&
           _usernameController.text.length >= 5) {
-        print('ready to sign up');
         setState(() {
           _usernameStatus = true;
         });
       } else {
-        print('no');
         setState(() {
           _usernameStatus = false;
         });

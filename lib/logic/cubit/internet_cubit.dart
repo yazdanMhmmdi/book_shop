@@ -12,10 +12,8 @@ class InternetCubit extends Cubit<InternetState> {
       if (connectivityResult == ConnectivityResult.mobile ||
           connectivityResult == ConnectivityResult.wifi) {
         emitInternetConnected();
-        print('internet Connected');
       } else {
         emitInternetDisconnected();
-        print('internet Disconnected');
       }
     });
   }

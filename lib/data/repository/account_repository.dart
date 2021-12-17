@@ -1,4 +1,5 @@
 import 'package:book_shop/data/model/account_model.dart';
+import 'package:book_shop/data/model/account_response_model.dart';
 import 'package:book_shop/data/model/response_model.dart';
 import 'package:book_shop/networking/api_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -13,11 +14,11 @@ class AccountRepository {
     return AccountModel.fromJson(response);
   }
 
-  Future<ResponseModel> edit(
+  Future<AccountResponseModel> edit(
       String userId, String newUsername, String newPassword) async {
     final response = await _apiProvider.get(
         'edit_username_password_api.php?user_id=${userId}&newUsername=${newUsername}&newPassword=${newPassword}');
-    return ResponseModel.fromJson(response);
+    return AccountResponseModel.fromJson(response);
   }
 
   Future<String> getSharedPrefs() async {

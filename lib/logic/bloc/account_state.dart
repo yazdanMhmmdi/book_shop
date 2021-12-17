@@ -9,26 +9,57 @@ abstract class AccountState extends Equatable {
 
 class AccountInitial extends AccountState {}
 
-class AccountLoading extends AccountState {}
+class AccountLoading extends AccountState {
+  String username, password;
+  AccountLoading({required this.username, required this.password});
+  @override
+  List<Object> get props => [this.username, password];
+}
 
 class AccountSuccess extends AccountState {
-  AccountModel accountModel;
-  AccountSuccess(this.accountModel);
+  String username, password;
+  AccountSuccess({required this.username, required this.password});
 
   @override
-  List<Object> get props => [accountModel];
+  List<Object> get props => [username, password];
 }
 
-class AccountFailure extends AccountState {}
+class AccountFailure extends AccountState {
+  String username, password;
+  AccountFailure({required this.username, required this.password});
 
-class AccountEditingLoading extends AccountState {}
-
-class AccountEditingSuccess extends AccountState {
-  ResponseModel _responseModel;
-
-  AccountEditingSuccess(this._responseModel);
   @override
-  List<Object> get props => [_responseModel];
+  List<Object> get props => [this.username, this.password];
 }
 
-class AccountEditingFailure extends AccountState {}
+class AccountEditSuccess extends AccountState {
+  String username, password;
+  AccountEditSuccess({required this.username, required this.password});
+
+  @override
+  List<Object> get props => [this.username, this.password];
+}
+
+class AccountEditLoading extends AccountState {
+  String username, password;
+  AccountEditLoading({required this.username, required this.password});
+
+  @override
+  List<Object> get props => [this.username, this.password];
+}
+
+class AccountEditFailure extends AccountState {
+  String username, password;
+  AccountEditFailure({required this.username, required this.password});
+
+  @override
+  List<Object> get props => [this.username, this.password];
+}
+
+class AccountEditInitial extends AccountState {
+  String username, password;
+  AccountEditInitial({required this.username, required this.password});
+
+  @override
+  List<Object> get props => [this.username, this.password];
+}

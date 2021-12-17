@@ -44,6 +44,7 @@ class MostSalesBooks {
     required this.salesCount,
     required this.isBanner,
     required this.categoryId,
+    required this.posterText,
   });
 
   late final String id;
@@ -61,6 +62,7 @@ class MostSalesBooks {
   late final String salesCount;
   late final String isBanner;
   late final String categoryId;
+  late final String posterText;
 
   MostSalesBooks.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -69,7 +71,7 @@ class MostSalesBooks {
     voteCount = double.parse(json['vote_count'] ?? "0");
     writer = json['writer'] ?? "";
     description = json['description'] ?? "";
-    name = json['name']  ?? "";
+    name = json['name'] ?? "";
     price = double.parse(json['price'] ?? "0");
     language = json['language'] ?? "";
     coverType = json['cover_type'] ?? "";
@@ -78,6 +80,7 @@ class MostSalesBooks {
     salesCount = json['sales_count'] ?? "";
     isBanner = json['is_banner'] ?? "";
     categoryId = json['category_id'] ?? "";
+    posterText = json['poster_text'] ?? "";
   }
 
   Map<String, dynamic> toJson() {
@@ -118,6 +121,7 @@ class FreshsBooks {
     required this.salesCount,
     required this.isBanner,
     required this.categoryId,
+    required this.posterText,
   });
 
   late final String id;
@@ -135,6 +139,7 @@ class FreshsBooks {
   late final String salesCount;
   late final String isBanner;
   late final String categoryId;
+  late final String posterText;
 
   FreshsBooks.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -143,7 +148,7 @@ class FreshsBooks {
     voteCount = double.parse(json['vote_count'] ?? "0");
     writer = json['writer'] ?? "";
     description = json['description'] ?? "";
-    name = json['name']  ?? "";
+    name = json['name'] ?? "";
     price = double.parse(json['price'] ?? "0");
     language = json['language'] ?? "";
     coverType = json['cover_type'] ?? "";
@@ -152,6 +157,7 @@ class FreshsBooks {
     salesCount = json['sales_count'] ?? "";
     isBanner = json['is_banner'] ?? "";
     categoryId = json['category_id'] ?? "";
+    posterText = json['poster_text'] ?? "";
   }
 
   Map<String, dynamic> toJson() {

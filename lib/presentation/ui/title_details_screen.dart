@@ -9,7 +9,7 @@ import 'package:book_shop/presentation/ui/vertical_card.dart';
 import 'package:book_shop/presentation/widgets/custom_scroll_behavior.dart';
 import 'package:book_shop/presentation/widgets/loading_bar.dart';
 import 'package:book_shop/presentation/widgets/no_network_flare.dart';
-import 'package:book_shop/presentation/widgets/not_found_bar.dart';
+import 'package:book_shop/presentation/widgets/not_found_flare.dart';
 import 'package:book_shop/presentation/widgets/title_details_tab.dart';
 import 'package:book_shop/presentation/widgets/title_selector.dart';
 import 'package:flare_flutter/flare_actor.dart';
@@ -164,7 +164,7 @@ class _TitleDetailsScreenState extends State<TitleDetailsScreen> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.center,
                                         children: [
-                                          NotFoundBar(),
+                                          NotFoundFlare(),
                                           SizedBox(
                                             height: 8,
                                           ),

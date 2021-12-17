@@ -19,6 +19,6 @@ class BasketSuccess extends BasketState {
   List<Object> get props => [this.basketModel];
 }
 
-class BasketFailure extends BasketState {}
-
 class BasketEmpty extends BasketState {}
+
+class BasketFailure extends BasketState {}

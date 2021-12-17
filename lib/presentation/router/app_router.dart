@@ -6,6 +6,8 @@ import 'package:book_shop/logic/bloc/chatlist_bloc.dart';
 import 'package:book_shop/logic/bloc/details_bloc.dart';
 import 'package:book_shop/logic/bloc/home_bloc.dart';
 import 'package:book_shop/logic/bloc/title_bloc.dart';
+import 'package:book_shop/logic/cubit/detail_screen_animation_cubit.dart';
+import 'package:book_shop/logic/cubit/form_validation_cubit.dart';
 import 'package:book_shop/logic/cubit/internet_cubit.dart';
 import 'package:book_shop/presentation/ui/chat_list_screen.dart';
 import 'package:book_shop/presentation/ui/chat_screen.dart';
@@ -92,7 +94,10 @@ class AppRouter {
                   ),
                   BlocProvider.value(
                     value: _accountBloc,
-                  )
+                  ),
+                  BlocProvider(
+                    create: (context) => FormValidationCubit(),
+                  ),
                 ],
                 child: HomeScreen(),
               );
@@ -116,6 +121,9 @@ class AppRouter {
               ),
               BlocProvider(
                 create: (context) => BasketBloc(),
+              ),
+              BlocProvider(
+                create: (context) => DetailScreenAnimationCubit(),
               ),
             ],
             child: DetailsScreen(

@@ -14,13 +14,10 @@ import 'package:carousel_slider/carousel_slider.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'horizontal_card.dart';
 
 class HomeTab extends StatelessWidget {
   late PageController _carouselController;
-  double _animationDelay = 0.25;
-  double _animationDelay2 = 1.0;
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +80,7 @@ class HomeTab extends StatelessWidget {
                         scrollDirection: Axis.horizontal,
                         itemBuilder: (context, index) {
                           return FadeInAnimation(
-                              _animationDelay + ((index + 1) * 0.3),
+                              0.25 + ((index + 1) * 0.3),
                               HorizontalCard(
                                 id: msList[index].id,
                                 name: msList[index].name,
@@ -109,7 +106,7 @@ class HomeTab extends StatelessWidget {
                       itemCount: state.postModel.freshsBooks.length,
                       itemBuilder: (context, index) {
                         return FadeInAnimation(
-                          _animationDelay2 + ((index + 1) * 0.3),
+                          1.0 + ((index + 1) * 0.3),
                           VerticalCard(
                             id: fbList[index].id,
                             image: fbList[index].pictureThumb,

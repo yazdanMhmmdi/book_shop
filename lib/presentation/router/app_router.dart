@@ -9,6 +9,7 @@ import 'package:book_shop/logic/bloc/title_bloc.dart';
 import 'package:book_shop/logic/cubit/detail_screen_animation_cubit.dart';
 import 'package:book_shop/logic/cubit/form_validation_cubit.dart';
 import 'package:book_shop/logic/cubit/internet_cubit.dart';
+import 'package:book_shop/logic/cubit/splash_cubit.dart';
 import 'package:book_shop/presentation/ui/chat_list_screen.dart';
 import 'package:book_shop/presentation/ui/chat_screen.dart';
 import 'package:book_shop/presentation/ui/details_screen.dart';
@@ -38,9 +39,17 @@ class AppRouter {
     switch (settings.name) {
       case '/':
         return MaterialPageRoute(
-          builder: (_) => BlocProvider.value(
-            value: _internetCubit,
-            child: SplashScreen(), //_authBloc
+          builder: (_) => MultiBlocProvider(
+            providers: [
+              BlocProvider.value(
+                value: _internetCubit,
+                //_authBloc
+              ),
+              BlocProvider(
+                create: (context) => SplashCubit(),
+              ),
+            ],
+            child: SplashScreen(),
           ),
         );
         break;
@@ -205,11 +214,14 @@ class AppRouter {
         );
       default:
         return MaterialPageRoute(
-          builder: (_) => BlocProvider.value(
-            value: _internetCubit,
-            child: SplashScreen(), //_authBloc
-          ),
-        );
+            builder: (_) => MultiBlocProvider(providers: [
+                  BlocProvider.value(
+                    value: _internetCubit,
+                  ),
+                  BlocProvider(
+                    create: (context) => SplashCubit(),
+                  ),
+                ], child: SplashScreen()));
     }
   }
 

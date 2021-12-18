@@ -16,11 +16,11 @@ import 'package:book_shop/presentation/widgets/detail_slider_widget/detail_slide
 import 'package:book_shop/presentation/widgets/detail_slider_widget/detail_slider_item.dart';
 import 'package:book_shop/presentation/widgets/detail_slider_widget/detail_slider_widget.dart';
 import 'package:book_shop/presentation/widgets/my_button.dart';
+import 'package:book_shop/presentation/widgets/my_progress_button.dart';
 import 'package:book_shop/presentation/widgets/no_network_flare.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:progress_state_button/progress_button.dart';
 import 'package:sizer/sizer.dart';
 
 class DetailsScreen extends StatelessWidget {

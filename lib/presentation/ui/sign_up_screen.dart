@@ -7,6 +7,7 @@ import 'package:book_shop/logic/cubit/internet_cubit.dart';
 import 'package:book_shop/presentation/animation/fade_in_animation.dart';
 import 'package:book_shop/presentation/widgets/background_shapes.dart';
 import 'package:book_shop/presentation/widgets/my_button.dart';
+import 'package:book_shop/presentation/widgets/my_progress_button.dart';
 import 'package:book_shop/presentation/widgets/my_text_field.dart';
 import 'package:book_shop/presentation/widgets/no_network_flare.dart';
 import 'package:book_shop/presentation/widgets/progress_button.dart';
@@ -15,7 +16,6 @@ import 'package:book_shop/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:progress_state_button/progress_button.dart';
 
 class SignUpScreen extends StatefulWidget {
   @override

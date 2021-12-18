@@ -12,6 +12,7 @@ import 'package:book_shop/presentation/widgets/account_item.dart';
 import 'package:book_shop/presentation/widgets/custom_scroll_behavior.dart';
 import 'package:book_shop/presentation/widgets/loading_bar.dart';
 import 'package:book_shop/presentation/widgets/my_button.dart';
+import 'package:book_shop/presentation/widgets/my_progress_button.dart';
 import 'package:book_shop/presentation/widgets/my_text_field.dart';
 import 'package:book_shop/presentation/widgets/my_tool_bar.dart';
 import 'package:book_shop/presentation/widgets/server_failure_flare.dart';
@@ -19,7 +20,6 @@ import 'package:book_shop/presentation/widgets/warning_bar.dart';
 import 'package:book_shop/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:progress_state_button/progress_button.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingsTab extends StatefulWidget {
@@ -31,8 +31,6 @@ class _SettingsTabState extends State<SettingsTab> {
   late TextEditingController usernameController = TextEditingController();
 
   late TextEditingController passwordController = TextEditingController();
-
-  ButtonState? _buttonState = ButtonState.idle;
 
   late FormValidationCubit _formValidationCubit;
 
@@ -152,21 +150,31 @@ class _SettingsTabState extends State<SettingsTab> {
                                               AccountState>(
                                             builder: (context, state) {
                                               if (state is AccountEditLoading) {
-                                                return buttonUI();
+                                                return buttonUI(
+                                                    buttonState:
+                                                        ButtonState.loading);
                                               } else if (state
                                                   is AccountEditSuccess) {
-                                                return buttonUI();
+                                                return buttonUI(
+                                                    buttonState:
+                                                        ButtonState.success);
                                               } else if (state
                                                   is AccountEditFailure) {
-                                                return buttonUI();
+                                                return buttonUI(
+                                                    buttonState:
+                                                        ButtonState.fail);
                                               } else if (state
                                                   is AccountEditInitial) {
-                                                return buttonUI();
+                                                return buttonUI(
+                                                    buttonState:
+                                                        ButtonState.idle);
                                               } else if (state
                                                   is AccountLoading) {
                                                 return Container();
                                               } else
-                                                return buttonUI();
+                                                return buttonUI(
+                                                    buttonState:
+                                                        ButtonState.idle);
                                             },
                                           ),
                                           SizedBox(
@@ -270,19 +278,16 @@ class _SettingsTabState extends State<SettingsTab> {
     );
   }
 
-  Widget buttonUI() {
+  Widget buttonUI({ButtonState buttonState = ButtonState.idle}) {
     return BlocBuilder<FormValidationCubit, FormValidationState>(
       builder: (context, formValidationState) {
         if (formValidationState is FormValidationStatus) {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: MyButton(
-                buttonState: _buttonState,
+                buttonState: buttonState,
                 text: "${Strings.accountEdit}",
                 onTap: () async {
-                  SharedPreferences _prefs =
-                      await SharedPreferences.getInstance();
-                  // _prefs.clear();
                   if (formValidationState.usernameStatus &&
                       formValidationState.passwordStatus) {
                     BlocProvider.of<AccountBloc>(context).add(EditEvent(

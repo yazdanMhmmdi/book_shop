@@ -2,9 +2,9 @@ import 'package:book_shop/constants/colors.dart';
 import 'package:book_shop/constants/strings.dart';
 import 'package:book_shop/presentation/animation/fade_in_animation.dart';
 import 'package:book_shop/presentation/widgets/my_button.dart';
+import 'package:book_shop/presentation/widgets/my_progress_button.dart';
 import 'package:book_shop/presentation/widgets/number_formatter.dart';
 import 'package:flutter/material.dart';
-import 'package:progress_state_button/progress_button.dart';
 
 class PayCheckWidget extends StatelessWidget {
   int tax, deliveryCost, fullCost;

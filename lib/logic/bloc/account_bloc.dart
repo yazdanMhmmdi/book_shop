@@ -35,10 +35,11 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
         }
       } else if (event is EditEvent) {
         emit(AccountEditInitial(username: username, password: password));
-        print("AccountInitial");
-
+        print("AccountEditInitial");
         emit(AccountEditLoading(username: username, password: password));
         print("AccountEditLoading");
+        await Future.delayed(Duration(seconds: 2));
+
         try {
           AccountResponseModel _responseModel = await _accountRepository.edit(
               GlobalWidget.userId, event.newUsername, event.newPassword);
@@ -48,23 +49,26 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
             username = _responseModel.account.username;
             password = _responseModel.account.password;
 
-            await Future.delayed(Duration(milliseconds: 1000));
-
-            print("AccountSuccess");
+            print("AccountEditSuccess");
             emit(AccountEditSuccess(
               username: username,
               password: password,
             ));
-            await Future.delayed(Duration(milliseconds: 1000));
-            print("AccountInitial");
+            await Future.delayed(Duration(seconds: 2));
+            print("AccountEditInitial");
             emit(AccountEditInitial(username: username, password: password));
           } else {
             emit(AccountEditFailure(username: username, password: password));
-            print("AccountFailure");
+            print("AccountEditFailure");
+
+            await Future.delayed(const Duration(seconds: 2));
+            emit(AccountEditInitial(username: username, password: password));
           }
         } catch (_) {
-          print("AccountFailure ${_}");
+          print("AccountEditFailure ${_}");
           emit(AccountEditFailure(username: username, password: password));
+          await Future.delayed(const Duration(seconds: 2));
+          emit(AccountEditInitial(username: username, password: password));
         }
       }
     });

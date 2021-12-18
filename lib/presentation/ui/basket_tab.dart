@@ -6,6 +6,7 @@ import 'package:book_shop/presentation/ui/basket_item.dart';
 import 'package:book_shop/presentation/widgets/custom_scroll_behavior.dart';
 import 'package:book_shop/presentation/widgets/loading_bar.dart';
 import 'package:book_shop/presentation/widgets/my_button.dart';
+import 'package:book_shop/presentation/widgets/my_progress_button.dart';
 import 'package:book_shop/presentation/widgets/my_tool_bar.dart';
 import 'package:book_shop/presentation/widgets/not_found_flare.dart';
 import 'package:book_shop/presentation/widgets/not_found_widget.dart';
@@ -15,7 +16,6 @@ import 'package:book_shop/presentation/widgets/progress_button.dart';
 import 'package:book_shop/presentation/widgets/server_failure_flare.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:progress_state_button/progress_button.dart';
 
 class BasketTab extends StatefulWidget {
   @override

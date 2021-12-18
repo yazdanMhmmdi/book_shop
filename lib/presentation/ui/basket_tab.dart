@@ -45,7 +45,7 @@ class _BasketTabState extends State<BasketTab> {
           );
         } else if (state is BasketSuccess) {
           return ScrollConfiguration(
-            behavior: MyCustomScrollBehavior(),
+            behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
             child: SingleChildScrollView(
               physics: BouncingScrollPhysics(),
               child: SafeArea(

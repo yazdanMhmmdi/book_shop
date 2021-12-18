@@ -13,6 +13,7 @@ import 'package:book_shop/presentation/ui/login_screen.dart';
 import 'package:book_shop/presentation/ui/sign_up_screen.dart';
 import 'package:book_shop/presentation/ui/splash_screen.dart';
 import 'package:book_shop/presentation/ui/title_details_screen.dart';
+import 'package:book_shop/presentation/widgets/custom_scroll_behavior.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -42,6 +43,7 @@ class _MyAppState extends State<MyApp> {
         ),
         debugShowCheckedModeBanner: false,
         onGenerateRoute: _appRouter.onGeneratedRoute,
+        scrollBehavior: MyCustomScrollBehavior(),
       );
     });
   }

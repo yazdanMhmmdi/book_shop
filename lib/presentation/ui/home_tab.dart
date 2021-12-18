@@ -31,7 +31,7 @@ class HomeTab extends StatelessWidget {
           List<MostSalesBooks> msList = state.postModel.mostSalesBooks;
           List<FreshsBooks> fbList = state.postModel.freshsBooks;
           return ScrollConfiguration(
-            behavior: MyCustomScrollBehavior(),
+            behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
             child: SingleChildScrollView(
               physics: BouncingScrollPhysics(),
               child: Directionality(

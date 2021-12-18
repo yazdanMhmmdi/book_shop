@@ -65,7 +65,7 @@ class _SettingsTabState extends State<SettingsTab> {
         }
       },
       child: ScrollConfiguration(
-          behavior: MyCustomScrollBehavior(),
+          behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
           child: SingleChildScrollView(
               physics: BouncingScrollPhysics(),
               child: SafeArea(

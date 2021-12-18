@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:book_shop/constants/colors.dart';
+import 'package:book_shop/presentation/widgets/my_progress_button.dart';
 import 'package:flutter/material.dart';
-import 'package:progress_state_button/progress_button.dart';
 
 class MyButton extends StatelessWidget {
   late String text;
@@ -24,11 +24,12 @@ class MyButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ProgressButton(
+    return MyProgressButton(
       minWidth: 50.0,
       height: 46.0,
-      maxWidth: double.infinity,
+      maxWidth: 800,
       radius: buttonRadius,
+      progressIndicatorAlignment: MainAxisAlignment.center,
       progressIndicator: CircularProgressIndicator(
         valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
       ),
@@ -41,7 +42,7 @@ class MyButton extends StatelessWidget {
               fontWeight: FontWeight.w700,
               fontSize: 16),
         ),
-        ButtonState.loading: Text("s"),
+        ButtonState.loading: Container(),
         ButtonState.fail: Icon(
           Icons.close,
           color: Colors.white,

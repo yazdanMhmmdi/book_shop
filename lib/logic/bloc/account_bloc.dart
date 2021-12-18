@@ -5,6 +5,7 @@ import 'package:book_shop/data/model/account_model.dart';
 import 'package:book_shop/data/model/account_response_model.dart';
 import 'package:book_shop/data/repository/account_repository.dart';
 import 'package:book_shop/networking/api_provider.dart';
+import 'package:book_shop/presentation/widgets/global_widget.dart';
 import 'package:equatable/equatable.dart';
 
 part 'account_event.dart';
@@ -21,8 +22,8 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
         emit(AccountLoading(username: username, password: password));
         print("AccountLoading");
         try {
-          _accountModel = await _accountRepository.getUsernameAndPassword(
-              await _accountRepository.getSharedPrefs());
+          _accountModel = await _accountRepository
+              .getUsernameAndPassword(GlobalWidget.userId);
           username = _accountModel.account.username;
           password = _accountModel.account.password;
 
@@ -40,9 +41,7 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
         print("AccountEditLoading");
         try {
           AccountResponseModel _responseModel = await _accountRepository.edit(
-              await _accountRepository.getSharedPrefs(),
-              event.newUsername,
-              event.newPassword);
+              GlobalWidget.userId, event.newUsername, event.newPassword);
 
           if (_responseModel.status == "success") {
             //update model in edit event

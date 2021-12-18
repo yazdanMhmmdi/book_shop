@@ -17,14 +17,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:progress_state_button/progress_button.dart';
 
-class BasketTab extends StatelessWidget {
+class BasketTab extends StatefulWidget {
+  @override
+  State<BasketTab> createState() => _BasketTabState();
+}
+
+class _BasketTabState extends State<BasketTab> {
   ButtonState _buttonState = ButtonState.idle;
+
   late BasketBloc _basketBloc;
+  @override
+  void initState() {
+    _basketBloc = BlocProvider.of<BasketBloc>(context);
+    _basketBloc.add(GetBasket());
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    _basketBloc = BlocProvider.of<BasketBloc>(context);
-    _basketBloc.add(GetBasket());
     return BlocBuilder<BasketBloc, BasketState>(
       builder: (context, state) {
         if (state is BasketLoading) {

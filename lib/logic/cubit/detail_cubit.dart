@@ -4,10 +4,10 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
-part 'detail_screen_animation_state.dart';
+part 'detail_state.dart';
 
-class DetailScreenAnimationCubit extends Cubit<DetailScreenAnimationState> {
-  DetailScreenAnimationCubit() : super(DetailScreenAnimationInitial());
+class DetailCubit extends Cubit<DetailState> {
+  DetailCubit() : super(DetailInitial());
 
   final maxBorderRadius = 50.0;
   var borderRadius = 50.0;
@@ -20,7 +20,7 @@ class DetailScreenAnimationCubit extends Cubit<DetailScreenAnimationState> {
     } else {
       draggableSize = 0.75;
     }
-    emit(DetailScreenAnimationStatus(
+    emit(DetailStatus(
       borderRadius: borderRadius,
       draggableSize: draggableSize,
       maxBorderRadius: maxBorderRadius,
@@ -37,7 +37,7 @@ class DetailScreenAnimationCubit extends Cubit<DetailScreenAnimationState> {
                     (notification.extent - draggableSize)) /
                 100,
             2);
-    emit(DetailScreenAnimationStatus(
+    emit(DetailStatus(
       borderRadius: borderRadius,
       draggableSize: draggableSize,
       maxBorderRadius: maxBorderRadius,

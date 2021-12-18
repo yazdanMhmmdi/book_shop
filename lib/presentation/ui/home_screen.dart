@@ -17,6 +17,7 @@ import 'package:book_shop/presentation/widgets/no_network_flare.dart';
 import 'package:book_shop/presentation/widgets/server_failure_flare.dart';
 import 'package:book_shop/presentation/widgets/widgets.dart';
 import 'package:flare_loading/flare_loading.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:motion_tab_bar_v2/motion-tab-bar.dart';
@@ -31,7 +32,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   late TabController _bottomNavController;
   bool failureInFirstTry = false;
   final _noNetworkFlare = new NoNetworkFlare();
-
   late HomeBloc _homeBloc;
   late AccountBloc _accountBloc;
   @override
@@ -61,7 +61,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                             NeverScrollableScrollPhysics(), // swipe navigation handling is not supported
                         controller: _bottomNavController,
                         children: <Widget>[
-                          BlocProvider.value(
+                           BlocProvider.value(
                             value: _accountBloc,
                             child: SettingsTab(),
                           ),
@@ -70,10 +70,15 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                               create: (BuildContext context) => BasketBloc(),
                               child: BasketTab()),
                           TitleTab(),
-                          BlocProvider.value(
-                            value: _homeBloc,
-                            child: HomeTab(),
-                          ),
+                          // ValueListenableBuilder<int>(
+                          // valueListenable: _counter,
+                          // builder: (context, value, child) {
+                          // return
+                          BlocProvider.value(value: _homeBloc, child: HomeTab()
+                              // );
+
+                              // }
+                              ),
                         ]),
                   ],
                 );

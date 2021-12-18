@@ -15,20 +15,19 @@ class MyButton extends StatelessWidget {
   });
 
   double buttonRadius = 8.0;
+
   late double maxWidth;
+
   bool maxWidthFlag = true;
+
   ButtonState? mainButtonState = ButtonState.idle;
+
   @override
   Widget build(BuildContext context) {
-    if (maxWidthFlag) {
-      maxWidth = MediaQuery.of(context).size.width;
-      maxWidthFlag = false;
-    }
-
     return ProgressButton(
       minWidth: 50.0,
       height: 46.0,
-      maxWidth: maxWidth,
+      maxWidth: double.infinity,
       radius: buttonRadius,
       progressIndicator: CircularProgressIndicator(
         valueColor: AlwaysStoppedAnimation<Color>(Colors.white),

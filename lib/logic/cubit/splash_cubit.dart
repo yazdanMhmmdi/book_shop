@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:book_shop/presentation/widgets/global_widget.dart';
 import 'package:equatable/equatable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -8,16 +9,17 @@ class SplashCubit extends Cubit<SplashState> {
   SplashCubit() : super(SplashLoading());
 
   void intialUserIdFromPrefs() async {
-    if (await sharedPrefs() == "") {
+    var userId = await sharedPrefs();
+    if (userId == "") {
       await Future.delayed(const Duration(seconds: 3));
 
       print("SplashIsGuest");
       emit(SplashIsGuest());
     } else {
       await Future.delayed(const Duration(seconds: 3));
-
+      GlobalWidget.userId = userId;
       print("SplashIsUser");
-      emit(SplashIsUser(userId: await sharedPrefs()));
+      emit(SplashIsUser(userId: GlobalWidget.userId));
     }
   }
 

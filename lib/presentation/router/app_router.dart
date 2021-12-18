@@ -6,7 +6,7 @@ import 'package:book_shop/logic/bloc/chatlist_bloc.dart';
 import 'package:book_shop/logic/bloc/details_bloc.dart';
 import 'package:book_shop/logic/bloc/home_bloc.dart';
 import 'package:book_shop/logic/bloc/title_bloc.dart';
-import 'package:book_shop/logic/cubit/detail_screen_animation_cubit.dart';
+import 'package:book_shop/logic/cubit/detail_cubit.dart';
 import 'package:book_shop/logic/cubit/form_validation_cubit.dart';
 import 'package:book_shop/logic/cubit/internet_cubit.dart';
 import 'package:book_shop/logic/cubit/splash_cubit.dart';
@@ -132,7 +132,7 @@ class AppRouter {
                 create: (context) => BasketBloc(),
               ),
               BlocProvider(
-                create: (context) => DetailScreenAnimationCubit(),
+                create: (context) => DetailCubit(),
               ),
             ],
             child: DetailsScreen(

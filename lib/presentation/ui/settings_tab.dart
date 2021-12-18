@@ -22,14 +22,22 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:progress_state_button/progress_button.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class SettingsTab extends StatelessWidget {
+class SettingsTab extends StatefulWidget {
+  @override
+  State<SettingsTab> createState() => _SettingsTabState();
+}
+
+class _SettingsTabState extends State<SettingsTab> {
   late TextEditingController usernameController = TextEditingController();
+
   late TextEditingController passwordController = TextEditingController();
+
   ButtonState? _buttonState = ButtonState.idle;
+
   late FormValidationCubit _formValidationCubit;
 
   @override
-  Widget build(BuildContext context) {
+  void initState() {
     _formValidationCubit = BlocProvider.of<FormValidationCubit>(context);
     BlocProvider.of<AccountBloc>(context).add(GetDefaultEvent());
     _formValidationCubit.authValidatiors(
@@ -46,7 +54,11 @@ class SettingsTab extends StatelessWidget {
       print(
           "password : ${usernameController.text}, ${passwordController.text}");
     });
+    super.initState();
+  }
 
+  @override
+  Widget build(BuildContext context) {
     return BlocListener<AccountBloc, AccountState>(
       listener: (context, state) {
         if (state is AccountSuccess) {

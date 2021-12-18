@@ -5,6 +5,7 @@ import 'package:book_shop/data/model/basket_model.dart';
 import 'package:book_shop/data/model/functional_model.dart';
 import 'package:book_shop/data/repository/account_repository.dart';
 import 'package:book_shop/data/repository/basket_repository.dart';
+import 'package:book_shop/presentation/widgets/global_widget.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -16,13 +17,11 @@ class BasketBloc extends Bloc<BasketEvent, BasketState> {
     BasketRepository _basketRepository = new BasketRepository();
     AccountRepository _accountRepository = new AccountRepository();
     late BasketModel _model;
-    late String user_id;
     on<BasketEvent>((event, emit) async {
       if (event is GetBasket) {
         emit(BasketLoading());
         try {
-          user_id = await _accountRepository.getSharedPrefs();
-          _model = await _basketRepository.getBasket(user_id, "1");
+          _model = await _basketRepository.getBasket(GlobalWidget.userId, "1");
           if (_model.basket.length == 0) {
             emit(BasketEmpty());
           } else if (_model.basket.length > 0) {
@@ -33,8 +32,8 @@ class BasketBloc extends Bloc<BasketEvent, BasketState> {
           emit(BasketFailure());
         }
       } else if (event is DeleteBasket) {
-        FunctionalModel _tempModel =
-            await _basketRepository.deleteBasket(user_id, event.book_id);
+        FunctionalModel _tempModel = await _basketRepository.deleteBasket(
+            GlobalWidget.userId, event.book_id);
         if (_tempModel.status == "1") {
           add(GetBasket());
         } else {
@@ -42,9 +41,8 @@ class BasketBloc extends Bloc<BasketEvent, BasketState> {
         }
       } else if (event is AddBasket) {
         emit(BasketLoading());
-        user_id = await _accountRepository.getSharedPrefs();
-        FunctionalModel _tempModel =
-            await _basketRepository.addBasket(user_id, event.book_id);
+        FunctionalModel _tempModel = await _basketRepository.addBasket(
+            GlobalWidget.userId, event.book_id);
         if (_tempModel.status == "1") {
           emit(BasketSuccess(basketModel: _model));
         } else {

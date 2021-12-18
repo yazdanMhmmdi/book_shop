@@ -7,7 +7,7 @@ import 'package:book_shop/constants/strings.dart';
 import 'package:book_shop/data/repository/account_repository.dart';
 import 'package:book_shop/logic/bloc/basket_bloc.dart';
 import 'package:book_shop/logic/bloc/details_bloc.dart';
-import 'package:book_shop/logic/cubit/detail_screen_animation_cubit.dart';
+import 'package:book_shop/logic/cubit/detail_cubit.dart';
 import 'package:book_shop/logic/cubit/internet_cubit.dart';
 import 'package:book_shop/networking/image_address_provider.dart';
 import 'package:book_shop/presentation/animation/fade_in_transition.dart';
@@ -23,15 +23,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:progress_state_button/progress_button.dart';
 import 'package:sizer/sizer.dart';
 
-class DetailsScreen extends StatefulWidget {
+class DetailsScreen extends StatelessWidget {
   late Map<String, String> args;
   DetailsScreen({required this.args});
-  @override
-  _DetailsScreenState createState() => _DetailsScreenState();
-}
-
-class _DetailsScreenState extends State<DetailsScreen>
-    with SingleTickerProviderStateMixin {
   late DetailsBloc _detailsBloc;
   late String voteCount;
   late String description;
@@ -46,37 +40,14 @@ class _DetailsScreenState extends State<DetailsScreen>
   late Map<String, String> arguments;
   ButtonState _buttonState = ButtonState.idle;
   Color backgroundColor = IColors.green;
-  bool _pullUpAnimationFlag = true;
-  bool _fadeAnimationFlag = true;
-  late AnimationController _pullUpController;
-  AccountRepository _accountRepository = AccountRepository();
-  late String user_id;
-  Random _random = new Random();
-  late int _randAge, _randBookCount, _randCategory, _randVote;
-  late double _screenHeight;
   late BasketBloc _basketBloc;
-  late DetailScreenAnimationCubit _animationCubit;
-
-  int _animationDuration = 300;
-
-  ///
-
-  @override
-  void initState() {
-    _pullUpController = new AnimationController(
-        vsync: this, duration: Duration(milliseconds: 300));
-    _basketBloc = BlocProvider.of<BasketBloc>(context);
-    _animationCubit = BlocProvider.of<DetailScreenAnimationCubit>(context);
-
-    getUserId();
-    _pullUpController.forward();
-    super.initState();
-  }
+  late DetailCubit _animationCubit;
 
   @override
   Widget build(BuildContext context) {
-    arguments = widget.args;
-    _screenHeight = MediaQuery.of(context).size.height;
+    _basketBloc = BlocProvider.of<BasketBloc>(context);
+    _animationCubit = BlocProvider.of<DetailCubit>(context);
+    arguments = args;
     _animationCubit.initializeAnimations(context);
 
     // _detailsBloc.add(GetDetails(post_id: arguments["post_id"]));
@@ -85,33 +56,15 @@ class _DetailsScreenState extends State<DetailsScreen>
 
     return WillPopScope(
       onWillPop: () async {
-        _pullDownAnimation();
-        return true;
+        Navigator.pop(context);
+        return false;
       },
-      child: Scaffold(
-        backgroundColor: backgroundColor,
-        body: BlocConsumer<InternetCubit, InternetState>(
-            listener: (context, state) {
+      child: BlocBuilder<InternetCubit, InternetState>(
+        builder: (context, state) {
           if (state is InternetConnected) {
-            setState(() {
-              backgroundColor = IColors.green;
-            });
-          } else {
-            setState(() {
-              backgroundColor = Colors.white;
-            });
-          }
-        }, builder: (context, state) {
-          if (state is InternetConnected) {
-            return BlocListener<BasketBloc, BasketState>(
-              listener: (context, state) {
-                if (state is BasketSuccess) {
-                  buttonStateSuccess();
-                } else if (state is BasketFailure) {
-                  buttonSatteFailure();
-                } else {}
-              },
-              child: OrientationBuilder(builder: (context, orientation) {
+            return Scaffold(
+              backgroundColor: IColors.green,
+              body: OrientationBuilder(builder: (context, orientation) {
                 return Stack(
                   children: [
                     Row(
@@ -151,7 +104,8 @@ class _DetailsScreenState extends State<DetailsScreen>
                                 color: Colors.white,
                               ),
                               onPressed: () {
-                                _pullDownAnimation();
+                                //close button
+                                Navigator.pop(context);
                               },
                             ),
                           ),
@@ -160,10 +114,9 @@ class _DetailsScreenState extends State<DetailsScreen>
                     ),
                     ScrollConfiguration(
                       behavior: MyCustomScrollBehavior(),
-                      child: BlocBuilder<DetailScreenAnimationCubit,
-                          DetailScreenAnimationState>(
+                      child: BlocBuilder<DetailCubit, DetailState>(
                         builder: (context, state) {
-                          if (state is DetailScreenAnimationStatus) {
+                          if (state is DetailStatus) {
                             return NotificationListener<
                                 DraggableScrollableNotification>(
                               onNotification: (notification) {
@@ -239,7 +192,7 @@ class _DetailsScreenState extends State<DetailsScreen>
                                                           TextAlign.center,
                                                     ),
                                                     Text(
-                                                      "",
+                                                      "$name",
                                                       style: TextStyle(
                                                           fontFamily:
                                                               "iranSans",
@@ -321,7 +274,7 @@ class _DetailsScreenState extends State<DetailsScreen>
                                                 height: 8,
                                               ),
                                               Text(
-                                                ' ',
+                                                '$description',
                                                 style: TextStyle(
                                                     fontFamily: "iranSans",
                                                     fontSize: 16,
@@ -338,10 +291,6 @@ class _DetailsScreenState extends State<DetailsScreen>
                                                     onTap: () {
                                                       _basketBloc.add(AddBasket(
                                                           book_id: id));
-                                                      setState(() {
-                                                        _buttonState =
-                                                            ButtonState.loading;
-                                                      });
                                                     }),
                                               ),
                                               SizedBox(
@@ -362,10 +311,9 @@ class _DetailsScreenState extends State<DetailsScreen>
                       ),
                     ),
                     IgnorePointer(
-                      child: BlocBuilder<DetailScreenAnimationCubit,
-                          DetailScreenAnimationState>(
+                      child: BlocBuilder<DetailCubit, DetailState>(
                         builder: (context, state) {
-                          if (state is DetailScreenAnimationStatus) {
+                          if (state is DetailStatus) {
                             return Opacity(
                               opacity: state.percent,
                               child: Container(
@@ -436,9 +384,11 @@ class _DetailsScreenState extends State<DetailsScreen>
               }),
             );
           } else {
-            return NoNetworkFlare();
+            return Scaffold(
+                backgroundColor: Colors.white,
+                body: Center(child: NoNetworkFlare()));
           }
-        }),
+        },
       ),
     );
   }
@@ -482,65 +432,4 @@ class _DetailsScreenState extends State<DetailsScreen>
     name = arguments['name'] ?? "";
     price = arguments['price'] ?? "";
   }
-
-  void _pullDownAnimation() {
-    Navigator.pop(context);
-
-    _pullUpController.repeat(reverse: true);
-    Timer(Duration(milliseconds: _animationDuration), () {
-      _pullUpController.stop();
-    });
-  }
-
-  void getUserId() async {
-    user_id = await _accountRepository.getSharedPrefs();
-  }
-
-  void buttonStateSuccess() {
-    Timer(Duration(seconds: 2), () {
-      setState(() {
-        _buttonState = ButtonState.success;
-      });
-      Timer(Duration(seconds: 2), () {
-        setState(() {
-          _buttonState = ButtonState.idle;
-        });
-      });
-    });
-  }
-
-  void buttonSatteFailure() {
-    setState(() {
-      Timer(Duration(seconds: 2), () {
-        setState(() {
-          _buttonState = ButtonState.fail;
-        });
-        Timer(Duration(seconds: 2), () {
-          setState(() {
-            _buttonState = ButtonState.idle;
-          });
-        });
-      });
-    });
-  }
-
-  @override
-  void dispose() {
-    _pullUpController.dispose();
-    super.dispose();
-  }
 }
-// decoration: BoxDecoration(
-//                                     color: Colors.white,
-//                                     borderRadius: BorderRadius.only(
-//                                         topLeft: Radius.circular(38),
-//                                         topRight: Radius.circular(38),
-//                                         bottomLeft: Radius.zero,
-//                                         bottomRight: Radius.zero),
-//                                     boxShadow: [
-//                                       BoxShadow(
-//                                         offset: Offset(1, -1),
-//                                         blurRadius: 4,
-//                                         color: IColors.borderShadow,
-//                                       )
-//                                     ])

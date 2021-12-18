@@ -1,21 +1,21 @@
-part of 'detail_screen_animation_cubit.dart';
+part of 'detail_cubit.dart';
 
-abstract class DetailScreenAnimationState extends Equatable {
-  const DetailScreenAnimationState();
+abstract class DetailState extends Equatable {
+  const DetailState();
 
   @override
   List<Object> get props => [];
 }
 
-class DetailScreenAnimationInitial extends DetailScreenAnimationState {}
+class DetailInitial extends DetailState {}
 
-class DetailScreenAnimationStatus extends DetailScreenAnimationState {
+class DetailStatus extends DetailState {
   var maxBorderRadius = 50.0;
   var borderRadius = 50.0;
   var percent = 1.0;
   double draggableSize = 0.75;
 
-  DetailScreenAnimationStatus(
+  DetailStatus(
       {required this.maxBorderRadius,
       required this.borderRadius,
       required this.draggableSize,

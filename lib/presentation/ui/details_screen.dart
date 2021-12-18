@@ -285,13 +285,38 @@ class DetailsScreen extends StatelessWidget {
                                                 height: 8,
                                               ),
                                               Center(
-                                                child: MyButton(
-                                                    buttonState: _buttonState,
-                                                    text: Strings.detailsBuy,
-                                                    onTap: () {
-                                                      _basketBloc.add(AddBasket(
-                                                          book_id: id));
-                                                    }),
+                                                child: BlocBuilder<BasketBloc,
+                                                    BasketState>(
+                                                  builder: (context, state) {
+                                                    if (state
+                                                        is BasketInitial) {
+                                                      return myButton(
+                                                          buttonState:
+                                                              ButtonState.idle);
+                                                    } else if (state
+                                                        is BasketLoading) {
+                                                      return myButton(
+                                                          buttonState:
+                                                              ButtonState
+                                                                  .loading);
+                                                    } else if (state
+                                                        is BasketSuccess) {
+                                                      return myButton(
+                                                          buttonState:
+                                                              ButtonState
+                                                                  .success);
+                                                    } else if (state
+                                                        is BasketFailure) {
+                                                      return myButton(
+                                                          buttonState:
+                                                              ButtonState.fail);
+                                                    } else {
+                                                      return myButton(
+                                                          buttonState:
+                                                              ButtonState.idle);
+                                                    }
+                                                  },
+                                                ),
                                               ),
                                               SizedBox(
                                                 height: 35,
@@ -393,31 +418,13 @@ class DetailsScreen extends StatelessWidget {
     );
   }
 
-  Widget myButton(Function() onTap) {
-    return Container(
-      width: double.infinity,
-      height: 46,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-        color: IColors.boldGreen,
-      ),
-      child: Material(
-        color: Colors.transparent,
-        child: InkWell(
-          borderRadius: BorderRadius.circular(8),
-          onTap: onTap,
-          child: Center(
-              child: Text(
-            'خرید',
-            style: TextStyle(
-                fontFamily: "iranSans",
-                fontSize: 18,
-                color: Colors.white70,
-                fontWeight: FontWeight.w700),
-          )),
-        ),
-      ),
-    );
+  Widget myButton({ButtonState buttonState = ButtonState.idle}) {
+    return MyButton(
+        buttonState: buttonState,
+        text: Strings.detailsBuy,
+        onTap: () {
+          _basketBloc.add(AddBasket(book_id: id));
+        });
   }
 
   void _getArguments() {

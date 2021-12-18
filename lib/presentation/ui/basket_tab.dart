@@ -67,7 +67,7 @@ class _BasketTabState extends State<BasketTab> {
                         child: ListView.builder(
                             physics: NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
-                            itemCount: state.basketModel.basket.length,
+                            itemCount: state.basketModel?.basket.length,
                             itemBuilder: (context, index) {
                               return FadeInAnimation(
                                 0.25 + ((index + 1) * 0.3),
@@ -75,28 +75,28 @@ class _BasketTabState extends State<BasketTab> {
                                     onTap: () {
                                       _basketBloc.add(DeleteBasket(
                                           book_id: state
-                                              .basketModel.basket[index].id));
+                                              .basketModel!.basket[index].id));
                                     },
-                                    id: state.basketModel.basket[index].id,
-                                    image: state
-                                        .basketModel.basket[index].pictureThumb,
-                                    name: state.basketModel.basket[index].name,
+                                    id: state.basketModel!.basket[index].id,
+                                    image: state.basketModel!.basket[index]
+                                        .pictureThumb,
+                                    name: state.basketModel!.basket[index].name,
                                     writer:
-                                        state.basketModel.basket[index].writer,
-                                    thumbImage: state
-                                        .basketModel.basket[index].pictureThumb,
+                                        state.basketModel!.basket[index].writer,
+                                    thumbImage: state.basketModel!.basket[index]
+                                        .pictureThumb,
                                     voteCount: double.parse(state
-                                        .basketModel.basket[index].voteCount),
+                                        .basketModel!.basket[index].voteCount),
                                     pagesCount: state
-                                        .basketModel.basket[index].pagesCount,
+                                        .basketModel!.basket[index].pagesCount,
                                     coverType: state
-                                        .basketModel.basket[index].coverType,
+                                        .basketModel!.basket[index].coverType,
                                     language: state
-                                        .basketModel.basket[index].language,
+                                        .basketModel!.basket[index].language,
                                     description: state
-                                        .basketModel.basket[index].description,
+                                        .basketModel!.basket[index].description,
                                     price:
-                                        state.basketModel.basket[index].price),
+                                        state.basketModel!.basket[index].price),
                               );
                             }),
                       ),
@@ -104,9 +104,9 @@ class _BasketTabState extends State<BasketTab> {
                         height: 22,
                       ),
                       PayCheckWidget(
-                        tax: state.basketModel.data.tax,
-                        deliveryCost: state.basketModel.data.deliveryCost,
-                        fullCost: state.basketModel.data.fullCost,
+                        tax: state.basketModel!.data.tax,
+                        deliveryCost: state.basketModel!.data.deliveryCost,
+                        fullCost: state.basketModel!.data.fullCost,
                         buttonState: _buttonState,
                       ),
                     ],

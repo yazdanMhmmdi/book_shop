@@ -41,12 +41,21 @@ class BasketBloc extends Bloc<BasketEvent, BasketState> {
         }
       } else if (event is AddBasket) {
         emit(BasketLoading());
+
+        await Future.delayed(const Duration(seconds: 2));
+
         FunctionalModel _tempModel = await _basketRepository.addBasket(
             GlobalWidget.userId, event.book_id);
         if (_tempModel.status == "1") {
-          emit(BasketSuccess(basketModel: _model));
+          emit(BasketSuccess());
+
+          await Future.delayed(const Duration(seconds: 2));
+          emit(BasketInitial());
         } else {
           emit(BasketFailure());
+
+          await Future.delayed(const Duration(seconds: 2));
+          emit(BasketInitial());
         }
       }
     });

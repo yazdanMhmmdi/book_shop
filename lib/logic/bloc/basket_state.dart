@@ -12,11 +12,10 @@ class BasketInitial extends BasketState {}
 class BasketLoading extends BasketState {}
 
 class BasketSuccess extends BasketState {
-  BasketModel basketModel;
-  BasketSuccess({required this.basketModel});
+  BasketModel? basketModel;
+  BasketSuccess({this.basketModel});
   @override
-  // TODO: implement props
-  List<Object> get props => [this.basketModel];
+  List<Object> get props => [this.basketModel!];
 }
 
 class BasketEmpty extends BasketState {}

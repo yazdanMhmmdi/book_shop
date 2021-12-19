@@ -45,7 +45,8 @@ class _BasketTabState extends State<BasketTab> {
           );
         } else if (state is BasketSuccess) {
           return ScrollConfiguration(
-            behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
+            behavior:
+                ScrollConfiguration.of(context).copyWith(scrollbars: false),
             child: SingleChildScrollView(
               physics: BouncingScrollPhysics(),
               child: SafeArea(
@@ -72,7 +73,7 @@ class _BasketTabState extends State<BasketTab> {
                               return FadeInAnimation(
                                 0.25 + ((index + 1) * 0.3),
                                 BasketItem(
-                                    onTap: () {
+                                    onTap: (context) {
                                       _basketBloc.add(DeleteBasket(
                                           book_id: state
                                               .basketModel!.basket[index].id));

@@ -21,7 +21,7 @@ class BasketItem extends StatelessWidget {
   String language;
   String coverType;
   String price;
-  late Function() onTap;
+  late Function(BuildContext context) onTap;
   BasketItem({
     required this.id,
     required this.image,
@@ -43,11 +43,11 @@ class BasketItem extends StatelessWidget {
         motion: const DrawerMotion(),
         extentRatio: 0.25,
         children: [
-          SlidableAction(
-            label: 'Archive',
-            backgroundColor: Colors.blue,
-            icon: Icons.archive,
-            onPressed: (context) {},
+          MySlidableAction(
+            label: 'حذف',
+            backgroundColor: Colors.red,
+            icon: Icons.delete,
+            onPressed: onTap,
           ),
         ],
       ),
@@ -55,13 +55,11 @@ class BasketItem extends StatelessWidget {
         motion: const DrawerMotion(),
         extentRatio: 0.25,
         children: [
-          MyIconSlideAction(
-            iconWidget: Text("iconWidget"),
-            caption: 'حذف',
-            color: Colors.red,
+          MySlidableAction(
+            label: 'حذف',
+            backgroundColor: Colors.red,
             icon: Icons.delete,
-            actionBorderRadius: 8,
-            onTap: onTap,
+            onPressed: onTap,
           ),
         ],
       ),

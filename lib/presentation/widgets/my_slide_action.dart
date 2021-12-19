@@ -1,215 +1,211 @@
-import 'package:book_shop/constants/colors.dart';
-import 'package:book_shop/constants/strings.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
-const bool _kCloseOnTap = true;
+/// Signature for [CustomSlidableAction.onPressed].
+typedef SlidableActionCallback = void Function(BuildContext context);
 
-/// Abstract class for slide actions that can close after [onTap] occurred.
-abstract class ClosableSlideAction extends StatelessWidget {
-  /// Creates a slide that closes when a tap has occurred if [closeOnTap]
-  /// is [true].
+const int _kFlex = 1;
+const Color _kBackgroundColor = Colors.white;
+const bool _kAutoClose = true;
+
+/// Represents an action of an [ActionPane].
+class CustomSlidableAction extends StatelessWidget {
+  /// Creates a [CustomSlidableAction].
   ///
-  /// The [closeOnTap] argument must not be null.
-  const ClosableSlideAction({
+  /// The [flex], [backgroundColor], [autoClose] and [child] arguments must not
+  /// be null.
+  ///
+  /// The [flex] argument must also be greater than 0.
+  const CustomSlidableAction({
     Key? key,
-    required this.color,
-    required this.onTap,
-    required this.actionBorderRadius,
-    this.closeOnTap = _kCloseOnTap,
-  }) : super(key: key);
-
-  /// The background color of this action.
-  final Color color;
-  final double actionBorderRadius;
-
-  /// A tap has occurred.
-  final VoidCallback onTap;
-
-  /// Whether close this after tap occurred.
-  ///
-  /// Defaults to true.
-  final bool closeOnTap;
-
-  /// Calls [onTap] if not null and closes the closest [Slidable]
-  /// that encloses the given context.
-  void _handleCloseAfterTap(BuildContext context) {
-    onTap.call();
-    Slidable.of(context)!.close();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      child: Material(
-        color: Colors.transparent,
-        child: Padding(
-          padding: const EdgeInsets.only(top: 8, bottom: 8, left: 8),
-          child: Container(
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(actionBorderRadius),
-                color: color),
-            child: Material(
-                color: Colors.transparent,
-                child: InkWell(
-                    borderRadius: BorderRadius.circular(actionBorderRadius),
-                    splashColor: IColors.balck15,
-                    onTap: !closeOnTap
-                        ? onTap
-                        : () => _handleCloseAfterTap(context),
-                    child: buildAction(context))),
-          ),
-        ),
-      ),
-    );
-  }
-
-  /// Builds the action.
-  @protected
-  Widget buildAction(BuildContext context);
-}
-
-/// A basic slide action with a background color and a child that will
-/// be center inside its area.
-class SlideAction extends ClosableSlideAction {
-  /// Creates a slide action with a child.
-  ///
-  /// The `color` argument is a shorthand for `decoration:
-  /// BoxDecoration(color: color)`, which means you cannot supply both a `color`
-  /// and a `decoration` argument. If you want to have both a `color` and a
-  /// `decoration`, you can pass the color as the `color` argument to the
-  /// `BoxDecoration`.
-  ///
-  /// The [closeOnTap] argument must not be null.
-  SlideAction({
-    required Key key,
+    this.flex = _kFlex,
+    this.backgroundColor = _kBackgroundColor,
+    this.foregroundColor,
+    this.autoClose = _kAutoClose,
+    required this.onPressed,
     required this.child,
-    required VoidCallback onTap,
-    required Color color,
-    required double actionBorderRadius,
-    required Decoration decoration,
-    bool closeOnTap = _kCloseOnTap,
-  })  : assert(decoration == null || decoration.debugAssertIsValid()),
-        assert(
-            color == null || decoration == null,
-            'Cannot provide both a color and a decoration\n'
-            'The color argument is just a shorthand for "decoration:  BoxDecoration(color: color)".'),
-        decoration = decoration,
-        super(
-          key: key,
-          onTap: onTap,
-          closeOnTap: closeOnTap,
-          color: color,
-          actionBorderRadius: actionBorderRadius,
-        );
+  })  : assert(flex > 0),
+        super(key: key);
 
-  /// The decoration to paint behind the [child].
+  /// {@template slidable.actions.flex}
+  /// The flex factor to use for this child.
   ///
-  /// A shorthand for specifying just a solid color is available in the
-  /// constructor: set the `color` argument instead of the `decoration`
-  /// argument.
-  final Decoration decoration;
+  /// The amount of space the child's can occupy in the main axis is
+  /// determined by dividing the free space according to the flex factors of the
+  /// other [CustomSlidableAction]s.
+  /// {@endtemplate}
+  final int flex;
 
-  /// The [child] contained by the slide action.
+  /// {@template slidable.actions.backgroundColor}
+  /// The background color of this action.
+  ///
+  /// Defaults to [Colors.white].
+  /// {@endtemplate}
+  final Color backgroundColor;
+
+  /// {@template slidable.actions.foregroundColor}
+  /// The foreground color of this action.
+  ///
+  /// Defaults to [Colors.black] if [background]'s brightness is
+  /// [Brightness.light], or to [Colors.white] if [background]'s brightness is
+  /// [Brightness.dark].
+  /// {@endtemplate}
+  final Color? foregroundColor;
+
+  /// {@template slidable.actions.autoClose}
+  /// Whether the enclosing [Slidable] will be closed after [onPressed]
+  /// occurred.
+  /// {@endtemplate}
+  final bool autoClose;
+
+  /// {@template slidable.actions.onPressed}
+  /// Called when the action is tapped or otherwise activated.
+  ///
+  /// If this callback is null, then the action will be disabled.
+  /// {@endtemplate}
+  final SlidableActionCallback? onPressed;
+
+  /// Typically the action's icon or label.
   final Widget child;
 
   @override
-  Widget buildAction(BuildContext context) {
-    return Container(
-      decoration: decoration,
-      child: Center(
-        child: child,
+  Widget build(BuildContext context) {
+    final effectiveForegroundColor = foregroundColor ??
+        (ThemeData.estimateBrightnessForColor(backgroundColor) ==
+                Brightness.light
+            ? Colors.black
+            : Colors.white);
+
+    return Expanded(
+      flex: flex,
+      child: SizedBox.expand(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+            decoration: BoxDecoration(
+              color: backgroundColor,
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Material(
+                color: Colors.transparent,
+                child: InkWell(
+                    onTap: () => _handleTap(context),
+                    child: Center(child: child))),
+          ),
+        ),
       ),
     );
   }
+
+  void _handleTap(BuildContext context) {
+    onPressed?.call(context);
+    if (autoClose) {
+      Slidable.of(context)?.close();
+    }
+  }
 }
 
-/// A basic slide action with an icon, a caption and a background color.
-class MyIconSlideAction extends ClosableSlideAction {
-  /// Creates a slide action with an icon, a [caption] if set and a
-  /// background color.
+/// An action for [Slidable] which can show an icon, a label, or both.
+class MySlidableAction extends StatelessWidget {
+  /// Creates a [MySlidableAction].
   ///
-  /// The [closeOnTap] argument must not be null.
-  const MyIconSlideAction({
-    required this.icon,
-    required this.iconWidget,
-    required this.caption,
-    required Color color,
-    required double actionBorderRadius,
-    this.foregroundColor = Colors.red,
-    required VoidCallback onTap,
-    bool closeOnTap = _kCloseOnTap,
-  })  : assert(icon != null || iconWidget != null,
-            'Either set icon or iconWidget.'),
-        super(
-          color: color,
-          actionBorderRadius: actionBorderRadius,
-          onTap: onTap,
-          closeOnTap: closeOnTap,
-        );
+  /// The [flex], [backgroundColor], [autoClose] and [spacing] arguments
+  /// must not be null.
+  ///
+  /// You must set either an [icon] or a [label].
+  ///
+  /// The [flex] argument must also be greater than 0.
+  const MySlidableAction({
+    Key? key,
+    this.flex = _kFlex,
+    this.backgroundColor = _kBackgroundColor,
+    this.foregroundColor,
+    this.autoClose = _kAutoClose,
+    required this.onPressed,
+    this.icon,
+    this.spacing = 4,
+    this.label,
+  })  : assert(flex > 0),
+        assert(icon != null || label != null),
+        super(key: key);
 
-  /// The icon to show.
-  final IconData icon;
+  /// {@macro slidable.actions.flex}
+  final int flex;
 
-  /// A custom widget to represent the icon.
-  /// If both [icon] and [iconWidget] are set, they will be shown at the same
-  /// time.
-  final Widget iconWidget;
+  /// {@macro slidable.actions.backgroundColor}
+  final Color backgroundColor;
 
-  /// The caption below the icon.
-  final String caption;
+  /// {@macro slidable.actions.foregroundColor}
+  final Color? foregroundColor;
 
-  /// The color used for [icon] and [caption].
-  final Color foregroundColor;
+  /// {@macro slidable.actions.autoClose}
+  final bool autoClose;
+
+  /// {@macro slidable.actions.onPressed}
+  final SlidableActionCallback? onPressed;
+
+  /// An icon to display above the [label].
+  final IconData? icon;
+
+  /// The space between [icon] and [label] if both set.
+  ///
+  /// Defaults to 4.
+  final double spacing;
+
+  /// A label to display below the [icon].
+  final String? label;
 
   @override
-  Widget buildAction(BuildContext context) {
-    final Color estimatedColor =
-        ThemeData.estimateBrightnessForColor(color) == Brightness.light
-            ? Colors.black
-            : Colors.white;
-
-    final List<Widget> widgets = [];
+  Widget build(BuildContext context) {
+    final children = <Widget>[];
 
     if (icon != null) {
-      widgets.add(
-        Flexible(
-          child: Icon(
-            icon,
-            color: foregroundColor,
+      children.add(
+        Icon(
+          icon,
+          color: Colors.white,
+        ),
+      );
+    }
+
+    if (label != null) {
+      if (children.isNotEmpty) {
+        children.add(
+          SizedBox(height: spacing),
+        );
+      }
+
+      children.add(
+        Text(
+          label!,
+          overflow: TextOverflow.ellipsis,
+          style: TextStyle(
+            color: Colors.white,
           ),
         ),
       );
     }
 
-    if (iconWidget != null) {
-      widgets.add(
-        Flexible(child: iconWidget),
-      );
-    }
+    final child = children.length == 1
+        ? children.first
+        : Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ...children.map(
+                (child) => Flexible(
+                  child: child,
+                ),
+              )
+            ],
+          );
 
-    if (caption != null) {
-      widgets.add(
-        Flexible(
-          child: Text(
-            caption,
-            overflow: TextOverflow.ellipsis,
-            style: TextStyle(
-                fontFamily: Strings.fontIranSans,
-                fontSize: 14,
-                color: IColors.white90,
-                fontWeight: FontWeight.w700),
-          ),
-        ),
-      );
-    }
-
-    return Center(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: widgets,
-      ),
+    return CustomSlidableAction(
+      onPressed: onPressed,
+      autoClose: autoClose,
+      backgroundColor: backgroundColor,
+      foregroundColor: foregroundColor,
+      flex: flex,
+      child: child,
     );
   }
 }

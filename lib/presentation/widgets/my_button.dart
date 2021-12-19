@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:book_shop/constants/colors.dart';
 import 'package:book_shop/presentation/widgets/my_progress_button.dart';
@@ -27,7 +28,7 @@ class MyButton extends StatelessWidget {
     return MyProgressButton(
       minWidth: 50.0,
       height: 46.0,
-      maxWidth: 800,
+      maxWidth: Platform.isWindows ? 1920 : MediaQuery.of(context).size.width,
       radius: buttonRadius,
       progressIndicatorAlignment: MainAxisAlignment.center,
       progressIndicator: CircularProgressIndicator(

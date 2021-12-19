@@ -4,6 +4,7 @@
 
 list(APPEND FLUTTER_PLUGIN_LIST
   connectivity_plus_windows
+  desktop_window
 )
 
 set(PLUGIN_BUNDLED_LIBRARIES)

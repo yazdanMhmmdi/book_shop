@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:book_shop/logic/bloc/account_bloc.dart';
 import 'package:book_shop/logic/bloc/auth_bloc.dart';
 import 'package:book_shop/logic/bloc/details_bloc.dart';
@@ -16,13 +17,21 @@ import 'package:book_shop/presentation/ui/title_details_screen.dart';
 import 'package:book_shop/presentation/widgets/custom_scroll_behavior.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:desktop_window/desktop_window.dart' as window_size;
 
 import 'logic/bloc/home_bloc.dart';
 import 'package:sizer/sizer.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  desktopMinScreenSize();
   runApp(MyApp());
+}
+
+void desktopMinScreenSize() {
+  if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
+    window_size.DesktopWindow.setMinWindowSize(Size(420, 720));
+  }
 }
 
 class MyApp extends StatefulWidget {

@@ -18,7 +18,7 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     _splashCubit = BlocProvider.of<SplashCubit>(context);
     _splashCubit.intialUserIdFromPrefs();
-
+    // data();
     return BlocListener<SplashCubit, SplashState>(
       listener: (context, state) {
         if (state is SplashIsGuest) {
@@ -62,5 +62,10 @@ class SplashScreen extends StatelessWidget {
         },
       ),
     );
+  }
+
+  void data() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    sharedPreferences.clear();
   }
 }

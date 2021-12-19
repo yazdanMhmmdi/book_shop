@@ -16,4 +16,8 @@ class Assets {
   static final String cosmos = "assets/flare/cosmos.flr";
   static final String customerAgent = "assets/images/customer_agent.png";
   static final String logo = "assets/images/logo_n_text.png";
+  static final String circleBottomLeft = "assets/images/circle_1.png";
+  static final String circleBottomRight = "assets/images/circle_2.png";
+  static final String circleTopLeft = "assets/images/circle_3.png";
+  static final String circleTopRight = "assets/images/circle_4.png";
 }

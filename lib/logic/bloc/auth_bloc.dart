@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:book_shop/data/model/auth_model.dart';
 import 'package:book_shop/data/repository/auth_repository.dart';
+import 'package:book_shop/presentation/widgets/global_widget.dart';
 import 'package:equatable/equatable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -31,8 +32,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             emit(AuthSuccess(_authModel));
 
             if (await setSharedPrefes(_authModel)) {
-              //executing shared prefs and test input
-              final SharedPreferences p = await _prefs;
+              GlobalWidget.userId = _authModel.id.toString();
             }
           } else {
             emit(AuthWrong());
@@ -47,8 +47,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
               username: event.username, password: event.password);
 
           if (await setSharedPrefes(_authModel)) {
-            //executing shared prefs and test input
-            final SharedPreferences p = _prefs;
+            GlobalWidget.userId = _authModel.id.toString();
           }
 
           emit(AuthSuccess(_authModel));

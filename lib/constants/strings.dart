@@ -13,9 +13,9 @@ class Strings {
   static final String signupAccept = "تایید";
   static final String signupDidYouSignedUp = "ثبت نام کرده اید؟";
   static final String signupUsernameWarning =
-      "نام کاربری حداقل باید 5 کارکتر باشد";
+      "نام کاربری حداقل 5 و حداکثر 16 کارکتر باشد";
   static final String signUpPasswordWarning =
-      "رمز عبور حداقل باید 8 و حداکثر 16 کارکتر باشد";
+      "رمز عبور حداقل 8 و حداکثر 16 کارکتر باشد";
   static final String signupNLO = "ورود";
   //login
   static final String loginLabel = "ورود";

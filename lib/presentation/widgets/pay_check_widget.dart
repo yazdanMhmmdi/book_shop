@@ -5,6 +5,7 @@ import 'package:book_shop/presentation/widgets/my_button.dart';
 import 'package:book_shop/presentation/widgets/my_progress_button.dart';
 import 'package:book_shop/presentation/widgets/number_formatter.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class PayCheckWidget extends StatelessWidget {
   int tax, deliveryCost, fullCost;
@@ -105,7 +106,11 @@ class PayCheckWidget extends StatelessWidget {
                     MyButton(
                         buttonState: buttonState,
                         text: Strings.basketPayit,
-                        onTap: () {}),
+                        onTap: () async {
+                          SharedPreferences _prefs =
+                              await SharedPreferences.getInstance();
+                          _prefs.clear();
+                        }),
                   ],
                 ),
               ),

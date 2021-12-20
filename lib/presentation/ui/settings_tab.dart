@@ -39,16 +39,18 @@ class _SettingsTabState extends State<SettingsTab> {
     _formValidationCubit = BlocProvider.of<FormValidationCubit>(context);
     BlocProvider.of<AccountBloc>(context).add(GetDefaultEvent());
     _formValidationCubit.authValidatiors(
-        usernameController.text, passwordController.text);
+        usernameController.text, passwordController.text, doAfterValidation: () {});
     usernameController.addListener(() {
       _formValidationCubit.authValidatiors(
-          usernameController.text, passwordController.text);
+          usernameController.text, passwordController.text,
+          doAfterValidation: () {});
       print(
           "usernmame : ${usernameController.text}, ${passwordController.text}");
     });
     passwordController.addListener(() {
       _formValidationCubit.authValidatiors(
-          usernameController.text, passwordController.text);
+          usernameController.text, passwordController.text,
+          doAfterValidation: () {});
       print(
           "password : ${usernameController.text}, ${passwordController.text}");
     });
@@ -294,7 +296,7 @@ class _SettingsTabState extends State<SettingsTab> {
                         newUsername: usernameController.text,
                         newPassword: passwordController.text));
                     _formValidationCubit.authValidatiors(
-                        usernameController.text, passwordController.text);
+                        usernameController.text, passwordController.text, doAfterValidation: () {});
                   }
                 }),
           );

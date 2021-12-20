@@ -4,12 +4,14 @@ import 'package:equatable/equatable.dart';
 part 'form_validation_state.dart';
 
 class FormValidationCubit extends Cubit<FormValidationState> {
-  FormValidationCubit() : super(FormValidationInitial());
+  static bool usernameStatus = true;
+  static bool passwordStatus = true;
 
-  bool usernameStatus = false;
-  bool passwordStatus = false;
+  FormValidationCubit()
+      : super(FormValidationInitial(usernameStatus, passwordStatus));
 
-  void authValidatiors(String username, password) {
+  void authValidatiors(String username, String password,
+      {required Function doAfterValidation}) {
     if (username.length < 17 && username.length >= 5) {
       usernameStatus = true;
     } else {
@@ -21,7 +23,7 @@ class FormValidationCubit extends Cubit<FormValidationState> {
     } else {
       passwordStatus = false;
     }
-    emit(FormValidationStatus(
-        usernameStatus: usernameStatus, passwordStatus: passwordStatus));
+    if (passwordStatus && usernameStatus) doAfterValidation.call();
+    emit(FormValidationStatus(usernameStatus, passwordStatus));
   }
 }

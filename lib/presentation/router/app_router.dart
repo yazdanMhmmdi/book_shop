@@ -63,6 +63,9 @@ class AppRouter {
               BlocProvider.value(
                 value: _internetCubit,
               ),
+              BlocProvider(
+                create: (context) => FormValidationCubit(),
+              )
             ],
             child: _loginScreen,
           ),
@@ -78,6 +81,7 @@ class AppRouter {
               BlocProvider.value(
                 value: _internetCubit,
               ),
+              BlocProvider(create: (context) => FormValidationCubit()),
             ],
             child: SignUpScreen(),
           ),

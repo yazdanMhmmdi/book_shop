@@ -50,11 +50,15 @@ dependencies:
   sizer: ^2.0.15
   octo_image: ^1.0.1
   desktop_window: ^0.4.0
+  flutter_native_splash: ^1.3.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
+flutter_native_splash:
+  color: "#A2DE96"
+  image: assets/images/logo_n_text.png
 
 flutter_icons:
   ios: true

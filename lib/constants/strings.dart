@@ -70,4 +70,17 @@ class Strings {
   //chat
   static final String chatSpeakWithSeller = "گفتگو با فروشنده";
   static final String chatWriteSomthing = "یک پیام بنویسید...";
+
+  //onboarding
+  static final String onboardingExploreTitle = "جستجو کنید";
+  static final String onboardingExploreDesc = "بهترین کتاب را در هر موضوعی به سبد خرید خود اضافه کنید";
+
+  static final String onboardingMultiPlatformTitle = "بدون محدودیت";
+  static final String onboardingMultiPlatformDesc = "بدون محدودیت از هر دستگاهی سفارش خودتون را ثبت کنید";
+
+  static final String onboardingPaymentTitle = "پرداخت آسان";
+  static final String onboardingPaymentDesc = "با هر کارت بانکی به صورت آنی هزینه سفارش خود را پرداخت کنید.";
+
+  static final String onboardingDeliveryTitle = "ارسال فوری";
+  static final String onboardingDeliveryDesc = "سفارش خود را کمتر از 4 ساعت در تهران و کمتر از 24 ساعت در شهرستان ها دریافت کنید.";
 }

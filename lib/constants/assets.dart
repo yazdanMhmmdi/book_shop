@@ -20,4 +20,18 @@ class Assets {
   static final String circleBottomRight = "assets/images/circle_2.png";
   static final String circleTopLeft = "assets/images/circle_3.png";
   static final String circleTopRight = "assets/images/circle_4.png";
+  static final String onBoardExplore = "assets/images/onboarding_explore.png";
+  static final String onBoardMultiplatform =
+      "assets/images/onboarding_multiplatform.png";
+  static final String onBoardPayment = "assets/images/onboarding_payment.png";
+  static final String onBoardDelivery = "assets/images/onboarding_delivery.png";
+
+  static final String onBoardExploreSvg =
+      "assets/images/onboarding_explore.svg";
+  static final String onBoardMultiplatformSvg =
+      "assets/images/onboarding_multiplatform.svg";
+  static final String onBoardPaymentSvg =
+      "assets/images/onboarding_payment.svg";
+  static final String onBoardDeliverySvg =
+      "assets/images/onboarding_delivery.svg";
 }

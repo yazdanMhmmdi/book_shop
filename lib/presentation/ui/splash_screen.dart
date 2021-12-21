@@ -22,7 +22,7 @@ class SplashScreen extends StatelessWidget {
     return BlocListener<SplashCubit, SplashState>(
       listener: (context, state) {
         if (state is SplashIsGuest) {
-          Navigator.pushNamedAndRemoveUntil(context, '/login', (e) => false);
+          Navigator.pushNamedAndRemoveUntil(context, '/intro', (e) => false);
         } else if (state is SplashIsUser) {
           Navigator.pushNamedAndRemoveUntil(context, '/home', (e) => false);
         }

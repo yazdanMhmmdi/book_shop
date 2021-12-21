@@ -14,6 +14,7 @@ import 'package:book_shop/presentation/ui/chat_list_screen.dart';
 import 'package:book_shop/presentation/ui/chat_screen.dart';
 import 'package:book_shop/presentation/ui/details_screen.dart';
 import 'package:book_shop/presentation/ui/home_screen.dart';
+import 'package:book_shop/presentation/ui/intro_screen.dart';
 import 'package:book_shop/presentation/ui/login_screen.dart';
 import 'package:book_shop/presentation/ui/sign_up_screen.dart';
 import 'package:book_shop/presentation/ui/socket_test_screen.dart';
@@ -52,6 +53,8 @@ class AppRouter {
             child: SplashScreen(),
           ),
         );
+      case '/intro':
+        return MaterialPageRoute(builder: (_) => IntroScreen());
         break;
       case '/login':
         return MaterialPageRoute(

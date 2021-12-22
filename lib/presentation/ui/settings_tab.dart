@@ -27,9 +27,9 @@ class SettingsTab extends StatefulWidget {
   State<SettingsTab> createState() => _SettingsTabState();
 }
 
-class _SettingsTabState extends State<SettingsTab> {
+class _SettingsTabState extends State<SettingsTab>
+    with SingleTickerProviderStateMixin {
   late TextEditingController usernameController = TextEditingController();
-
   late TextEditingController passwordController = TextEditingController();
 
   late FormValidationCubit _formValidationCubit;
@@ -39,7 +39,8 @@ class _SettingsTabState extends State<SettingsTab> {
     _formValidationCubit = BlocProvider.of<FormValidationCubit>(context);
     BlocProvider.of<AccountBloc>(context).add(GetDefaultEvent());
     _formValidationCubit.authValidatiors(
-        usernameController.text, passwordController.text, doAfterValidation: () {});
+        usernameController.text, passwordController.text,
+        doAfterValidation: () {});
     usernameController.addListener(() {
       _formValidationCubit.authValidatiors(
           usernameController.text, passwordController.text,
@@ -92,99 +93,88 @@ class _SettingsTabState extends State<SettingsTab> {
                               padding: const EdgeInsets.only(top: 43),
                               child: FadeInAnimation(
                                 0.75,
-                                Container(
-                                  width: double.infinity,
-                                  decoration: BoxDecoration(
-                                    color: IColors.green,
-                                    borderRadius: BorderRadius.circular(32),
-                                  ),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 16, vertical: 16),
-                                        child: Opacity(
-                                          opacity: 0,
-                                          child: Container(
-                                            width: 28,
-                                            height: 28,
-                                            decoration: BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              color: Colors.white54,
-                                            ),
-                                            child: Icon(
-                                              Icons.edit,
-                                              color: Colors.white,
-                                              size: 14,
-                                            ),
-                                          ),
+                                AnimatedSize(
+                                  duration: Duration(milliseconds: 350),
+                                  curve: Curves.fastLinearToSlowEaseIn,
+                                  alignment: Alignment.topCenter,
+                                  child: Container(
+                                    width: double.infinity,
+                                    decoration: BoxDecoration(
+                                      color: IColors.green,
+                                      borderRadius: BorderRadius.circular(32),
+                                    ),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        SizedBox(
+                                          height: 60,
                                         ),
-                                      ),
-                                      Center(
-                                          child: Column(
-                                        children: [
-                                          BlocBuilder<AccountBloc,
-                                              AccountState>(
-                                            builder: (context, state) {
-                                              if (state is AccountLoading) {
-                                                return Center(
-                                                    child: Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          bottom: 16, top: 8),
-                                                  child:
-                                                      CircularProgressIndicator(),
-                                                ));
-                                              } else if (state
-                                                  is AccountSuccess) {
-                                                return formFieldsUI(
-                                                    state: state);
-                                              } else {
-                                                return formFieldsUI(
-                                                    state: state);
-                                              }
-                                            },
-                                          ),
-                                          BlocBuilder<AccountBloc,
-                                              AccountState>(
-                                            builder: (context, state) {
-                                              if (state is AccountEditLoading) {
-                                                return buttonUI(
-                                                    buttonState:
-                                                        ButtonState.loading);
-                                              } else if (state
-                                                  is AccountEditSuccess) {
-                                                return buttonUI(
-                                                    buttonState:
-                                                        ButtonState.success);
-                                              } else if (state
-                                                  is AccountEditFailure) {
-                                                return buttonUI(
-                                                    buttonState:
-                                                        ButtonState.fail);
-                                              } else if (state
-                                                  is AccountEditInitial) {
-                                                return buttonUI(
-                                                    buttonState:
-                                                        ButtonState.idle);
-                                              } else if (state
-                                                  is AccountLoading) {
-                                                return Container();
-                                              } else
-                                                return buttonUI(
-                                                    buttonState:
-                                                        ButtonState.idle);
-                                            },
-                                          ),
-                                          SizedBox(
-                                            height: 22,
-                                          ),
-                                        ],
-                                      )),
-                                    ],
+                                        Center(
+                                            child: Column(
+                                          children: [
+                                            BlocBuilder<AccountBloc,
+                                                AccountState>(
+                                              builder: (context, state) {
+                                                if (state is AccountLoading) {
+                                                  return Center(
+                                                      child: Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            bottom: 16, top: 8),
+                                                    child:
+                                                        CircularProgressIndicator(),
+                                                  ));
+                                                } else if (state
+                                                    is AccountSuccess) {
+                                                  return formFieldsUI(
+                                                      state: state);
+                                                } else {
+                                                  return formFieldsUI(
+                                                      state: state);
+                                                }
+                                              },
+                                            ),
+                                            BlocBuilder<AccountBloc,
+                                                AccountState>(
+                                              builder: (context, state) {
+                                                if (state
+                                                    is AccountEditLoading) {
+                                                  return buttonUI(
+                                                      buttonState:
+                                                          ButtonState.loading);
+                                                } else if (state
+                                                    is AccountEditSuccess) {
+                                                  return buttonUI(
+                                                      buttonState:
+                                                          ButtonState.success);
+                                                } else if (state
+                                                    is AccountEditFailure) {
+                                                  return buttonUI(
+                                                      buttonState:
+                                                          ButtonState.fail);
+                                                } else if (state
+                                                    is AccountEditInitial) {
+                                                  return buttonUI(
+                                                      buttonState:
+                                                          ButtonState.idle);
+                                                } else if (state
+                                                    is AccountLoading) {
+                                                  return Container();
+                                                } else
+                                                  return buttonUI(
+                                                      buttonState:
+                                                          ButtonState.idle);
+                                              },
+                                            ),
+                                            SizedBox(
+                                              height: 22,
+                                            ),
+                                          ],
+                                        )),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
@@ -296,7 +286,8 @@ class _SettingsTabState extends State<SettingsTab> {
                         newUsername: usernameController.text,
                         newPassword: passwordController.text));
                     _formValidationCubit.authValidatiors(
-                        usernameController.text, passwordController.text, doAfterValidation: () {});
+                        usernameController.text, passwordController.text,
+                        doAfterValidation: () {});
                   }
                 }),
           );

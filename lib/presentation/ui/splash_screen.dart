@@ -32,23 +32,22 @@ class SplashScreen extends StatelessWidget {
           if (state is InternetConnected) {
             return Scaffold(
               backgroundColor: IColors.green,
-              body: SafeArea(
-                  child: Stack(
+              body: Stack(
                 children: [
-                  Stack(
-                    children: [
-                      Center(
-                        child: Image.asset(
-                          Assets.logo,
-                          width: 96,
-                          height: 109,
-                        ),
-                      ),
-                      BackgroundShapes(),
-                    ],
+              Stack(
+                children: [
+                  Center(
+                    child: Image.asset(
+                      Assets.logo,
+                      width: 96,
+                      height: 109,
+                    ),
                   ),
+                  BackgroundShapes(),
                 ],
-              )),
+              ),
+                ],
+              ),
             );
           } else if (state is InternetDisconnected) {
             return Scaffold(

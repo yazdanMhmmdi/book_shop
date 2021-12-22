@@ -1,5 +1,6 @@
 import 'dart:ffi';
 
+import 'package:book_shop/constants/values.dart';
 import 'package:flutter/material.dart';
 
 class FadeInTransition extends StatefulWidget {
@@ -21,7 +22,7 @@ class _FadeInTransitionState extends State<FadeInTransition>
     _animationController = AnimationController(
         vsync: this,
         duration: Duration(
-          milliseconds: 300,
+          milliseconds: Values.animationDuration,
         ));
     _animation = Tween<double>(
       begin: 0.0,

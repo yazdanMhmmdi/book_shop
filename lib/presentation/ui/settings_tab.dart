@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:book_shop/constants/assets.dart';
 import 'package:book_shop/constants/colors.dart';
 import 'package:book_shop/constants/strings.dart';
+import 'package:book_shop/constants/values.dart';
 import 'package:book_shop/data/repository/account_repository.dart';
 import 'package:book_shop/data/repository/shared_prefs_repository.dart';
 import 'package:book_shop/logic/bloc/account_bloc.dart';
@@ -94,7 +95,8 @@ class _SettingsTabState extends State<SettingsTab>
                               child: FadeInAnimation(
                                 0.75,
                                 AnimatedSize(
-                                  duration: Duration(milliseconds: 350),
+                                  duration: const Duration(
+                                      milliseconds: Values.animationDuration),
                                   curve: Curves.fastLinearToSlowEaseIn,
                                   alignment: Alignment.topCenter,
                                   child: Container(

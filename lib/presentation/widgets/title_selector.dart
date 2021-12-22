@@ -1,3 +1,4 @@
+import 'package:book_shop/constants/values.dart';
 import 'package:book_shop/logic/bloc/title_bloc.dart';
 import 'package:book_shop/presentation/ui/title_details_screen.dart';
 import 'package:flutter/material.dart';
@@ -63,7 +64,7 @@ class _TitleSelectorState extends State<TitleSelector> {
                       color: Colors.black87,
                     ),
                   ),
-                  duration: Duration(milliseconds: 300))
+                  duration: Duration(milliseconds: Values.animationDuration))
             ],
           )
         ]),

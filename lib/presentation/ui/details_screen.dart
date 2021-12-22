@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:book_shop/constants/colors.dart';
-import 'package:book_shop/constants/numbers.dart';
+import 'package:book_shop/constants/values.dart';
 import 'package:book_shop/constants/strings.dart';
 import 'package:book_shop/data/repository/account_repository.dart';
 import 'package:book_shop/logic/bloc/basket_bloc.dart';
@@ -220,7 +220,7 @@ class DetailsScreen extends StatelessWidget {
                                               ),
                                               DetailSliderWidget(
                                                   duration: Duration(
-                                                      milliseconds: Numbers
+                                                      milliseconds: Values
                                                           .animationDuration),
                                                   sliderContainers: [
                                                     DetailSliderContainer(

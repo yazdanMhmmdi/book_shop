@@ -1,3 +1,4 @@
+import 'package:book_shop/constants/values.dart';
 import 'package:book_shop/logic/bloc/account_bloc.dart';
 import 'package:book_shop/logic/bloc/auth_bloc.dart';
 import 'package:book_shop/logic/bloc/basket_bloc.dart';
@@ -92,7 +93,7 @@ class AppRouter {
         break;
       case '/home':
         return PageRouteBuilder(
-            transitionDuration: Duration(milliseconds: 300),
+            transitionDuration: Duration(milliseconds: Values.animationDuration),
             transitionsBuilder: (context, aniamtion, animationTime, child) {
               return FadeTransition(
                 opacity: aniamtion,
@@ -123,7 +124,7 @@ class AppRouter {
             settings.arguments as Map<String, String>;
 
         return PageRouteBuilder(
-          transitionDuration: Duration(milliseconds: 400),
+          transitionDuration: Duration(milliseconds: Values.animationDuration),
           transitionsBuilder: (context, ainmation, animationTime, child) {
             return FadeTransition(opacity: ainmation, child: child);
           },
@@ -153,7 +154,7 @@ class AppRouter {
             settings.arguments as Map<String, String>;
 
         return PageRouteBuilder(
-          transitionDuration: Duration(milliseconds: 300),
+          transitionDuration: Duration(milliseconds: Values.animationDuration),
           transitionsBuilder: (context, animation, animationTime, child) {
             return FadeTransition(opacity: animation, child: child);
           },
@@ -183,7 +184,7 @@ class AppRouter {
             settings.arguments as Map<String, String>;
 
         return PageRouteBuilder(
-          transitionDuration: Duration(milliseconds: 400),
+          transitionDuration: Duration(milliseconds: Values.animationDuration),
           transitionsBuilder: (context, ainmation, animationTime, child) {
             return FadeTransition(opacity: ainmation, child: child);
           },
@@ -206,7 +207,7 @@ class AppRouter {
             settings.arguments as Map<String, String>;
 
         return PageRouteBuilder(
-          transitionDuration: Duration(milliseconds: 30),
+          transitionDuration: Duration(milliseconds: Values.animationDuration),
           transitionsBuilder: (context, ainmation, animationTime, child) {
             return FadeTransition(opacity: ainmation, child: child);
           },

@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:book_shop/constants/colors.dart';
 import 'package:book_shop/constants/strings.dart';
+import 'package:book_shop/constants/values.dart';
 import 'package:book_shop/presentation/widgets/detail_slider_widget/detail_slider_container.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -11,7 +12,7 @@ class DetailSliderWidget extends StatefulWidget {
   List<DetailSliderContainer> sliderContainers;
   DetailSliderWidget({
     required this.sliderContainers,
-    this.duration = const Duration(milliseconds: 350),
+    this.duration = const Duration(milliseconds: Values.animationDuration),
   });
   @override
   _SliderObjectState createState() => _SliderObjectState();

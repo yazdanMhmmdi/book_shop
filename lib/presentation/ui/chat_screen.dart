@@ -1,5 +1,6 @@
 import 'package:book_shop/constants/colors.dart';
 import 'package:book_shop/constants/strings.dart';
+import 'package:book_shop/constants/values.dart';
 import 'package:book_shop/logic/bloc/chat_bloc.dart';
 import 'package:book_shop/logic/cubit/internet_cubit.dart';
 import 'package:book_shop/networking/image_address_provider.dart';
@@ -120,7 +121,7 @@ class _ChatScreenState extends State<ChatScreen> {
   void scrollBottom() {
     _scrollController.animateTo(
       _scrollController.position.maxScrollExtent + 70,
-      duration: Duration(seconds: 1),
+      duration: Duration(seconds: Values.animationDuration),
       curve: Curves.fastOutSlowIn,
     );
   }

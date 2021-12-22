@@ -1,3 +1,4 @@
+import 'package:book_shop/constants/values.dart';
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 import 'package:supercharged/supercharged.dart';
@@ -16,19 +17,19 @@ class FadeInAnimation extends StatelessWidget {
       ..add(
         _AniProps.opacity,
         0.0.tweenTo(1.0),
-        Duration(milliseconds: 350),
+        Duration(milliseconds: Values.animationDuration),
         Curves.easeInOut,
       )
       ..add(
         _AniProps.translateX,
         60.0.tweenTo(0.0),
-        Duration(milliseconds: 350),
+        Duration(milliseconds: Values.animationDuration),
         Curves.easeInOut,
       );
 
     return PlayAnimation<MultiTweenValues<_AniProps>>(
-      delay: (350 * delay).round().milliseconds,
-      duration: 350.milliseconds,
+      delay: (Values.animationDuration * delay).round().milliseconds,
+      duration: Values.animationDuration.milliseconds,
       tween: tween,
       child: child,
       builder: (context, child, value) => Opacity(

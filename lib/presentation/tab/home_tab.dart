@@ -1,11 +1,8 @@
-import 'dart:ui';
-
 import 'package:book_shop/constants/strings.dart';
 import 'package:book_shop/data/model/home_model.dart';
 import 'package:book_shop/logic/bloc/home_bloc.dart';
 import 'package:book_shop/logic/bloc/home_state.dart';
 import 'package:book_shop/presentation/animation/fade_in_animation.dart';
-import 'package:book_shop/presentation/widgets/custom_scroll_behavior.dart';
 import 'package:book_shop/presentation/widgets/home_slider_item.dart';
 import 'package:book_shop/presentation/widgets/horizontal_card.dart';
 import 'package:book_shop/presentation/widgets/loading_bar.dart';
@@ -17,8 +14,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeTab extends StatelessWidget {
-  late PageController _carouselController;
-
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeBloc, HomeState>(
@@ -31,51 +26,50 @@ class HomeTab extends StatelessWidget {
           List<MostSalesBooks> msList = state.postModel.mostSalesBooks;
           List<FreshsBooks> fbList = state.postModel.freshsBooks;
           return ScrollConfiguration(
-            behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
+            behavior:
+                ScrollConfiguration.of(context).copyWith(scrollbars: false),
             child: SingleChildScrollView(
-              physics: BouncingScrollPhysics(),
+              physics: const BouncingScrollPhysics(),
               child: Directionality(
                 textDirection: TextDirection.rtl,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 28,
                     ),
-                    Container(
-                      child: Column(
-                        children: [
-                          FadeInAnimation(
-                            0.25,
-                            CarouselSlider.builder(
-                                itemCount: state.postModel.poster.length,
-                                itemBuilder: (context, index, realIndex) {
-                                  return HomeSliderItem(
-                                      picture: state
-                                          .postModel.poster[index].picture);
-                                },
-                                options: CarouselOptions(
-                                    height: 175,
-                                    viewportFraction: 0.8,
-                                    autoPlayInterval: Duration(seconds: 6),
-                                    autoPlayAnimationDuration:
-                                        Duration(milliseconds: 800),
-                                    autoPlayCurve: Curves.fastOutSlowIn,
-                                    autoPlay: false,
-                                    initialPage: 0,
-                                    enlargeCenterPage: true)),
-                          ),
-                        ],
-                      ),
+                    Column(
+                      children: [
+                        FadeInAnimation(
+                          0.25,
+                          CarouselSlider.builder(
+                              itemCount: state.postModel.poster.length,
+                              itemBuilder: (context, index, realIndex) {
+                                return HomeSliderItem(
+                                    picture:
+                                        state.postModel.poster[index].picture);
+                              },
+                              options: CarouselOptions(
+                                  height: 175,
+                                  viewportFraction: 0.8,
+                                  autoPlayInterval: const Duration(seconds: 6),
+                                  autoPlayAnimationDuration:
+                                      const Duration(milliseconds: 800),
+                                  autoPlayCurve: Curves.fastOutSlowIn,
+                                  autoPlay: false,
+                                  initialPage: 0,
+                                  enlargeCenterPage: true)),
+                        ),
+                      ],
                     ),
                     FadeInAnimation(0.5, titleText(Strings.homeMostSales)),
-                    SizedBox(height: 16),
-                    Container(
+                    const SizedBox(height: 16),
+                    SizedBox(
                       height: 180,
                       child: ListView.builder(
                         shrinkWrap: true,
-                        physics: BouncingScrollPhysics(),
-                        padding: EdgeInsets.only(right: 8),
+                        physics: const BouncingScrollPhysics(),
+                        padding: const EdgeInsets.only(right: 8),
                         itemCount: state.postModel.freshsBooks.length,
                         scrollDirection: Axis.horizontal,
                         itemBuilder: (context, index) {
@@ -95,13 +89,13 @@ class HomeTab extends StatelessWidget {
                         },
                       ),
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     FadeInAnimation(1, titleText(Strings.homeFresh)),
-                    SizedBox(
+                    const SizedBox(
                       height: 16,
                     ),
                     ListView.builder(
-                      physics: NeverScrollableScrollPhysics(),
+                      physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
                       itemCount: state.postModel.freshsBooks.length,
                       itemBuilder: (context, index) {
@@ -141,8 +135,8 @@ class HomeTab extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Text(
-        '$title',
-        style: TextStyle(
+        title,
+        style: const TextStyle(
             color: Colors.black87,
             fontFamily: "IranSans",
             fontSize: 20,

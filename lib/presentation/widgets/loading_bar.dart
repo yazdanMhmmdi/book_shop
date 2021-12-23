@@ -8,12 +8,12 @@ class MyLoadingBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Container(
+      child: SizedBox(
         width: 400,
         height: 250,
         child: FlareActor(
           Assets.bookLoading,
-          animation: '${animation}',
+          animation: animation,
         ),
       ),
     );

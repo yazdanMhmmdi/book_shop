@@ -20,7 +20,7 @@ class NoNetworkFlare extends StatelessWidget {
               onSuccess: (data) {},
               onError: (a, b) {}),
         ),
-        Text(
+       const Text(
           '! اتصال به شبکه قطع شد',
           style: TextStyle(
               fontFamily: "IranSans",
@@ -28,7 +28,7 @@ class NoNetworkFlare extends StatelessWidget {
               fontWeight: FontWeight.w700,
               color: Colors.black87),
         ),
-        Text(
+       const Text(
           'لطفا اتصال به اینترنت خود را بررسی کنید',
           style: TextStyle(
               fontFamily: "IranSans", fontSize: 18, color: Colors.black87),

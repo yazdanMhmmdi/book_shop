@@ -24,17 +24,16 @@ import 'package:book_shop/presentation/screen/title_details_screen.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:book_shop/logic/bloc/home_event.dart';
 
 class AppRouter {
-  final AuthBloc _authBloc = new AuthBloc();
+  final AuthBloc _authBloc = AuthBloc();
 
-  final HomeBloc _homeBloc = new HomeBloc();
+  final HomeBloc _homeBloc = HomeBloc();
 
-  final AccountBloc _accountBloc = new AccountBloc();
+  final AccountBloc _accountBloc = AccountBloc();
 
   final InternetCubit _internetCubit =
-      new InternetCubit(connectivity: Connectivity());
+      InternetCubit(connectivity: Connectivity());
   final _loginScreen = LoginScreen();
 
   Route onGeneratedRoute(RouteSettings settings) {
@@ -56,7 +55,6 @@ class AppRouter {
         );
       case '/intro':
         return MaterialPageRoute(builder: (_) => IntroScreen());
-        break;
       case '/login':
         return MaterialPageRoute(
           builder: (_) => MultiBlocProvider(
@@ -74,7 +72,6 @@ class AppRouter {
             child: _loginScreen,
           ),
         );
-        break;
       case '/sign_up':
         return MaterialPageRoute(
           builder: (_) => MultiBlocProvider(
@@ -90,7 +87,6 @@ class AppRouter {
             child: SignUpScreen(),
           ),
         );
-        break;
       case '/home':
         return PageRouteBuilder(
             transitionDuration:
@@ -149,7 +145,6 @@ class AppRouter {
             ),
           ),
         );
-        break;
       case '/title':
         final Map<String, String> args =
             settings.arguments as Map<String, String>;
@@ -173,13 +168,11 @@ class AppRouter {
             ),
           ),
         );
-        break;
 
       case '/socket':
         return MaterialPageRoute(
           builder: (_) => SocketTextScreen(),
         );
-        break;
       case '/chat':
         final Map<String, String> args =
             settings.arguments as Map<String, String>;
@@ -204,11 +197,9 @@ class AppRouter {
           ),
         );
       case '/chatList':
-        final Map<String, String> args =
-            settings.arguments as Map<String, String>;
-
         return PageRouteBuilder(
-          transitionDuration: Duration(milliseconds: Values.animationDuration),
+          transitionDuration:
+              const Duration(milliseconds: Values.animationDuration),
           transitionsBuilder: (context, ainmation, animationTime, child) {
             return FadeTransition(opacity: ainmation, child: child);
           },

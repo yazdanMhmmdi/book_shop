@@ -2,11 +2,10 @@ import 'package:book_shop/data/model/details_model.dart';
 import 'package:book_shop/networking/api_provider.dart';
 
 class DetailsRepository {
-  ApiProvider _apiProvider = new ApiProvider();
+  final ApiProvider _apiProvider = ApiProvider();
 
-  Future<DetailsModel> getDetails(String post_id) async {
-    final response =
-        await _apiProvider.get('/details_api.php?post_id=${post_id}');
+  Future<DetailsModel> getDetails(String postId) async {
+    final response = await _apiProvider.get('/details_api.php?post_id=$postId');
     return DetailsModel.fromJson(response);
   }
 }

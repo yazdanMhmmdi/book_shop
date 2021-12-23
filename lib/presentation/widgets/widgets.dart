@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 
 int bgColor = 0xffA2DE96;
 int btnColor = 0xff3CA59E;

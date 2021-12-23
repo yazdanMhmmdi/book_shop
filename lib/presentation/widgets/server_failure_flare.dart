@@ -17,10 +17,10 @@ class ServerFailureFlare extends StatelessWidget {
             name: Assets.cosmos,
             onSuccess: (data) {},
             onError: (a, b) {}),
-        SizedBox(
+        const SizedBox(
           height: 4,
         ),
-        Text(
+        const Text(
           'خطای سرور !',
           style: TextStyle(
               fontFamily: "IranSans",
@@ -28,7 +28,7 @@ class ServerFailureFlare extends StatelessWidget {
               fontWeight: FontWeight.w700,
               color: Colors.black87),
         ),
-        Text(
+        const Text(
           'مشکلی هنگام ارتباط با سرور پیش آمده زود بر می گردیم',
           style: TextStyle(
               fontFamily: "IranSans", fontSize: 16, color: Colors.black87),

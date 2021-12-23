@@ -5,25 +5,23 @@ class DetailSliderItem extends StatelessWidget {
   DetailSliderItem({required this.title, required this.subTitle});
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          Text(
-            '$title',
-            style: TextStyle(
-              fontFamily: "iranSans",
-              fontSize: 20,
-              fontWeight: FontWeight.w700,
-              color: Colors.black87,
-            ),
+    return Column(
+      children: [
+        Text(
+          title,
+          style: const TextStyle(
+            fontFamily: "iranSans",
+            fontSize: 20,
+            fontWeight: FontWeight.w700,
+            color: Colors.black87,
           ),
-          Text(
-            '$subTitle',
-            style: TextStyle(
-                fontFamily: "iranSans", fontSize: 18, color: Colors.black38),
-          )
-        ],
-      ),
+        ),
+        Text(
+          subTitle,
+          style: const TextStyle(
+              fontFamily: "iranSans", fontSize: 18, color: Colors.black38),
+        )
+      ],
     );
   }
 }

@@ -7,11 +7,7 @@ abstract class AccountEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class GetDefaultEvent extends AccountEvent {
-  GetDefaultEvent();
-  @override
-  List<Object> get props => [];
-}
+class GetDefaultEvent extends AccountEvent {}
 
 class EditEvent extends AccountEvent {
   String newUsername, newPassword;

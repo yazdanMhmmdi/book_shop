@@ -1,8 +1,6 @@
-import 'package:book_shop/constants/assets.dart';
 import 'package:book_shop/constants/strings.dart';
 import 'package:book_shop/logic/bloc/account_bloc.dart';
 import 'package:book_shop/logic/bloc/basket_bloc.dart';
-import 'package:book_shop/logic/bloc/home_bloc.dart';
 import 'package:book_shop/logic/bloc/home_bloc.dart';
 import 'package:book_shop/logic/bloc/home_state.dart';
 import 'package:book_shop/logic/bloc/home_event.dart';
@@ -11,16 +9,12 @@ import 'package:book_shop/presentation/tab/basket_tab.dart';
 import 'package:book_shop/presentation/tab/home_tab.dart';
 import 'package:book_shop/presentation/tab/settings_tab.dart';
 import 'package:book_shop/presentation/tab/title_tab.dart';
-import 'package:book_shop/presentation/widgets/custom_scroll_behavior.dart';
 import 'package:book_shop/presentation/widgets/no_network_flare.dart';
 import 'package:book_shop/presentation/widgets/server_failure_flare.dart';
 import 'package:book_shop/presentation/widgets/widgets.dart';
-import 'package:flare_loading/flare_loading.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:motion_tab_bar_v2/motion-tab-bar.dart';
-import 'package:motion_tab_bar_v2/motion-badge.widget.dart'; //optional
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -30,13 +24,12 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   late TabController _bottomNavController;
   bool failureInFirstTry = false;
-  final _noNetworkFlare = new NoNetworkFlare();
   late HomeBloc _homeBloc;
   late AccountBloc _accountBloc;
   @override
   void initState() {
     _bottomNavController =
-        new TabController(initialIndex: 3, vsync: this, length: 4);
+        TabController(initialIndex: 3, vsync: this, length: 4);
 
     _homeBloc = BlocProvider.of<HomeBloc>(context);
     _accountBloc = BlocProvider.of<AccountBloc>(context);
@@ -57,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   children: [
                     TabBarView(
                         physics:
-                            NeverScrollableScrollPhysics(), // swipe navigation handling is not supported
+                            const NeverScrollableScrollPhysics(), // swipe navigation handling is not supported
                         controller: _bottomNavController,
                         children: <Widget>[
                           BlocProvider.value(
@@ -100,16 +93,15 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                     return ServerFailureFlare();
                   } else {
                     return MotionTabBar(
-                      labels: [
+                      labels: const [
                         Strings.bottomNavSettings,
-                        // Strings.bottomNavListofConversations,
                         Strings.bottomNavBasket,
                         Strings.bottomNavTitle,
                         Strings.bottomNavHome,
                       ],
                       initialSelectedTab: Strings.bottomNavHome,
 
-                      tabIconColor: Color(0xffA3A2A8),
+                      tabIconColor: const Color(0xffA3A2A8),
                       tabSelectedColor:
                           Color(txfColor), //TODO: needs to be replace
                       onTabItemSelected: (int value) {
@@ -117,14 +109,14 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                           _bottomNavController.index = value;
                         });
                       },
-                      icons: [
+                      icons: const [
                         Icons.settings,
                         // Icons.chat,
                         Icons.shopping_basket,
                         Icons.book,
                         Icons.home,
                       ],
-                      textStyle: TextStyle(
+                      textStyle: const TextStyle(
                           color: Colors.black87,
                           fontFamily: "IranSans",
                           fontSize: 16,

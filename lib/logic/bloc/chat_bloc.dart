@@ -3,13 +3,11 @@ import 'dart:convert';
 
 import 'package:bloc/bloc.dart';
 import 'package:book_shop/data/model/chat_model.dart';
-import 'package:book_shop/data/model/socket_model.dart';
 import 'package:book_shop/data/repository/account_repository.dart';
 import 'package:book_shop/data/repository/chat_repository.dart';
 import 'package:book_shop/networking/api_provider.dart';
 import 'package:book_shop/presentation/widgets/global_widget.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:web_socket_channel/io.dart';
 
 part 'chat_event.dart';
@@ -17,8 +15,8 @@ part 'chat_state.dart';
 
 class ChatBloc extends Bloc<ChatEvent, ChatState> {
   ChatBloc() : super(ChatInitial());
-  late ChatRepository _chatRepository = new ChatRepository();
-  late AccountRepository _accountRepository = new AccountRepository();
+  late ChatRepository _chatRepository = ChatRepository();
+  late AccountRepository _accountRepository = AccountRepository();
   late ChatModel _model;
   late int totalPage;
   late String bookId;

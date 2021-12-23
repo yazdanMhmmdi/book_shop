@@ -1,4 +1,3 @@
-import 'dart:async';
 
 import 'package:book_shop/constants/assets.dart';
 import 'package:book_shop/constants/colors.dart';
@@ -6,7 +5,6 @@ import 'package:book_shop/logic/cubit/internet_cubit.dart';
 import 'package:book_shop/logic/cubit/splash_cubit.dart';
 import 'package:book_shop/presentation/widgets/background_shapes.dart';
 import 'package:book_shop/presentation/widgets/no_network_flare.dart';
-import 'package:book_shop/presentation/widgets/widgets.dart';
 import "package:flutter/material.dart";
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';

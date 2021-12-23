@@ -9,7 +9,7 @@ class MyToolBar extends StatelessWidget {
       textDirection: TextDirection.rtl,
       child: Text(
         title,
-        style: TextStyle(
+        style: const TextStyle(
             fontFamily: "IranSans",
             fontSize: 20,
             fontWeight: FontWeight.w700,

@@ -4,7 +4,6 @@ import 'package:bloc/bloc.dart';
 import 'package:book_shop/data/model/account_model.dart';
 import 'package:book_shop/data/model/account_response_model.dart';
 import 'package:book_shop/data/repository/account_repository.dart';
-import 'package:book_shop/networking/api_provider.dart';
 import 'package:book_shop/presentation/widgets/global_widget.dart';
 import 'package:equatable/equatable.dart';
 
@@ -38,7 +37,7 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
         print("AccountEditInitial");
         emit(AccountEditLoading(username: username, password: password));
         print("AccountEditLoading");
-        await Future.delayed(Duration(seconds: 2));
+        await Future.delayed(const Duration(seconds: 2));
 
         try {
           AccountResponseModel _responseModel = await _accountRepository.edit(
@@ -54,7 +53,7 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
               username: username,
               password: password,
             ));
-            await Future.delayed(Duration(seconds: 2));
+            await Future.delayed(const Duration(seconds: 2));
             print("AccountEditInitial");
             emit(AccountEditInitial(username: username, password: password));
           } else {

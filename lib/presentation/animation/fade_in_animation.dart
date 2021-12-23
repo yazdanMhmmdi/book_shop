@@ -17,13 +17,13 @@ class FadeInAnimation extends StatelessWidget {
       ..add(
         _AniProps.opacity,
         0.0.tweenTo(1.0),
-        Duration(milliseconds: Values.animationDuration),
+        const Duration(milliseconds: Values.animationDuration),
         Curves.easeInOut,
       )
       ..add(
         _AniProps.translateX,
         60.0.tweenTo(0.0),
-        Duration(milliseconds: Values.animationDuration),
+        const Duration(milliseconds: Values.animationDuration),
         Curves.easeInOut,
       );
 

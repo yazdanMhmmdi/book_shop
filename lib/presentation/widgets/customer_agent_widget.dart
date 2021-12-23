@@ -13,7 +13,9 @@ class CustomerAgentWidget extends StatelessWidget {
           color: Colors.white,
           boxShadow: [
             BoxShadow(
-                blurRadius: 7, offset: Offset(7, 7), color: IColors.balck15),
+                blurRadius: 7,
+                offset: const Offset(7, 7),
+                color: IColors.balck15),
           ]),
       child: Center(
         child: Image.asset(

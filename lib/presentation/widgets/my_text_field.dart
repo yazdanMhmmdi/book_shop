@@ -20,8 +20,6 @@ class MyTextFiled extends StatefulWidget {
 }
 
 class _MyTextFiledState extends State<MyTextFiled> {
-  final _formKey = GlobalKey<FormState>();
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -51,7 +49,7 @@ class _MyTextFiledState extends State<MyTextFiled> {
                       }
                       return "no";
                     },
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 16,
                       fontFamily: "IranSans",
                     ),
@@ -60,7 +58,7 @@ class _MyTextFiledState extends State<MyTextFiled> {
                       hintText: '${widget.text}',
                     ),
                     inputFormatters: [
-                      new FilteringTextInputFormatter.allow(
+                      FilteringTextInputFormatter.allow(
                           RegExp(r'^[a-zA-Z0-9]+$')),
                     ],
                   ),

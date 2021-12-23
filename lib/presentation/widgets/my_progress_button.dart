@@ -133,7 +133,7 @@ class _MyProgressButtonState extends State<MyProgressButton>
     }
     colorAnimation = ColorTween(begin: begin, end: end).animate(CurvedAnimation(
       parent: colorAnimationController!,
-      curve: Interval(
+      curve:const Interval(
         0,
         1,
         curve: Curves.easeIn,
@@ -163,7 +163,7 @@ class _MyProgressButtonState extends State<MyProgressButton>
     progressIndicator = widget.progressIndicator ??
         CircularProgressIndicator(
             backgroundColor: widget.stateColors[widget.state!],
-            valueColor: AlwaysStoppedAnimation<Color>(Colors.white));
+            valueColor:const AlwaysStoppedAnimation<Color>(Colors.white));
   }
 
   @override
@@ -200,7 +200,7 @@ class _MyProgressButtonState extends State<MyProgressButton>
     }
     return AnimatedOpacity(
         opacity: visibility ? 1.0 : 0.0,
-        duration: Duration(milliseconds: 250),
+        duration:const Duration(milliseconds: 250),
         child: buttonChild);
   }
 
@@ -218,7 +218,7 @@ class _MyProgressButtonState extends State<MyProgressButton>
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(
                       widget.state != ButtonState.idle ? 50 : widget.radius),
-                  side: BorderSide(color: Colors.transparent, width: 0)),
+                  side:const BorderSide(color: Colors.transparent, width: 0)),
               color: backgroundColor,
               onPressed: widget.onPressed as void Function()?,
               child: getButtonChild(

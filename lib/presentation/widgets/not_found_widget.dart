@@ -13,14 +13,14 @@ class NotFoundWidget extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           NotFoundFlare(),
-          SizedBox(
+          const SizedBox(
             height: 8,
           ),
           FadeInAnimation(
             0.5,
             Text(
-              '${text}',
-              style: TextStyle(
+              text,
+              style: const TextStyle(
                   fontFamily: "IranSans", fontSize: 18, color: Colors.black87),
             ),
           ),

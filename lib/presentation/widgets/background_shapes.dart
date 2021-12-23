@@ -1,7 +1,5 @@
 import 'package:book_shop/constants/assets.dart';
-import 'package:book_shop/logic/cubit/splash_cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BackgroundShapes extends StatefulWidget {
   @override
@@ -34,22 +32,22 @@ class _BackgroundShapesState extends State<BackgroundShapes>
 
   late Animation<Offset> circleOneAnimation = Tween<Offset>(
     begin: Offset.zero,
-    end: Offset(0.12, 0.12),
+    end: const Offset(0.12, 0.12),
   ).animate(_circleOneController);
 
   late Animation<Offset> circleTwoAnimation = Tween<Offset>(
     begin: Offset.zero,
-    end: Offset(-0.4, -0.22),
+    end: const Offset(-0.4, -0.22),
   ).animate(_circleTwoController);
 
   late Animation<Offset> circleThreeAnimation = Tween<Offset>(
     begin: Offset.zero,
-    end: Offset(0.4, 0.12),
+    end: const Offset(0.4, 0.12),
   ).animate(_circleThreeController);
 
   late Animation<Offset> circleFourAnimation = Tween<Offset>(
     begin: Offset.zero,
-    end: Offset(0.12, 0.12),
+    end: const Offset(0.12, 0.12),
   ).animate(_circleOneController);
 
   @override

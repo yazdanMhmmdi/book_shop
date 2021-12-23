@@ -22,7 +22,7 @@ class FromMessageBubble extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    "${message}",
+                    message,
                     style: TextStyle(
                       fontFamily: Strings.fontIranSans,
                       color: IColors.balck85,

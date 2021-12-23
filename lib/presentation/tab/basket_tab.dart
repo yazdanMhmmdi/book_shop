@@ -1,18 +1,12 @@
-import 'package:book_shop/constants/colors.dart';
 import 'package:book_shop/constants/strings.dart';
 import 'package:book_shop/logic/bloc/basket_bloc.dart';
 import 'package:book_shop/presentation/animation/fade_in_animation.dart';
 import 'package:book_shop/presentation/widgets/basket_item.dart';
-import 'package:book_shop/presentation/widgets/custom_scroll_behavior.dart';
 import 'package:book_shop/presentation/widgets/loading_bar.dart';
-import 'package:book_shop/presentation/widgets/my_button.dart';
 import 'package:book_shop/presentation/widgets/my_progress_button.dart';
 import 'package:book_shop/presentation/widgets/my_tool_bar.dart';
-import 'package:book_shop/presentation/widgets/not_found_flare.dart';
 import 'package:book_shop/presentation/widgets/not_found_widget.dart';
-import 'package:book_shop/presentation/widgets/number_formatter.dart';
 import 'package:book_shop/presentation/widgets/pay_check_widget.dart';
-import 'package:book_shop/presentation/widgets/progress_button.dart';
 import 'package:book_shop/presentation/widgets/server_failure_flare.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -48,25 +42,25 @@ class _BasketTabState extends State<BasketTab> {
             behavior:
                 ScrollConfiguration.of(context).copyWith(scrollbars: false),
             child: SingleChildScrollView(
-              physics: BouncingScrollPhysics(),
+              physics: const BouncingScrollPhysics(),
               child: SafeArea(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         height: 23,
                       ),
                       FadeInAnimation(
                           0.25, MyToolBar(title: Strings.basketLabel)),
-                      SizedBox(
+                      const SizedBox(
                         height: 16,
                       ),
                       Directionality(
                         textDirection: TextDirection.rtl,
                         child: ListView.builder(
-                            physics: NeverScrollableScrollPhysics(),
+                            physics: const NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
                             itemCount: state.basketModel?.basket.length,
                             itemBuilder: (context, index) {
@@ -101,7 +95,7 @@ class _BasketTabState extends State<BasketTab> {
                               );
                             }),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 22,
                       ),
                       PayCheckWidget(
@@ -122,8 +116,9 @@ class _BasketTabState extends State<BasketTab> {
           return NotFoundWidget(
             text: Strings.basketNotFound,
           );
-        } else
+        } else {
           return Container();
+        }
       },
     );
   }

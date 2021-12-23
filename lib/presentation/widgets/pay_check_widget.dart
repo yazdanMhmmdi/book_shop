@@ -26,7 +26,7 @@ class PayCheckWidget extends StatelessWidget {
           Align(
               alignment: Alignment.centerRight,
               child: Text(
-                "${Strings.basketPaymentCheck}",
+                Strings.basketPaymentCheck,
                 style: TextStyle(
                     fontSize: 20,
                     fontFamily: Strings.fontIranSans,
@@ -34,7 +34,7 @@ class PayCheckWidget extends StatelessWidget {
                     fontWeight: FontWeight.w700),
               )),
         ),
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         FadeInAnimation(
           0.75,
           Container(
@@ -62,7 +62,7 @@ class PayCheckWidget extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 8,
                     ),
                     Row(
@@ -78,7 +78,7 @@ class PayCheckWidget extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 8,
                     ),
                     Row(
@@ -94,7 +94,7 @@ class PayCheckWidget extends StatelessWidget {
                         ),
                         Text(
                           NumberFormatter.getNumber(fullCost),
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontSize: 16,
                               color: IColors.boldGreen,
                               fontFamily: Strings.fontIranSans,
@@ -102,7 +102,7 @@ class PayCheckWidget extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     MyButton(
                         buttonState: buttonState,
                         text: Strings.basketPayit,
@@ -117,7 +117,7 @@ class PayCheckWidget extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 16,
         ),
       ],

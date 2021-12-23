@@ -1,4 +1,3 @@
-import 'package:book_shop/constants/assets.dart';
 import 'package:book_shop/constants/colors.dart';
 import 'package:book_shop/constants/strings.dart';
 import 'package:book_shop/logic/bloc/title_bloc.dart';
@@ -10,8 +9,6 @@ import 'package:book_shop/presentation/widgets/no_network_flare.dart';
 import 'package:book_shop/presentation/widgets/not_found_flare.dart';
 import 'package:book_shop/presentation/widgets/title_details_tab.dart';
 import 'package:book_shop/presentation/widgets/title_selector.dart';
-import 'package:flare_flutter/flare_actor.dart';
-import 'package:flare_loading/flare_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -27,9 +24,7 @@ class TitleDetailsScreen extends StatefulWidget {
 class _TitleDetailsScreenState extends State<TitleDetailsScreen> {
   late TitleBloc _sienceTitleBloc;
 
-  late TitleBloc _medicineTitleBloc;
-
-  ScrollController _controller = new ScrollController();
+  ScrollController _controller = ScrollController();
   bool progress = false;
   int firstTabState = 1;
   bool loading = true;
@@ -83,7 +78,7 @@ class _TitleDetailsScreenState extends State<TitleDetailsScreen> {
               return ScrollConfiguration(
                 behavior: MyCustomScrollBehavior(),
                 child: SingleChildScrollView(
-                  physics: BouncingScrollPhysics(),
+                  physics: const BouncingScrollPhysics(),
                   controller: _controller,
                   child: Directionality(
                     textDirection: TextDirection.rtl,
@@ -95,7 +90,7 @@ class _TitleDetailsScreenState extends State<TitleDetailsScreen> {
                               padding:
                                   const EdgeInsets.only(top: 16, bottom: 8),
                               child: TitleSelector(
-                                titles: [
+                                titles: const [
                                   Strings.titleScience,
                                   Strings.titleMedicine,
                                   Strings.titleHistoric,
@@ -113,10 +108,10 @@ class _TitleDetailsScreenState extends State<TitleDetailsScreen> {
                                   return Container();
                                 } else if (state is TitleLoading) {
                                   return Container();
-                                } else if (state is TitleSuccess)
+                                } else if (state is TitleSuccess) {
                                   return TitleDetailsTab(state.model);
-                                else if (state is TitleFailure) {
-                                  return Text('failure');
+                                } else if (state is TitleFailure) {
+                                  return const Text('failure');
                                 } else if (state is TitleNothingFound) {
                                   return Container();
                                 } else if (state is TitlePagination) {
@@ -127,32 +122,29 @@ class _TitleDetailsScreenState extends State<TitleDetailsScreen> {
                               },
                             ),
                             progress
-                                ? Padding(
-                                    padding: const EdgeInsets.only(
-                                        bottom: 8, top: 4),
+                                ? const Padding(
+                                    padding: EdgeInsets.only(bottom: 8, top: 4),
                                     child: CircularProgressIndicator(
-                                      valueColor:
-                                          new AlwaysStoppedAnimation<Color>(
-                                              IColors.boldGreen),
+                                      valueColor: AlwaysStoppedAnimation<Color>(
+                                          IColors.boldGreen),
                                     ),
                                   )
                                 : Container(),
                           ],
                         ),
                         loading
-                            ? Container(
+                            ? SizedBox(
                                 height: MediaQuery.of(context).size.height,
                                 child: Center(
-                                  child:
-                                      new MyLoadingBar(animation: "Untitled"),
+                                  child: MyLoadingBar(animation: "Untitled"),
                                 ),
                               )
                             : Container(),
                         nothingFound
-                            ? Container(
+                            ? SizedBox(
                                 height: MediaQuery.of(context).size.height,
                                 child: Center(
-                                  child: Container(
+                                  child: SizedBox(
                                     width: 170,
                                     height: MediaQuery.of(context).size.height,
                                     child: Center(
@@ -163,13 +155,13 @@ class _TitleDetailsScreenState extends State<TitleDetailsScreen> {
                                             CrossAxisAlignment.center,
                                         children: [
                                           NotFoundFlare(),
-                                          SizedBox(
+                                          const SizedBox(
                                             height: 8,
                                           ),
                                           FadeInAnimation(
                                             0.5,
-                                            Text(
-                                              '${Strings.bookNotFound}',
+                                            const Text(
+                                              Strings.bookNotFound,
                                               style: TextStyle(
                                                   fontFamily: "IranSans",
                                                   fontSize: 18,

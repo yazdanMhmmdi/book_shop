@@ -1,27 +1,17 @@
-import 'dart:async';
-
 import 'package:book_shop/constants/assets.dart';
 import 'package:book_shop/constants/colors.dart';
 import 'package:book_shop/constants/strings.dart';
 import 'package:book_shop/constants/values.dart';
-import 'package:book_shop/data/repository/account_repository.dart';
-import 'package:book_shop/data/repository/shared_prefs_repository.dart';
 import 'package:book_shop/logic/bloc/account_bloc.dart';
 import 'package:book_shop/logic/cubit/form_validation_cubit.dart';
 import 'package:book_shop/presentation/animation/fade_in_animation.dart';
-import 'package:book_shop/presentation/widgets/account_item.dart';
-import 'package:book_shop/presentation/widgets/custom_scroll_behavior.dart';
-import 'package:book_shop/presentation/widgets/loading_bar.dart';
 import 'package:book_shop/presentation/widgets/my_button.dart';
 import 'package:book_shop/presentation/widgets/my_progress_button.dart';
 import 'package:book_shop/presentation/widgets/my_text_field.dart';
 import 'package:book_shop/presentation/widgets/my_tool_bar.dart';
-import 'package:book_shop/presentation/widgets/server_failure_flare.dart';
 import 'package:book_shop/presentation/widgets/warning_bar.dart';
-import 'package:book_shop/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingsTab extends StatefulWidget {
   @override
@@ -71,137 +61,133 @@ class _SettingsTabState extends State<SettingsTab>
       child: ScrollConfiguration(
           behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
           child: SingleChildScrollView(
-              physics: BouncingScrollPhysics(),
+              physics: const BouncingScrollPhysics(),
               child: SafeArea(
                   child: Column(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 23,
                   ),
                   FadeInAnimation(
                       0.25, MyToolBar(title: Strings.settingsLabel)),
-                  SizedBox(
+                  const SizedBox(
                     height: 16,
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: FadeInAnimation(
                       0.5,
-                      Container(
-                        child: Stack(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(top: 43),
-                              child: FadeInAnimation(
-                                0.75,
-                                AnimatedSize(
-                                  duration: const Duration(
-                                      milliseconds: Values.animationDuration),
-                                  curve: Curves.fastLinearToSlowEaseIn,
-                                  alignment: Alignment.topCenter,
-                                  child: Container(
-                                    width: double.infinity,
-                                    decoration: BoxDecoration(
-                                      color: IColors.green,
-                                      borderRadius: BorderRadius.circular(32),
-                                    ),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        SizedBox(
-                                          height: 60,
-                                        ),
-                                        Center(
-                                            child: Column(
-                                          children: [
-                                            BlocBuilder<AccountBloc,
-                                                AccountState>(
-                                              builder: (context, state) {
-                                                if (state is AccountLoading) {
-                                                  return Center(
-                                                      child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            bottom: 16, top: 8),
-                                                    child:
-                                                        CircularProgressIndicator(),
-                                                  ));
-                                                } else if (state
-                                                    is AccountSuccess) {
-                                                  return formFieldsUI(
-                                                      state: state);
-                                                } else {
-                                                  return formFieldsUI(
-                                                      state: state);
-                                                }
-                                              },
-                                            ),
-                                            BlocBuilder<AccountBloc,
-                                                AccountState>(
-                                              builder: (context, state) {
-                                                if (state
-                                                    is AccountEditLoading) {
-                                                  return buttonUI(
-                                                      buttonState:
-                                                          ButtonState.loading);
-                                                } else if (state
-                                                    is AccountEditSuccess) {
-                                                  return buttonUI(
-                                                      buttonState:
-                                                          ButtonState.success);
-                                                } else if (state
-                                                    is AccountEditFailure) {
-                                                  return buttonUI(
-                                                      buttonState:
-                                                          ButtonState.fail);
-                                                } else if (state
-                                                    is AccountEditInitial) {
-                                                  return buttonUI(
-                                                      buttonState:
-                                                          ButtonState.idle);
-                                                } else if (state
-                                                    is AccountLoading) {
-                                                  return Container();
-                                                } else
-                                                  return buttonUI(
-                                                      buttonState:
-                                                          ButtonState.idle);
-                                              },
-                                            ),
-                                            SizedBox(
-                                              height: 22,
-                                            ),
-                                          ],
-                                        )),
-                                      ],
-                                    ),
+                      Stack(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(top: 43),
+                            child: FadeInAnimation(
+                              0.75,
+                              AnimatedSize(
+                                duration: const Duration(
+                                    milliseconds: Values.animationDuration),
+                                curve: Curves.fastLinearToSlowEaseIn,
+                                alignment: Alignment.topCenter,
+                                child: Container(
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                    color: IColors.green,
+                                    borderRadius: BorderRadius.circular(32),
+                                  ),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      const SizedBox(
+                                        height: 60,
+                                      ),
+                                      Center(
+                                          child: Column(
+                                        children: [
+                                          BlocBuilder<AccountBloc,
+                                              AccountState>(
+                                            builder: (context, state) {
+                                              if (state is AccountLoading) {
+                                                return const Center(
+                                                    child: Padding(
+                                                  padding: EdgeInsets.only(
+                                                      bottom: 16, top: 8),
+                                                  child:
+                                                      CircularProgressIndicator(),
+                                                ));
+                                              } else if (state
+                                                  is AccountSuccess) {
+                                                return formFieldsUI(
+                                                    state: state);
+                                              } else {
+                                                return formFieldsUI(
+                                                    state: state);
+                                              }
+                                            },
+                                          ),
+                                          BlocBuilder<AccountBloc,
+                                              AccountState>(
+                                            builder: (context, state) {
+                                              if (state is AccountEditLoading) {
+                                                return buttonUI(
+                                                    buttonState:
+                                                        ButtonState.loading);
+                                              } else if (state
+                                                  is AccountEditSuccess) {
+                                                return buttonUI(
+                                                    buttonState:
+                                                        ButtonState.success);
+                                              } else if (state
+                                                  is AccountEditFailure) {
+                                                return buttonUI(
+                                                    buttonState:
+                                                        ButtonState.fail);
+                                              } else if (state
+                                                  is AccountEditInitial) {
+                                                return buttonUI(
+                                                    buttonState:
+                                                        ButtonState.idle);
+                                              } else if (state
+                                                  is AccountLoading) {
+                                                return Container();
+                                              } else {
+                                                return buttonUI(
+                                                    buttonState:
+                                                        ButtonState.idle);
+                                              }
+                                            },
+                                          ),
+                                          const SizedBox(
+                                            height: 22,
+                                          ),
+                                        ],
+                                      )),
+                                    ],
                                   ),
                                 ),
                               ),
                             ),
-                            Align(
-                              alignment: Alignment.topCenter,
-                              child: Container(
+                          ),
+                          Align(
+                            alignment: Alignment.topCenter,
+                            child: Container(
+                              width: 94,
+                              height: 94,
+                              decoration: const BoxDecoration(
+                                  shape: BoxShape.circle, color: Colors.white),
+                              child: Image.asset(
+                                Assets.femaleAvatarImage,
                                 width: 94,
-                                height: 94,
-                                decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: Colors.white),
-                                child: Image.asset(
-                                  Assets.femaleAvatarImage,
-                                  width: 94,
-                                  height: 88,
-                                ),
+                                height: 88,
                               ),
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                 ],
               )))),
     );
@@ -216,21 +202,21 @@ class _SettingsTabState extends State<SettingsTab>
             children: [
               Text(
                 "${state.username}",
-                style: TextStyle(
+                style: const TextStyle(
                     fontFamily: "IranSans",
                     fontSize: 18,
                     fontWeight: FontWeight.w700,
                     color: Colors.white),
               ),
-              Text(
+              const Text(
                 Strings.accountWelcome,
                 style: TextStyle(
                     fontFamily: "IranSans", fontSize: 16, color: Colors.white),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 16,
               ),
-              Container(
+              SizedBox(
                   height: 46,
                   child: MyTextFiled(
                       icon: Icons.person,
@@ -247,10 +233,10 @@ class _SettingsTabState extends State<SettingsTab>
                   ? Container()
                   : WarningBar(text: Strings.signupUsernameWarning),
 
-              SizedBox(
+              const SizedBox(
                 height: 16,
               ),
-              Container(
+              SizedBox(
                   height: 46,
                   child: MyTextFiled(
                       icon: Icons.lock,
@@ -261,13 +247,14 @@ class _SettingsTabState extends State<SettingsTab>
               formValidationState.passwordStatus
                   ? Container()
                   : WarningBar(text: Strings.signUpPasswordWarning),
-              SizedBox(
+              const SizedBox(
                 height: 16,
               ),
             ],
           );
-        } else
+        } else {
           return Container();
+        }
       },
     );
   }
@@ -280,7 +267,7 @@ class _SettingsTabState extends State<SettingsTab>
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: MyButton(
                 buttonState: buttonState,
-                text: "${Strings.accountEdit}",
+                text: Strings.accountEdit,
                 onTap: () async {
                   if (formValidationState.usernameStatus &&
                       formValidationState.passwordStatus) {
@@ -293,8 +280,9 @@ class _SettingsTabState extends State<SettingsTab>
                   }
                 }),
           );
-        } else
+        } else {
           return Container();
+        }
       },
     );
   }

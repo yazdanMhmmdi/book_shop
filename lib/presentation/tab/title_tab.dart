@@ -11,14 +11,14 @@ class TitleTab extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          SizedBox(height: 23),
+          const SizedBox(height: 23),
           FadeInAnimation(0.25, MyToolBar(title: Strings.titleLabel)),
           Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 18),
               child: GridView.count(
                 crossAxisCount: 2,
                 shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 crossAxisSpacing: 16,
                 mainAxisSpacing: 16,
                 childAspectRatio: (MediaQuery.of(context).size.width /
@@ -174,12 +174,12 @@ class TitleTab extends StatelessWidget {
           width: 45,
           height: 45,
         ),
-        SizedBox(
+        const SizedBox(
           height: 5,
         ),
         Text(
           "$title",
-          style: TextStyle(
+          style: const TextStyle(
               fontFamily: "IranSans", fontSize: 16, color: Colors.black87),
         ),
       ],

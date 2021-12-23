@@ -45,7 +45,7 @@ class _TitleSelectorState extends State<TitleSelector> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Container(
+      child: SizedBox(
         height: 43,
         child: ListView(scrollDirection: Axis.horizontal, children: <Widget>[
           Stack(
@@ -59,12 +59,13 @@ class _TitleSelectorState extends State<TitleSelector> {
                   child: Container(
                     height: 8,
                     width: 8,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       shape: BoxShape.circle,
                       color: Colors.black87,
                     ),
                   ),
-                  duration: Duration(milliseconds: Values.animationDuration))
+                  duration:
+                      const Duration(milliseconds: Values.animationDuration))
             ],
           )
         ]),
@@ -77,7 +78,7 @@ class _TitleSelectorState extends State<TitleSelector> {
       var index = widget.titles.indexOf(e);
       _isSelected = _currentIndex == index;
       return Padding(
-        padding: EdgeInsets.only(left: 35),
+        padding: const EdgeInsets.only(left: 35),
         child: GestureDetector(
           onTap: () {
             if (temp != index) {
@@ -104,7 +105,7 @@ class _TitleSelectorState extends State<TitleSelector> {
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
             AnimatedDefaultTextStyle(
-              duration: Duration(milliseconds: Values.animationDuration),
+              duration: const Duration(milliseconds: Values.animationDuration),
               style: TextStyle(
                 color: _isSelected ? Colors.black87 : Colors.grey,
                 fontSize: _isSelected ? 22 : 16,

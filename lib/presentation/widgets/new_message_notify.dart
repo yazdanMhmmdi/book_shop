@@ -16,8 +16,8 @@ class NewMessageNotify extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 5),
           child: Text(
-            "${newMessageCount} پیام جدید",
-            style: TextStyle(
+            "$newMessageCount پیام جدید",
+            style: const TextStyle(
                 fontFamily: Strings.fontIranSans,
                 fontSize: 14,
                 color: Colors.white),

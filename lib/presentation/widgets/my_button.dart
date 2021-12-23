@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'dart:io';
 
 import 'package:book_shop/constants/colors.dart';
@@ -31,24 +30,24 @@ class MyButton extends StatelessWidget {
       maxWidth: Platform.isWindows ? 1920 : MediaQuery.of(context).size.width,
       radius: buttonRadius,
       progressIndicatorAlignment: MainAxisAlignment.center,
-      progressIndicator: CircularProgressIndicator(
+      progressIndicator: const CircularProgressIndicator(
         valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
       ),
       stateWidgets: {
         ButtonState.idle: Text(
-          "${text}",
-          style: TextStyle(
+          text,
+          style: const TextStyle(
               color: Colors.white,
               fontFamily: "IranSans",
               fontWeight: FontWeight.w700,
               fontSize: 16),
         ),
         ButtonState.loading: Container(),
-        ButtonState.fail: Icon(
+        ButtonState.fail: const Icon(
           Icons.close,
           color: Colors.white,
         ),
-        ButtonState.success: Icon(
+        ButtonState.success: const Icon(
           Icons.check,
           color: Colors.white,
         )

@@ -1,86 +1,90 @@
 class Strings {
   //global font
-  static final String fontIranSans = "IranSans";
+  static const String fontIranSans = "IranSans";
   //global strings
-  static final String currencyType = "تومان";
+  static const String currencyType = "تومان";
   //common in all pages
-  static final String usernameLabel = "نام کاربری...";
-  static final String passwordLabel = "رمز عبور...";
-  static final String jsonPeterson = "جیسون پیترسون";
-  static final String coastToCoastMurders = "قتل های انفجاری";
+  static const String usernameLabel = "نام کاربری...";
+  static const String passwordLabel = "رمز عبور...";
+  static const String jsonPeterson = "جیسون پیترسون";
+  static const String coastToCoastMurders = "قتل های انفجاری";
   //sign up
-  static final String signupLabel = "ثبت نام";
-  static final String signupAccept = "تایید";
-  static final String signupDidYouSignedUp = "ثبت نام کرده اید؟";
-  static final String signupUsernameWarning =
+  static const String signupLabel = "ثبت نام";
+  static const String signupAccept = "تایید";
+  static const String signupDidYouSignedUp = "ثبت نام کرده اید؟";
+  static const String signupUsernameWarning =
       "نام کاربری حداقل 5 و حداکثر 16 کارکتر باشد";
-  static final String signUpPasswordWarning =
+  static const String signUpPasswordWarning =
       "رمز عبور حداقل 8 و حداکثر 16 کارکتر باشد";
-  static final String signupNLO = "ورود";
+  static const String signupNLO = "ورود";
   //login
-  static final String loginLabel = "ورود";
-  static final String loginAccept = "تایید";
-  static final String loginNeedSignUp = "حساب کاربری ندارید؟";
-  static final String loginNSU = "ثبت نام";
+  static const String loginLabel = "ورود";
+  static const String loginAccept = "تایید";
+  static const String loginNeedSignUp = "حساب کاربری ندارید؟";
+  static const String loginNSU = "ثبت نام";
   //home
-  static final String homeMostSales = "پرفروش ترین ها";
-  static final String homeFresh = "تازه ها";
-  static final String homeYourFavBooks = "کتاب های مورد علاقه \nشما !";
-  static final String homeDiscover = "یافتن";
+  static const String homeMostSales = "پرفروش ترین ها";
+  static const String homeFresh = "تازه ها";
+  static const String homeYourFavBooks = "کتاب های مورد علاقه \nشما !";
+  static const String homeDiscover = "یافتن";
   //title
-  static final String bottomNavHome = "خانه";
-  static final String bottomNavTitle = "موضوعات";
-  static final String bottomNavSettings = "تنظیمات";
-  static final String bottomNavBasket = "سبد خرید";
-  static final String bottomNavListofConversations = "لیست گفتگو ها";
-  static final String titleScience = "علمی";
-  static final String titleMedicine = "دارویی";
-  static final String titleLaw = "قضایی";
-  static final String titleHistoric = "تاریخی";
-  static final String titleFood = "غذایی";
-  static final String titleSport = "ورزشی";
-  static final String titleLabel = "دسته بندی";
+  static const String bottomNavHome = "خانه";
+  static const String bottomNavTitle = "موضوعات";
+  static const String bottomNavSettings = "تنظیمات";
+  static const String bottomNavBasket = "سبد خرید";
+  static const String bottomNavListofConversations = "لیست گفتگو ها";
+  static const String titleScience = "علمی";
+  static const String titleMedicine = "دارویی";
+  static const String titleLaw = "قضایی";
+  static const String titleHistoric = "تاریخی";
+  static const String titleFood = "غذایی";
+  static const String titleSport = "ورزشی";
+  static const String titleLabel = "دسته بندی";
   //
-  static final String detailAboutBook = "درباره کتاب";
-  static final String detailABoutPublisher = "درباره ناشر";
-  static final String detailsDescription = "توضیحات";
-  static final String detailsLoremIpsom =
+  static const String detailAboutBook = "درباره کتاب";
+  static const String detailABoutPublisher = "درباره ناشر";
+  static const String detailsDescription = "توضیحات";
+  static const String detailsLoremIpsom =
       " لورم ایپسوملورم ایپسوملورم ایپسوملورم ایپسوملورم ایپسوملورم ایپسوملورم ایپسوملورم ایپسوملورم ایپسوملورم ایپسوملورم ایپسوملورمایپسوملورمایپسوملورمایپسوملورمایپسوملورمایپسوملورمایپسوملورمایپسوملورمایپسوملورمایپسوملورمایپسوملورمایپسوملورمایپسوملورمایپسوملورمایپسوملورمایپسوملورمایپسوملورم ایپسوم";
-  static final String detailsBuy = "خرید";
+  static const String detailsBuy = "خرید";
   //account
-  static final String settingsLabel = "تنظیمات";
-  static final String accountEdit = "ویرایش حساب کاربری";
-  static final String accountWelcome = "خوش آمدید!";
+  static const String settingsLabel = "تنظیمات";
+  static const String accountEdit = "ویرایش حساب کاربری";
+  static const String accountWelcome = "خوش آمدید!";
 
   //title details s
-  static final String bookNotFound = "کتابی در این رابطه پیدا نشد !";
+  static const String bookNotFound = "کتابی در این رابطه پیدا نشد !";
 
   //basket
-  static final String basketLabel = "سبد خرید";
-  static final String basketPay = "مبلغ قابل پرداخت";
-  static final String basketTax = "مالیات";
-  static final String basketDeliveryCost = "هزینه ارسال";
-  static final String basketPayit = "پرداخت";
-  static final String basketPaymentCheck = "صورتحساب";
-  static final String basketNotFound = "کتابی پیدا نشد";
+  static const String basketLabel = "سبد خرید";
+  static const String basketPay = "مبلغ قابل پرداخت";
+  static const String basketTax = "مالیات";
+  static const String basketDeliveryCost = "هزینه ارسال";
+  static const String basketPayit = "پرداخت";
+  static const String basketPaymentCheck = "صورتحساب";
+  static const String basketNotFound = "کتابی پیدا نشد";
 
   //chat list
-  static final String chatLabel = "لیست گفتگو ها";
-  static final String chatListNotFount = "گفتگویی پیدا نشد";
+  static const String chatLabel = "لیست گفتگو ها";
+  static const String chatListNotFount = "گفتگویی پیدا نشد";
   //chat
-  static final String chatSpeakWithSeller = "گفتگو با فروشنده";
-  static final String chatWriteSomthing = "یک پیام بنویسید...";
+  static const String chatSpeakWithSeller = "گفتگو با فروشنده";
+  static const String chatWriteSomthing = "یک پیام بنویسید...";
 
   //onboarding
-  static final String onboardingExploreTitle = "جستجو کنید";
-  static final String onboardingExploreDesc = "بهترین کتاب را در هر موضوعی به سبد خرید خود اضافه کنید";
+  static const String onboardingExploreTitle = "جستجو کنید";
+  static const String onboardingExploreDesc =
+      "بهترین کتاب را در هر موضوعی به سبد خرید خود اضافه کنید";
 
-  static final String onboardingMultiPlatformTitle = "بدون محدودیت";
-  static final String onboardingMultiPlatformDesc = "بدون محدودیت از هر دستگاهی سفارش خودتون را ثبت کنید";
+  static const String onboardingMultiPlatformTitle = "بدون محدودیت";
+  static const String onboardingMultiPlatformDesc =
+      "بدون محدودیت از هر دستگاهی سفارش خودتون را ثبت کنید";
 
-  static final String onboardingPaymentTitle = "پرداخت آسان";
-  static final String onboardingPaymentDesc = "با هر کارت بانکی به صورت آنی هزینه سفارش خود را پرداخت کنید.";
+  static const String onboardingPaymentTitle = "پرداخت آسان";
+  static const String onboardingPaymentDesc =
+      "با هر کارت بانکی به صورت آنی هزینه سفارش خود را پرداخت کنید.";
 
-  static final String onboardingDeliveryTitle = "ارسال فوری";
-  static final String onboardingDeliveryDesc = "سفارش خود را کمتر از 4 ساعت در تهران و کمتر از 24 ساعت در شهرستان ها دریافت کنید.";
+  static const String onboardingDeliveryTitle = "ارسال فوری";
+  static const String onboardingDeliveryDesc =
+      "سفارش خود را کمتر از 4 ساعت در تهران و کمتر از 24 ساعت در شهرستان ها دریافت کنید.";
 }

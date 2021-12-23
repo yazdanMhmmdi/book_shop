@@ -2,7 +2,7 @@ import 'package:book_shop/data/model/home_model.dart';
 import 'package:book_shop/networking/api_provider.dart';
 
 class HomeRepository {
-  ApiProvider _apiProvider = new ApiProvider();
+  final ApiProvider _apiProvider = ApiProvider();
 
   Future<HomeModel> fetchHome(String username) async {
     final response =
@@ -10,6 +10,4 @@ class HomeRepository {
 
     return HomeModel.fromJson(response);
   }
-
-  
 }

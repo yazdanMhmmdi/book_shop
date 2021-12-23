@@ -24,7 +24,7 @@ class HomeSliderItem extends StatelessWidget {
                   borderRadius: BorderRadius.circular(8),
                   boxShadow: [
                     BoxShadow(
-                        offset: Offset(0, 10),
+                        offset: const Offset(0, 10),
                         spreadRadius: -2,
                         blurRadius: 20,
                         color: IColors.boldGreen.withOpacity(0.75))
@@ -49,7 +49,7 @@ class HomeSliderItem extends StatelessWidget {
                             fontSize: 18,
                             fontWeight: FontWeight.w700,
                           )),
-                      SizedBox(
+                      const SizedBox(
                         height: 26,
                       ),
                       Container(

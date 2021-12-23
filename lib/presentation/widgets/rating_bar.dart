@@ -13,7 +13,7 @@ class MyRatingBar extends StatelessWidget {
       minRating: 1,
       direction: Axis.horizontal,
       ignoreGestures: true,
-      itemBuilder: (context, _) => Icon(
+      itemBuilder: (context, _) => const Icon(
         Icons.star,
         color: Colors.amber,
       ),

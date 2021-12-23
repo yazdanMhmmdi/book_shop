@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class NotFoundFlare extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return const SizedBox(
       width: 160,
       height: 135,
       child: FlareActor(

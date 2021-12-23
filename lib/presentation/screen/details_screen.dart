@@ -1,16 +1,10 @@
-import 'dart:async';
-import 'dart:math';
-
 import 'package:book_shop/constants/colors.dart';
 import 'package:book_shop/constants/values.dart';
 import 'package:book_shop/constants/strings.dart';
-import 'package:book_shop/data/repository/account_repository.dart';
 import 'package:book_shop/logic/bloc/basket_bloc.dart';
-import 'package:book_shop/logic/bloc/details_bloc.dart';
 import 'package:book_shop/logic/cubit/detail_cubit.dart';
 import 'package:book_shop/logic/cubit/internet_cubit.dart';
 import 'package:book_shop/networking/image_address_provider.dart';
-import 'package:book_shop/presentation/animation/fade_in_transition.dart';
 import 'package:book_shop/presentation/widgets/custom_scroll_behavior.dart';
 import 'package:book_shop/presentation/widgets/detail_slider_widget/detail_slider_container.dart';
 import 'package:book_shop/presentation/widgets/detail_slider_widget/detail_slider_item.dart';
@@ -26,7 +20,6 @@ import 'package:sizer/sizer.dart';
 class DetailsScreen extends StatelessWidget {
   late Map<String, String> args;
   DetailsScreen({required this.args});
-  late DetailsBloc _detailsBloc;
   late String voteCount;
   late String description;
   late String pagesCount;
@@ -38,7 +31,6 @@ class DetailsScreen extends StatelessWidget {
   late String price;
   late String id;
   late Map<String, String> arguments;
-  ButtonState _buttonState = ButtonState.idle;
   Color backgroundColor = IColors.green;
   late BasketBloc _basketBloc;
   late DetailCubit _animationCubit;
@@ -70,44 +62,20 @@ class DetailsScreen extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        // Padding( TODO: chat item
-                        //   padding: const EdgeInsets.only(top: 16, left: 24),
-                        //   child: IconButton(
-                        //     iconSize: 30,
-                        //     icon: Icon(
-                        //       Icons.chat,
-                        //       color: Colors.white,
-                        //     ),
-                        //     onPressed: () => Navigator.pushNamed(
-                        //         context, '/chat',
-                        //         arguments: <String, String>{
-                        //           'post_id': "${id}",
-                        //           'name': "${name}",
-                        //           'writer': "${writer}",
-                        //           'voteCount': "${voteCount}",
-                        //           'thumbPicture': "${thumbPicture}",
-                        //           'hero_type': "v",
-                        //           'price': '${price}',
-                        //           'user_id': "${user_id}",
-                        //         }),
-                        //   ),
-                        // ),
                         Padding(
                           padding: EdgeInsets.only(
                               top: MediaQuery.of(context).padding.top + 16,
                               right: 24.0),
-                          child: Container(
-                            child: IconButton(
-                              iconSize: 30,
-                              icon: Icon(
-                                Icons.close,
-                                color: Colors.white,
-                              ),
-                              onPressed: () {
-                                //close button
-                                Navigator.pop(context);
-                              },
+                          child: IconButton(
+                            iconSize: 30,
+                            icon: const Icon(
+                              Icons.close,
+                              color: Colors.white,
                             ),
+                            onPressed: () {
+                              //close button
+                              Navigator.pop(context);
+                            },
                           ),
                         ),
                       ],
@@ -127,202 +95,187 @@ class DetailsScreen extends StatelessWidget {
                                 initialChildSize: 0.75,
                                 minChildSize: 0.75,
                                 builder: (context, scroll) {
-                                  return Container(
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.only(
-                                          topLeft: Radius.circular(double.parse(
-                                              state.borderRadius.toString())),
-                                          topRight: Radius.circular(
-                                              double.parse(state.borderRadius
-                                                  .toString()))),
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                            color: Colors.white,
-                                            boxShadow: [
-                                              BoxShadow(
-                                                offset: Offset(1, -1),
-                                                blurRadius: 4,
-                                                color: IColors.borderShadow,
-                                              )
-                                            ]),
-                                        child: Directionality(
-                                          textDirection: TextDirection.rtl,
-                                          child: ListView(
-                                            controller: scroll,
-                                            padding: const EdgeInsets.symmetric(
-                                                horizontal: 24),
-                                            children: [
-                                              Center(
-                                                child: Column(
-                                                  children: [
-                                                    Container(
-                                                      color: Colors.transparent,
-                                                      child: Stack(
-                                                        children: [
-                                                          Positioned(
-                                                            child: Container(
-                                                              width: 108 +
-                                                                  (orientation ==
-                                                                          Orientation
-                                                                              .landscape
-                                                                      ? 16.0
-                                                                      : 0.0),
-                                                              height: 108 +
-                                                                  (orientation ==
-                                                                          Orientation
-                                                                              .landscape
-                                                                      ? 16.0
-                                                                      : 0.0),
-                                                              color: Colors
-                                                                  .transparent,
-                                                            ),
+                                  return ClipRRect(
+                                    borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(double.parse(
+                                            state.borderRadius.toString())),
+                                        topRight: Radius.circular(double.parse(
+                                            state.borderRadius.toString()))),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          boxShadow: [
+                                            BoxShadow(
+                                              offset: const Offset(1, -1),
+                                              blurRadius: 4,
+                                              color: IColors.borderShadow,
+                                            )
+                                          ]),
+                                      child: Directionality(
+                                        textDirection: TextDirection.rtl,
+                                        child: ListView(
+                                          controller: scroll,
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 24),
+                                          children: [
+                                            Center(
+                                              child: Column(
+                                                children: [
+                                                  Container(
+                                                    color: Colors.transparent,
+                                                    child: Stack(
+                                                      children: [
+                                                        Positioned(
+                                                          child: Container(
+                                                            width: 108 +
+                                                                (orientation ==
+                                                                        Orientation
+                                                                            .landscape
+                                                                    ? 16.0
+                                                                    : 0.0),
+                                                            height: 108 +
+                                                                (orientation ==
+                                                                        Orientation
+                                                                            .landscape
+                                                                    ? 16.0
+                                                                    : 0.0),
+                                                            color: Colors
+                                                                .transparent,
                                                           ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                    Text(
-                                                      "${writer}",
-                                                      style: TextStyle(
-                                                          fontFamily:
-                                                              "iranSans",
-                                                          fontSize: 20,
-                                                          color:
-                                                              Colors.black38),
-                                                      textAlign:
-                                                          TextAlign.center,
-                                                    ),
-                                                    Text(
-                                                      "$name",
-                                                      style: TextStyle(
-                                                          fontFamily:
-                                                              "iranSans",
-                                                          fontSize: 24,
-                                                          fontWeight:
-                                                              FontWeight.w700,
-                                                          color:
-                                                              Colors.black87),
-                                                      textAlign:
-                                                          TextAlign.center,
-                                                    ),
-                                                    SizedBox(
-                                                      height: 10,
-                                                    ),
-                                                    Divider(
-                                                      height: 20,
-                                                      thickness: 3,
-                                                      color: IColors.grey,
-                                                    )
-                                                  ],
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                height: 8,
-                                              ),
-                                              DetailSliderWidget(
-                                                  duration: Duration(
-                                                      milliseconds: Values
-                                                          .animationDuration),
-                                                  sliderContainers: [
-                                                    DetailSliderContainer(
-                                                      detailSliderItems: [
-                                                        DetailSliderItem(
-                                                            title: "سن",
-                                                            subTitle: "21"),
-                                                        DetailSliderItem(
-                                                            title: "تعداد کتاب",
-                                                            subTitle: "2 جلد"),
-                                                        DetailSliderItem(
-                                                            title: "دسته بندی",
-                                                            subTitle: "3"),
-                                                        DetailSliderItem(
-                                                            title: "مجموع آرا",
-                                                            subTitle: "0")
+                                                        ),
                                                       ],
                                                     ),
-                                                    DetailSliderContainer(
-                                                      detailSliderItems: [
-                                                        DetailSliderItem(
-                                                            title: "زبان",
-                                                            subTitle: language),
-                                                        DetailSliderItem(
-                                                            title: "جلد",
-                                                            subTitle:
-                                                                coverType),
-                                                        DetailSliderItem(
-                                                            title: "صفحه",
-                                                            subTitle:
-                                                                pagesCount),
-                                                        DetailSliderItem(
-                                                            title: "رای",
-                                                            subTitle: voteCount)
-                                                      ],
-                                                    ),
-                                                  ]),
-                                              SizedBox(
-                                                height: 16,
+                                                  ),
+                                                  Text(
+                                                    writer,
+                                                    style: const TextStyle(
+                                                        fontFamily: "iranSans",
+                                                        fontSize: 20,
+                                                        color: Colors.black38),
+                                                    textAlign: TextAlign.center,
+                                                  ),
+                                                  Text(
+                                                    name,
+                                                    style: const TextStyle(
+                                                        fontFamily: "iranSans",
+                                                        fontSize: 24,
+                                                        fontWeight:
+                                                            FontWeight.w700,
+                                                        color: Colors.black87),
+                                                    textAlign: TextAlign.center,
+                                                  ),
+                                                  const SizedBox(
+                                                    height: 10,
+                                                  ),
+                                                  const Divider(
+                                                    height: 20,
+                                                    thickness: 3,
+                                                    color: IColors.grey,
+                                                  )
+                                                ],
                                               ),
-                                              Text(
-                                                Strings.detailsDescription,
-                                                style: TextStyle(
-                                                    fontFamily: "iranSans",
-                                                    fontSize: 20,
-                                                    color: Colors.black87,
-                                                    fontWeight:
-                                                        FontWeight.w700),
+                                            ),
+                                            const SizedBox(
+                                              height: 8,
+                                            ),
+                                            DetailSliderWidget(
+                                                duration: const Duration(
+                                                    milliseconds: Values
+                                                        .animationDuration),
+                                                sliderContainers: [
+                                                  DetailSliderContainer(
+                                                    detailSliderItems: [
+                                                      DetailSliderItem(
+                                                          title: "سن",
+                                                          subTitle: "21"),
+                                                      DetailSliderItem(
+                                                          title: "تعداد کتاب",
+                                                          subTitle: "2 جلد"),
+                                                      DetailSliderItem(
+                                                          title: "دسته بندی",
+                                                          subTitle: "3"),
+                                                      DetailSliderItem(
+                                                          title: "مجموع آرا",
+                                                          subTitle: "0")
+                                                    ],
+                                                  ),
+                                                  DetailSliderContainer(
+                                                    detailSliderItems: [
+                                                      DetailSliderItem(
+                                                          title: "زبان",
+                                                          subTitle: language),
+                                                      DetailSliderItem(
+                                                          title: "جلد",
+                                                          subTitle: coverType),
+                                                      DetailSliderItem(
+                                                          title: "صفحه",
+                                                          subTitle: pagesCount),
+                                                      DetailSliderItem(
+                                                          title: "رای",
+                                                          subTitle: voteCount)
+                                                    ],
+                                                  ),
+                                                ]),
+                                            const SizedBox(
+                                              height: 16,
+                                            ),
+                                            const Text(
+                                              Strings.detailsDescription,
+                                              style: TextStyle(
+                                                  fontFamily: "iranSans",
+                                                  fontSize: 20,
+                                                  color: Colors.black87,
+                                                  fontWeight: FontWeight.w700),
+                                            ),
+                                            const SizedBox(
+                                              height: 8,
+                                            ),
+                                            Text(
+                                              description,
+                                              style: TextStyle(
+                                                  fontFamily: "iranSans",
+                                                  fontSize: 16,
+                                                  height: 1.4,
+                                                  color: IColors.balck35),
+                                            ),
+                                            const SizedBox(
+                                              height: 8,
+                                            ),
+                                            Center(
+                                              child: BlocBuilder<BasketBloc,
+                                                  BasketState>(
+                                                builder: (context, state) {
+                                                  if (state is BasketInitial) {
+                                                    return myButton(
+                                                        buttonState:
+                                                            ButtonState.idle);
+                                                  } else if (state
+                                                      is BasketLoading) {
+                                                    return myButton(
+                                                        buttonState: ButtonState
+                                                            .loading);
+                                                  } else if (state
+                                                      is BasketSuccess) {
+                                                    return myButton(
+                                                        buttonState: ButtonState
+                                                            .success);
+                                                  } else if (state
+                                                      is BasketFailure) {
+                                                    return myButton(
+                                                        buttonState:
+                                                            ButtonState.fail);
+                                                  } else {
+                                                    return myButton(
+                                                        buttonState:
+                                                            ButtonState.idle);
+                                                  }
+                                                },
                                               ),
-                                              SizedBox(
-                                                height: 8,
-                                              ),
-                                              Text(
-                                                '$description',
-                                                style: TextStyle(
-                                                    fontFamily: "iranSans",
-                                                    fontSize: 16,
-                                                    height: 1.4,
-                                                    color: IColors.balck35),
-                                              ),
-                                              SizedBox(
-                                                height: 8,
-                                              ),
-                                              Center(
-                                                child: BlocBuilder<BasketBloc,
-                                                    BasketState>(
-                                                  builder: (context, state) {
-                                                    if (state
-                                                        is BasketInitial) {
-                                                      return myButton(
-                                                          buttonState:
-                                                              ButtonState.idle);
-                                                    } else if (state
-                                                        is BasketLoading) {
-                                                      return myButton(
-                                                          buttonState:
-                                                              ButtonState
-                                                                  .loading);
-                                                    } else if (state
-                                                        is BasketSuccess) {
-                                                      return myButton(
-                                                          buttonState:
-                                                              ButtonState
-                                                                  .success);
-                                                    } else if (state
-                                                        is BasketFailure) {
-                                                      return myButton(
-                                                          buttonState:
-                                                              ButtonState.fail);
-                                                    } else {
-                                                      return myButton(
-                                                          buttonState:
-                                                              ButtonState.idle);
-                                                    }
-                                                  },
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                height: 35,
-                                              ),
-                                            ],
-                                          ),
+                                            ),
+                                            const SizedBox(
+                                              height: 35,
+                                            ),
+                                          ],
                                         ),
                                       ),
                                     ),
@@ -330,8 +283,9 @@ class DetailsScreen extends StatelessWidget {
                                 },
                               ),
                             );
-                          } else
+                          } else {
                             return Container();
+                          }
                         },
                       ),
                     ),
@@ -341,7 +295,7 @@ class DetailsScreen extends StatelessWidget {
                           if (state is DetailStatus) {
                             return Opacity(
                               opacity: state.percent,
-                              child: Container(
+                              child: SizedBox(
                                 width: double.infinity,
                                 child: Column(
                                   children: [
@@ -364,7 +318,8 @@ class DetailsScreen extends StatelessWidget {
                                                 color: Colors.transparent,
                                                 boxShadow: [
                                                   BoxShadow(
-                                                      offset: Offset(0, 12),
+                                                      offset:
+                                                          const Offset(0, 12),
                                                       blurRadius: 22,
                                                       color: Colors.black
                                                           .withOpacity(0.25))
@@ -372,7 +327,7 @@ class DetailsScreen extends StatelessWidget {
                                           ),
                                           Hero(
                                             tag:
-                                                "post_${id}_${arguments["hero_type"]}", //TODO: check hero types
+                                                "post_${id}_${arguments["hero_type"]}",
                                             child: Container(
                                               width: 136,
                                               height: 200,
@@ -399,8 +354,9 @@ class DetailsScreen extends StatelessWidget {
                                 ),
                               ),
                             );
-                          } else
+                          } else {
                             return Container();
+                          }
                         },
                       ),
                     ),

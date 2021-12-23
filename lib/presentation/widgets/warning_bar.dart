@@ -18,17 +18,17 @@ class WarningBar extends StatelessWidget {
               Container(
                 width: 5,
                 height: 5,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   shape: BoxShape.circle,
                   color: Colors.red,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 6,
               ),
               Text(
-                '$text',
-                style: TextStyle(
+                text,
+                style: const TextStyle(
                   fontFamily: "IranSans",
                   fontSize: 14,
                   color: Colors.red,

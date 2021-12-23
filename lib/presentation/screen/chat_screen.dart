@@ -64,8 +64,8 @@ class _ChatScreenState extends State<ChatScreen> {
                 color: IColors.lowedBoldGreen,
                 borderRadius: BorderRadius.circular(8),
               ),
-              padding: EdgeInsets.symmetric(horizontal: 8),
-              margin: EdgeInsets.symmetric(horizontal: 5),
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              margin: const EdgeInsets.symmetric(horizontal: 5),
               child: Directionality(
                 textDirection: TextDirection.rtl,
                 child: Row(
@@ -76,14 +76,14 @@ class _ChatScreenState extends State<ChatScreen> {
                             message: _messageController.text));
                         _messageController.text = "";
                       },
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.send,
                         color: IColors.boldGreen,
                         size: 22,
                         textDirection: TextDirection.ltr,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 16,
                     ),
                     Expanded(
@@ -96,9 +96,9 @@ class _ChatScreenState extends State<ChatScreen> {
                         ),
                         minLines: 1,
                         maxLines: 6,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           border: InputBorder.none,
-                          hintText: '${Strings.chatWriteSomthing}',
+                          hintText: Strings.chatWriteSomthing,
                         ),
                       ),
                     ),
@@ -121,7 +121,7 @@ class _ChatScreenState extends State<ChatScreen> {
   void scrollBottom() {
     _scrollController.animateTo(
       _scrollController.position.maxScrollExtent + 70,
-      duration: Duration(seconds: Values.animationDuration),
+      duration: const Duration(seconds: Values.animationDuration),
       curve: Curves.fastOutSlowIn,
     );
   }
@@ -138,7 +138,7 @@ class _ChatScreenState extends State<ChatScreen> {
         controller: _scrollController,
         child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 23,
             ),
             Padding(
@@ -163,7 +163,7 @@ class _ChatScreenState extends State<ChatScreen> {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 16,
             ),
             Container(
@@ -173,7 +173,7 @@ class _ChatScreenState extends State<ChatScreen> {
                 boxShadow: [
                   BoxShadow(
                       blurRadius: 10,
-                      offset: Offset(7, 7),
+                      offset: const Offset(7, 7),
                       color: IColors.balck35),
                 ],
               ),

@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:book_shop/constants/colors.dart';
 import 'package:book_shop/constants/strings.dart';
 import 'package:book_shop/constants/values.dart';
@@ -44,7 +42,7 @@ class _SliderObjectState extends State<DetailSliderWidget> {
                   },
                   child: AnimatedDefaultTextStyle(
                     duration: widget.duration,
-                    child: Text(
+                    child: const Text(
                       Strings.detailAboutBook,
                     ),
                     style: TextStyle(
@@ -54,7 +52,7 @@ class _SliderObjectState extends State<DetailSliderWidget> {
                         color: _sliderRightTextColor),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 4,
                 ),
               ],
@@ -65,7 +63,7 @@ class _SliderObjectState extends State<DetailSliderWidget> {
               },
               child: AnimatedDefaultTextStyle(
                 duration: widget.duration,
-                child: Text(
+                child: const Text(
                   Strings.detailABoutPublisher,
                 ),
                 style: TextStyle(
@@ -97,7 +95,7 @@ class _SliderObjectState extends State<DetailSliderWidget> {
             ),
           ],
         ),
-        SizedBox(
+        const SizedBox(
           height: 16,
         ),
         AbsorbPointer(

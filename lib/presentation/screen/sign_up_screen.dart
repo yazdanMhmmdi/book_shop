@@ -5,34 +5,28 @@ import 'package:book_shop/constants/strings.dart';
 import 'package:book_shop/logic/bloc/auth_bloc.dart';
 import 'package:book_shop/logic/cubit/form_validation_cubit.dart';
 import 'package:book_shop/logic/cubit/internet_cubit.dart';
-import 'package:book_shop/logic/cubit/splash_cubit.dart';
 import 'package:book_shop/presentation/animation/fade_in_animation.dart';
 import 'package:book_shop/presentation/widgets/background_shapes.dart';
 import 'package:book_shop/presentation/widgets/my_button.dart';
 import 'package:book_shop/presentation/widgets/my_progress_button.dart';
 import 'package:book_shop/presentation/widgets/my_text_field.dart';
 import 'package:book_shop/presentation/widgets/no_network_flare.dart';
-import 'package:book_shop/presentation/widgets/progress_button.dart';
 import 'package:book_shop/presentation/widgets/warning_bar.dart';
-import 'package:book_shop/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SignUpScreen extends StatelessWidget {
   late TextEditingController _usernameController;
   late TextEditingController _passwordController;
-  ButtonState _buttonState = ButtonState.idle;
-  bool _usernameStatus = true;
-  bool _passwordStatus = true;
+
   Color backgroundColor = IColors.green;
   late FormValidationCubit _formValidationCubit;
   late AuthBloc _authBloc;
 
   @override
   Widget build(BuildContext context) {
-    _usernameController = new TextEditingController();
-    _passwordController = new TextEditingController();
+    _usernameController = TextEditingController();
+    _passwordController = TextEditingController();
     _formValidationCubit = BlocProvider.of<FormValidationCubit>(context);
     _authBloc = BlocProvider.of<AuthBloc>(context);
 
@@ -56,7 +50,7 @@ class SignUpScreen extends StatelessWidget {
         BlocListener<AuthBloc, AuthState>(
           listener: (context, state) {
             if (state is AuthSuccess) {
-              Timer(Duration(seconds: 2), () {
+              Timer(const Duration(seconds: 2), () {
                 Navigator.pushNamed(context, '/home');
               });
             }
@@ -64,10 +58,7 @@ class SignUpScreen extends StatelessWidget {
         ),
         BlocListener<FormValidationCubit, FormValidationState>(
           listener: (context, state) {
-            if (state is FormValidationStatus) {
-              _usernameStatus = state.usernameStatus;
-              _passwordStatus = state.passwordStatus;
-            }
+            if (state is FormValidationStatus) {}
           },
         ),
       ],
@@ -92,24 +83,24 @@ class SignUpScreen extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(40),
                                   boxShadow: [
                                     BoxShadow(
-                                        offset: Offset(-1, 0),
+                                        offset: const Offset(-1, 0),
                                         blurRadius: 3,
-                                        color: Color(0xff000000)
+                                        color: const Color(0xff000000)
                                             .withOpacity(0.10)),
                                   ]),
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  SizedBox(height: 23),
-                                  Text(
+                                  const SizedBox(height: 23),
+                                  const Text(
                                     Strings.signupLabel,
                                     style: TextStyle(
                                         fontFamily: "IranSans",
                                         fontSize: 18,
                                         fontWeight: FontWeight.w700),
                                   ),
-                                  SizedBox(height: 16),
+                                  const SizedBox(height: 16),
                                   MyTextFiled(
                                       icon: Icons.person,
                                       text: Strings.usernameLabel,
@@ -130,7 +121,7 @@ class SignUpScreen extends StatelessWidget {
                                       }
                                     },
                                   ),
-                                  SizedBox(height: 16),
+                                  const SizedBox(height: 16),
                                   MyTextFiled(
                                       icon: Icons.lock,
                                       text: Strings.passwordLabel,
@@ -151,7 +142,7 @@ class SignUpScreen extends StatelessWidget {
                                       }
                                     },
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 16,
                                   ),
                                   Padding(
@@ -174,7 +165,7 @@ class SignUpScreen extends StatelessWidget {
                                           }
                                         },
                                       )),
-                                  SizedBox(height: 8),
+                                  const SizedBox(height: 8),
                                   GestureDetector(
                                     onTap: () {
                                       Navigator.pushNamedAndRemoveUntil(
@@ -184,8 +175,8 @@ class SignUpScreen extends StatelessWidget {
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
                                       children: [
-                                        Text(
-                                          "${Strings.signupNLO}",
+                                        const Text(
+                                          Strings.signupNLO,
                                           style: TextStyle(
                                             fontSize: 14,
                                             fontFamily: "IranSans",
@@ -197,14 +188,14 @@ class SignUpScreen extends StatelessWidget {
                                           style: TextStyle(
                                             fontSize: 14,
                                             fontFamily: "IranSans",
-                                            color: Color(0xff000000)
+                                            color: const Color(0xff000000)
                                                 .withOpacity(0.55),
                                           ),
                                         ),
                                       ],
                                     ),
                                   ),
-                                  SizedBox(height: 16),
+                                  const SizedBox(height: 16),
                                 ],
                               )),
                         ),

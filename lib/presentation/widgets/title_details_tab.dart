@@ -5,15 +5,15 @@ import 'package:book_shop/presentation/widgets/vertical_card.dart';
 import 'package:flutter/material.dart';
 
 class TitleDetailsTab extends StatelessWidget {
-  List<Books> _books = [];
-  double _animationDelay = 0.25;
+  final List<Books> _books;
+  final double _animationDelay = 0.25;
   TitleDetailsTab(this._books);
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
       itemCount: _books.length,
       shrinkWrap: true,
-      physics: NeverScrollableScrollPhysics(),
+      physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {
         return FadeInAnimation(
           _animationDelay + ((index + 1) * 0.3),

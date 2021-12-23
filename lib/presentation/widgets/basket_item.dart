@@ -6,8 +6,6 @@ import 'package:book_shop/constants/strings.dart';
 import 'package:book_shop/networking/image_address_provider.dart';
 import 'package:book_shop/presentation/widgets/rating_bar.dart';
 import 'package:book_shop/presentation/widgets/widgets.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:intl/intl.dart';
 
@@ -78,17 +76,17 @@ class BasketItem extends StatelessWidget {
               splashColor: Colors.black12,
               onTap: () => Navigator.pushNamed(context, '/details',
                   arguments: <String, String>{
-                    'post_id': "${id}",
-                    'name': "${name}",
-                    'writer': "${writer}",
-                    'description': "${description}",
-                    'voteCount': "${voteCount}",
-                    'thumbPicture': "${thumbImage}",
-                    'language': "${language}",
-                    'coverType': "${coverType}",
-                    'pagesCount': "${pagesCount}",
+                    'post_id': id,
+                    'name': name,
+                    'writer': writer,
+                    'description': description,
+                    'voteCount': voteCount.toString(),
+                    'thumbPicture': thumbImage,
+                    'language': language,
+                    'coverType': coverType,
+                    'pagesCount': pagesCount,
                     'hero_type': "v",
-                    'price': '${price}',
+                    'price': price,
                   }),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -104,7 +102,7 @@ class BasketItem extends StatelessWidget {
                         boxShadow: [
                           BoxShadow(
                               color: Colors.black.withOpacity(0.15),
-                              offset: Offset(7, 7),
+                              offset: const Offset(7, 7),
                               blurRadius: 10)
                         ],
                       ),
@@ -128,7 +126,7 @@ class BasketItem extends StatelessWidget {
                     ),
                   ),
                   Builder(builder: (BuildContext context) {
-                    return Container(
+                    return SizedBox(
                       width: MediaQuery.of(context).size.width - 150,
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
@@ -138,30 +136,28 @@ class BasketItem extends StatelessWidget {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Container(
-                                  child: Text(
-                                    '${name}',
-                                    overflow: TextOverflow.ellipsis,
-                                    maxLines: 1,
-                                    style: TextStyle(
-                                        fontFamily: "IranSans",
-                                        fontSize: 16,
-                                        color: Colors.black87,
-                                        fontWeight: FontWeight.w700),
-                                  ),
+                                Text(
+                                  name,
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 1,
+                                  style: const TextStyle(
+                                      fontFamily: "IranSans",
+                                      fontSize: 16,
+                                      color: Colors.black87,
+                                      fontWeight: FontWeight.w700),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 8,
                                 ),
                                 Text(
-                                  "$writer",
+                                  writer,
                                   overflow: TextOverflow.ellipsis,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontFamily: "IranSans",
                                       fontSize: 14,
                                       color: Colors.black38),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 8,
                                 ),
                                 MyRatingBar(voteCount, 13),
@@ -174,7 +170,7 @@ class BasketItem extends StatelessWidget {
                                   NumberFormat("#,##0.##")
                                           .format(double.parse(price)) +
                                       " تومان",
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontSize: 16,
                                       fontFamily: Strings.fontIranSans,
                                       color: IColors.boldGreen,

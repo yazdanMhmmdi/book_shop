@@ -5,7 +5,6 @@ import 'package:book_shop/presentation/widgets/rating_bar.dart';
 import 'package:book_shop/presentation/widgets/widgets.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:intl/intl.dart';
 import 'package:octo_image/octo_image.dart';
 
@@ -50,17 +49,17 @@ class VerticalCard extends StatelessWidget {
             splashColor: Colors.black12,
             onTap: () => Navigator.pushNamed(context, '/details',
                 arguments: <String, String>{
-                  'post_id': "${id}",
-                  'name': "${name}",
-                  'writer': "${writer}",
-                  'description': "${description}",
-                  'voteCount': "${voteCount}",
-                  'thumbPicture': "${thumbImage}",
-                  'language': "${language}",
-                  'coverType': "${coverType}",
-                  'pagesCount': "${pagesCount}",
+                  'post_id': id,
+                  'name': name,
+                  'writer': writer,
+                  'description': description,
+                  'voteCount': voteCount.toString(),
+                  'thumbPicture': thumbImage,
+                  'language': language,
+                  'coverType': coverType,
+                  'pagesCount': pagesCount,
                   'hero_type': "v",
-                  'price': '${price}',
+                  'price': price,
                 }),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -76,7 +75,7 @@ class VerticalCard extends StatelessWidget {
                       boxShadow: [
                         BoxShadow(
                             color: Colors.black.withOpacity(0.15),
-                            offset: Offset(7, 7),
+                            offset: const Offset(7, 7),
                             blurRadius: 10)
                       ],
                     ),
@@ -108,7 +107,7 @@ class VerticalCard extends StatelessWidget {
                   ),
                 ),
                 Builder(builder: (BuildContext context) {
-                  return Container(
+                  return SizedBox(
                     width: MediaQuery.of(context).size.width - 150,
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
@@ -118,30 +117,28 @@ class VerticalCard extends StatelessWidget {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Container(
-                                child: Text(
-                                  '${name}',
-                                  overflow: TextOverflow.ellipsis,
-                                  maxLines: 1,
-                                  style: TextStyle(
-                                      fontFamily: "IranSans",
-                                      fontSize: 16,
-                                      color: Colors.black87,
-                                      fontWeight: FontWeight.w700),
-                                ),
+                              Text(
+                                name,
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 1,
+                                style: const TextStyle(
+                                    fontFamily: "IranSans",
+                                    fontSize: 16,
+                                    color: Colors.black87,
+                                    fontWeight: FontWeight.w700),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 8,
                               ),
                               Text(
-                                "$writer",
+                                writer,
                                 overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontFamily: "IranSans",
                                     fontSize: 14,
                                     color: Colors.black38),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 8,
                               ),
                               MyRatingBar(voteCount, 13),
@@ -153,8 +150,8 @@ class VerticalCard extends StatelessWidget {
                               child: Text(
                                 NumberFormat("#,##0.##")
                                         .format(double.parse(price)) +
-                                    " تومان",
-                                style: TextStyle(
+                                    " تومان", //TODO: replace hardcoded.
+                                style: const TextStyle(
                                     fontSize: 16,
                                     fontFamily: Strings.fontIranSans,
                                     color: IColors.boldGreen,

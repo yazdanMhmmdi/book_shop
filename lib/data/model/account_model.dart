@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class AccountModel {
   late final Account account;
 
@@ -10,7 +8,7 @@ class AccountModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     if (this.account != null) {
       data['account'] = this.account.toJson();
     }
@@ -41,7 +39,7 @@ class Account {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['id'] = this.id;
     data['username'] = this.username;
     data['password'] = this.password;

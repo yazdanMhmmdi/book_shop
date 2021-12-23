@@ -56,20 +56,20 @@ class _IntroScreenState extends State<IntroScreen> {
         BoxConstraints(
             maxWidth: MediaQuery.of(context).size.width,
             maxHeight: MediaQuery.of(context).size.height),
-        designSize: Size(360, 640),
+        designSize: const Size(360, 640),
         orientation: Orientation.portrait);
     return IntroSlider(
       // Skip button
-      renderSkipBtn: this.renderSkipBtn(),
+      renderSkipBtn: renderSkipBtn(),
       skipButtonStyle: myButtonStyle(),
 
       // Next button
-      renderNextBtn: this.renderNextBtn(),
+      renderNextBtn: renderNextBtn(),
       nextButtonStyle: myButtonStyle(),
 
       // Done button
-      renderDoneBtn: this.renderDoneBtn(),
-      onDonePress: this.onDonePress,
+      renderDoneBtn: renderDoneBtn(),
+      onDonePress: onDonePress,
       doneButtonStyle: myButtonStyle(),
 
       // Dot indicator
@@ -78,20 +78,20 @@ class _IntroScreenState extends State<IntroScreen> {
       typeDotAnimation: dotSliderAnimation.SIZE_TRANSITION,
 
       // Tabs
-      listCustomTabs: this.renderListCustomTabs(),
+      listCustomTabs: renderListCustomTabs(),
       backgroundColorAllSlides: Colors.white,
       refFuncGoToTab: (refFunc) {
         goToTab = refFunc;
       },
 
       // Behavior
-      scrollPhysics: BouncingScrollPhysics(),
+      scrollPhysics: const BouncingScrollPhysics(),
 
       // Show or hide status bar
       hideStatusBar: false,
 
       // On tab change completed
-      onTabChangeCompleted: this.onTabChangeCompleted,
+      onTabChangeCompleted: onTabChangeCompleted,
     );
   }
 
@@ -105,7 +105,7 @@ class _IntroScreenState extends State<IntroScreen> {
   }
 
   Widget renderNextBtn() {
-    return Icon(
+    return const Icon(
       Icons.navigate_next,
       color: IColors.boldGreen,
       size: 35.0,
@@ -113,14 +113,14 @@ class _IntroScreenState extends State<IntroScreen> {
   }
 
   Widget renderDoneBtn() {
-    return Icon(
+    return const Icon(
       Icons.done,
       color: IColors.boldGreen,
     );
   }
 
   Widget renderSkipBtn() {
-    return Icon(
+    return const Icon(
       Icons.skip_next,
       color: IColors.boldGreen,
     );
@@ -128,7 +128,7 @@ class _IntroScreenState extends State<IntroScreen> {
 
   ButtonStyle myButtonStyle() {
     return ButtonStyle(
-      shape: MaterialStateProperty.all<OutlinedBorder>(StadiumBorder()),
+      shape: MaterialStateProperty.all<OutlinedBorder>(const StadiumBorder()),
       backgroundColor: MaterialStateProperty.all<Color>(IColors.green25),
       overlayColor: MaterialStateProperty.all<Color>(IColors.green25),
     );
@@ -138,7 +138,7 @@ class _IntroScreenState extends State<IntroScreen> {
     List<Widget> tabs = [];
     for (int i = 0; i < slides.length; i++) {
       Slide currentSlide = slides[i];
-      tabs.add(Container(
+      tabs.add(SizedBox(
         width: double.infinity,
         height: double.infinity,
         child: Container(

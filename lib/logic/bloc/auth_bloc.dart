@@ -5,7 +5,6 @@ import 'package:book_shop/data/model/auth_model.dart';
 import 'package:book_shop/data/repository/auth_repository.dart';
 import 'package:book_shop/presentation/widgets/global_widget.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 part 'auth_event.dart';
@@ -13,7 +12,7 @@ part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc() : super(AuthInitial()) {
-    AuthRepository _authRepository = new AuthRepository();
+    AuthRepository _authRepository = AuthRepository();
     late SharedPreferences _prefs;
 
     Future<bool> setSharedPrefes(_model) async {

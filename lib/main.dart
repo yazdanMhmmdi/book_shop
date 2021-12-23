@@ -29,11 +29,11 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return Sizer(builder: (context, orientation, deviceType) {
       return MaterialApp(
-        title: 'فروشگاه کتاب',
+        title: 'فروشگاه کتاب', //TODO: hardcoded text.
         theme: ThemeData(
-          primarySwatch: Colors.green,
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-        ),
+            primarySwatch: Colors.green,
+            visualDensity: VisualDensity.adaptivePlatformDensity,
+            fontFamily: "IranSans"),
         debugShowCheckedModeBanner: false,
         onGenerateRoute: _appRouter.onGeneratedRoute,
         scrollBehavior: MyCustomScrollBehavior(),

@@ -103,13 +103,16 @@ class _TitleSelectorState extends State<TitleSelector> {
           },
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
-            Text(
-              e,
+            AnimatedDefaultTextStyle(
+              duration: Duration(milliseconds: Values.animationDuration),
               style: TextStyle(
                 color: _isSelected ? Colors.black87 : Colors.grey,
                 fontSize: _isSelected ? 22 : 16,
                 fontFamily: "IranSans",
                 fontWeight: FontWeight.w700,
+              ),
+              child: Text(
+                e,
               ),
             ),
           ]),

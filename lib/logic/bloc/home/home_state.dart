@@ -1,5 +1,4 @@
-import 'package:book_shop/data/model/home_model.dart';
-import 'package:equatable/equatable.dart';
+part of 'home_bloc.dart';
 
 enum HomeStatus { initial, loading, success, failure }
 

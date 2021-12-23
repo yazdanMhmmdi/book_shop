@@ -2,11 +2,9 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:book_shop/data/model/chat_list_model.dart';
-import 'package:book_shop/data/repository/account_repository.dart';
-import 'package:book_shop/data/repository/chat_list_repository.dart';
-import 'package:book_shop/presentation/widgets/global_widget.dart';
+import 'package:book_shop/data/data.dart';
+import 'package:book_shop/presentation/widgets/widgets.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/cupertino.dart';
 
 part 'chatlist_event.dart';
 part 'chatlist_state.dart';

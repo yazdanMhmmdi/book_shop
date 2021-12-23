@@ -1,5 +1,4 @@
-import 'package:book_shop/constants/colors.dart';
-import 'package:book_shop/constants/strings.dart';
+import 'package:book_shop/constants/constants.dart';
 import 'package:flutter/material.dart';
 
 class UserMessageBubble extends StatelessWidget {

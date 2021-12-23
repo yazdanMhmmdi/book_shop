@@ -1,21 +1,11 @@
-import 'package:book_shop/constants/colors.dart';
-import 'package:book_shop/constants/values.dart';
-import 'package:book_shop/constants/strings.dart';
-import 'package:book_shop/logic/bloc/basket_bloc.dart';
-import 'package:book_shop/logic/cubit/detail_cubit.dart';
-import 'package:book_shop/logic/cubit/internet_cubit.dart';
-import 'package:book_shop/networking/image_address_provider.dart';
-import 'package:book_shop/presentation/widgets/custom_scroll_behavior.dart';
-import 'package:book_shop/presentation/widgets/detail_slider_widget/detail_slider_container.dart';
-import 'package:book_shop/presentation/widgets/detail_slider_widget/detail_slider_item.dart';
-import 'package:book_shop/presentation/widgets/detail_slider_widget/detail_slider_widget.dart';
-import 'package:book_shop/presentation/widgets/my_button.dart';
-import 'package:book_shop/presentation/widgets/my_progress_button.dart';
-import 'package:book_shop/presentation/widgets/no_network_flare.dart';
+import 'package:book_shop/networking/networking.dart';
+import 'package:book_shop/presentation/widgets/widgets.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
+import 'package:book_shop/logic/logic.dart';
+import 'package:book_shop/constants/constants.dart';
 
 class DetailsScreen extends StatelessWidget {
   late Map<String, String> args;

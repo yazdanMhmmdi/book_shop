@@ -1,20 +1,10 @@
-import 'package:book_shop/constants/strings.dart';
-import 'package:book_shop/logic/bloc/account_bloc.dart';
-import 'package:book_shop/logic/bloc/basket_bloc.dart';
-import 'package:book_shop/logic/bloc/home_bloc.dart';
-import 'package:book_shop/logic/bloc/home_state.dart';
-import 'package:book_shop/logic/bloc/home_event.dart';
-import 'package:book_shop/logic/cubit/internet_cubit.dart';
-import 'package:book_shop/presentation/tab/basket_tab.dart';
-import 'package:book_shop/presentation/tab/home_tab.dart';
-import 'package:book_shop/presentation/tab/settings_tab.dart';
-import 'package:book_shop/presentation/tab/title_tab.dart';
-import 'package:book_shop/presentation/widgets/no_network_flare.dart';
-import 'package:book_shop/presentation/widgets/server_failure_flare.dart';
+import 'package:book_shop/presentation/tab/tab.dart';
 import 'package:book_shop/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:motion_tab_bar_v2/motion-tab-bar.dart';
+import 'package:book_shop/logic/logic.dart';
+import 'package:book_shop/constants/constants.dart';
 
 class HomeScreen extends StatefulWidget {
   @override

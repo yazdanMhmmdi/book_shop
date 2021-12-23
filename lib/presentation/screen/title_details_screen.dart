@@ -1,16 +1,9 @@
-import 'package:book_shop/constants/colors.dart';
-import 'package:book_shop/constants/strings.dart';
-import 'package:book_shop/logic/bloc/title_bloc.dart';
-import 'package:book_shop/logic/cubit/internet_cubit.dart';
-import 'package:book_shop/presentation/animation/fade_in_animation.dart';
-import 'package:book_shop/presentation/widgets/custom_scroll_behavior.dart';
-import 'package:book_shop/presentation/widgets/loading_bar.dart';
-import 'package:book_shop/presentation/widgets/no_network_flare.dart';
-import 'package:book_shop/presentation/widgets/not_found_flare.dart';
-import 'package:book_shop/presentation/widgets/title_details_tab.dart';
-import 'package:book_shop/presentation/widgets/title_selector.dart';
+import 'package:book_shop/presentation/animation/animation.dart';
+import 'package:book_shop/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:book_shop/logic/logic.dart';
+import 'package:book_shop/constants/constants.dart';
 
 int tabNumber = 1;
 

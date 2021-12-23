@@ -1,9 +1,6 @@
-import 'package:book_shop/constants/colors.dart';
-import 'package:book_shop/constants/strings.dart';
-import 'package:book_shop/presentation/animation/fade_in_animation.dart';
-import 'package:book_shop/presentation/widgets/my_button.dart';
-import 'package:book_shop/presentation/widgets/my_progress_button.dart';
-import 'package:book_shop/presentation/widgets/number_formatter.dart';
+import 'package:book_shop/constants/constants.dart';
+import 'package:book_shop/presentation/animation/animation.dart';
+import 'package:book_shop/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

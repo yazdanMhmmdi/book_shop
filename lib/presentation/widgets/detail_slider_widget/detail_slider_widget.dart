@@ -1,7 +1,5 @@
-import 'package:book_shop/constants/colors.dart';
-import 'package:book_shop/constants/strings.dart';
-import 'package:book_shop/constants/values.dart';
-import 'package:book_shop/presentation/widgets/detail_slider_widget/detail_slider_container.dart';
+import 'package:book_shop/constants/constants.dart';
+import 'package:book_shop/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 

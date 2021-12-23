@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:book_shop/presentation/router/app_router.dart';
-import 'package:book_shop/presentation/widgets/custom_scroll_behavior.dart';
+import 'package:book_shop/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:desktop_window/desktop_window.dart' as window_size;
 import 'package:sizer/sizer.dart';

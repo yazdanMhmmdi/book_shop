@@ -1,9 +1,7 @@
-import 'package:book_shop/constants/assets.dart';
-import 'package:book_shop/constants/strings.dart';
-import 'package:book_shop/presentation/animation/fade_in_animation.dart';
-import 'package:book_shop/presentation/widgets/my_tool_bar.dart';
+import 'package:book_shop/presentation/animation/animation.dart';
 import 'package:book_shop/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:book_shop/constants/constants.dart';
 
 class TitleTab extends StatelessWidget {
   @override

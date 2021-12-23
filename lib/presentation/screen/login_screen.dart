@@ -1,18 +1,9 @@
-import 'package:book_shop/constants/colors.dart';
-import 'package:book_shop/constants/strings.dart';
-import 'package:book_shop/logic/bloc/auth_bloc.dart';
-import 'package:book_shop/logic/cubit/form_validation_cubit.dart';
-import 'package:book_shop/logic/cubit/internet_cubit.dart';
-import 'package:book_shop/presentation/animation/fade_in_animation.dart';
-import 'package:book_shop/presentation/widgets/background_shapes.dart';
-import 'package:book_shop/presentation/widgets/my_button.dart';
-import 'package:book_shop/presentation/widgets/my_progress_button.dart';
-import 'package:book_shop/presentation/widgets/my_text_field.dart';
-import 'package:book_shop/presentation/widgets/no_network_flare.dart';
-import 'package:book_shop/presentation/widgets/warning_bar.dart';
+import 'package:book_shop/presentation/animation/animation.dart';
 import 'package:book_shop/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:book_shop/logic/logic.dart';
+import 'package:book_shop/constants/constants.dart';
 
 class LoginScreen extends StatelessWidget {
   late TextEditingController _usernameController;

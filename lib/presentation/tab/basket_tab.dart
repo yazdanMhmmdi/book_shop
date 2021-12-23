@@ -1,15 +1,9 @@
-import 'package:book_shop/constants/strings.dart';
-import 'package:book_shop/logic/bloc/basket_bloc.dart';
-import 'package:book_shop/presentation/animation/fade_in_animation.dart';
-import 'package:book_shop/presentation/widgets/basket_item.dart';
-import 'package:book_shop/presentation/widgets/loading_bar.dart';
-import 'package:book_shop/presentation/widgets/my_progress_button.dart';
-import 'package:book_shop/presentation/widgets/my_tool_bar.dart';
-import 'package:book_shop/presentation/widgets/not_found_widget.dart';
-import 'package:book_shop/presentation/widgets/pay_check_widget.dart';
-import 'package:book_shop/presentation/widgets/server_failure_flare.dart';
+import 'package:book_shop/presentation/animation/animation.dart';
+import 'package:book_shop/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:book_shop/logic/logic.dart';
+import 'package:book_shop/constants/constants.dart';
 
 class BasketTab extends StatefulWidget {
   @override

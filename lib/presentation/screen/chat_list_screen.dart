@@ -1,17 +1,9 @@
-import 'package:book_shop/constants/colors.dart';
-import 'package:book_shop/constants/strings.dart';
-import 'package:book_shop/logic/bloc/chatlist_bloc.dart';
-import 'package:book_shop/logic/cubit/internet_cubit.dart';
-import 'package:book_shop/presentation/animation/fade_in_animation.dart';
-import 'package:book_shop/presentation/widgets/back_button_widget.dart';
-import 'package:book_shop/presentation/widgets/loading_bar.dart';
-import 'package:book_shop/presentation/widgets/my_tool_bar.dart';
-import 'package:book_shop/presentation/widgets/no_network_flare.dart';
-import 'package:book_shop/presentation/widgets/not_found_flare.dart';
-import 'package:book_shop/presentation/widgets/server_failure_flare.dart';
-import 'package:book_shop/presentation/widgets/vertical_card_support.dart';
+import 'package:book_shop/presentation/animation/animation.dart';
+import 'package:book_shop/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:book_shop/logic/logic.dart';
+import 'package:book_shop/constants/constants.dart';
 
 class ChatListScreen extends StatefulWidget {
   @override

@@ -5,8 +5,8 @@ import 'package:bloc/bloc.dart';
 import 'package:book_shop/data/model/chat_model.dart';
 import 'package:book_shop/data/repository/account_repository.dart';
 import 'package:book_shop/data/repository/chat_repository.dart';
-import 'package:book_shop/networking/api_provider.dart';
-import 'package:book_shop/presentation/widgets/global_widget.dart';
+import 'package:book_shop/networking/networking.dart';
+import 'package:book_shop/presentation/widgets/widgets.dart';
 import 'package:equatable/equatable.dart';
 import 'package:web_socket_channel/io.dart';
 

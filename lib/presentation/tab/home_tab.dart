@@ -1,17 +1,11 @@
-import 'package:book_shop/constants/strings.dart';
 import 'package:book_shop/data/model/home_model.dart';
-import 'package:book_shop/logic/bloc/home_bloc.dart';
-import 'package:book_shop/logic/bloc/home_state.dart';
-import 'package:book_shop/presentation/animation/fade_in_animation.dart';
-import 'package:book_shop/presentation/widgets/home_slider_item.dart';
-import 'package:book_shop/presentation/widgets/horizontal_card.dart';
-import 'package:book_shop/presentation/widgets/loading_bar.dart';
-import 'package:book_shop/presentation/widgets/server_failure_flare.dart';
-import 'package:book_shop/presentation/widgets/vertical_card.dart';
+import 'package:book_shop/presentation/animation/animation.dart';
+import 'package:book_shop/presentation/widgets/widgets.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:book_shop/logic/logic.dart';
+import 'package:book_shop/constants/constants.dart';
 
 class HomeTab extends StatelessWidget {
   @override

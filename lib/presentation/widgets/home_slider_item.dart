@@ -1,6 +1,5 @@
-import 'package:book_shop/constants/colors.dart';
-import 'package:book_shop/constants/strings.dart';
-import 'package:book_shop/networking/image_address_provider.dart';
+import 'package:book_shop/constants/constants.dart';
+import 'package:book_shop/networking/networking.dart';
 import 'package:flutter/material.dart';
 
 class HomeSliderItem extends StatelessWidget {

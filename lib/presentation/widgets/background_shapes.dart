@@ -1,4 +1,4 @@
-import 'package:book_shop/constants/assets.dart';
+import 'package:book_shop/constants/constants.dart';
 import 'package:flutter/material.dart';
 
 class BackgroundShapes extends StatefulWidget {

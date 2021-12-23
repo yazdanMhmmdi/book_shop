@@ -1,6 +1,6 @@
 import 'package:book_shop/data/model/account_model.dart';
 import 'package:book_shop/data/model/account_response_model.dart';
-import 'package:book_shop/networking/api_provider.dart';
+import 'package:book_shop/networking/networking.dart';
 
 class AccountRepository {
   final ApiProvider _apiProvider = ApiProvider();

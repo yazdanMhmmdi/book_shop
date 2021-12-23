@@ -1,5 +1,5 @@
-import 'package:book_shop/networking/image_address_provider.dart';
-import 'package:book_shop/presentation/widgets/rating_bar.dart';
+import 'package:book_shop/networking/networking.dart';
+import 'package:book_shop/presentation/widgets/widgets.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:octo_image/octo_image.dart';

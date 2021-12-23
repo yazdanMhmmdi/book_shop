@@ -1,11 +1,8 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:book_shop/data/model/basket_model.dart';
-import 'package:book_shop/data/model/functional_model.dart';
-import 'package:book_shop/data/repository/account_repository.dart';
-import 'package:book_shop/data/repository/basket_repository.dart';
-import 'package:book_shop/presentation/widgets/global_widget.dart';
+import 'package:book_shop/data/data.dart';
+import 'package:book_shop/presentation/widgets/widgets.dart';
 import 'package:equatable/equatable.dart';
 
 part 'basket_event.dart';

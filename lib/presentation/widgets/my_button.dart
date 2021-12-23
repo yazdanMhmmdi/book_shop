@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:book_shop/constants/colors.dart';
-import 'package:book_shop/presentation/widgets/my_progress_button.dart';
+import 'package:book_shop/constants/constants.dart';
+import 'package:book_shop/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 class MyButton extends StatelessWidget {

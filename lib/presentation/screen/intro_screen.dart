@@ -1,12 +1,10 @@
-import 'package:book_shop/constants/assets.dart';
-import 'package:book_shop/constants/colors.dart';
-import 'package:book_shop/constants/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intro_slider/dot_animation_enum.dart';
 import 'package:intro_slider/intro_slider.dart';
 import 'package:intro_slider/slide_object.dart';
+import 'package:book_shop/constants/constants.dart';
 
 class IntroScreen extends StatefulWidget {
   @override

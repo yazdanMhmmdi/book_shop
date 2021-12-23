@@ -1,6 +1,6 @@
 import 'package:book_shop/data/model/basket_model.dart';
 import 'package:book_shop/data/model/functional_model.dart';
-import 'package:book_shop/networking/api_provider.dart';
+import 'package:book_shop/networking/networking.dart';
 
 class BasketRepository {
   final ApiProvider _apiProvider = ApiProvider();

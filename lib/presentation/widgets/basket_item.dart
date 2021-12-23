@@ -1,10 +1,7 @@
-import 'package:book_shop/presentation/widgets/my_slide_action.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:book_shop/constants/colors.dart';
-import 'package:book_shop/constants/strings.dart';
-import 'package:book_shop/networking/image_address_provider.dart';
-import 'package:book_shop/presentation/widgets/rating_bar.dart';
+import 'package:book_shop/constants/constants.dart';
+import 'package:book_shop/networking/networking.dart';
 import 'package:book_shop/presentation/widgets/widgets.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:intl/intl.dart';

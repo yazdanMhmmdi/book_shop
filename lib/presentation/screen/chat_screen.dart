@@ -1,19 +1,11 @@
-import 'package:book_shop/constants/colors.dart';
-import 'package:book_shop/constants/strings.dart';
-import 'package:book_shop/constants/values.dart';
-import 'package:book_shop/logic/bloc/chat_bloc.dart';
-import 'package:book_shop/logic/cubit/internet_cubit.dart';
-import 'package:book_shop/networking/image_address_provider.dart';
-import 'package:book_shop/presentation/animation/fade_in_animation.dart';
-import 'package:book_shop/presentation/widgets/back_button_widget.dart';
-import 'package:book_shop/presentation/widgets/customer_agent_widget.dart';
-import 'package:book_shop/presentation/widgets/from_message_bubble.dart';
-import 'package:book_shop/presentation/widgets/my_tool_bar.dart';
-import 'package:book_shop/presentation/widgets/no_network_flare.dart';
-import 'package:book_shop/presentation/widgets/user_message_bubble.dart';
+import 'package:book_shop/networking/networking.dart';
+import 'package:book_shop/presentation/animation/animation.dart';
+import 'package:book_shop/presentation/widgets/widgets.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:book_shop/logic/logic.dart';
+import 'package:book_shop/constants/constants.dart';
 
 class ChatScreen extends StatefulWidget {
   late Map<String, String> args;

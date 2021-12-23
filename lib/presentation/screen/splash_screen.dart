@@ -1,13 +1,9 @@
-
-import 'package:book_shop/constants/assets.dart';
-import 'package:book_shop/constants/colors.dart';
-import 'package:book_shop/logic/cubit/internet_cubit.dart';
-import 'package:book_shop/logic/cubit/splash_cubit.dart';
-import 'package:book_shop/presentation/widgets/background_shapes.dart';
-import 'package:book_shop/presentation/widgets/no_network_flare.dart';
+import 'package:book_shop/presentation/widgets/widgets.dart';
 import "package:flutter/material.dart";
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:book_shop/logic/logic.dart';
+import 'package:book_shop/constants/constants.dart';
 
 class SplashScreen extends StatelessWidget {
   late SplashCubit _splashCubit;
@@ -32,18 +28,18 @@ class SplashScreen extends StatelessWidget {
               backgroundColor: IColors.green,
               body: Stack(
                 children: [
-              Stack(
-                children: [
-                  Center(
-                    child: Image.asset(
-                      Assets.logo,
-                      width: 96,
-                      height: 109,
-                    ),
+                  Stack(
+                    children: [
+                      Center(
+                        child: Image.asset(
+                          Assets.logo,
+                          width: 96,
+                          height: 109,
+                        ),
+                      ),
+                      BackgroundShapes(),
+                    ],
                   ),
-                  BackgroundShapes(),
-                ],
-              ),
                 ],
               ),
             );

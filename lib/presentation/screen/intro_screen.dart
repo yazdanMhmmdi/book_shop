@@ -153,15 +153,18 @@ class _IntroScreenState extends State<IntroScreen> {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 43.w),
                 child: Container(
-                  child: Text(
-                    currentSlide.title!,
-                    style: TextStyle(
-                      color: IColors.balck85,
-                      fontSize: 22.0.sp,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: "IranSans",
+                  child: Directionality(
+                    textDirection: TextDirection.rtl,
+                    child: Text(
+                      currentSlide.title!,
+                      style: TextStyle(
+                        color: IColors.balck85,
+                        fontSize: 22.0.sp,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: "IranSans",
+                      ),
+                      textAlign: TextAlign.center,
                     ),
-                    textAlign: TextAlign.center,
                   ),
                   margin: EdgeInsets.only(top: 16.0.h),
                 ),
@@ -169,17 +172,20 @@ class _IntroScreenState extends State<IntroScreen> {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 43.w),
                 child: Container(
-                  child: Text(
-                    currentSlide.description!,
-                    style: TextStyle(
-                      color: IColors.balck85,
-                      fontSize: 18.0.sp,
-                      fontStyle: FontStyle.normal,
-                      fontFamily: "IranSans",
+                  child: Directionality(
+                    textDirection: TextDirection.rtl,
+                    child: Text(
+                      currentSlide.description!,
+                      style: TextStyle(
+                        color: IColors.balck85,
+                        fontSize: 18.0.sp,
+                        fontStyle: FontStyle.normal,
+                        fontFamily: "IranSans",
+                      ),
+                      textAlign: TextAlign.center,
+                      maxLines: 5,
+                      overflow: TextOverflow.ellipsis,
                     ),
-                    textAlign: TextAlign.center,
-                    maxLines: 5,
-                    overflow: TextOverflow.ellipsis,
                   ),
                   margin: EdgeInsets.only(top: 8.0.h),
                 ),

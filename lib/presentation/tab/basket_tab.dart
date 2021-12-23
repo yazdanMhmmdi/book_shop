@@ -2,7 +2,7 @@ import 'package:book_shop/constants/colors.dart';
 import 'package:book_shop/constants/strings.dart';
 import 'package:book_shop/logic/bloc/basket_bloc.dart';
 import 'package:book_shop/presentation/animation/fade_in_animation.dart';
-import 'package:book_shop/presentation/ui/basket_item.dart';
+import 'package:book_shop/presentation/widgets/basket_item.dart';
 import 'package:book_shop/presentation/widgets/custom_scroll_behavior.dart';
 import 'package:book_shop/presentation/widgets/loading_bar.dart';
 import 'package:book_shop/presentation/widgets/my_button.dart';

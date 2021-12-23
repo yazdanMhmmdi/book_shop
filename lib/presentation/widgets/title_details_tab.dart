@@ -1,7 +1,7 @@
 import 'package:book_shop/constants/assets.dart';
 import 'package:book_shop/data/model/title_model.dart';
 import 'package:book_shop/presentation/animation/fade_in_animation.dart';
-import 'package:book_shop/presentation/ui/vertical_card.dart';
+import 'package:book_shop/presentation/widgets/vertical_card.dart';
 import 'package:flutter/material.dart';
 
 class TitleDetailsTab extends StatelessWidget {

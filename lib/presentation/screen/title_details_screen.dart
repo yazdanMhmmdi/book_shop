@@ -4,8 +4,6 @@ import 'package:book_shop/constants/strings.dart';
 import 'package:book_shop/logic/bloc/title_bloc.dart';
 import 'package:book_shop/logic/cubit/internet_cubit.dart';
 import 'package:book_shop/presentation/animation/fade_in_animation.dart';
-import 'package:book_shop/presentation/ui/title_tab.dart';
-import 'package:book_shop/presentation/ui/vertical_card.dart';
 import 'package:book_shop/presentation/widgets/custom_scroll_behavior.dart';
 import 'package:book_shop/presentation/widgets/loading_bar.dart';
 import 'package:book_shop/presentation/widgets/no_network_flare.dart';

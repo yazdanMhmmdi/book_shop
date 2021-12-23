@@ -1,6 +1,6 @@
 import 'package:book_shop/constants/values.dart';
 import 'package:book_shop/logic/bloc/title_bloc.dart';
-import 'package:book_shop/presentation/ui/title_details_screen.dart';
+import 'package:book_shop/presentation/screen/title_details_screen.dart';
 import 'package:flutter/material.dart';
 
 class TitleSelector extends StatefulWidget {

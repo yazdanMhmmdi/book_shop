@@ -11,16 +11,16 @@ import 'package:book_shop/logic/cubit/detail_cubit.dart';
 import 'package:book_shop/logic/cubit/form_validation_cubit.dart';
 import 'package:book_shop/logic/cubit/internet_cubit.dart';
 import 'package:book_shop/logic/cubit/splash_cubit.dart';
-import 'package:book_shop/presentation/ui/chat_list_screen.dart';
-import 'package:book_shop/presentation/ui/chat_screen.dart';
-import 'package:book_shop/presentation/ui/details_screen.dart';
-import 'package:book_shop/presentation/ui/home_screen.dart';
-import 'package:book_shop/presentation/ui/intro_screen.dart';
-import 'package:book_shop/presentation/ui/login_screen.dart';
-import 'package:book_shop/presentation/ui/sign_up_screen.dart';
-import 'package:book_shop/presentation/ui/socket_test_screen.dart';
-import 'package:book_shop/presentation/ui/splash_screen.dart';
-import 'package:book_shop/presentation/ui/title_details_screen.dart';
+import 'package:book_shop/presentation/screen/chat_list_screen.dart';
+import 'package:book_shop/presentation/screen/chat_screen.dart';
+import 'package:book_shop/presentation/screen/details_screen.dart';
+import 'package:book_shop/presentation/screen/home_screen.dart';
+import 'package:book_shop/presentation/screen/intro_screen.dart';
+import 'package:book_shop/presentation/screen/login_screen.dart';
+import 'package:book_shop/presentation/screen/sign_up_screen.dart';
+import 'package:book_shop/presentation/screen/socket_test_screen.dart';
+import 'package:book_shop/presentation/screen/splash_screen.dart';
+import 'package:book_shop/presentation/screen/title_details_screen.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -93,7 +93,8 @@ class AppRouter {
         break;
       case '/home':
         return PageRouteBuilder(
-            transitionDuration: Duration(milliseconds: Values.animationDuration),
+            transitionDuration:
+                Duration(milliseconds: Values.animationDuration),
             transitionsBuilder: (context, aniamtion, animationTime, child) {
               return FadeTransition(
                 opacity: aniamtion,

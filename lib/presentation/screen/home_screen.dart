@@ -7,11 +7,10 @@ import 'package:book_shop/logic/bloc/home_bloc.dart';
 import 'package:book_shop/logic/bloc/home_state.dart';
 import 'package:book_shop/logic/bloc/home_event.dart';
 import 'package:book_shop/logic/cubit/internet_cubit.dart';
-import 'package:book_shop/presentation/ui/settings_tab.dart';
-import 'package:book_shop/presentation/ui/basket_tab.dart';
-import 'package:book_shop/presentation/ui/chat_list_screen.dart';
-import 'package:book_shop/presentation/ui/home_tab.dart';
-import 'package:book_shop/presentation/ui/title_tab.dart';
+import 'package:book_shop/presentation/tab/basket_tab.dart';
+import 'package:book_shop/presentation/tab/home_tab.dart';
+import 'package:book_shop/presentation/tab/settings_tab.dart';
+import 'package:book_shop/presentation/tab/title_tab.dart';
 import 'package:book_shop/presentation/widgets/custom_scroll_behavior.dart';
 import 'package:book_shop/presentation/widgets/no_network_flare.dart';
 import 'package:book_shop/presentation/widgets/server_failure_flare.dart';
@@ -61,7 +60,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                             NeverScrollableScrollPhysics(), // swipe navigation handling is not supported
                         controller: _bottomNavController,
                         children: <Widget>[
-                           BlocProvider.value(
+                          BlocProvider.value(
                             value: _accountBloc,
                             child: SettingsTab(),
                           ),

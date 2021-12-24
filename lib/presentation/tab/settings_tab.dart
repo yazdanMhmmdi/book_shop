@@ -21,20 +21,16 @@ class _SettingsTabState extends State<SettingsTab>
   void initState() {
     _formValidationCubit = BlocProvider.of<FormValidationCubit>(context);
     BlocProvider.of<AccountBloc>(context).add(GetDefaultEvent());
-    _formValidationCubit.authValidatiors(
-        usernameController.text, passwordController.text,
-        doAfterValidation: () {});
+
+    _formValidationCubit.usernameValidate(usernameController.text);
+
     usernameController.addListener(() {
-      _formValidationCubit.authValidatiors(
-          usernameController.text, passwordController.text,
-          doAfterValidation: () {});
+      _formValidationCubit.usernameValidate(usernameController.text);
       print(
           "usernmame : ${usernameController.text}, ${passwordController.text}");
     });
     passwordController.addListener(() {
-      _formValidationCubit.authValidatiors(
-          usernameController.text, passwordController.text,
-          doAfterValidation: () {});
+      _formValidationCubit.passwordValidate(passwordController.text);
       print(
           "password : ${usernameController.text}, ${passwordController.text}");
     });
@@ -188,94 +184,84 @@ class _SettingsTabState extends State<SettingsTab>
   Widget formFieldsUI({var state}) {
     return BlocBuilder<FormValidationCubit, FormValidationState>(
       builder: (context, formValidationState) {
-        if (formValidationState is FormValidationStatus) {
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                "${state.username}",
-                style: const TextStyle(
-                    fontFamily: "IranSans",
-                    fontSize: 18,
-                    fontWeight: FontWeight.w700,
-                    color: Colors.white),
-              ),
-              const Text(
-                Strings.accountWelcome,
-                style: TextStyle(
-                    fontFamily: "IranSans", fontSize: 16, color: Colors.white),
-              ),
-              const SizedBox(
-                height: 16,
-              ),
-              SizedBox(
-                  height: 46,
-                  child: MyTextFiled(
-                      icon: Icons.person,
-                      text: Strings.usernameLabel,
-                      obscureText: false,
-                      textFieldColor: IColors.lowWhite,
-                      controller: usernameController)),
-              // _usernameStatus
-              //     ? Container()
-              //     : WarningBar(
-              //         text: Strings
-              //             .signupUsernameWarning),
-              formValidationState.usernameStatus
-                  ? Container()
-                  : WarningBar(text: Strings.signupUsernameWarning),
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text(
+              "${state.username}",
+              style: const TextStyle(
+                  fontFamily: "IranSans",
+                  fontSize: 18,
+                  fontWeight: FontWeight.w700,
+                  color: Colors.white),
+            ),
+            const Text(
+              Strings.accountWelcome,
+              style: TextStyle(
+                  fontFamily: "IranSans", fontSize: 16, color: Colors.white),
+            ),
+            const SizedBox(
+              height: 16,
+            ),
+            SizedBox(
+                height: 46,
+                child: MyTextFiled(
+                    icon: Icons.person,
+                    text: Strings.usernameLabel,
+                    obscureText: false,
+                    textFieldColor: IColors.lowWhite,
+                    controller: usernameController)),
+            // _usernameStatus
+            //     ? Container()
+            //     : WarningBar(
+            //         text: Strings
+            //             .signupUsernameWarning),
+            formValidationState.isUsernameValid
+                ? Container()
+                : WarningBar(text: Strings.signupUsernameWarning),
 
-              const SizedBox(
-                height: 16,
-              ),
-              SizedBox(
-                  height: 46,
-                  child: MyTextFiled(
-                      icon: Icons.lock,
-                      text: Strings.passwordLabel,
-                      obscureText: true,
-                      textFieldColor: IColors.lowWhite,
-                      controller: passwordController)),
-              formValidationState.passwordStatus
-                  ? Container()
-                  : WarningBar(text: Strings.signUpPasswordWarning),
-              const SizedBox(
-                height: 16,
-              ),
-            ],
-          );
-        } else {
-          return Container();
-        }
+            const SizedBox(
+              height: 16,
+            ),
+            SizedBox(
+                height: 46,
+                child: MyTextFiled(
+                    icon: Icons.lock,
+                    text: Strings.passwordLabel,
+                    obscureText: true,
+                    textFieldColor: IColors.lowWhite,
+                    controller: passwordController)),
+            formValidationState.isPasswordValid
+                ? Container()
+                : WarningBar(text: Strings.signUpPasswordWarning),
+            const SizedBox(
+              height: 16,
+            ),
+          ],
+        );
       },
     );
   }
 
   Widget buttonUI({ButtonState buttonState = ButtonState.idle}) {
     return BlocBuilder<FormValidationCubit, FormValidationState>(
-      builder: (context, formValidationState) {
-        if (formValidationState is FormValidationStatus) {
-          return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: MyButton(
-                buttonState: buttonState,
-                text: Strings.accountEdit,
-                onTap: () async {
-                  if (formValidationState.usernameStatus &&
-                      formValidationState.passwordStatus) {
-                    BlocProvider.of<AccountBloc>(context).add(EditEvent(
-                        newUsername: usernameController.text,
-                        newPassword: passwordController.text));
-                    _formValidationCubit.authValidatiors(
-                        usernameController.text, passwordController.text,
-                        doAfterValidation: () {});
-                  }
-                }),
-          );
-        } else {
-          return Container();
-        }
-      },
-    );
+        builder: (context, formValidationState) {
+      return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: MyButton(
+            buttonState: buttonState,
+            text: Strings.accountEdit,
+            onTap: () async {
+              if (formValidationState.isUsernameValid &&
+                  formValidationState.isPasswordValid) {
+                BlocProvider.of<AccountBloc>(context).add(EditEvent(
+                    newUsername: usernameController.text,
+                    newPassword: passwordController.text));
+                _formValidationCubit.usernameValidate(usernameController.text);
+                _formValidationCubit.passwordValidate(passwordController.text);
+              }
+            }),
+      );
+    });
   }
 }

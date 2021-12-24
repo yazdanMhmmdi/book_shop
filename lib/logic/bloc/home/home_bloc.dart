@@ -5,20 +5,19 @@ part 'home_event.dart';
 part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
-  HomeRepository _mostSalesRepository = HomeRepository();
+  final HomeRepository _mostSalesRepository = HomeRepository();
   HomeBloc() : super(HomeInitial()) {
-    on<HomeEvent>((event, emit) async {
-      if (event is FetchEvent) {
-        emit(HomeLoading());
-        try {
-          final HomeModel homeModel =
-              await _mostSalesRepository.fetchHome("sss");
-          emit(HomeSuccess(homeModel));
-        } catch (_) {
-          print(_);
-          emit(HomeFailure());
-        }
-      }
-    });
+    on<FetchEvent>(_getHome);
+  }
+
+  Future<void> _getHome(FetchEvent event, Emitter<HomeState> emit) async {
+    emit(HomeLoading());
+    try {
+      final HomeModel homeModel = await _mostSalesRepository.fetchHome("sss");
+      emit(HomeSuccess(homeModel));
+    } catch (_) {
+      print(_);
+      emit(HomeFailure());
+    }
   }
 }

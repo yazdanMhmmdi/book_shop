@@ -23,16 +23,12 @@ class LoginScreen extends StatelessWidget {
     _formValidationCubit = BlocProvider.of<FormValidationCubit>(context);
 
     _usernameController.addListener(() {
-      _formValidationCubit.authValidatiors(
-          _usernameController.text, _passwordController.text,
-          doAfterValidation: () {});
+      _formValidationCubit.usernameValidate(_usernameController.text);
       print(
           "usernmame : ${_usernameController.text}, ${_passwordController.text}");
     });
     _passwordController.addListener(() {
-      _formValidationCubit.authValidatiors(
-          _usernameController.text, _passwordController.text,
-          doAfterValidation: () {});
+      _formValidationCubit.passwordValidate(_passwordController.text);
       print(
           "password : ${_usernameController.text}, ${_passwordController.text}");
     });
@@ -43,11 +39,6 @@ class LoginScreen extends StatelessWidget {
             if (state is AuthSuccess) {
               Navigator.pushNamed(context, '/home');
             }
-          },
-        ),
-        BlocListener<FormValidationCubit, FormValidationState>(
-          listener: (context, state) {
-            if (state is FormValidationStatus) {}
           },
         ),
       ],
@@ -100,15 +91,11 @@ class LoginScreen extends StatelessWidget {
                                   BlocBuilder<FormValidationCubit,
                                       FormValidationState>(
                                     builder: (context, state) {
-                                      if (state is FormValidationState) {
-                                        return state.usernameStatus
-                                            ? Container()
-                                            : WarningBar(
-                                                text: Strings
-                                                    .signupUsernameWarning);
-                                      } else {
-                                        return Container();
-                                      }
+                                      return state.isUsernameValid
+                                          ? Container()
+                                          : WarningBar(
+                                              text: Strings
+                                                  .signupUsernameWarning);
                                     },
                                   ),
                                   const SizedBox(height: 16),
@@ -122,15 +109,11 @@ class LoginScreen extends StatelessWidget {
                                   BlocBuilder<FormValidationCubit,
                                       FormValidationState>(
                                     builder: (context, state) {
-                                      if (state is FormValidationState) {
-                                        return state.passwordStatus
-                                            ? Container()
-                                            : WarningBar(
-                                                text: Strings
-                                                    .signUpPasswordWarning);
-                                      } else {
-                                        return Container();
-                                      }
+                                      return state.isPasswordValid
+                                          ? Container()
+                                          : WarningBar(
+                                              text: Strings
+                                                  .signUpPasswordWarning);
                                     },
                                   ),
                                   const SizedBox(
@@ -221,12 +204,8 @@ class LoginScreen extends StatelessWidget {
           // setState(() {
           //   _buttonState = ButtonState.loading;
           // });
-          _formValidationCubit.authValidatiors(
-              _usernameController.text, _passwordController.text,
-              doAfterValidation: () {
-            _authBloc.add(
-                LoginEvent(_usernameController.text, _passwordController.text));
-          });
+          _authBloc.add(
+              LoginEvent(_usernameController.text, _passwordController.text));
         });
   }
 }

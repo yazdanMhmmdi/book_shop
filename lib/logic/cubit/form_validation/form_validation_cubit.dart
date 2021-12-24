@@ -1,29 +1,37 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
 part 'form_validation_state.dart';
 
 class FormValidationCubit extends Cubit<FormValidationState> {
-  static bool usernameStatus = true;
-  static bool passwordStatus = true;
-
+  static bool isUsernameValid = true, isPasswordValid = true;
   FormValidationCubit()
-      : super(FormValidationInitial(usernameStatus, passwordStatus));
+      : super(FormValidationState(
+          isUsernameValid: isUsernameValid,
+          isPasswordValid: isPasswordValid,
+        ));
 
-  void authValidatiors(String username, String password,
-      {required Function doAfterValidation}) {
+  void usernameValidate(String username) {
     if (username.length < 17 && username.length >= 5) {
-      usernameStatus = true;
+      isUsernameValid = true;
     } else {
-      usernameStatus = false;
+      isUsernameValid = false;
     }
 
+    emit(FormValidationState(
+        isUsernameValid: isUsernameValid, isPasswordValid: isPasswordValid));
+  }
+
+  void passwordValidate(String password) {
     if (password.length >= 8 && password.length < 17) {
-      passwordStatus = true;
+      isPasswordValid = true;
     } else {
-      passwordStatus = false;
+      isPasswordValid = false;
     }
-    if (passwordStatus && usernameStatus) doAfterValidation.call();
-    emit(FormValidationStatus(usernameStatus, passwordStatus));
+
+    emit(FormValidationState(
+        isUsernameValid: isUsernameValid, isPasswordValid: isPasswordValid));
   }
 }

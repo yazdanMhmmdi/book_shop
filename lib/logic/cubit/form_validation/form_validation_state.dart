@@ -1,18 +1,9 @@
 part of 'form_validation_cubit.dart';
 
-abstract class FormValidationState extends Equatable {
-  bool usernameStatus = false, passwordStatus = false;
-  FormValidationState(this.usernameStatus, this.passwordStatus);
+class FormValidationState extends Equatable {
+  bool isUsernameValid = false, isPasswordValid = false;
+  FormValidationState(
+      {required this.isUsernameValid, required this.isPasswordValid});
   @override
-  List<Object> get props => [usernameStatus, passwordStatus];
-}
-
-class FormValidationInitial extends FormValidationState {
-  FormValidationInitial(bool usernameStatus, bool passwordStatus)
-      : super(usernameStatus, passwordStatus);
-}
-
-class FormValidationStatus extends FormValidationState {
-  FormValidationStatus(bool usernameStatus, bool passwordStatus)
-      : super(usernameStatus, passwordStatus);
+  List<Object> get props => [isUsernameValid, isPasswordValid];
 }

@@ -6,17 +6,21 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:book_shop/logic/logic.dart';
 
 class AppRouter {
-  final AuthBloc _authBloc = AuthBloc();
+  late AuthBloc _authBloc;
 
   final HomeBloc _homeBloc = HomeBloc();
 
-  final AccountBloc _accountBloc = AccountBloc();
+  late AccountBloc _accountBloc;
 
   final InternetCubit _internetCubit =
       InternetCubit(connectivity: Connectivity());
   final _loginScreen = LoginScreen();
 
+  final FormValidationCubit _formValidationCubit = FormValidationCubit();
+
   Route onGeneratedRoute(RouteSettings settings) {
+    _authBloc = AuthBloc(formValidationCubit: _formValidationCubit);
+    _accountBloc = AccountBloc(formValidationCubit: _formValidationCubit);
     switch (settings.name) {
       case '/':
         return MaterialPageRoute(
@@ -45,8 +49,8 @@ class AppRouter {
               BlocProvider.value(
                 value: _internetCubit,
               ),
-              BlocProvider(
-                create: (context) => FormValidationCubit(),
+              BlocProvider.value(
+                value: _formValidationCubit,
               )
             ],
             child: _loginScreen,
@@ -62,7 +66,9 @@ class AppRouter {
               BlocProvider.value(
                 value: _internetCubit,
               ),
-              BlocProvider(create: (context) => FormValidationCubit()),
+              BlocProvider.value(
+                value: _formValidationCubit,
+              )
             ],
             child: SignUpScreen(),
           ),
@@ -70,7 +76,7 @@ class AppRouter {
       case '/home':
         return PageRouteBuilder(
             transitionDuration:
-                Duration(milliseconds: Values.animationDuration),
+                const Duration(milliseconds: Values.animationDuration),
             transitionsBuilder: (context, aniamtion, animationTime, child) {
               return FadeTransition(
                 opacity: aniamtion,
@@ -89,8 +95,8 @@ class AppRouter {
                   BlocProvider.value(
                     value: _accountBloc,
                   ),
-                  BlocProvider(
-                    create: (context) => FormValidationCubit(),
+                  BlocProvider.value(
+                    value: _formValidationCubit,
                   ),
                 ],
                 child: HomeScreen(),
@@ -101,7 +107,8 @@ class AppRouter {
             settings.arguments as Map<String, String>;
 
         return PageRouteBuilder(
-          transitionDuration: Duration(milliseconds: Values.animationDuration),
+          transitionDuration:
+              const Duration(milliseconds: Values.animationDuration),
           transitionsBuilder: (context, ainmation, animationTime, child) {
             return FadeTransition(opacity: ainmation, child: child);
           },

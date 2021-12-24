@@ -10,50 +10,61 @@ part 'basket_state.dart';
 
 class BasketBloc extends Bloc<BasketEvent, BasketState> {
   BasketBloc() : super(BasketInitial()) {
-    BasketRepository _basketRepository = BasketRepository();
-    AccountRepository _accountRepository = AccountRepository();
-    late BasketModel _model;
-    on<BasketEvent>((event, emit) async {
-      if (event is GetBasket) {
-        emit(BasketLoading());
-        try {
-          _model = await _basketRepository.getBasket(GlobalWidget.userId, "1");
-          if (_model.basket.isEmpty) {
-            emit(BasketEmpty());
-          } else if (_model.basket.isNotEmpty) {
-            emit(BasketSuccess(basketModel: _model));
-          }
-        } catch (err) {
-          print('basket error :: ${err.toString()}');
-          emit(BasketFailure());
-        }
-      } else if (event is DeleteBasket) {
-        FunctionalModel _tempModel = await _basketRepository.deleteBasket(
-            GlobalWidget.userId, event.book_id);
-        if (_tempModel.status == "1") {
-          add(GetBasket());
-        } else {
-          emit(BasketFailure());
-        }
-      } else if (event is AddBasket) {
-        emit(BasketLoading());
+    on<GetBasket>(_getBasket);
+    on<DeleteBasket>(_delete);
+    on<AddBasket>(_add);
+  }
+  final BasketRepository _basketRepository = BasketRepository();
+  late BasketModel _model;
 
-        await Future.delayed(const Duration(seconds: 2));
-
-        FunctionalModel _tempModel = await _basketRepository.addBasket(
-            GlobalWidget.userId, event.book_id);
-        if (_tempModel.status == "1") {
-          emit(BasketSuccess());
-
-          await Future.delayed(const Duration(seconds: 2));
-          emit(BasketInitial());
-        } else {
-          emit(BasketFailure());
-
-          await Future.delayed(const Duration(seconds: 2));
-          emit(BasketInitial());
-        }
+  Future<void> _getBasket(GetBasket event, Emitter<BasketState> emit) async {
+    emit(BasketLoading());
+    try {
+      _model = await _basketRepository.getBasket(GlobalWidget.userId, "1");
+      if (_model.basket.isEmpty) {
+        emit(BasketEmpty());
+      } else if (_model.basket.isNotEmpty) {
+        emit(BasketSuccess(basketModel: _model));
       }
-    });
+    } catch (err) {
+      print('basket error :: ${err.toString()}');
+      emit(BasketFailure());
+    }
+  }
+
+  Future<void> _delete(DeleteBasket event, Emitter<BasketState> emit) async {
+    FunctionalModel _tempModel = await _basketRepository.deleteBasket(
+        GlobalWidget.userId, event.book_id);
+    if (_tempModel.status == "1") {
+      add(GetBasket());
+    } else {
+      emit(BasketFailure());
+    }
+  }
+
+  Future<void> _add(AddBasket event, Emitter<BasketState> emit) async {
+    emit(BasketLoading());
+
+    await Future.delayed(const Duration(seconds: 2));
+
+    FunctionalModel _tempModel =
+        await _basketRepository.addBasket(GlobalWidget.userId, event.book_id);
+    if (_tempModel.status == "1") {
+      emit(BasketSuccess());
+
+      await Future.delayed(const Duration(seconds: 2));
+      emit(BasketInitial());
+    } else {
+      emit(BasketFailure());
+
+      await Future.delayed(const Duration(seconds: 2));
+      emit(BasketInitial());
+    }
   }
 }
+
+
+/*
+
+
+*/

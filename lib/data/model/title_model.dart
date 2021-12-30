@@ -42,6 +42,7 @@ class Books {
     required this.salesCount,
     required this.isBanner,
     required this.categoryId,
+    required this.blurhash,
   });
 
   late final String id;
@@ -59,6 +60,7 @@ class Books {
   late final String salesCount;
   late final String isBanner;
   late final String categoryId;
+  late final String blurhash;
 
   Books.fromJson(Map<String, dynamic> json) {
     id = json['id'] ?? "";
@@ -76,6 +78,7 @@ class Books {
     salesCount = json['sales_count'];
     isBanner = json['is_banner'];
     categoryId = json['category_id'] ?? "";
+    blurhash = json['blurhash'] ?? "";
   }
 
   Map<String, dynamic> toJson() {

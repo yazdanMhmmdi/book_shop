@@ -29,6 +29,7 @@ class TitleDetailsTab extends StatelessWidget {
             language: _books[index].language,
             pagesCount: _books[index].pagesCount,
             price: _books[index].price,
+            blurhash: _books[index].blurhash,
           ),
         );
       },

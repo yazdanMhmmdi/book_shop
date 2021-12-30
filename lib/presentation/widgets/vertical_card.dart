@@ -16,6 +16,7 @@ class VerticalCard extends StatelessWidget {
   String language;
   String coverType;
   String price;
+  String blurhash;
   VerticalCard({
     required this.id,
     required this.image,
@@ -28,6 +29,7 @@ class VerticalCard extends StatelessWidget {
     required this.language,
     required this.description,
     required this.price,
+    required this.blurhash,
   });
 
   @override
@@ -93,7 +95,7 @@ class VerticalCard extends StatelessWidget {
                                 ImageAddressProvider.imageURL + thumbImage,
                               ),
                               placeholderBuilder: OctoPlaceholder.blurHash(
-                                'LEHV6nWB2yk8pyo0adR*.7kCMdnj',
+                                blurhash,
                               ),
                               errorBuilder: OctoError.icon(color: Colors.red),
                               fit: BoxFit.cover,

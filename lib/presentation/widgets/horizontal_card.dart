@@ -14,6 +14,7 @@ class HorizontalCard extends StatelessWidget {
   String pagesCount;
   String language;
   String coverType;
+  String blurhash;
   HorizontalCard({
     required this.id,
     required this.name,
@@ -24,6 +25,7 @@ class HorizontalCard extends StatelessWidget {
     required this.coverType,
     required this.pagesCount,
     required this.language,
+    required this.blurhash,
   });
   @override
   Widget build(BuildContext context) {
@@ -64,7 +66,7 @@ class HorizontalCard extends StatelessWidget {
                         ImageAddressProvider.imageURL + thumbPicture,
                       ),
                       placeholderBuilder: OctoPlaceholder.blurHash(
-                        'LEHV6nWB2yk8pyo0adR*.7kCMdnj',
+                        blurhash,
                       ),
                       errorBuilder: OctoError.icon(color: Colors.red),
                       fit: BoxFit.cover,

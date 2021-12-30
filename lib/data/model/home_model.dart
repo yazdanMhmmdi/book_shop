@@ -45,6 +45,7 @@ class MostSalesBooks {
     required this.isBanner,
     required this.categoryId,
     required this.posterText,
+    required this.blurhash,
   });
 
   late final String id;
@@ -63,6 +64,7 @@ class MostSalesBooks {
   late final String isBanner;
   late final String categoryId;
   late final String posterText;
+  late final String blurhash;
 
   MostSalesBooks.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -81,6 +83,7 @@ class MostSalesBooks {
     isBanner = json['is_banner'] ?? "";
     categoryId = json['category_id'] ?? "";
     posterText = json['poster_text'] ?? "";
+    blurhash = json['blurhash'] ?? "";
   }
 
   Map<String, dynamic> toJson() {
@@ -122,6 +125,7 @@ class FreshsBooks {
     required this.isBanner,
     required this.categoryId,
     required this.posterText,
+    required this.blurhash,
   });
 
   late final String id;
@@ -140,6 +144,7 @@ class FreshsBooks {
   late final String isBanner;
   late final String categoryId;
   late final String posterText;
+  late final String blurhash;
 
   FreshsBooks.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -158,6 +163,7 @@ class FreshsBooks {
     isBanner = json['is_banner'] ?? "";
     categoryId = json['category_id'] ?? "";
     posterText = json['poster_text'] ?? "";
+    blurhash = json['blurhash'] ?? "";
   }
 
   Map<String, dynamic> toJson() {

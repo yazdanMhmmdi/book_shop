@@ -79,6 +79,7 @@ class HomeTab extends StatelessWidget {
                                 language: msList[index].language,
                                 coverType: msList[index].coverType,
                                 pagesCount: msList[index].pagesCount,
+                                blurhash: msList[index].blurhash,
                               ));
                         },
                       ),
@@ -107,6 +108,7 @@ class HomeTab extends StatelessWidget {
                             language: fbList[index].language,
                             pagesCount: fbList[index].pagesCount,
                             price: fbList[index].price.toString(),
+                            blurhash: fbList[index].blurhash,
                           ),
                         );
                       },

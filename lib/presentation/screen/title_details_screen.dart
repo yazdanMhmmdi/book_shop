@@ -1,4 +1,5 @@
 import 'package:book_shop/presentation/animation/animation.dart';
+import 'package:book_shop/presentation/widgets/circular_indicator.dart';
 import 'package:book_shop/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,7 +15,8 @@ class TitleDetailsScreen extends StatefulWidget {
   _TitleDetailsScreenState createState() => _TitleDetailsScreenState();
 }
 
-class _TitleDetailsScreenState extends State<TitleDetailsScreen> {
+class _TitleDetailsScreenState extends State<TitleDetailsScreen>
+    with SingleTickerProviderStateMixin {
   late TitleBloc _sienceTitleBloc;
 
   ScrollController _controller = ScrollController();
@@ -23,23 +25,28 @@ class _TitleDetailsScreenState extends State<TitleDetailsScreen> {
   bool loading = true;
   bool nothingFound = false;
   Color backgroundColor = Colors.white;
+  TabController? tabController;
   @override
   void initState() {
     super.initState();
-
+    _getArguments();
     _sienceTitleBloc = BlocProvider.of<TitleBloc>(context);
+    _sienceTitleBloc.add(FetchBooks(firstTabState + 1));
     _controller.addListener(() {
       if (_controller.position.pixels == _controller.position.maxScrollExtent) {
         _sienceTitleBloc.add(PaginationBooks(tabNumber));
       }
     });
+
+    tabController =
+        TabController(length: 6, vsync: this, initialIndex: firstTabState)
+          ..addListener(() {
+            _sienceTitleBloc.add(FetchBooks(tabController!.index + 1));
+          });
   }
 
   @override
   Widget build(BuildContext context) {
-    setState(() {
-      firstTabState = widget.category;
-    });
     return Scaffold(
       backgroundColor: backgroundColor,
       body: SafeArea(
@@ -82,18 +89,56 @@ class _TitleDetailsScreenState extends State<TitleDetailsScreen> {
                             Padding(
                               padding:
                                   const EdgeInsets.only(top: 16, bottom: 8),
-                              child: TitleSelector(
-                                titles: const [
-                                  Strings.titleScience,
-                                  Strings.titleMedicine,
-                                  Strings.titleHistoric,
-                                  Strings.titleLaw,
-                                  Strings.titleFood,
-                                  Strings.titleSport
+                              child: TabBar(
+                                isScrollable: true,
+                                unselectedLabelColor: Colors.grey,
+                                labelColor: IColors.balck85,
+                                indicator: CircularIndicator(
+                                    color: Colors.black87, radius: 4),
+                                labelStyle: const TextStyle(
+                                  fontSize: 22,
+                                  fontFamily: "IranSans",
+                                  fontWeight: FontWeight.w700,
+                                ),
+                                unselectedLabelStyle: const TextStyle(
+                                  fontSize: 16,
+                                  fontFamily: "IranSans",
+                                  fontWeight: FontWeight.w700,
+                                ),
+                                controller: tabController,
+                                tabs: const [
+                                  Tab(
+                                    text: Strings.titleScience,
+                                  ),
+                                  Tab(
+                                    text: Strings.titleMedicine,
+                                  ),
+                                  Tab(
+                                    text: Strings.titleHistoric,
+                                  ),
+                                  Tab(
+                                    text: Strings.titleLaw,
+                                  ),
+                                  Tab(
+                                    text: Strings.titleFood,
+                                  ),
+                                  Tab(
+                                    text: Strings.titleSport,
+                                  ),
                                 ],
-                                bloc: _sienceTitleBloc,
-                                firstTab: firstTabState,
                               ),
+                              // TitleSelector(
+                              //   titles: const [
+                              //     Strings.titleScience,
+                              //     Strings.titleMedicine,
+                              //     Strings.titleHistoric,
+                              //     Strings.titleLaw,
+                              //     Strings.titleFood,
+                              //     Strings.titleSport
+                              //   ],
+                              //   bloc: _sienceTitleBloc,
+                              //   firstTab: firstTabState,
+                              // ),
                             ),
                             BlocBuilder<TitleBloc, TitleState>(
                               builder: (context, state) {
@@ -180,5 +225,9 @@ class _TitleDetailsScreenState extends State<TitleDetailsScreen> {
         )),
       ),
     );
+  }
+
+  void _getArguments() {
+    firstTabState = widget.category - 1;
   }
 }

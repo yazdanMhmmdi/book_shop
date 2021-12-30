@@ -13,7 +13,8 @@ class TitleDetailsTab extends StatelessWidget {
     return ListView.builder(
       itemCount: _books.length,
       shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
+      scrollDirection: Axis.vertical,
+      physics: const BouncingScrollPhysics(),
       itemBuilder: (context, index) {
         return FadeInAnimation(
           _animationDelay + ((index + 1) * 0.3),

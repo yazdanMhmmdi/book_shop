@@ -75,8 +75,8 @@ class Books {
     coverType = json['cover_type'] ?? "";
     pictureThumb = json['picture_thumb'] ?? "";
     picture = json['picture'] ?? "";
-    salesCount = json['sales_count'];
-    isBanner = json['is_banner'];
+    salesCount = json['sales_count'] ?? "";
+    isBanner = json['is_banner'] ?? "";
     categoryId = json['category_id'] ?? "";
     blurhash = json['blurhash'] ?? "";
   }

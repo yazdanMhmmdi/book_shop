@@ -1,6 +1,8 @@
 import 'package:book_shop/constants/values.dart';
+import 'package:book_shop/networking/network_info.dart';
 import 'package:book_shop/presentation/screen/screen.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:data_connection_checker_tv/data_connection_checker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:book_shop/logic/logic.dart';
@@ -12,8 +14,10 @@ class AppRouter {
 
   late AccountBloc _accountBloc;
 
-  final InternetCubit _internetCubit =
-      InternetCubit(connectivity: Connectivity());
+  final InternetCubit _internetCubit = InternetCubit(
+    connectivity: Connectivity(),
+    connectionChecker: DataConnectionChecker(),
+  );
   final _loginScreen = LoginScreen();
 
   final FormValidationCubit _formValidationCubit = FormValidationCubit();

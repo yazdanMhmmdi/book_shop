@@ -53,6 +53,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   Future<void> _signUp(SignUpEvent event, Emitter<AuthState> emit) async {
+    _prefs = await SharedPreferences.getInstance();
     if (formValidationCubit.state.isUsernameValid &&
         formValidationCubit.state.isPasswordValid) {
       try {

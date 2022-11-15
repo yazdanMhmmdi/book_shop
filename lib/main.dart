@@ -5,12 +5,14 @@ import 'package:book_shop/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
+import 'injector.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await init();
+
   runApp(MyApp());
 }
-
-
 
 class MyApp extends StatefulWidget {
   @override

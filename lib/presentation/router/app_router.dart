@@ -6,10 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:book_shop/logic/logic.dart';
 
+import '../../injector.dart';
+
 class AppRouter {
   late AuthBloc _authBloc;
-
-  final HomeBloc _homeBloc = HomeBloc();
 
   late AccountBloc _accountBloc;
 
@@ -92,7 +92,7 @@ class AppRouter {
                     value: _internetCubit,
                   ),
                   BlocProvider(
-                    create: (_) => HomeBloc(),
+                    create: (_) => HomeBloc(homeUsecase: sl()),
                   ),
                   BlocProvider.value(
                     value: _accountBloc,
@@ -216,7 +216,6 @@ class AppRouter {
 
   void dispose() {
     _authBloc.close();
-    _homeBloc.close();
     _accountBloc.close();
     _internetCubit.close();
   }

@@ -1,4 +1,4 @@
-import 'package:book_shop/data/model/home_model.dart';
+import 'package:book_shop/data/model/book_model.dart';
 import 'package:book_shop/presentation/animation/animation.dart';
 import 'package:book_shop/presentation/widgets/widgets.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -17,8 +17,8 @@ class HomeTab extends StatelessWidget {
         } else if (state is HomeLoading) {
           return MyLoadingBar(animation: "Untitled");
         } else if (state is HomeSuccess) {
-          List<MostSalesBooks> msList = state.postModel.mostSalesBooks;
-          List<FreshsBooks> fbList = state.postModel.freshsBooks;
+          List<BookModel>? msList = state.postModel.mostSalesBooks;
+          List<BookModel>? fbList = state.postModel.freshsBooks;
           return ScrollConfiguration(
             behavior:
                 ScrollConfiguration.of(context).copyWith(scrollbars: false),
@@ -37,11 +37,11 @@ class HomeTab extends StatelessWidget {
                         FadeInAnimation(
                           0.25,
                           CarouselSlider.builder(
-                              itemCount: state.postModel.poster.length,
+                              itemCount: state.postModel.poster!.length,
                               itemBuilder: (context, index, realIndex) {
                                 return HomeSliderItem(
-                                    picture:
-                                        state.postModel.poster[index].picture);
+                                    picture: state
+                                        .postModel.poster![index].picture!);
                               },
                               options: CarouselOptions(
                                   height: 175,
@@ -64,22 +64,22 @@ class HomeTab extends StatelessWidget {
                         shrinkWrap: true,
                         physics: const BouncingScrollPhysics(),
                         padding: const EdgeInsets.only(right: 8),
-                        itemCount: state.postModel.freshsBooks.length,
+                        itemCount: state.postModel.freshsBooks!.length,
                         scrollDirection: Axis.horizontal,
                         itemBuilder: (context, index) {
                           return FadeInAnimation(
                               0.25 + ((index + 1) * 0.3),
                               HorizontalCard(
-                                id: msList[index].id,
-                                name: msList[index].name,
-                                thumbPicture: msList[index].pictureThumb,
-                                writer: msList[index].writer,
-                                voteCount: msList[index].voteCount,
-                                description: msList[index].description,
-                                language: msList[index].language,
-                                coverType: msList[index].coverType,
-                                pagesCount: msList[index].pagesCount,
-                                blurhash: msList[index].blurhash,
+                                id: msList![index].id!,
+                                name: msList[index].name!,
+                                thumbPicture: msList[index].pictureThumb!,
+                                writer: msList[index].writer!,
+                                voteCount: msList[index].voteCount!,
+                                description: msList[index].description!,
+                                language: msList[index].language!,
+                                coverType: msList[index].coverType!,
+                                pagesCount: msList[index].pagesCount!,
+                                blurhash: msList[index].blurhash!,
                               ));
                         },
                       ),
@@ -92,23 +92,23 @@ class HomeTab extends StatelessWidget {
                     ListView.builder(
                       physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
-                      itemCount: state.postModel.freshsBooks.length,
+                      itemCount: state.postModel.freshsBooks!.length,
                       itemBuilder: (context, index) {
                         return FadeInAnimation(
                           1.0 + ((index + 1) * 0.3),
                           VerticalCard(
-                            id: fbList[index].id,
-                            image: fbList[index].pictureThumb,
-                            name: fbList[index].name,
-                            thumbImage: fbList[index].pictureThumb,
-                            writer: fbList[index].writer,
-                            voteCount: fbList[index].voteCount,
-                            coverType: fbList[index].coverType,
-                            description: fbList[index].description,
-                            language: fbList[index].language,
-                            pagesCount: fbList[index].pagesCount,
+                            id: fbList![index].id!,
+                            image: fbList[index].pictureThumb!,
+                            name: fbList[index].name!,
+                            thumbImage: fbList[index].pictureThumb!,
+                            writer: fbList[index].writer!,
+                            voteCount: fbList[index].voteCount!,
+                            coverType: fbList[index].coverType!,
+                            description: fbList[index].description!,
+                            language: fbList[index].language!,
+                            pagesCount: fbList[index].pagesCount!,
                             price: fbList[index].price.toString(),
-                            blurhash: fbList[index].blurhash,
+                            blurhash: fbList[index].blurhash!,
                           ),
                         );
                       },

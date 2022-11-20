@@ -8,17 +8,9 @@ abstract class TitleEvent extends Equatable {
 }
 
 class FetchBooks extends TitleEvent {
-  int title;
+  int? title;
   FetchBooks(this.title);
 
   @override
-  List<Object> get props => [title];
-}
-
-class PaginationBooks extends TitleEvent {
-  int title;
-  PaginationBooks(this.title);
-
-  @override
-  List<Object> get props => [title];
+  List<Object> get props => [title!];
 }

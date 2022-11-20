@@ -12,8 +12,9 @@ class TitleInitial extends TitleState {}
 class TitleLoading extends TitleState {}
 
 class TitleSuccess extends TitleState {
-  List<Books> model;
-  TitleSuccess(this.model);
+  List<BookModel> model;
+  bool noMoreData = false;
+  TitleSuccess({required this.model, required this.noMoreData});
   @override
   List<Object> get props => [model];
 }
@@ -21,11 +22,3 @@ class TitleSuccess extends TitleState {
 class TitleFailure extends TitleState {}
 
 class TitleNothingFound extends TitleState {}
-
-class TitlePagination extends TitleState {
-  List<Books> model;
-  int tabNumber = 1;
-  TitlePagination(this.model, this.tabNumber);
-  @override
-  List<Object> get props => [model];
-}

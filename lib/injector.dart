@@ -1,8 +1,12 @@
 import 'package:book_shop/core/network/remote_api_service.dart';
 import 'package:book_shop/data/data.dart';
 import 'package:book_shop/data/datasources/remote/book_shop_api_service.dart';
+import 'package:book_shop/data/repository/title_posts_repository_impl.dart';
 import 'package:book_shop/domain/repositories/home_repository.dart';
+import 'package:book_shop/domain/repositories/titles_post_repository.dart';
 import 'package:book_shop/domain/usecases/home_usecase.dart';
+import 'package:book_shop/domain/usecases/title_posts_usecase.dart';
+import 'package:book_shop/logic/logic.dart';
 import 'package:data_connection_checker_tv/data_connection_checker.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
@@ -20,11 +24,17 @@ Future<void> init() async {
   sl.registerFactory(() => HomeBloc(
         homeUsecase: sl(),
       ));
+  sl.registerFactory(() => TitleBloc(
+        titlePostsUsecase: sl(),
+      ));
   //  usecases
   sl.registerLazySingleton(() => HomeUsecase(sl()));
+  sl.registerLazySingleton(() => TitlePostsUsecase(sl()));
 
   //  repositories
   sl.registerLazySingleton<HomeRepository>(() => HomeRepositoryImpl(sl()));
+  sl.registerLazySingleton<TitlesPostRepository>(
+      () => TitlePostsRepositoryImpl(sl()));
 
   //  remote datasources
   sl.registerLazySingleton<RemoteApiService>(() => RemoteApiServiceImpl(sl()));

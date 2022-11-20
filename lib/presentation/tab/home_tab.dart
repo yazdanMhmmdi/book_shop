@@ -97,18 +97,7 @@ class HomeTab extends StatelessWidget {
                         return FadeInAnimation(
                           1.0 + ((index + 1) * 0.3),
                           VerticalCard(
-                            id: fbList![index].id!,
-                            image: fbList[index].pictureThumb!,
-                            name: fbList[index].name!,
-                            thumbImage: fbList[index].pictureThumb!,
-                            writer: fbList[index].writer!,
-                            voteCount: fbList[index].voteCount!,
-                            coverType: fbList[index].coverType!,
-                            description: fbList[index].description!,
-                            language: fbList[index].language!,
-                            pagesCount: fbList[index].pagesCount!,
-                            price: fbList[index].price.toString(),
-                            blurhash: fbList[index].blurhash!,
+                            model: state.postModel.freshsBooks![0],
                           ),
                         );
                       },

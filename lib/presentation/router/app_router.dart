@@ -149,7 +149,9 @@ class AppRouter {
                 value: _internetCubit,
               ),
               BlocProvider(
-                create: (context) => TitleBloc(),
+                create: (context) => TitleBloc(
+                  titlePostsUsecase: sl(),
+                ),
               )
             ],
             child: TitleDetailsScreen(

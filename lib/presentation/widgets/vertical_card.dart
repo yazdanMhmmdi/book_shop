@@ -1,4 +1,5 @@
 import 'package:book_shop/constants/constants.dart';
+import 'package:book_shop/data/model/book_model.dart';
 import 'package:book_shop/networking/networking.dart';
 import 'package:book_shop/presentation/widgets/widgets.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -7,30 +8,8 @@ import 'package:intl/intl.dart';
 import 'package:octo_image/octo_image.dart';
 
 class VerticalCard extends StatelessWidget {
-  String image;
-  String name, writer, thumbImage;
-  String id;
-  double voteCount;
-  String description;
-  String pagesCount;
-  String language;
-  String coverType;
-  String price;
-  String blurhash;
-  VerticalCard({
-    required this.id,
-    required this.image,
-    required this.name,
-    required this.writer,
-    required this.thumbImage,
-    required this.voteCount,
-    required this.pagesCount,
-    required this.coverType,
-    required this.language,
-    required this.description,
-    required this.price,
-    required this.blurhash,
-  });
+  BookModel? model;
+  VerticalCard({this.model});
 
   @override
   Widget build(BuildContext context) {
@@ -49,17 +28,17 @@ class VerticalCard extends StatelessWidget {
             splashColor: Colors.black12,
             onTap: () => Navigator.pushNamed(context, '/details',
                 arguments: <String, String>{
-                  'post_id': id,
-                  'name': name,
-                  'writer': writer,
-                  'description': description,
-                  'voteCount': voteCount.toString(),
-                  'thumbPicture': thumbImage,
-                  'language': language,
-                  'coverType': coverType,
-                  'pagesCount': pagesCount,
+                  'post_id': model!.id!,
+                  'name': model!.name!,
+                  'writer': model!.writer!,
+                  'description': model!.description!,
+                  'voteCount': model!.voteCount!.toString(),
+                  'thumbPicture': model!.pictureThumb!,
+                  'language': model!.language!,
+                  'coverType': model!.coverType!,
+                  'pagesCount': model!.pagesCount!,
                   'hero_type': "v",
-                  'price': price,
+                  'price': model!.price!.toString(),
                 }),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -82,7 +61,7 @@ class VerticalCard extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(5),
                       child: Hero(
-                        tag: "post_${id}_v",
+                        tag: "post_${model!.id}_v",
                         child: Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
@@ -92,10 +71,11 @@ class VerticalCard extends StatelessWidget {
                             borderRadius: BorderRadius.circular(8),
                             child: OctoImage(
                               image: CachedNetworkImageProvider(
-                                ImageAddressProvider.imageURL + thumbImage,
+                                ImageAddressProvider.imageURL +
+                                    model!.pictureThumb!,
                               ),
                               placeholderBuilder: OctoPlaceholder.blurHash(
-                                blurhash,
+                                model!.blurhash!,
                               ),
                               errorBuilder: OctoError.icon(color: Colors.red),
                               fit: BoxFit.cover,
@@ -118,7 +98,7 @@ class VerticalCard extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                name,
+                                model!.name!,
                                 overflow: TextOverflow.ellipsis,
                                 maxLines: 1,
                                 style: const TextStyle(
@@ -131,7 +111,7 @@ class VerticalCard extends StatelessWidget {
                                 height: 8,
                               ),
                               Text(
-                                writer,
+                                model!.writer!,
                                 overflow: TextOverflow.ellipsis,
                                 style: const TextStyle(
                                     fontFamily: "IranSans",
@@ -141,15 +121,14 @@ class VerticalCard extends StatelessWidget {
                               const SizedBox(
                                 height: 8,
                               ),
-                              MyRatingBar(voteCount, 13),
+                              MyRatingBar(model!.voteCount!, 13),
                             ],
                           ),
                           Positioned(
                               bottom: 0,
                               left: 0,
                               child: Text(
-                                NumberFormat("#,##0.##")
-                                        .format(double.parse(price)) +
+                                NumberFormat("#,##0.##").format(model!.price) +
                                     " تومان", //TODO: replace hardcoded.
                                 style: const TextStyle(
                                     fontSize: 16,

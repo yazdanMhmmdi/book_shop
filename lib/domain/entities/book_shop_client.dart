@@ -18,10 +18,15 @@ abstract class BookShopClient {
   Future<HttpResponse<TitlePostsModel>> fetchTitlesPost(
       {@Query("page") required String page,
       @Query("category_id") required String categoryId});
-  // @GET('/movie/upcoming')
-  // Future<HttpResponse<UpcomingMoviesResponseModel>> fetchUpcomingMovies({
-  //   @Query("page") required String page,
-  //   @Query("language") required String language,
-  //   @Query("api_key") required String apiKey,
-  // });
+
+  @POST('/login_api.php')
+  Future<HttpResponse<AuthModel>> login({
+    @Query("username") required String username,
+    @Query("password") required String password,
+  });
+  @POST('/sign_up_api.php')
+  Future<HttpResponse<AuthModel>> signUp({
+    @Query("username") required String username,
+    @Query("password") required String password,
+  });
 }

@@ -97,7 +97,7 @@ class HomeTab extends StatelessWidget {
                         return FadeInAnimation(
                           1.0 + ((index + 1) * 0.3),
                           VerticalCard(
-                            model: state.postModel.freshsBooks![0],
+                            model: state.postModel.freshsBooks![index],
                           ),
                         );
                       },

@@ -21,7 +21,10 @@ class AppRouter {
   final FormValidationCubit _formValidationCubit = FormValidationCubit();
 
   Route onGeneratedRoute(RouteSettings settings) {
-    _authBloc = AuthBloc(formValidationCubit: _formValidationCubit);
+    _authBloc = AuthBloc(
+        loginUsecase: sl(),
+        signUpUsecase: sl(),
+        formValidationCubit: _formValidationCubit);
     _accountBloc = AccountBloc(formValidationCubit: _formValidationCubit);
     switch (settings.name) {
       case '/':

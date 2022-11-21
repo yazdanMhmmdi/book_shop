@@ -136,6 +136,8 @@ class SignUpScreen extends StatelessWidget {
                                             return buttonUI(ButtonState.fail);
                                           } else if (state is AuthInitial) {
                                             return buttonUI(ButtonState.idle);
+                                          } else if (state is AuthWrong) {
+                                            return buttonUI(ButtonState.fail);
                                           } else {
                                             return buttonUI(ButtonState.idle);
                                           }

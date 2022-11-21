@@ -2,9 +2,12 @@ import 'package:book_shop/core/network/remote_api_service.dart';
 import 'package:book_shop/data/data.dart';
 import 'package:book_shop/data/datasources/remote/book_shop_api_service.dart';
 import 'package:book_shop/data/repository/title_posts_repository_impl.dart';
+import 'package:book_shop/domain/repositories/auth_repository.dart';
 import 'package:book_shop/domain/repositories/home_repository.dart';
 import 'package:book_shop/domain/repositories/titles_post_repository.dart';
 import 'package:book_shop/domain/usecases/home_usecase.dart';
+import 'package:book_shop/domain/usecases/login_usecase.dart';
+import 'package:book_shop/domain/usecases/sign_up_usecase.dart';
 import 'package:book_shop/domain/usecases/title_posts_usecase.dart';
 import 'package:book_shop/logic/logic.dart';
 import 'package:data_connection_checker_tv/data_connection_checker.dart';
@@ -27,15 +30,22 @@ Future<void> init() async {
   sl.registerFactory(() => TitleBloc(
         titlePostsUsecase: sl(),
       ));
+  sl.registerFactory(() => AuthBloc(
+        formValidationCubit: sl(),
+        loginUsecase: sl(),
+        signUpUsecase: sl(),
+      ));
   //  usecases
   sl.registerLazySingleton(() => HomeUsecase(sl()));
   sl.registerLazySingleton(() => TitlePostsUsecase(sl()));
+  sl.registerLazySingleton(() => LoginUsecase(sl()));
+  sl.registerLazySingleton(() => SignUpUsecase(sl()));
 
   //  repositories
   sl.registerLazySingleton<HomeRepository>(() => HomeRepositoryImpl(sl()));
   sl.registerLazySingleton<TitlesPostRepository>(
       () => TitlePostsRepositoryImpl(sl()));
-
+  sl.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl(sl()));
   //  remote datasources
   sl.registerLazySingleton<RemoteApiService>(() => RemoteApiServiceImpl(sl()));
 
@@ -52,7 +62,9 @@ Future<void> init() async {
   sl.registerLazySingleton(() => DataConnectionChecker());
   final sharedPrefs = await SharedPreferences.getInstance();
   sl.registerLazySingleton(() => sharedPrefs);
-
+  final FormValidationCubit _formValidationCubit = FormValidationCubit();
+  sl.registerLazySingleton(() => _formValidationCubit);
+  sharedPrefs.clear();
   //! Domain
   //entities
   sl.registerSingleton(BookShopClient(sl()));

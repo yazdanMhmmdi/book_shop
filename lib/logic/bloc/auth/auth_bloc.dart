@@ -1,25 +1,39 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:book_shop/core/error/failure.dart';
 import 'package:book_shop/data/data.dart';
+import 'package:book_shop/domain/usecases/login_usecase.dart';
+import 'package:book_shop/domain/usecases/sign_up_usecase.dart';
 import 'package:book_shop/logic/cubit/cubit.dart';
 import 'package:book_shop/presentation/widgets/widgets.dart';
+import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../../core/params/auth_params.dart';
+import '../../../domain/repositories/auth_repository.dart';
 
 part 'auth_event.dart';
 part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  AuthBloc({required this.formValidationCubit}) : super(AuthInitial()) {
+  AuthBloc(
+      {required this.formValidationCubit,
+      required this.loginUsecase,
+      required this.signUpUsecase})
+      : super(AuthInitial()) {
     on<LoginEvent>(_login);
     on<SignUpEvent>(_signUp);
   }
   late FormValidationCubit formValidationCubit;
-  late AuthModel _authModel;
+  Either<Failure, AuthModel>? failureOrSuccess;
   late SharedPreferences _prefs;
-  final AuthRepository _authRepository = AuthRepository();
+  final LoginUsecase loginUsecase;
+  final SignUpUsecase signUpUsecase;
+
   late StreamSubscription streamSubscription;
+  AuthRequestParams? params;
 
   Future<void> _login(LoginEvent event, Emitter<AuthState> emit) async {
     _prefs = await SharedPreferences.getInstance();
@@ -27,23 +41,27 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         formValidationCubit.state.isUsernameValid) {
       try {
         emit(AuthLoading());
-        _authModel =
-            await _authRepository.login(event.username, event.password);
+        params = AuthRequestParams(
+            username: event.username, password: event.password);
+        failureOrSuccess = await loginUsecase(params!);
 
         await delay(seconds: 2);
-        if (_authModel.status == "true") {
-          emit(AuthSuccess(_authModel));
 
-          if (await setSharedPrefes(_authModel)) {
-            GlobalWidget.userId = _authModel.id.toString();
+        failureOrSuccess!.fold((failure) async {
+          emit(AuthFailure());
+        }, (success) async {
+          if (success.status) {
+            emit(AuthSuccess(success));
+
+            if (await setSharedPrefes(success)) {
+              GlobalWidget.userId = success.id.toString();
+            }
+          } else {
+            emit(AuthWrong());
           }
-          await delay(seconds: 2);
-          emit(AuthInitial());
-        } else {
-          emit(AuthWrong());
-          await delay(seconds: 2);
-          emit(AuthInitial());
-        }
+        });
+        await delay(seconds: 2);
+        emit(AuthInitial());
       } catch (e) {
         emit(AuthFailure());
         await delay(seconds: 2);
@@ -54,30 +72,35 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   Future<void> _signUp(SignUpEvent event, Emitter<AuthState> emit) async {
     _prefs = await SharedPreferences.getInstance();
-    if (formValidationCubit.state.isUsernameValid &&
-        formValidationCubit.state.isPasswordValid) {
+    if (formValidationCubit.state.isPasswordValid &&
+        formValidationCubit.state.isUsernameValid) {
       try {
         emit(AuthLoading());
-        _authModel = await _authRepository.signUp(
+        params = AuthRequestParams(
             username: event.username, password: event.password);
-        if (_authModel.status == "true") {
-          if (await setSharedPrefes(_authModel)) {
-            GlobalWidget.userId = _authModel.id.toString();
-          }
-          await delay(seconds: 2);
+        failureOrSuccess = await signUpUsecase(params!);
 
-          emit(AuthSuccess(_authModel));
-          await delay(seconds: 2);
-        } else {
+        await delay(seconds: 2);
+
+        failureOrSuccess!.fold((failure) async {
           emit(AuthFailure());
-          await delay(seconds: 2);
-          emit(AuthInitial());
-        }
+        }, (success) async {
+          if (success.status) {
+            emit(AuthSuccess(success));
+
+            if (await setSharedPrefes(success)) {
+              GlobalWidget.userId = success.id.toString();
+            }
+          } else {
+            emit(AuthWrong());
+          }
+        });
+        await delay(seconds: 2);
+        emit(AuthInitial());
       } catch (e) {
         emit(AuthFailure());
         await delay(seconds: 2);
         emit(AuthInitial());
-        await delay(seconds: 2);
       }
     }
   }

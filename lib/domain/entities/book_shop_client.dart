@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 
 import '../../core/utils/constants.dart';
+import '../../data/model/function_response_model.dart';
 
 part 'book_shop_client.g.dart';
 
@@ -28,5 +29,23 @@ abstract class BookShopClient {
   Future<HttpResponse<AuthModel>> signUp({
     @Query("username") required String username,
     @Query("password") required String password,
+  });
+
+  @POST('/basket_api.php')
+  Future<HttpResponse<BasketModel>> getBasket({
+    @Query("user_id") required String userId,
+    @Query("page") required String page,
+  });
+
+  @POST('/delete_basket_api.php')
+  Future<HttpResponse<FunctionResponseModel>> deleteBasket({
+    @Query("user_id") required String userId,
+    @Query("book_id") required String bookId,
+  });
+
+  @POST('/add_basket_api.php')
+  Future<HttpResponse<FunctionResponseModel>> addBasket({
+    @Query("user_id") required String userId,
+    @Query("book_id") required String bookId,
   });
 }

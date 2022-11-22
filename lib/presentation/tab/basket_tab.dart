@@ -5,6 +5,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:book_shop/logic/logic.dart';
 import 'package:book_shop/constants/constants.dart';
 
+import '../../core/utils/throteller.dart';
+import '../widgets/pagination_loading_widget.dart';
+
 class BasketTab extends StatefulWidget {
   @override
   State<BasketTab> createState() => _BasketTabState();
@@ -12,13 +15,17 @@ class BasketTab extends StatefulWidget {
 
 class _BasketTabState extends State<BasketTab> {
   ButtonState _buttonState = ButtonState.idle;
-
+  int index = 1;
   late BasketBloc _basketBloc;
+  ScrollController _controller = ScrollController();
+
   @override
   void initState() {
     _basketBloc = BlocProvider.of<BasketBloc>(context);
     _basketBloc.add(GetBasket());
     super.initState();
+
+    _onScrollPaginationListener();
   }
 
   @override
@@ -53,49 +60,44 @@ class _BasketTabState extends State<BasketTab> {
                       ),
                       Directionality(
                         textDirection: TextDirection.rtl,
-                        child: ListView.builder(
+                        child: ListView(
                             physics: const NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
-                            itemCount: state.basketModel?.basket.length,
-                            itemBuilder: (context, index) {
-                              return FadeInAnimation(
-                                0.25 + ((index + 1) * 0.3),
-                                BasketItem(
-                                    onTap: (context) {
-                                      _basketBloc.add(DeleteBasket(
-                                          book_id: state
-                                              .basketModel!.basket[index].id));
-                                    },
-                                    id: state.basketModel!.basket[index].id,
-                                    image: state.basketModel!.basket[index]
-                                        .pictureThumb,
-                                    name: state.basketModel!.basket[index].name,
-                                    writer:
-                                        state.basketModel!.basket[index].writer,
-                                    thumbImage: state.basketModel!.basket[index]
-                                        .pictureThumb,
-                                    voteCount: double.parse(state
-                                        .basketModel!.basket[index].voteCount),
-                                    pagesCount: state
-                                        .basketModel!.basket[index].pagesCount,
-                                    coverType: state
-                                        .basketModel!.basket[index].coverType,
-                                    language: state
-                                        .basketModel!.basket[index].language,
-                                    description: state
-                                        .basketModel!.basket[index].description,
-                                    price:
-                                        state.basketModel!.basket[index].price),
-                              );
-                            }),
+                            controller: _controller,
+                            children: [
+                              ...List<Widget>.from(
+                                state.basketModel!.map((e) =>
+                                    Builder(builder: (context) {
+                                      return FadeInAnimation(
+                                        0.25 + ((index + 1) * 0.3),
+                                        BasketItem(
+                                            onTap: (context) {
+                                              _basketBloc.add(
+                                                  DeleteBasket(book_id: e.id!));
+                                            },
+                                            bookModel: e),
+                                      );
+                                    })),
+                              ),
+                              if (state.noMoreData) ...[
+                                Padding(
+                                  padding: EdgeInsets.symmetric(vertical: 14),
+                                  child: Column(
+                                    children: [
+                                      PaginationLoadingWidget(),
+                                    ],
+                                  ),
+                                ),
+                              ]
+                            ]),
                       ),
                       const SizedBox(
                         height: 22,
                       ),
                       PayCheckWidget(
-                        tax: state.basketModel!.data.tax,
-                        deliveryCost: state.basketModel!.data.deliveryCost,
-                        fullCost: state.basketModel!.data.fullCost,
+                        tax: state.basketDataModel!.tax!,
+                        deliveryCost: state.basketDataModel!.deliveryCost!,
+                        fullCost: state.basketDataModel!.fullCost!,
                         buttonState: _buttonState,
                       ),
                     ],
@@ -115,5 +117,17 @@ class _BasketTabState extends State<BasketTab> {
         }
       },
     );
+  }
+
+  _onScrollPaginationListener() {
+    _controller.addListener(() {
+      //prevent from calling event twice
+      Throttler throttler = Throttler(throttleGapInMillis: 200);
+      if (_controller.position.pixels == _controller.position.maxScrollExtent) {
+        throttler.run(() {
+          _basketBloc.add(GetBasket());
+        });
+      }
+    });
   }
 }

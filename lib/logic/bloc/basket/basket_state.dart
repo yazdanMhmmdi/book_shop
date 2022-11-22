@@ -12,10 +12,13 @@ class BasketInitial extends BasketState {}
 class BasketLoading extends BasketState {}
 
 class BasketSuccess extends BasketState {
-  BasketModel? basketModel;
-  BasketSuccess({this.basketModel});
+  List<BookModel>? basketModel;
+  BasketDataModel? basketDataModel;
+  bool noMoreData;
+  BasketSuccess(
+      {this.basketModel, this.basketDataModel, this.noMoreData = true});
   @override
-  List<Object> get props => [this.basketModel!];
+  List<Object> get props => [this.basketModel!, basketDataModel!];
 }
 
 class BasketEmpty extends BasketState {}

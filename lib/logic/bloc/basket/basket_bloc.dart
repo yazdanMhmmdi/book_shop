@@ -1,30 +1,79 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:book_shop/core/params/basket_params.dart';
 import 'package:book_shop/data/data.dart';
+import 'package:book_shop/data/model/function_response_model.dart';
+import 'package:book_shop/domain/entities/basket_data.dart';
+import 'package:book_shop/domain/repositories/basket_repository.dart';
+import 'package:book_shop/logic/bloc/bloc.dart';
 import 'package:book_shop/presentation/widgets/widgets.dart';
+import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
+
+import '../../../core/error/failure.dart';
+import '../../../data/model/basket_data_model.dart';
+import '../../../data/model/book_model.dart';
+import '../../../domain/usecases/add_basket_usecase.dart';
+import '../../../domain/usecases/delete_basket_usecase.dart';
+import '../../../domain/usecases/get_basket_usecase.dart';
 
 part 'basket_event.dart';
 part 'basket_state.dart';
 
 class BasketBloc extends Bloc<BasketEvent, BasketState> {
-  BasketBloc() : super(BasketInitial()) {
+  BasketBloc({
+    required this.getBasketUsecase,
+    required this.addBasketUsecase,
+    required this.deleteBasketUsecase,
+  }) : super(BasketInitial()) {
     on<GetBasket>(_getBasket);
     on<DeleteBasket>(_delete);
-    on<AddBasket>(_add);
+    on<AddBasket>(_addItemToBasket);
   }
-  final BasketRepository _basketRepository = BasketRepository();
-  late BasketModel _model;
+  GetBasketUsecase getBasketUsecase;
+  AddBasketUsecase addBasketUsecase;
+  DeleteBasketUsecase deleteBasketUsecase;
+  int page = 1;
+  int totalPage = 1;
+  int currentCategory = 1;
+  List<BookModel>? _bookModel = [];
+  BasketDataModel? _basketDataModel;
+  bool noMoreData = true;
 
   Future<void> _getBasket(GetBasket event, Emitter<BasketState> emit) async {
     emit(BasketLoading());
     try {
-      _model = await _basketRepository.getBasket(GlobalWidget.userId, "1");
-      if (_model.basket.isEmpty) {
-        emit(BasketEmpty());
-      } else if (_model.basket.isNotEmpty) {
-        emit(BasketSuccess(basketModel: _model));
+      if (page != 1) noMoreData = page < totalPage;
+
+      BasketRequestParams params = BasketRequestParams();
+      if (page <= totalPage) {
+        params.userId = GlobalWidget.userId;
+        params.page = page.toString();
+
+        dynamic failureOrSuccess = await getBasketUsecase(params);
+        page++;
+
+        failureOrSuccess!.fold((Failure) {
+          emit(BasketFailure());
+        }, (BasketModel success) {
+          if (success.basket.isEmpty) {
+            emit(BasketEmpty());
+          } else if (success.basket.isNotEmpty) {
+            page++;
+            totalPage = success.basketData.totalPages!;
+
+            _bookModel!.addAll(success.basket);
+            _basketDataModel = success.basketData;
+
+            if (page > totalPage) noMoreData = false;
+
+            emit(BasketSuccess(
+                basketModel: _bookModel!,
+                basketDataModel: _basketDataModel,
+                noMoreData: noMoreData));
+          }
+        });
       }
     } catch (err) {
       print('basket error :: ${err.toString()}');
@@ -33,36 +82,65 @@ class BasketBloc extends Bloc<BasketEvent, BasketState> {
   }
 
   Future<void> _delete(DeleteBasket event, Emitter<BasketState> emit) async {
-    FunctionalModel _tempModel = await _basketRepository.deleteBasket(
-        GlobalWidget.userId, event.book_id);
-    if (_tempModel.status == "1") {
-      add(GetBasket());
-    } else {
+    BasketRequestParams params = BasketRequestParams();
+    params.bookId = event.book_id;
+    params.userId = GlobalWidget.userId;
+
+    Either<Failure, FunctionResponseModel> failureOrSuccess =
+        await deleteBasketUsecase(params);
+
+    failureOrSuccess.fold((failure) {
       emit(BasketFailure());
-    }
+    }, (success) {
+      emit(BasketLoading());
+      if (success.status) {
+        int index = 0;
+
+        _bookModel!.removeWhere((e) => e.id == event.book_id);
+
+        // when list is empty fetch data again
+        if (_bookModel!.isEmpty) {
+          add(GetBasket());
+          page = 1;
+        }
+
+        emit(BasketSuccess(
+            basketDataModel: _basketDataModel,
+            noMoreData: noMoreData,
+            basketModel: _bookModel));
+      } else {
+        emit(BasketFailure());
+      }
+    });
   }
 
-  Future<void> _add(AddBasket event, Emitter<BasketState> emit) async {
+  Future<void> _addItemToBasket(
+      AddBasket event, Emitter<BasketState> emit) async {
     emit(BasketLoading());
 
     await Future.delayed(const Duration(seconds: 2));
+    BasketRequestParams params = BasketRequestParams();
 
-    FunctionalModel _tempModel =
-        await _basketRepository.addBasket(GlobalWidget.userId, event.book_id);
-    if (_tempModel.status == "1") {
-      emit(BasketSuccess());
+    params.bookId = event.book_id;
+    params.userId = GlobalWidget.userId;
 
-      await Future.delayed(const Duration(seconds: 2));
-      emit(BasketInitial());
-    } else {
+    Either<Failure, FunctionResponseModel> failureOrSuccess =
+        await addBasketUsecase(params);
+
+    // await .addBasket(GlobalWidget.userId, event.book_id);
+    failureOrSuccess.fold((Failure) async {
       emit(BasketFailure());
-
-      await Future.delayed(const Duration(seconds: 2));
-      emit(BasketInitial());
-    }
+    }, (success) async {
+      if (success.status) {
+        emit(BasketSuccess());
+      } else {
+        emit(BasketFailure());
+      }
+    });
+    await Future.delayed(const Duration(seconds: 2));
+    emit(BasketInitial());
   }
 }
-
 
 /*
 

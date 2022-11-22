@@ -126,7 +126,11 @@ class AppRouter {
                 value: _internetCubit,
               ),
               BlocProvider(
-                create: (context) => BasketBloc(),
+                create: (context) => BasketBloc(
+                  addBasketUsecase: sl(),
+                  getBasketUsecase: sl(),
+                  deleteBasketUsecase: sl(),
+                ),
               ),
               BlocProvider(
                 create: (context) => DetailCubit(),

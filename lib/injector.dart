@@ -3,8 +3,12 @@ import 'package:book_shop/data/data.dart';
 import 'package:book_shop/data/datasources/remote/book_shop_api_service.dart';
 import 'package:book_shop/data/repository/title_posts_repository_impl.dart';
 import 'package:book_shop/domain/repositories/auth_repository.dart';
+import 'package:book_shop/domain/repositories/basket_repository.dart';
 import 'package:book_shop/domain/repositories/home_repository.dart';
 import 'package:book_shop/domain/repositories/titles_post_repository.dart';
+import 'package:book_shop/domain/usecases/add_basket_usecase.dart';
+import 'package:book_shop/domain/usecases/delete_basket_usecase.dart';
+import 'package:book_shop/domain/usecases/get_basket_usecase.dart';
 import 'package:book_shop/domain/usecases/home_usecase.dart';
 import 'package:book_shop/domain/usecases/login_usecase.dart';
 import 'package:book_shop/domain/usecases/sign_up_usecase.dart';
@@ -20,7 +24,6 @@ import 'domain/entities/book_shop_client.dart';
 import 'logic/bloc/home/home_bloc.dart';
 
 final sl = GetIt.instance;
-
 Future<void> init() async {
   //!  Features
   //  Blocs
@@ -35,17 +38,27 @@ Future<void> init() async {
         loginUsecase: sl(),
         signUpUsecase: sl(),
       ));
+  sl.registerFactory(() => BasketBloc(
+        addBasketUsecase: sl(),
+        getBasketUsecase: sl(),
+        deleteBasketUsecase: sl(),
+      ));
   //  usecases
   sl.registerLazySingleton(() => HomeUsecase(sl()));
   sl.registerLazySingleton(() => TitlePostsUsecase(sl()));
   sl.registerLazySingleton(() => LoginUsecase(sl()));
   sl.registerLazySingleton(() => SignUpUsecase(sl()));
+  sl.registerLazySingleton(() => GetBasketUsecase(sl()));
+  sl.registerLazySingleton(() => AddBasketUsecase(sl()));
+  sl.registerLazySingleton(() => DeleteBasketUsecase(sl()));
 
   //  repositories
   sl.registerLazySingleton<HomeRepository>(() => HomeRepositoryImpl(sl()));
   sl.registerLazySingleton<TitlesPostRepository>(
       () => TitlePostsRepositoryImpl(sl()));
   sl.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl(sl()));
+  sl.registerLazySingleton<BasketRepository>(() => BasketRepositoryImpl(sl()));
+
   //  remote datasources
   sl.registerLazySingleton<RemoteApiService>(() => RemoteApiServiceImpl(sl()));
 
@@ -64,7 +77,7 @@ Future<void> init() async {
   sl.registerLazySingleton(() => sharedPrefs);
   final FormValidationCubit _formValidationCubit = FormValidationCubit();
   sl.registerLazySingleton(() => _formValidationCubit);
-  sharedPrefs.clear();
+  // sharedPrefs.clear();
   //! Domain
   //entities
   sl.registerSingleton(BookShopClient(sl()));

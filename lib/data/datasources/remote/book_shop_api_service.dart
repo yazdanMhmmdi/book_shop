@@ -1,7 +1,10 @@
 import 'package:book_shop/core/network/remote_api_service.dart';
 import 'package:book_shop/core/params/auth_params.dart';
+import 'package:book_shop/core/params/basket_params.dart';
 import 'package:book_shop/core/params/titles_post_params.dart';
 import 'package:book_shop/data/model/auth_model.dart';
+import 'package:book_shop/data/model/basket_model.dart';
+import 'package:book_shop/data/model/function_response_model.dart';
 import 'package:book_shop/data/model/home_model.dart';
 import 'package:book_shop/data/model/title_posts_model.dart';
 import 'package:retrofit/retrofit.dart';
@@ -78,6 +81,57 @@ class RemoteApiServiceImpl extends RemoteApiService {
     } catch (error) {
       throw ServerException(
           message: "signUp->book_shop_api_service: ${error.toString()}");
+    }
+  }
+
+  @override
+  Future<BasketModel> getBasket(BasketRequestParams params) async {
+    try {
+      final HttpResponse response = await bookShopClient!
+          .getBasket(page: params.page, userId: params.userId);
+
+      if (response.response.statusCode == 200) {
+        return response.data;
+      } else {
+        throw ServerException();
+      }
+    } catch (error) {
+      throw ServerException(
+          message: "getBasket->book_shop_api_service: ${error.toString()}");
+    }
+  }
+
+  @override
+  Future<FunctionResponseModel> addBasket(BasketRequestParams params) async {
+    try {
+      final HttpResponse response = await bookShopClient!
+          .addBasket(bookId: params.bookId, userId: params.userId);
+
+      if (response.response.statusCode == 200) {
+        return response.data;
+      } else {
+        throw ServerException();
+      }
+    } catch (error) {
+      throw ServerException(
+          message: "addBasket->book_shop_api_service: ${error.toString()}");
+    }
+  }
+
+  @override
+  Future<FunctionResponseModel> deleteBasket(BasketRequestParams params) async {
+    try {
+      final HttpResponse response = await bookShopClient!
+          .deleteBasket(bookId: params.bookId, userId: params.userId);
+
+      if (response.response.statusCode == 200) {
+        return response.data;
+      } else {
+        throw ServerException();
+      }
+    } catch (error) {
+      throw ServerException(
+          message: "deleteBasket->book_shop_api_service: ${error.toString()}");
     }
   }
 }

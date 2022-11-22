@@ -6,6 +6,8 @@ import 'package:motion_tab_bar_v2/motion-tab-bar.dart';
 import 'package:book_shop/logic/logic.dart';
 import 'package:book_shop/constants/constants.dart';
 
+import '../../injector.dart';
+
 class HomeScreen extends StatefulWidget {
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -49,7 +51,10 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                           ),
                           // ChatListTab(),
                           BlocProvider(
-                              create: (BuildContext context) => BasketBloc(),
+                              create: (BuildContext context) => BasketBloc(
+                                  deleteBasketUsecase: sl(),
+                                  addBasketUsecase: sl(),
+                                  getBasketUsecase: sl()),
                               child: BasketTab()),
                           TitleTab(),
                           // ValueListenableBuilder<int>(

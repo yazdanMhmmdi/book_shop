@@ -3,7 +3,7 @@ import 'dart:convert';
 
 import 'package:bloc/bloc.dart';
 import 'package:book_shop/data/model/chat_model.dart';
-import 'package:book_shop/data/repository/account_repository.dart';
+import 'package:book_shop/data/repository/account_repository_impl.dart';
 import 'package:book_shop/data/repository/chat_repository.dart';
 import 'package:book_shop/networking/networking.dart';
 import 'package:book_shop/presentation/widgets/widgets.dart';
@@ -16,7 +16,7 @@ part 'chat_state.dart';
 class ChatBloc extends Bloc<ChatEvent, ChatState> {
   ChatBloc() : super(ChatInitial());
   late ChatRepository _chatRepository = ChatRepository();
-  late AccountRepository _accountRepository = AccountRepository();
+  // late AccountRepositoryImpl _accountRepository = AccountRepositoryImpl();
   late ChatModel _model;
   late int totalPage;
   late String bookId;

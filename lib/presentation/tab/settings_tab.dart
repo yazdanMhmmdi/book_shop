@@ -218,7 +218,10 @@ class _SettingsTabState extends State<SettingsTab>
             //             .signupUsernameWarning),
             formValidationState.isUsernameValid
                 ? Container()
-                : WarningBar(text: Strings.signupUsernameWarning),
+                : WarningBar(
+                    text: formValidationState.errorMessage.isEmpty
+                        ? Strings.signupUsernameWarning
+                        : formValidationState.errorMessage),
 
             const SizedBox(
               height: 16,

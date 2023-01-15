@@ -25,7 +25,11 @@ class AppRouter {
         loginUsecase: sl(),
         signUpUsecase: sl(),
         formValidationCubit: _formValidationCubit);
-    _accountBloc = AccountBloc(formValidationCubit: _formValidationCubit);
+    _accountBloc = AccountBloc(
+      formValidationCubit: _formValidationCubit,
+      getAccountUsecase: sl(),
+      editAccountUsecase: sl(),
+    );
     switch (settings.name) {
       case '/':
         return MaterialPageRoute(

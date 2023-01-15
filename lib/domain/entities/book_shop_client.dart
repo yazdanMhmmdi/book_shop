@@ -1,5 +1,6 @@
 import 'package:book_shop/data/data.dart';
 import 'package:book_shop/data/model/title_posts_model.dart';
+import 'package:book_shop/data/model/user_model.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -47,5 +48,17 @@ abstract class BookShopClient {
   Future<HttpResponse<FunctionResponseModel>> addBasket({
     @Query("user_id") required String userId,
     @Query("book_id") required String bookId,
+  });
+
+  @POST('/account_api.php')
+  Future<HttpResponse<UserModel>> getAccount({
+    @Query("user_id") required String userId,
+  });
+
+  @POST('/edit_username_password_api.php')
+  Future<HttpResponse<FunctionResponseModel>> editAccount({
+    @Query("user_id") required String userId,
+    @Query("newUsername") required String newUsername,
+    @Query("newPassword") required String newPassword,
   });
 }

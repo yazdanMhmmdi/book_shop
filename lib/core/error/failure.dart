@@ -12,3 +12,10 @@ class ServerFailure extends Failure {
   @override
   List<Object?> get props => [this.message];
 }
+
+class SameUsernameFailure extends Failure {
+  String? message;
+  SameUsernameFailure({this.message = "این نام کاربری قبلا کرفته شده است"});
+  @override
+  List<Object?> get props => [this.message];
+}

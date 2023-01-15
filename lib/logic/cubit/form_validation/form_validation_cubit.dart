@@ -34,4 +34,11 @@ class FormValidationCubit extends Cubit<FormValidationState> {
     emit(FormValidationState(
         isUsernameValid: isUsernameValid, isPasswordValid: isPasswordValid));
   }
+
+  void usernameIsAlreadyExists(String errorMessage) {
+    emit(FormValidationState(
+        isUsernameValid: false,
+        isPasswordValid: true,
+        errorMessage: errorMessage));
+  }
 }

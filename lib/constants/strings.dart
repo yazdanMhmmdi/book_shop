@@ -51,6 +51,8 @@ class Strings {
   static const String settingsLabel = "تنظیمات";
   static const String accountEdit = "ویرایش حساب کاربری";
   static const String accountWelcome = "خوش آمدید!";
+  static const String thisUsernameAlreadyExists =
+      "این نام کاربری قبلا کرفته شده است";
 
   //title details s
   static const String bookNotFound = "کتابی در این رابطه پیدا نشد !";

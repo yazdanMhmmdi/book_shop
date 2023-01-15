@@ -1,4 +1,5 @@
 import 'package:book_shop/core/network/remote_api_service.dart';
+import 'package:book_shop/core/params/account_params.dart';
 import 'package:book_shop/core/params/auth_params.dart';
 import 'package:book_shop/core/params/basket_params.dart';
 import 'package:book_shop/core/params/titles_post_params.dart';
@@ -7,6 +8,7 @@ import 'package:book_shop/data/model/basket_model.dart';
 import 'package:book_shop/data/model/function_response_model.dart';
 import 'package:book_shop/data/model/home_model.dart';
 import 'package:book_shop/data/model/title_posts_model.dart';
+import 'package:book_shop/data/model/user_model.dart';
 import 'package:retrofit/retrofit.dart';
 
 import '../../../core/error/exceptions.dart';
@@ -132,6 +134,43 @@ class RemoteApiServiceImpl extends RemoteApiService {
     } catch (error) {
       throw ServerException(
           message: "deleteBasket->book_shop_api_service: ${error.toString()}");
+    }
+  }
+
+  @override
+  Future<FunctionResponseModel> editAccount(AccountRequestParams params) async {
+    try {
+      final HttpResponse response = await bookShopClient!.editAccount(
+        userId: params.userId,
+        newPassword: params.password,
+        newUsername: params.username,
+      );
+
+      if (response.response.statusCode == 200) {
+        return response.data;
+      } else {
+        throw ServerException();
+      }
+    } catch (error) {
+      throw ServerException(
+          message: "editAccount->book_shop_api_service: ${error.toString()}");
+    }
+  }
+
+  @override
+  Future<UserModel> getAccount(AccountRequestParams params) async {
+    try {
+      final HttpResponse response =
+          await bookShopClient!.getAccount(userId: params.userId);
+
+      if (response.response.statusCode == 200) {
+        return response.data;
+      } else {
+        throw ServerException();
+      }
+    } catch (error) {
+      throw ServerException(
+          message: "getAccount->book_shop_api_service: ${error.toString()}");
     }
   }
 }

@@ -12,7 +12,7 @@ part 'chatlist_state.dart';
 class ChatlistBloc extends Bloc<ChatlistEvent, ChatlistState> {
   ChatlistBloc() : super(ChatlistInitial());
   late ChatListRepository _repository = new ChatListRepository();
-  late AccountRepository _accountRepository = new AccountRepository();
+  // late AccountRepositoryImpl _accountRepository = new AccountRepositoryImpl();
 
   late ChatListModel _model;
   late int page = 1;

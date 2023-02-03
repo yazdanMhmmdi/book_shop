@@ -27,4 +27,6 @@ class BasketFailure extends BasketState {}
 
 class BasketDuplicatedFailure extends BasketState {}
 
+class BasketGuestUserFailure extends BasketState {}
+
 class BasketParametersFailure extends BasketState {}

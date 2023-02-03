@@ -7,16 +7,18 @@ class SingleButtonDialogWidget extends StatefulWidget {
   final String subTitle;
 
   final String buttonText;
+  final String image;
 
   final Function? onPressed;
 
-  const SingleButtonDialogWidget(
-      {Key? key,
-      required this.title,
-      required this.subTitle,
-      required this.buttonText,
-      required this.onPressed})
-      : super(key: key);
+  const SingleButtonDialogWidget({
+    Key? key,
+    required this.title,
+    required this.subTitle,
+    required this.buttonText,
+    required this.onPressed,
+    required this.image,
+  }) : super(key: key);
 
   @override
   _SingleButtonDialogWidgetState createState() =>
@@ -80,8 +82,7 @@ class _SingleButtonDialogWidgetState extends State<SingleButtonDialogWidget> {
             width: 128,
             height: 128,
             decoration: BoxDecoration(
-              image:
-                  DecorationImage(image: const AssetImage(Assets.warningImage)),
+              image: DecorationImage(image: AssetImage(widget.image)),
             ),
           ),
         ],

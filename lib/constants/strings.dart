@@ -49,11 +49,16 @@ class Strings {
   static const String detailsBuy = "خرید";
   static const String detailsAlreadyBookChoosed =
       "کتاب انتخاب شده قبلا به سبذ خرید اضافه شده";
-      static const String detailsDuplicatedBookTitle = "این کتاب قبلا اضافه شده است!";
-            static const String detailsDuplicatedBookSubTitle =  "لطفا کتاب دیگری را به سبد خرید خود اضافه کنید.";
+  static const String detailsDuplicatedBookTitle =
+      "این کتاب قبلا اضافه شده است!";
+  static const String detailsDuplicatedBookSubTitle =
+      "لطفا کتاب دیگری را به سبد خرید خود اضافه کنید.";
 
-      static const String detailsDuplicatedBookbuttonText = "باشه";
-
+  static const String detailsDuplicatedBookbuttonText = "باشه";
+  static const String detailsGuestUserTitle = "خطا شما حساب کاربری فعال ندارید";
+  static const String detailsGuestUserSubTitle =
+      "برای ادامه خرید حساب کاربری ساخته و یا وارد حساب خود شوید";
+  static const String detailsGuestUserButtonText = "ساخت حساب کاربری";
   //account
   static const String settingsLabel = "تنظیمات";
   static const String accountEdit = "ویرایش حساب کاربری";
@@ -98,8 +103,6 @@ class Strings {
   static const String onboardingDeliveryDesc =
       "سفارش خود را کمتر از 4 ساعت در تهران و کمتر از 24 ساعت در شهرستان ها دریافت کنید.";
 
-      static const String wrongParameters =
-      "پارامتر های اشتباه ارسال شد";
-
-      
+  static const String wrongParameters = "پارامتر های اشتباه ارسال شد";
+  static const String gustUserFailure = "لطفا وارد حساب کاربری خود بشوید";
 }

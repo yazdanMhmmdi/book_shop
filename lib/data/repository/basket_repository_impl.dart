@@ -61,6 +61,8 @@ class BasketRepositoryImpl implements BasketRepository {
             message: Strings.detailsAlreadyBookChoosed);
       case 'Wrong parameters.':
         return WrongParametersFailure(message: Strings.wrongParameters);
+      case 'Guest user please login.':
+        return GuestUserFailure(message: Strings.gustUserFailure);
       default:
         return ServerFailure();
     }

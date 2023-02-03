@@ -34,3 +34,10 @@ class WrongParametersFailure extends Failure {
   @override
   List<Object?> get props => [this.message];
 }
+
+class GuestUserFailure extends Failure {
+  String? message;
+  GuestUserFailure({this.message = Strings.gustUserFailure});
+  @override
+  List<Object?> get props => [this.message];
+}

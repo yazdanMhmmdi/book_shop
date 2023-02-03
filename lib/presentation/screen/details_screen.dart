@@ -59,12 +59,27 @@ class DetailsScreen extends StatelessWidget {
                             title: Strings.detailsDuplicatedBookTitle,
                             subTitle: Strings.detailsDuplicatedBookSubTitle,
                             buttonText: Strings.detailsDuplicatedBookbuttonText,
+                            image: Assets.warningImage,
                             onPressed: () {
                               Navigator.pop(context);
                             },
                           );
                         });
                   });
+                } else if (state is BasketGuestUserFailure) {
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return SingleButtonDialogWidget(
+                          title: Strings.detailsGuestUserTitle,
+                          subTitle: Strings.detailsGuestUserSubTitle,
+                          buttonText: Strings.detailsGuestUserButtonText,
+                          image: Assets.manImage,
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/sign_up');
+                          },
+                        );
+                      });
                 } else {}
               },
               child: Scaffold(
@@ -292,6 +307,11 @@ class DetailsScreen extends StatelessWidget {
                                                               ButtonState.fail);
                                                     } else if (state
                                                         is BasketDuplicatedFailure) {
+                                                      return myButton(
+                                                          buttonState:
+                                                              ButtonState.fail);
+                                                    } else if (state
+                                                        is BasketGuestUserFailure) {
                                                       return myButton(
                                                           buttonState:
                                                               ButtonState.fail);

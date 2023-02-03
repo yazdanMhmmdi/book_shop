@@ -131,6 +131,8 @@ class BasketBloc extends Bloc<BasketEvent, BasketState> {
     failureOrSuccess.fold((failure) async {
       if (failure is DuplicatedBookFailure) {
         emit(BasketDuplicatedFailure());
+      } else if (failure is GuestUserFailure) {
+        emit(BasketGuestUserFailure());
       } else {
         emit(BasketFailure());
       }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 abstract class GlobalWidget {
-  static String _userId = "";
+  static String _userId = "0";
   static String get userId => _userId;
 
   static set userId(String value) {

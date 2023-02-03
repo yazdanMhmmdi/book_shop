@@ -24,3 +24,7 @@ class BasketSuccess extends BasketState {
 class BasketEmpty extends BasketState {}
 
 class BasketFailure extends BasketState {}
+
+class BasketDuplicatedFailure extends BasketState {}
+
+class BasketParametersFailure extends BasketState {}

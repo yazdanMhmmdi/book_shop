@@ -34,4 +34,6 @@ class Assets {
       "assets/images/onboarding_payment.svg";
   static const String onBoardDeliverySvg =
       "assets/images/onboarding_delivery.svg";
+
+  static const String warningImage = "assets/images/warning_icon.png";
 }

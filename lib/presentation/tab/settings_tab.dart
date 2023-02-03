@@ -61,123 +61,96 @@ class _SettingsTabState extends State<SettingsTab>
                   const SizedBox(
                     height: 16,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: FadeInAnimation(
-                      0.5,
-                      Stack(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(top: 43),
-                            child: FadeInAnimation(
-                              0.75,
-                              AnimatedSize(
-                                duration: const Duration(
-                                    milliseconds: Values.animationDuration),
-                                curve: Curves.fastLinearToSlowEaseIn,
-                                alignment: Alignment.topCenter,
-                                child: Container(
-                                  width: double.infinity,
-                                  decoration: BoxDecoration(
-                                    color: IColors.green,
-                                    borderRadius: BorderRadius.circular(32),
-                                  ),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      const SizedBox(
-                                        height: 60,
-                                      ),
-                                      Center(
-                                          child: Column(
-                                        children: [
-                                          BlocBuilder<AccountBloc,
-                                              AccountState>(
-                                            builder: (context, state) {
-                                              if (state is AccountLoading) {
-                                                return const Center(
-                                                    child: Padding(
-                                                  padding: EdgeInsets.only(
-                                                      bottom: 16, top: 8),
-                                                  child:
-                                                      CircularProgressIndicator(),
-                                                ));
-                                              } else if (state
-                                                  is AccountSuccess) {
-                                                return formFieldsUI(
-                                                    state: state);
-                                              } else {
-                                                return formFieldsUI(
-                                                    state: state);
-                                              }
-                                            },
-                                          ),
-                                          BlocBuilder<AccountBloc,
-                                              AccountState>(
-                                            builder: (context, state) {
-                                              if (state is AccountEditLoading) {
-                                                return buttonUI(
-                                                    buttonState:
-                                                        ButtonState.loading);
-                                              } else if (state
-                                                  is AccountEditSuccess) {
-                                                return buttonUI(
-                                                    buttonState:
-                                                        ButtonState.success);
-                                              } else if (state
-                                                  is AccountEditFailure) {
-                                                return buttonUI(
-                                                    buttonState:
-                                                        ButtonState.fail);
-                                              } else if (state
-                                                  is AccountEditInitial) {
-                                                return buttonUI(
-                                                    buttonState:
-                                                        ButtonState.idle);
-                                              } else if (state
-                                                  is AccountLoading) {
-                                                return Container();
-                                              } else {
-                                                return buttonUI(
-                                                    buttonState:
-                                                        ButtonState.idle);
-                                              }
-                                            },
-                                          ),
-                                          const SizedBox(
-                                            height: 22,
-                                          ),
-                                        ],
-                                      )),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          Align(
-                            alignment: Alignment.topCenter,
-                            child: Container(
-                              width: 94,
-                              height: 94,
-                              decoration: const BoxDecoration(
-                                  shape: BoxShape.circle, color: Colors.white),
-                              child: Image.asset(
-                                Assets.femaleAvatarImage,
-                                width: 94,
-                                height: 88,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
+                  accountEditingSection(),
                   const SizedBox(height: 16),
                 ],
               )))),
+    );
+  }
+
+  Padding accountEditingSection() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: FadeInAnimation(
+        0.5,
+        Stack(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 43),
+              child: FadeInAnimation(
+                0.75,
+                AnimatedSize(
+                  duration:
+                      const Duration(milliseconds: Values.animationDuration),
+                  curve: Curves.fastLinearToSlowEaseIn,
+                  alignment: Alignment.topCenter,
+                  child: Container(
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: IColors.green,
+                      borderRadius: BorderRadius.circular(32),
+                    ),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const SizedBox(
+                          height: 60,
+                        ),
+                        Center(
+                            child: Column(
+                          children: [
+                            BlocBuilder<AccountBloc, AccountState>(
+                              builder: (context, state) {
+                                if (state is AccountLoading) {
+                                  return const Center(
+                                      child: Padding(
+                                    padding:
+                                        EdgeInsets.only(bottom: 16, top: 8),
+                                    child: CircularProgressIndicator(),
+                                  ));
+                                } else if (state is AccountSuccess) {
+                                  return formFieldsUI(state: state);
+                                } else {
+                                  return Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: MyButton(
+                                        text: Strings.accountLoginOrSignUp,
+                                        onTap: () => Navigator.pushNamed(
+                                            context, '/login'),
+                                        buttonState: ButtonState.idle),
+                                  );
+                                }
+                              },
+                            ),
+                            const SizedBox(
+                              height: 22,
+                            ),
+                          ],
+                        )),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Align(
+              alignment: Alignment.topCenter,
+              child: Container(
+                width: 94,
+                height: 94,
+                decoration: const BoxDecoration(
+                    shape: BoxShape.circle, color: Colors.white),
+                child: Image.asset(
+                  Assets.femaleAvatarImage,
+                  width: 94,
+                  height: 88,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 
@@ -239,6 +212,24 @@ class _SettingsTabState extends State<SettingsTab>
                 : WarningBar(text: Strings.signUpPasswordWarning),
             const SizedBox(
               height: 16,
+            ),
+
+            BlocBuilder<AccountBloc, AccountState>(
+              builder: (context, state) {
+                if (state is AccountEditLoading) {
+                  return buttonUI(buttonState: ButtonState.loading);
+                } else if (state is AccountEditSuccess) {
+                  return buttonUI(buttonState: ButtonState.success);
+                } else if (state is AccountEditFailure) {
+                  return buttonUI(buttonState: ButtonState.fail);
+                } else if (state is AccountEditInitial) {
+                  return buttonUI(buttonState: ButtonState.idle);
+                } else if (state is AccountLoading) {
+                  return Container();
+                } else {
+                  return buttonUI(buttonState: ButtonState.idle);
+                }
+              },
             ),
           ],
         );

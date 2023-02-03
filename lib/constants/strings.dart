@@ -40,19 +40,27 @@ class Strings {
   static const String titleFood = "غذایی";
   static const String titleSport = "ورزشی";
   static const String titleLabel = "دسته بندی";
-  //
+  //details
   static const String detailAboutBook = "درباره کتاب";
   static const String detailABoutPublisher = "درباره ناشر";
   static const String detailsDescription = "توضیحات";
   static const String detailsLoremIpsom =
       " لورم ایپسوملورم ایپسوملورم ایپسوملورم ایپسوملورم ایپسوملورم ایپسوملورم ایپسوملورم ایپسوملورم ایپسوملورم ایپسوملورم ایپسوملورمایپسوملورمایپسوملورمایپسوملورمایپسوملورمایپسوملورمایپسوملورمایپسوملورمایپسوملورمایپسوملورمایپسوملورمایپسوملورمایپسوملورمایپسوملورمایپسوملورمایپسوملورمایپسوملورم ایپسوم";
   static const String detailsBuy = "خرید";
+  static const String detailsAlreadyBookChoosed =
+      "کتاب انتخاب شده قبلا به سبذ خرید اضافه شده";
+      static const String detailsDuplicatedBookTitle = "این کتاب قبلا اضافه شده است!";
+            static const String detailsDuplicatedBookSubTitle =  "لطفا کتاب دیگری را به سبد خرید خود اضافه کنید.";
+
+      static const String detailsDuplicatedBookbuttonText = "باشه";
+
   //account
   static const String settingsLabel = "تنظیمات";
   static const String accountEdit = "ویرایش حساب کاربری";
   static const String accountWelcome = "خوش آمدید!";
   static const String thisUsernameAlreadyExists =
       "این نام کاربری قبلا کرفته شده است";
+  static const String accountLoginOrSignUp = "ورود یا ساخت حساب کاربری";
 
   //title details s
   static const String bookNotFound = "کتابی در این رابطه پیدا نشد !";
@@ -89,4 +97,9 @@ class Strings {
   static const String onboardingDeliveryTitle = "ارسال فوری";
   static const String onboardingDeliveryDesc =
       "سفارش خود را کمتر از 4 ساعت در تهران و کمتر از 24 ساعت در شهرستان ها دریافت کنید.";
+
+      static const String wrongParameters =
+      "پارامتر های اشتباه ارسال شد";
+
+      
 }

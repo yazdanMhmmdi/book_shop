@@ -94,7 +94,7 @@ class _IntroScreenState extends State<IntroScreen> {
   }
 
   void onDonePress() {
-    Navigator.pushNamedAndRemoveUntil(context, '/login', (e) => false);
+    Navigator.pushNamedAndRemoveUntil(context, '/home', (e) => false);
   }
 
   void onTabChangeCompleted(index) {

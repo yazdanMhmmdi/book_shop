@@ -1,3 +1,4 @@
+import 'package:book_shop/constants/constants.dart';
 import 'package:book_shop/core/params/basket_params.dart';
 import 'package:book_shop/core/error/failure.dart';
 import 'package:book_shop/data/model/basket_model.dart';
@@ -20,8 +21,11 @@ class BasketRepositoryImpl implements BasketRepository {
       BasketRequestParams params) async {
     try {
       final response = await remoteApiService.addBasket(params);
-
-      return Right(response);
+      if (response.status) {
+        return Right(response);
+      } else {
+        return Left(errorHandler(response));
+      }
     } on ServerException catch (error) {
       return Left(ServerFailure(message: error.message.toString()));
     }
@@ -47,6 +51,18 @@ class BasketRepositoryImpl implements BasketRepository {
       return Right(response);
     } on ServerException catch (error) {
       return Left(ServerFailure(message: error.message.toString()));
+    }
+  }
+
+  Failure errorHandler(var response) {
+    switch (response.errorMessage) {
+      case 'Duplicated book.':
+        return DuplicatedBookFailure(
+            message: Strings.detailsAlreadyBookChoosed);
+      case 'Wrong parameters.':
+        return WrongParametersFailure(message: Strings.wrongParameters);
+      default:
+        return ServerFailure();
     }
   }
 }

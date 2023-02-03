@@ -128,14 +128,14 @@ class BasketBloc extends Bloc<BasketEvent, BasketState> {
         await addBasketUsecase(params);
 
     // await .addBasket(GlobalWidget.userId, event.book_id);
-    failureOrSuccess.fold((Failure) async {
-      emit(BasketFailure());
-    }, (success) async {
-      if (success.status) {
-        emit(BasketSuccess());
+    failureOrSuccess.fold((failure) async {
+      if (failure is DuplicatedBookFailure) {
+        emit(BasketDuplicatedFailure());
       } else {
         emit(BasketFailure());
       }
+    }, (success) async {
+      emit(BasketSuccess());
     });
     await Future.delayed(const Duration(seconds: 2));
     emit(BasketInitial());

@@ -86,6 +86,7 @@ Future<void> init() async {
   sl.registerSingleton<Dio>(Dio());
   sl.registerLazySingleton(() => DataConnectionChecker());
   final sharedPrefs = await SharedPreferences.getInstance();
+  sharedPrefs.clear();
   sl.registerLazySingleton(() => sharedPrefs);
   final FormValidationCubit _formValidationCubit = FormValidationCubit();
   sl.registerLazySingleton(() => _formValidationCubit);

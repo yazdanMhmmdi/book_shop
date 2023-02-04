@@ -111,7 +111,7 @@ class _SettingsTabState extends State<SettingsTab>
                                   ));
                                 } else if (state is AccountSuccess) {
                                   return formFieldsUI(state: state);
-                                } else {
+                                } else if (state is AccountFailure) {
                                   return Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: MyButton(
@@ -120,7 +120,8 @@ class _SettingsTabState extends State<SettingsTab>
                                             context, '/login'),
                                         buttonState: ButtonState.idle),
                                   );
-                                }
+                                } else
+                                  return formFieldsUI(state: state);
                               },
                             ),
                             const SizedBox(

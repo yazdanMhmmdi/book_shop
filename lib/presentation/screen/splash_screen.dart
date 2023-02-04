@@ -56,9 +56,4 @@ class SplashScreen extends StatelessWidget {
       ),
     );
   }
-
-  void data() async {
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    sharedPreferences.clear();
-  }
 }

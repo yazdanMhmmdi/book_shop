@@ -103,11 +103,7 @@ class PayCheckWidget extends StatelessWidget {
                     MyButton(
                         buttonState: buttonState,
                         text: Strings.basketPayit,
-                        onTap: () async {
-                          SharedPreferences _prefs =
-                              await SharedPreferences.getInstance();
-                          _prefs.clear();
-                        }),
+                        onTap: () async {}),
                   ],
                 ),
               ),

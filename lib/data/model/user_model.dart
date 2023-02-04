@@ -9,9 +9,9 @@ class UserModel extends User {
       required String password,
       required String username,
       required DateTime createdAt,
-      required String picture,
+      String picture = "",
       required String ruleType,
-      required String thumbPicture})
+      String thumbPicture = ""})
       : super(
             id: id,
             password: password,
@@ -25,5 +25,4 @@ class UserModel extends User {
       _$UserModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$UserModelToJson(this);
-
 }

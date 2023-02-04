@@ -111,4 +111,11 @@ class Strings {
 
   static const String wrongParameters = "پارامتر های اشتباه ارسال شد";
   static const String gustUserFailure = "لطفا وارد حساب کاربری خود بشوید";
+
+  //server failure tab
+    static const String serverFailureTabTitle ='خطای سرور !';
+    static const String serverFailureTabDesc ='مشکلی هنگام ارتباط با سرور پیش آمده زود بر می گردیم';
+    static const String serverFailureTabButtonText ="تلاش دوباره";
+
+  
 }

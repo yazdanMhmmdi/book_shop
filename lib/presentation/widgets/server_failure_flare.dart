@@ -1,4 +1,7 @@
 import 'package:book_shop/constants/assets.dart';
+import 'package:book_shop/constants/colors.dart';
+import 'package:book_shop/constants/constants.dart';
+import 'package:book_shop/presentation/widgets/secondary_button_widget.dart';
 import 'package:flare_loading/flare_loading.dart';
 import 'package:flutter/material.dart';
 
@@ -23,7 +26,7 @@ class ServerFailureFlare extends StatelessWidget {
             height: 4,
           ),
           const Text(
-            'خطای سرور !', //TODO: hardcoded text.
+            Strings.serverFailureTabTitle, //TODO: hardcoded text.
             style: TextStyle(
                 fontFamily: "IranSans",
                 fontSize: 18,
@@ -31,10 +34,20 @@ class ServerFailureFlare extends StatelessWidget {
                 color: Colors.black87),
           ),
           const Text(
-            'مشکلی هنگام ارتباط با سرور پیش آمده زود بر می گردیم',
+            Strings.serverFailureTabDesc,
             style: TextStyle(
                 fontFamily: "IranSans", fontSize: 16, color: Colors.black87),
           ),
+          SizedBox(
+            height: 16,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 64),
+            child: SecondaryButtonWidget(
+              buttonText: Strings.serverFailureTabButtonText,
+              onTap: () => Navigator.pushNamed(context, '/intro_screen'),
+            ),
+          )
         ],
       ),
     );

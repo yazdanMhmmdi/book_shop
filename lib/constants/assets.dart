@@ -38,4 +38,5 @@ class Assets {
   static const String warningImage = "assets/images/warning_icon.png";
 
   static const String manImage = "assets/images/man.png";
+  static const String serverErrorImage = "assets/images/server_error.png";
 }

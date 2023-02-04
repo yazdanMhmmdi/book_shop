@@ -59,6 +59,12 @@ class Strings {
   static const String detailsGuestUserSubTitle =
       "برای ادامه خرید حساب کاربری ساخته و یا وارد حساب خود شوید";
   static const String detailsGuestUserButtonText = "ساخت حساب کاربری";
+
+  static const String detailsAddToBasketServerErrorTitle = "خطای سرور";
+  static const String detailsAddToBasketServerErrorSubTitle =
+      "خطایی هنگام اضافه کردن محصول به سبد خرید رخ داده لطفا دوباره تلاش کنید";
+  static const String detailsAddToBasketServerErrorButtonText = "باشه";
+
   //account
   static const String settingsLabel = "تنظیمات";
   static const String accountEdit = "ویرایش حساب کاربری";

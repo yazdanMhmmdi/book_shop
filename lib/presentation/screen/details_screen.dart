@@ -67,20 +67,40 @@ class DetailsScreen extends StatelessWidget {
                         });
                   });
                 } else if (state is BasketGuestUserFailure) {
-                  showDialog(
-                      context: context,
-                      builder: (context) {
-                        return SingleButtonDialogWidget(
-                          title: Strings.detailsGuestUserTitle,
-                          subTitle: Strings.detailsGuestUserSubTitle,
-                          buttonText: Strings.detailsGuestUserButtonText,
-                          image: Assets.manImage,
-                          onPressed: () {
-                            Navigator.pushNamed(context, '/sign_up');
-                          },
-                        );
-                      });
-                } else {}
+                  Timer(Duration(milliseconds: 1600), () {
+                    showDialog(
+                        context: context,
+                        builder: (context) {
+                          return SingleButtonDialogWidget(
+                            title: Strings.detailsGuestUserTitle,
+                            subTitle: Strings.detailsGuestUserSubTitle,
+                            buttonText: Strings.detailsGuestUserButtonText,
+                            image: Assets.manImage,
+                            onPressed: () {
+                              Navigator.pushNamed(context, '/sign_up');
+                            },
+                          );
+                        });
+                  });
+                } else if (state is BasketFailure) {
+                  Timer(Duration(milliseconds: 1600), () {
+                    showDialog(
+                        context: context,
+                        builder: (context) {
+                          return SingleButtonDialogWidget(
+                            title: Strings.detailsAddToBasketServerErrorTitle,
+                            subTitle:
+                                Strings.detailsAddToBasketServerErrorSubTitle,
+                            buttonText:
+                                Strings.detailsAddToBasketServerErrorButtonText,
+                            image: Assets.serverErrorImage,
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                          );
+                        });
+                  });
+                }
               },
               child: Scaffold(
                 backgroundColor: IColors.green,

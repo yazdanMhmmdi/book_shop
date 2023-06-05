@@ -113,9 +113,13 @@ class Strings {
   static const String gustUserFailure = "لطفا وارد حساب کاربری خود بشوید";
 
   //server failure tab
-    static const String serverFailureTabTitle ='خطای سرور !';
-    static const String serverFailureTabDesc ='مشکلی هنگام ارتباط با سرور پیش آمده زود بر می گردیم';
-    static const String serverFailureTabButtonText ="تلاش دوباره";
+  static const String serverFailureTabTitle = 'خطای سرور !';
+  static const String serverFailureTabDesc =
+      'مشکلی هنگام ارتباط با سرور پیش آمده زود بر می گردیم';
+  static const String serverFailureTabButtonText = "تلاش دوباره";
 
-  
+// *************************** UPDATE ***************************************
+  static const String updateUpdateNow = "بروزرسانی";
+  static const String updateUpdateToGetBetterExprience =
+      'برای ارتقا کیفیت استفاده اپلیکیشن را بروزرسانی کنید';
 }

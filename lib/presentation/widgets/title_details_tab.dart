@@ -1,7 +1,7 @@
-import 'package:book_shop/constants/constants.dart';
-import 'package:book_shop/data/model/title_posts_model.dart';
-import 'package:book_shop/presentation/animation/animation.dart';
-import 'package:book_shop/presentation/widgets/widgets.dart';
+import '../../constants/constants.dart';
+import '../../data/model/title_posts_model.dart';
+import '../animation/animation.dart';
+import 'widgets.dart';
 import 'package:flutter/material.dart';
 
 class TitleDetailsTab extends StatelessWidget {

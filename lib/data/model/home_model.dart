@@ -1,6 +1,6 @@
-import 'package:book_shop/data/model/book_model.dart';
-import 'package:book_shop/data/model/poster_model.dart';
-import 'package:book_shop/domain/entities/book.dart';
+import 'book_model.dart';
+import 'poster_model.dart';
+import '../../domain/entities/book.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'home_model.g.dart';
 

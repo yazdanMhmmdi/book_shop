@@ -1,7 +1,8 @@
-import 'package:book_shop/constants/values.dart';
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 import 'package:supercharged/supercharged.dart';
+
+import '../../constants/values.dart';
 
 enum _AniProps { opacity, translateX }
 

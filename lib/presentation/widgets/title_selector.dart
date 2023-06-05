@@ -1,7 +1,7 @@
-import 'package:book_shop/constants/constants.dart';
-import 'package:book_shop/presentation/screen/screen.dart';
+import '../../constants/constants.dart';
+import '../screen/screen.dart';
 import 'package:flutter/material.dart';
-import 'package:book_shop/logic/logic.dart';
+import '../../logic/logic.dart';
 
 class TitleSelector extends StatefulWidget {
   List<String> titles;

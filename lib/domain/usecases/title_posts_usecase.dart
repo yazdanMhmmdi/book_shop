@@ -1,10 +1,10 @@
-import 'package:book_shop/core/params/titles_post_params.dart';
-import 'package:book_shop/data/model/title_posts_model.dart';
-import 'package:book_shop/domain/repositories/titles_post_repository.dart';
 import 'package:dartz/dartz.dart';
 
 import '../../core/error/failure.dart';
+import '../../core/params/titles_post_params.dart';
 import '../../core/usecase/usecase.dart';
+import '../../data/model/title_posts_model.dart';
+import '../repositories/titles_post_repository.dart';
 
 class TitlePostsUsecase
     implements UseCase<TitlePostsModel, TitlesPostRequestParams> {

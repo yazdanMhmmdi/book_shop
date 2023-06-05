@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:book_shop/networking/network_info.dart';
+import '../../../networking/network_info.dart';
 import 'package:data_connection_checker_tv/data_connection_checker.dart';
 import 'package:equatable/equatable.dart';
 

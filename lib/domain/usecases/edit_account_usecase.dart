@@ -1,5 +1,5 @@
-import 'package:book_shop/data/model/function_response_model.dart';
-import 'package:book_shop/domain/repositories/account_repository.dart';
+import '../../data/model/function_response_model.dart';
+import '../repositories/account_repository.dart';
 import 'package:dartz/dartz.dart';
 
 import '../../core/error/failure.dart';

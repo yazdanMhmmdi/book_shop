@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:book_shop/data/model/chat_list_model.dart';
-import 'package:book_shop/data/data.dart';
-import 'package:book_shop/presentation/widgets/widgets.dart';
+import '../../../data/model/chat_list_model.dart';
+import '../../../data/data.dart';
+import '../../../presentation/widgets/widgets.dart';
 import 'package:equatable/equatable.dart';
 
 part 'chatlist_event.dart';

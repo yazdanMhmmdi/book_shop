@@ -1,7 +1,7 @@
-import 'package:book_shop/core/error/failure.dart';
-import 'package:book_shop/core/params/auth_params.dart';
-import 'package:book_shop/data/model/auth_model.dart';
-import 'package:book_shop/networking/networking.dart';
+import '../../core/error/failure.dart';
+import '../../core/params/auth_params.dart';
+import '../model/auth_model.dart';
+import '../../networking/networking.dart';
 import 'package:dartz/dartz.dart';
 
 import '../../core/error/exceptions.dart';

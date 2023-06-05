@@ -1,4 +1,4 @@
-import 'package:book_shop/presentation/widgets/not_found_flare.dart';
+import 'not_found_flare.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants/strings.dart';

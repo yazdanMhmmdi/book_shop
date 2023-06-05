@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:book_shop/presentation/router/app_router.dart';
-import 'package:book_shop/presentation/widgets/widgets.dart';
+import 'presentation/router/app_router.dart';
+import 'presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 

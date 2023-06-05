@@ -1,13 +1,13 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:book_shop/core/params/basket_params.dart';
-import 'package:book_shop/data/data.dart';
-import 'package:book_shop/data/model/function_response_model.dart';
-import 'package:book_shop/domain/entities/basket_data.dart';
-import 'package:book_shop/domain/repositories/basket_repository.dart';
-import 'package:book_shop/logic/bloc/bloc.dart';
-import 'package:book_shop/presentation/widgets/widgets.dart';
+import '../../../core/params/basket_params.dart';
+import '../../../data/data.dart';
+import '../../../data/model/function_response_model.dart';
+import '../../../domain/entities/basket_data.dart';
+import '../../../domain/repositories/basket_repository.dart';
+import '../bloc.dart';
+import '../../../presentation/widgets/widgets.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 

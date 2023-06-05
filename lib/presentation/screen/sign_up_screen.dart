@@ -1,11 +1,11 @@
 import 'dart:async';
 
-import 'package:book_shop/presentation/animation/animation.dart';
-import 'package:book_shop/presentation/widgets/widgets.dart';
+import '../animation/animation.dart';
+import '../widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:book_shop/logic/logic.dart';
-import 'package:book_shop/constants/constants.dart';
+import '../../logic/logic.dart';
+import '../../constants/constants.dart';
 
 class SignUpScreen extends StatelessWidget {
   late TextEditingController _usernameController;

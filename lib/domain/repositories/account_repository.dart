@@ -1,7 +1,7 @@
-import 'package:book_shop/core/params/account_params.dart';
-import 'package:book_shop/core/params/basket_params.dart';
-import 'package:book_shop/data/data.dart';
-import 'package:book_shop/data/model/user_model.dart';
+import '../../core/params/account_params.dart';
+import '../../core/params/basket_params.dart';
+import '../../data/data.dart';
+import '../../data/model/user_model.dart';
 import 'package:dartz/dartz.dart';
 
 import '../../core/error/failure.dart';

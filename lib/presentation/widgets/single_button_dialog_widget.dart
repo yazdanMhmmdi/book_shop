@@ -1,6 +1,6 @@
-import 'package:book_shop/constants/assets.dart';
-import 'package:book_shop/constants/colors.dart';
 import 'package:flutter/material.dart';
+
+import '../../constants/colors.dart';
 
 class SingleButtonDialogWidget extends StatefulWidget {
   final String title;

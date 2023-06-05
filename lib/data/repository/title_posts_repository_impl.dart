@@ -1,12 +1,12 @@
-import 'package:book_shop/core/error/failure.dart';
-import 'package:book_shop/core/network/remote_api_service.dart';
-import 'package:book_shop/core/params/titles_post_params.dart';
-import 'package:book_shop/data/datasources/remote/book_shop_api_service.dart';
-import 'package:book_shop/data/model/home_model.dart';
-import 'package:book_shop/data/model/title_posts_model.dart';
-import 'package:book_shop/domain/repositories/home_repository.dart';
-import 'package:book_shop/domain/repositories/titles_post_repository.dart';
-import 'package:book_shop/networking/networking.dart';
+import '../../core/error/failure.dart';
+import '../../core/network/remote_api_service.dart';
+import '../../core/params/titles_post_params.dart';
+import '../datasources/remote/book_shop_api_service.dart';
+import '../model/home_model.dart';
+import '../model/title_posts_model.dart';
+import '../../domain/repositories/home_repository.dart';
+import '../../domain/repositories/titles_post_repository.dart';
+import '../../networking/networking.dart';
 import 'package:dartz/dartz.dart';
 
 import '../../core/error/exceptions.dart';

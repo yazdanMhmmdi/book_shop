@@ -1,4 +1,4 @@
-import 'package:book_shop/domain/entities/function_response.dart';
+import '../../domain/entities/function_response.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'function_response_model.g.dart';
 

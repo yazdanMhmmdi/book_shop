@@ -1,4 +1,4 @@
-import 'package:book_shop/data/model/book_model.dart';
+import 'book_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import 'basket_data_model.dart';

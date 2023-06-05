@@ -1,6 +1,6 @@
-import 'package:book_shop/core/error/failure.dart';
-import 'package:book_shop/core/usecase/usecase.dart';
-import 'package:book_shop/domain/repositories/home_repository.dart';
+import '../../core/error/failure.dart';
+import '../../core/usecase/usecase.dart';
+import '../repositories/home_repository.dart';
 import 'package:dartz/dartz.dart';
 
 import '../../core/params/home_params.dart';

@@ -1,4 +1,4 @@
-import 'package:book_shop/domain/entities/poster.dart';
+import '../../domain/entities/poster.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'poster_model.g.dart';
 

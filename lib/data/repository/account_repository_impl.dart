@@ -1,8 +1,8 @@
-import 'package:book_shop/core/params/account_params.dart';
-import 'package:book_shop/core/error/failure.dart';
-import 'package:book_shop/data/model/function_response_model.dart';
-import 'package:book_shop/data/model/user_model.dart';
-import 'package:book_shop/domain/repositories/account_repository.dart';
+import '../../core/params/account_params.dart';
+import '../../core/error/failure.dart';
+import '../model/function_response_model.dart';
+import '../model/user_model.dart';
+import '../../domain/repositories/account_repository.dart';
 import 'package:dartz/dartz.dart';
 
 import '../../core/error/exceptions.dart';

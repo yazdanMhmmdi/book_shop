@@ -39,4 +39,5 @@ class Assets {
 
   static const String manImage = "assets/images/man.png";
   static const String serverErrorImage = "assets/images/server_error.png";
+  static const String updateApp = "assets/images/update_app.svg";
 }

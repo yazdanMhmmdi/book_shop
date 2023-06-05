@@ -1,6 +1,6 @@
-import 'package:book_shop/presentation/widgets/widgets.dart';
+import '../widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:book_shop/constants/constants.dart';
+import '../../../constants/constants.dart';
 
 class DetailSliderContainer extends StatelessWidget {
   List<DetailSliderItem> detailSliderItems;

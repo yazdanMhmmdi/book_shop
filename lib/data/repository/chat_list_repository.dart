@@ -1,6 +1,6 @@
-import 'package:book_shop/data/model/chat_list_model.dart';
-import 'package:book_shop/data/model/details_model.dart';
-import 'package:book_shop/networking/networking.dart';
+import '../model/chat_list_model.dart';
+import '../model/details_model.dart';
+import '../../networking/networking.dart';
 
 class ChatListRepository {
   final ApiProvider _apiProvider = ApiProvider();

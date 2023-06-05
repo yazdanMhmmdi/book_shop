@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:book_shop/data/data.dart';
+import '../../../data/data.dart';
 import 'package:equatable/equatable.dart';
 
 part 'details_event.dart';

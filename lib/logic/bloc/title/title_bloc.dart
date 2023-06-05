@@ -1,4 +1,4 @@
-import 'package:book_shop/data/model/title_posts_model.dart';
+import '../../../data/model/title_posts_model.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

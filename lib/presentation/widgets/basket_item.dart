@@ -1,9 +1,9 @@
-import 'package:book_shop/data/model/book_model.dart';
+import '../../data/model/book_model.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:book_shop/constants/constants.dart';
-import 'package:book_shop/networking/networking.dart';
-import 'package:book_shop/presentation/widgets/widgets.dart';
+import '../../constants/constants.dart';
+import '../../networking/networking.dart';
+import 'widgets.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:intl/intl.dart';
 

@@ -1,11 +1,12 @@
-import 'package:book_shop/data/data.dart';
-import 'package:book_shop/data/model/title_posts_model.dart';
-import 'package:book_shop/data/model/user_model.dart';
+import '../../data/data.dart';
+import '../../data/model/title_posts_model.dart';
+import '../../data/model/user_model.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 
 import '../../core/utils/constants.dart';
 import '../../data/model/function_response_model.dart';
+import '../../data/model/update_app_model.dart';
 
 part 'book_shop_client.g.dart';
 
@@ -60,5 +61,10 @@ abstract class BookShopClient {
     @Query("user_id") required String userId,
     @Query("newUsername") required String newUsername,
     @Query("newPassword") required String newPassword,
+  });
+
+  @GET('/get_updates.php')
+  Future<HttpResponse<UpdateAppModel>> getUpdate({
+    @Query("platform") required String platform,
   });
 }

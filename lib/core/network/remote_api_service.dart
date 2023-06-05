@@ -1,8 +1,8 @@
-import 'package:book_shop/core/params/account_params.dart';
-import 'package:book_shop/data/data.dart';
-import 'package:book_shop/data/model/function_response_model.dart';
-import 'package:book_shop/data/model/title_posts_model.dart';
-import 'package:book_shop/data/model/user_model.dart';
+import '../params/account_params.dart';
+import '../../data/data.dart';
+import '../../data/model/function_response_model.dart';
+import '../../data/model/title_posts_model.dart';
+import '../../data/model/user_model.dart';
 
 import '../params/auth_params.dart';
 import '../params/basket_params.dart';

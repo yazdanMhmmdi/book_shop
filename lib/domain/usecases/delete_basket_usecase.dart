@@ -1,6 +1,6 @@
-import 'package:book_shop/core/params/basket_params.dart';
-import 'package:book_shop/data/model/function_response_model.dart';
-import 'package:book_shop/domain/repositories/basket_repository.dart';
+import '../../core/params/basket_params.dart';
+import '../../data/model/function_response_model.dart';
+import '../repositories/basket_repository.dart';
 import 'package:dartz/dartz.dart';
 
 import '../../core/error/failure.dart';

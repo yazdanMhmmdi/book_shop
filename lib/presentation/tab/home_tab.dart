@@ -1,11 +1,11 @@
-import 'package:book_shop/data/model/book_model.dart';
-import 'package:book_shop/presentation/animation/animation.dart';
-import 'package:book_shop/presentation/widgets/widgets.dart';
+import '../../data/model/book_model.dart';
+import '../animation/animation.dart';
+import '../widgets/widgets.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:book_shop/logic/logic.dart';
-import 'package:book_shop/constants/constants.dart';
+import '../../logic/logic.dart';
+import '../../constants/constants.dart';
 
 class HomeTab extends StatelessWidget {
   @override

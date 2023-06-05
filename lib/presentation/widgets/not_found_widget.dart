@@ -1,5 +1,5 @@
-import 'package:book_shop/presentation/animation/animation.dart';
-import 'package:book_shop/presentation/widgets/widgets.dart';
+import '../animation/animation.dart';
+import 'widgets.dart';
 import 'package:flutter/material.dart';
 
 class NotFoundWidget extends StatelessWidget {

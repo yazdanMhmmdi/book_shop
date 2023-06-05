@@ -1,12 +1,12 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:book_shop/core/error/failure.dart';
-import 'package:book_shop/data/data.dart';
-import 'package:book_shop/domain/usecases/login_usecase.dart';
-import 'package:book_shop/domain/usecases/sign_up_usecase.dart';
-import 'package:book_shop/logic/cubit/cubit.dart';
-import 'package:book_shop/presentation/widgets/widgets.dart';
+import '../../../core/error/failure.dart';
+import '../../../data/data.dart';
+import '../../../domain/usecases/login_usecase.dart';
+import '../../../domain/usecases/sign_up_usecase.dart';
+import '../../cubit/cubit.dart';
+import '../../../presentation/widgets/widgets.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:shared_preferences/shared_preferences.dart';

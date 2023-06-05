@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:book_shop/presentation/widgets/widgets.dart';
+import '../../../presentation/widgets/widgets.dart';
 import 'package:equatable/equatable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

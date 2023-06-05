@@ -1,5 +1,5 @@
-import 'package:book_shop/core/params/basket_params.dart';
-import 'package:book_shop/data/data.dart';
+import '../../core/params/basket_params.dart';
+import '../../data/data.dart';
 import 'package:dartz/dartz.dart';
 
 import '../../core/error/failure.dart';

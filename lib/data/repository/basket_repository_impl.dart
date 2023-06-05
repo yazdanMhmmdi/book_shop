@@ -1,9 +1,9 @@
-import 'package:book_shop/constants/constants.dart';
-import 'package:book_shop/core/params/basket_params.dart';
-import 'package:book_shop/core/error/failure.dart';
-import 'package:book_shop/data/model/basket_model.dart';
-import 'package:book_shop/networking/networking.dart';
-import 'package:book_shop/presentation/widgets/global_widget.dart';
+import '../../constants/constants.dart';
+import '../../core/params/basket_params.dart';
+import '../../core/error/failure.dart';
+import '../model/basket_model.dart';
+import '../../networking/networking.dart';
+import '../../presentation/widgets/global_widget.dart';
 import 'package:dartz/dartz.dart';
 
 import '../../core/error/exceptions.dart';

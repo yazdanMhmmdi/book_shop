@@ -1,4 +1,4 @@
-import 'package:book_shop/constants/constants.dart';
+import '../../constants/constants.dart';
 import 'package:flare_loading/flare_loading.dart';
 import 'package:flutter/material.dart';
 

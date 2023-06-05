@@ -1,10 +1,11 @@
-import 'package:book_shop/constants/values.dart';
-import 'package:book_shop/networking/network_info.dart';
-import 'package:book_shop/presentation/screen/screen.dart';
+import '../../constants/values.dart';
+import '../../logic/cubit/ckeck_update_cubit.dart';
+import '../../networking/network_info.dart';
+import '../screen/screen.dart';
 import 'package:data_connection_checker_tv/data_connection_checker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:book_shop/logic/logic.dart';
+import '../../logic/logic.dart';
 
 import '../../injector.dart';
 
@@ -41,6 +42,12 @@ class AppRouter {
               ),
               BlocProvider(
                 create: (context) => SplashCubit(),
+              ),
+              BlocProvider(
+                create: (context) => CheckUpdateCubit(
+                  getUpdateUsecase: sl(),
+                  packageInfoProvider: sl(),
+                ),
               ),
             ],
             child: SplashScreen(),

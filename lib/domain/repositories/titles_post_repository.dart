@@ -1,5 +1,5 @@
-import 'package:book_shop/core/params/titles_post_params.dart';
-import 'package:book_shop/data/model/title_posts_model.dart';
+import '../../core/params/titles_post_params.dart';
+import '../../data/model/title_posts_model.dart';
 import 'package:dartz/dartz.dart';
 
 import '../../core/error/failure.dart';

@@ -1,9 +1,9 @@
-import 'package:book_shop/constants/assets.dart';
-import 'package:book_shop/constants/colors.dart';
-import 'package:book_shop/constants/constants.dart';
-import 'package:book_shop/presentation/widgets/secondary_button_widget.dart';
 import 'package:flare_loading/flare_loading.dart';
 import 'package:flutter/material.dart';
+
+import '../../constants/assets.dart';
+import '../../constants/constants.dart';
+import 'secondary_button_widget.dart';
 
 class ServerFailureFlare extends StatelessWidget {
   @override

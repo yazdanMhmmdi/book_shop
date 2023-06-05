@@ -1,5 +1,5 @@
-import 'package:book_shop/data/model/chat_model.dart';
-import 'package:book_shop/networking/networking.dart';
+import '../model/chat_model.dart';
+import '../../networking/networking.dart';
 
 class ChatRepository {
   final ApiProvider _apiProvider = ApiProvider();

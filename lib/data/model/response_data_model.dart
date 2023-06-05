@@ -1,4 +1,4 @@
-import 'package:book_shop/domain/entities/response_data.dart';
+import '../../domain/entities/response_data.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'response_data_model.g.dart';
 

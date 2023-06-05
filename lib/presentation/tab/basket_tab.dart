@@ -1,9 +1,9 @@
-import 'package:book_shop/presentation/animation/animation.dart';
-import 'package:book_shop/presentation/widgets/widgets.dart';
+import '../animation/animation.dart';
+import '../widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:book_shop/logic/logic.dart';
-import 'package:book_shop/constants/constants.dart';
+import '../../logic/logic.dart';
+import '../../constants/constants.dart';
 
 import '../../core/utils/throteller.dart';
 import '../widgets/pagination_loading_widget.dart';

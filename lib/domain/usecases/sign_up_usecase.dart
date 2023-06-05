@@ -1,8 +1,8 @@
-import 'package:book_shop/core/error/failure.dart';
-import 'package:book_shop/core/params/auth_params.dart';
-import 'package:book_shop/core/usecase/usecase.dart';
-import 'package:book_shop/data/data.dart';
-import 'package:book_shop/domain/repositories/auth_repository.dart';
+import '../../core/error/failure.dart';
+import '../../core/params/auth_params.dart';
+import '../../core/usecase/usecase.dart';
+import '../../data/data.dart';
+import '../repositories/auth_repository.dart';
 import 'package:dartz/dartz.dart';
 
 class SignUpUsecase implements UseCase<AuthModel, AuthRequestParams> {

@@ -1,7 +1,7 @@
-import 'package:book_shop/core/params/home_params.dart';
-import 'package:book_shop/data/data.dart';
-import 'package:book_shop/domain/repositories/home_repository.dart';
-import 'package:book_shop/domain/usecases/home_usecase.dart';
+import '../../../core/params/home_params.dart';
+import '../../../data/data.dart';
+import '../../../domain/repositories/home_repository.dart';
+import '../../../domain/usecases/home_usecase.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

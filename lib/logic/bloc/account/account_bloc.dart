@@ -1,15 +1,15 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:book_shop/core/params/account_params.dart';
-import 'package:book_shop/data/model/account_response_model.dart';
-import 'package:book_shop/data/data.dart';
-import 'package:book_shop/data/model/function_response_model.dart';
-import 'package:book_shop/data/model/user_model.dart';
-import 'package:book_shop/domain/usecases/edit_account_usecase.dart';
-import 'package:book_shop/domain/usecases/get_account_usecase.dart';
-import 'package:book_shop/logic/cubit/cubit.dart';
-import 'package:book_shop/presentation/widgets/widgets.dart';
+import '../../../core/params/account_params.dart';
+import '../../../data/model/account_response_model.dart';
+import '../../../data/data.dart';
+import '../../../data/model/function_response_model.dart';
+import '../../../data/model/user_model.dart';
+import '../../../domain/usecases/edit_account_usecase.dart';
+import '../../../domain/usecases/get_account_usecase.dart';
+import '../../cubit/cubit.dart';
+import '../../../presentation/widgets/widgets.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 

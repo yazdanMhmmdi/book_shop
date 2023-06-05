@@ -1,15 +1,15 @@
 import 'dart:async';
 
-import 'package:book_shop/core/error/failure.dart';
-import 'package:book_shop/networking/networking.dart';
-import 'package:book_shop/presentation/widgets/single_button_dialog_widget.dart';
-import 'package:book_shop/presentation/widgets/widgets.dart';
+import '../../core/error/failure.dart';
+import '../../networking/networking.dart';
+import '../widgets/single_button_dialog_widget.dart';
+import '../widgets/widgets.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
-import 'package:book_shop/logic/logic.dart';
-import 'package:book_shop/constants/constants.dart';
+import '../../logic/logic.dart';
+import '../../constants/constants.dart';
 
 class DetailsScreen extends StatelessWidget {
   late Map<String, String> args;

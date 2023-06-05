@@ -1,5 +1,5 @@
-import 'package:book_shop/data/model/book_model.dart';
-import 'package:book_shop/data/model/response_data_model.dart';
+import 'book_model.dart';
+import 'response_data_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import '../../domain/entities/book.dart';

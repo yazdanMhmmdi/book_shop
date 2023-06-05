@@ -1,5 +1,6 @@
-import 'package:book_shop/constants/values.dart';
 import 'package:flutter/material.dart';
+
+import '../../constants/values.dart';
 
 class FadeInTransition extends StatefulWidget {
   final Widget child;

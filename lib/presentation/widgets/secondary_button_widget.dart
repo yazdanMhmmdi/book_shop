@@ -1,4 +1,4 @@
-import 'package:book_shop/constants/colors.dart';
+import '../../constants/colors.dart';
 import 'package:flutter/material.dart';
 
 class SecondaryButtonWidget extends StatelessWidget {

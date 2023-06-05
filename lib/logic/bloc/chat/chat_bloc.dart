@@ -2,11 +2,11 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:bloc/bloc.dart';
-import 'package:book_shop/data/model/chat_model.dart';
-import 'package:book_shop/data/repository/account_repository_impl.dart';
-import 'package:book_shop/data/repository/chat_repository.dart';
-import 'package:book_shop/networking/networking.dart';
-import 'package:book_shop/presentation/widgets/widgets.dart';
+import '../../../data/model/chat_model.dart';
+import '../../../data/repository/account_repository_impl.dart';
+import '../../../data/repository/chat_repository.dart';
+import '../../../networking/networking.dart';
+import '../../../presentation/widgets/widgets.dart';
 import 'package:equatable/equatable.dart';
 import 'package:web_socket_channel/io.dart';
 

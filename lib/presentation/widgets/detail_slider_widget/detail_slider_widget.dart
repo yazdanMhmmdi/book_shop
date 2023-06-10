@@ -1,7 +1,10 @@
+// ignore_for_file: must_be_immutable
+
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/material.dart';
+
 import '../../../constants/constants.dart';
 import '../widgets.dart';
-import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 
 class DetailSliderWidget extends StatefulWidget {
   Duration duration;
@@ -45,7 +48,7 @@ class _SliderObjectState extends State<DetailSliderWidget> {
                     ),
                     style: TextStyle(
                         fontFamily: "iranSans",
-                        fontSize: 20,
+                        fontSize: 18,
                         fontWeight: FontWeight.w700,
                         color: _sliderRightTextColor),
                   ),
@@ -66,7 +69,7 @@ class _SliderObjectState extends State<DetailSliderWidget> {
                 ),
                 style: TextStyle(
                     fontFamily: "iranSans",
-                    fontSize: 20,
+                    fontSize: 18,
                     fontWeight: FontWeight.w700,
                     color: _sliderLeftTextColor),
               ),

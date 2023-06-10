@@ -1,8 +1,11 @@
+// ignore_for_file: must_be_immutable
+
+import 'package:book_shop/presentation/widgets/custom_progress_button.dart';
+import 'package:flutter/material.dart';
+
 import '../../constants/constants.dart';
 import '../animation/animation.dart';
 import 'widgets.dart';
-import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class PayCheckWidget extends StatelessWidget {
   int tax, deliveryCost, fullCost;
@@ -25,10 +28,10 @@ class PayCheckWidget extends StatelessWidget {
               child: Text(
                 Strings.basketPaymentCheck,
                 style: TextStyle(
-                    fontSize: 20,
+                    fontSize: 16,
                     fontFamily: Strings.fontIranSans,
                     color: IColors.balck85,
-                    fontWeight: FontWeight.w700),
+                    fontWeight: FontWeight.bold),
               )),
         ),
         const SizedBox(height: 8),
@@ -84,7 +87,7 @@ class PayCheckWidget extends StatelessWidget {
                         Text(
                           Strings.basketPay,
                           style: TextStyle(
-                            fontSize: 16,
+                            fontSize: 14,
                             color: IColors.balck85,
                             fontFamily: Strings.fontIranSans,
                           ),
@@ -92,7 +95,7 @@ class PayCheckWidget extends StatelessWidget {
                         Text(
                           NumberFormatter.getNumber(fullCost),
                           style: const TextStyle(
-                              fontSize: 16,
+                              fontSize: 14,
                               color: IColors.boldGreen,
                               fontFamily: Strings.fontIranSans,
                               fontWeight: FontWeight.w700),

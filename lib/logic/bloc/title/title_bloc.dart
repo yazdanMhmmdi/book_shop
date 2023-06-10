@@ -1,10 +1,11 @@
-import '../../../data/model/title_posts_model.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/params/titles_post_params.dart';
 import '../../../data/model/book_model.dart';
+import '../../../data/model/title_posts_model.dart';
 import '../../../domain/usecases/title_posts_usecase.dart';
+
 part 'title_event.dart';
 part 'title_state.dart';
 

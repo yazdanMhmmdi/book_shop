@@ -1,7 +1,8 @@
 import 'package:bloc/bloc.dart';
-import '../../../presentation/widgets/widgets.dart';
 import 'package:equatable/equatable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../../presentation/widgets/widgets.dart';
 
 part 'splash_state.dart';
 

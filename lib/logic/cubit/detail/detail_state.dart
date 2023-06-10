@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 part of 'detail_cubit.dart';
 
 abstract class DetailState extends Equatable {

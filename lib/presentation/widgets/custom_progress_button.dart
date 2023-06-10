@@ -3,7 +3,7 @@ import 'package:progress_state_button/iconed_button.dart';
 
 enum ButtonState { idle, loading, success, fail }
 
-class MyProgressButton extends StatefulWidget {
+class CustomProgressButton extends StatefulWidget {
   final Map<ButtonState, Widget> stateWidgets;
   final Map<ButtonState, Color> stateColors;
   final Function? onPressed;
@@ -20,7 +20,7 @@ class MyProgressButton extends StatefulWidget {
   final List<ButtonState> minWidthStates;
   final Duration animationDuration;
 
-  MyProgressButton(
+  CustomProgressButton(
       {Key? key,
       required this.stateWidgets,
       required this.stateColors,
@@ -38,33 +38,31 @@ class MyProgressButton extends StatefulWidget {
       this.minWidthStates = const <ButtonState>[ButtonState.loading],
       this.animationDuration = const Duration(milliseconds: 500)})
       : assert(
-          stateWidgets != null &&
-              stateWidgets.keys.toSet().containsAll(ButtonState.values.toSet()),
+          stateWidgets.keys.toSet().containsAll(ButtonState.values.toSet()),
           'Must be non-null widgetds provided in map of stateWidgets. Missing keys => ${ButtonState.values.toSet().difference(stateWidgets.keys.toSet())}',
         ),
         assert(
-          stateColors != null &&
-              stateColors.keys.toSet().containsAll(ButtonState.values.toSet()),
+          stateColors.keys.toSet().containsAll(ButtonState.values.toSet()),
           'Must be non-null widgetds provided in map of stateWidgets. Missing keys => ${ButtonState.values.toSet().difference(stateColors.keys.toSet())}',
         ),
         super(key: key);
 
   @override
   State<StatefulWidget> createState() {
-    return _MyProgressButtonState();
+    return _CustomProgressButtonState();
   }
 
-  factory MyProgressButton.icon({
+  factory CustomProgressButton.icon({
     required Map<ButtonState, IconedButton> iconedButtons,
     Function? onPressed,
     ButtonState? state = ButtonState.idle,
     Function? animationEnd,
-    maxWidth: 170.0,
-    minWidth: 58.0,
-    height: 53.0,
-    radius: 100.0,
-    progressIndicatorSize: 35.0,
-    double iconPadding: 4.0,
+    maxWidth = 170.0,
+    minWidth = 58.0,
+    height = 53.0,
+    radius = 100.0,
+    progressIndicatorSize = 35.0,
+    double iconPadding = 4.0,
     TextStyle? textStyle,
     CircularProgressIndicator? progressIndicator,
     MainAxisAlignment? progressIndicatorAlignment,
@@ -72,8 +70,7 @@ class MyProgressButton extends StatefulWidget {
     List<ButtonState> minWidthStates = const <ButtonState>[ButtonState.loading],
   }) {
     assert(
-      iconedButtons != null &&
-          iconedButtons.keys.toSet().containsAll(ButtonState.values.toSet()),
+      iconedButtons.keys.toSet().containsAll(ButtonState.values.toSet()),
       'Must be non-null widgets provided in map of stateWidgets. Missing keys => ${ButtonState.values.toSet().difference(iconedButtons.keys.toSet())}',
     );
 
@@ -98,7 +95,7 @@ class MyProgressButton extends StatefulWidget {
       ButtonState.success: iconedButtons[ButtonState.success]!.color,
     };
 
-    return MyProgressButton(
+    return CustomProgressButton(
       stateWidgets: stateWidgets,
       stateColors: stateColors,
       state: state,
@@ -116,7 +113,7 @@ class MyProgressButton extends StatefulWidget {
   }
 }
 
-class _MyProgressButtonState extends State<MyProgressButton>
+class _CustomProgressButtonState extends State<CustomProgressButton>
     with TickerProviderStateMixin {
   AnimationController? colorAnimationController;
   Animation<Color?>? colorAnimation;
@@ -133,7 +130,7 @@ class _MyProgressButtonState extends State<MyProgressButton>
     }
     colorAnimation = ColorTween(begin: begin, end: end).animate(CurvedAnimation(
       parent: colorAnimationController!,
-      curve:const Interval(
+      curve: const Interval(
         0,
         1,
         curve: Curves.easeIn,
@@ -163,7 +160,7 @@ class _MyProgressButtonState extends State<MyProgressButton>
     progressIndicator = widget.progressIndicator ??
         CircularProgressIndicator(
             backgroundColor: widget.stateColors[widget.state!],
-            valueColor:const AlwaysStoppedAnimation<Color>(Colors.white));
+            valueColor: const AlwaysStoppedAnimation<Color>(Colors.white));
   }
 
   @override
@@ -173,7 +170,7 @@ class _MyProgressButtonState extends State<MyProgressButton>
   }
 
   @override
-  void didUpdateWidget(MyProgressButton oldWidget) {
+  void didUpdateWidget(CustomProgressButton oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     if (oldWidget.state != widget.state) {
@@ -200,7 +197,7 @@ class _MyProgressButtonState extends State<MyProgressButton>
     }
     return AnimatedOpacity(
         opacity: visibility ? 1.0 : 0.0,
-        duration:const Duration(milliseconds: 250),
+        duration: const Duration(milliseconds: 250),
         child: buttonChild);
   }
 
@@ -218,7 +215,7 @@ class _MyProgressButtonState extends State<MyProgressButton>
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(
                       widget.state != ButtonState.idle ? 50 : widget.radius),
-                  side:const BorderSide(color: Colors.transparent, width: 0)),
+                  side: const BorderSide(color: Colors.transparent, width: 0)),
               color: backgroundColor,
               onPressed: widget.onPressed as void Function()?,
               child: getButtonChild(

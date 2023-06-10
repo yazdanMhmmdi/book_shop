@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 
 class MyToolBar extends StatelessWidget {
@@ -11,8 +13,8 @@ class MyToolBar extends StatelessWidget {
         title,
         style: const TextStyle(
             fontFamily: "IranSans",
-            fontSize: 20,
-            fontWeight: FontWeight.w700,
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
             color: Colors.black87),
       ),
     );

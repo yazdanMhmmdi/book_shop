@@ -1,12 +1,12 @@
-import '../../../core/params/home_params.dart';
-import '../../../data/data.dart';
-import '../../../domain/repositories/home_repository.dart';
-import '../../../domain/usecases/home_usecase.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/error/failure.dart';
+import '../../../core/params/home_params.dart';
 import '../../../core/utils/constants.dart';
+import '../../../data/data.dart';
+import '../../../domain/usecases/home_usecase.dart';
+
 part 'home_event.dart';
 part 'home_state.dart';
 

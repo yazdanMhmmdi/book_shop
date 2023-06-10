@@ -1,11 +1,14 @@
-import '../../constants/constants.dart';
-import '../../data/model/book_model.dart';
-import '../../networking/networking.dart';
-import 'widgets.dart';
+// ignore_for_file: must_be_immutable
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:octo_image/octo_image.dart';
+
+import '../../constants/constants.dart';
+import '../../data/model/book_model.dart';
+import '../../networking/networking.dart';
+import 'widgets.dart';
 
 class VerticalCard extends StatelessWidget {
   BookModel? model;
@@ -103,12 +106,12 @@ class VerticalCard extends StatelessWidget {
                                 maxLines: 1,
                                 style: const TextStyle(
                                     fontFamily: "IranSans",
-                                    fontSize: 16,
+                                    fontSize: 14,
                                     color: Colors.black87,
                                     fontWeight: FontWeight.w700),
                               ),
                               const SizedBox(
-                                height: 8,
+                                height: 4,
                               ),
                               Text(
                                 model!.writer!,
@@ -131,7 +134,7 @@ class VerticalCard extends StatelessWidget {
                                 NumberFormat("#,##0.##").format(model!.price) +
                                     " تومان", //TODO: replace hardcoded.
                                 style: const TextStyle(
-                                    fontSize: 16,
+                                    fontSize: 14,
                                     fontFamily: Strings.fontIranSans,
                                     color: IColors.boldGreen,
                                     fontWeight: FontWeight.w700),

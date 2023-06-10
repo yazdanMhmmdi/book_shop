@@ -1,8 +1,8 @@
-import 'not_found_flare.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants/strings.dart';
 import '../animation/fade_in_animation.dart';
+import 'not_found_flare.dart';
 
 class NoBookFoundWidget extends StatelessWidget {
   const NoBookFoundWidget({

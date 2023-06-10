@@ -1,11 +1,15 @@
+// ignore_for_file: must_be_immutable
+
 import 'dart:async';
 
-import '../animation/animation.dart';
-import '../widgets/widgets.dart';
+import 'package:book_shop/presentation/widgets/custom_progress_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../logic/logic.dart';
+
 import '../../constants/constants.dart';
+import '../../logic/logic.dart';
+import '../animation/animation.dart';
+import '../widgets/widgets.dart';
 
 class SignUpScreen extends StatelessWidget {
   late TextEditingController _usernameController;
@@ -40,7 +44,8 @@ class SignUpScreen extends StatelessWidget {
           listener: (context, state) {
             if (state is AuthSuccess) {
               Timer(const Duration(seconds: 2), () {
-                Navigator.pushNamed(context, '/home');
+                 Navigator.pushNamedAndRemoveUntil(
+                  context, '/home', (route) => false);
               });
             }
           },
@@ -81,7 +86,7 @@ class SignUpScreen extends StatelessWidget {
                                     Strings.signupLabel,
                                     style: TextStyle(
                                         fontFamily: "IranSans",
-                                        fontSize: 18,
+                                        fontSize: 16,
                                         fontWeight: FontWeight.w700),
                                   ),
                                   const SizedBox(height: 16),
@@ -156,7 +161,7 @@ class SignUpScreen extends StatelessWidget {
                                         const Text(
                                           Strings.signupNLO,
                                           style: TextStyle(
-                                            fontSize: 14,
+                                            fontSize: 12,
                                             fontFamily: "IranSans",
                                             color: IColors.boldGreen,
                                           ),
@@ -164,7 +169,7 @@ class SignUpScreen extends StatelessWidget {
                                         Text(
                                           Strings.signupDidYouSignedUp,
                                           style: TextStyle(
-                                            fontSize: 14,
+                                            fontSize: 12,
                                             fontFamily: "IranSans",
                                             color: const Color(0xff000000)
                                                 .withOpacity(0.55),

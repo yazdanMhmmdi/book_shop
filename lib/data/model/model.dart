@@ -1,4 +1,3 @@
-export 'account_model.dart';
 export 'auth_model.dart';
 export 'basket_model.dart';
 export 'details_model.dart';

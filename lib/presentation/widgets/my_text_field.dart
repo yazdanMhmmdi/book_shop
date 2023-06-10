@@ -1,6 +1,9 @@
-import 'widgets.dart';
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import 'widgets.dart';
 
 class MyTextFiled extends StatefulWidget {
   var icon;
@@ -50,7 +53,7 @@ class _MyTextFiledState extends State<MyTextFiled> {
                       return "no";
                     },
                     style: const TextStyle(
-                      fontSize: 16,
+                      fontSize: 14,
                       fontFamily: "IranSans",
                     ),
                     decoration: InputDecoration(

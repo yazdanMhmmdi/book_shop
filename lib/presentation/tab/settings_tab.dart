@@ -1,9 +1,11 @@
-import '../animation/animation.dart';
-import '../widgets/widgets.dart';
+import 'package:book_shop/presentation/widgets/custom_progress_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../logic/logic.dart';
+
 import '../../constants/constants.dart';
+import '../../logic/logic.dart';
+import '../animation/animation.dart';
+import '../widgets/widgets.dart';
 
 class SettingsTab extends StatefulWidget {
   @override
@@ -165,14 +167,14 @@ class _SettingsTabState extends State<SettingsTab>
               "${state.username}",
               style: const TextStyle(
                   fontFamily: "IranSans",
-                  fontSize: 18,
+                  fontSize: 16,
                   fontWeight: FontWeight.w700,
                   color: Colors.white),
             ),
             const Text(
               Strings.accountWelcome,
               style: TextStyle(
-                  fontFamily: "IranSans", fontSize: 16, color: Colors.white),
+                  fontFamily: "IranSans", fontSize: 14, color: Colors.white),
             ),
             const SizedBox(
               height: 16,

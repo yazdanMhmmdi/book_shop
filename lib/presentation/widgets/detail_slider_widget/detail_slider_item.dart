@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 
 class DetailSliderItem extends StatelessWidget {
@@ -6,12 +8,14 @@ class DetailSliderItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Text(
           title,
           style: const TextStyle(
             fontFamily: "iranSans",
-            fontSize: 20,
+            fontSize: 18,
             fontWeight: FontWeight.w700,
             color: Colors.black87,
           ),
@@ -19,7 +23,7 @@ class DetailSliderItem extends StatelessWidget {
         Text(
           subTitle,
           style: const TextStyle(
-              fontFamily: "iranSans", fontSize: 18, color: Colors.black38),
+              fontFamily: "iranSans", fontSize: 16, color: Colors.black38),
         )
       ],
     );

@@ -1,7 +1,10 @@
-import '../../constants/constants.dart';
-import '../screen/screen.dart';
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
+
+import '../../constants/constants.dart';
 import '../../logic/logic.dart';
+import '../screen/screen.dart';
 
 class TitleSelector extends StatefulWidget {
   List<String> titles;

@@ -1,5 +1,6 @@
-import '../../constants/constants.dart';
 import 'package:flutter/material.dart';
+
+import '../../constants/constants.dart';
 
 class BackgroundShapes extends StatefulWidget {
   @override

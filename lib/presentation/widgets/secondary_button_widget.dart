@@ -1,5 +1,6 @@
-import '../../constants/colors.dart';
 import 'package:flutter/material.dart';
+
+import '../../constants/colors.dart';
 
 class SecondaryButtonWidget extends StatelessWidget {
   final String buttonText;
@@ -31,7 +32,7 @@ class SecondaryButtonWidget extends StatelessWidget {
             '${buttonText}',
             style: TextStyle(
               color: IColors.boldGreen,
-              fontSize: 18,
+              fontSize: 16,
             ),
           ),
         ),

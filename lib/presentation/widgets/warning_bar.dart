@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 
 class WarningBar extends StatelessWidget {
@@ -30,7 +32,7 @@ class WarningBar extends StatelessWidget {
                 text,
                 style: const TextStyle(
                   fontFamily: "IranSans",
-                  fontSize: 14,
+                  fontSize: 12,
                   color: Colors.red,
                 ),
               ),

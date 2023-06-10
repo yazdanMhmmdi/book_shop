@@ -1,7 +1,6 @@
 import 'package:flare_loading/flare_loading.dart';
 import 'package:flutter/material.dart';
 
-import '../../constants/assets.dart';
 import '../../constants/constants.dart';
 import 'secondary_button_widget.dart';
 
@@ -26,17 +25,17 @@ class ServerFailureFlare extends StatelessWidget {
             height: 4,
           ),
           const Text(
-            Strings.serverFailureTabTitle, //TODO: hardcoded text.
+            Strings.serverFailureTabTitle,
             style: TextStyle(
                 fontFamily: "IranSans",
-                fontSize: 18,
+                fontSize: 16,
                 fontWeight: FontWeight.w700,
                 color: Colors.black87),
           ),
           const Text(
             Strings.serverFailureTabDesc,
             style: TextStyle(
-                fontFamily: "IranSans", fontSize: 16, color: Colors.black87),
+                fontFamily: "IranSans", fontSize: 14, color: Colors.black87),
           ),
           SizedBox(
             height: 16,

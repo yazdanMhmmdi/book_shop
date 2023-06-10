@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 part of 'title_bloc.dart';
 
 abstract class TitleEvent extends Equatable {

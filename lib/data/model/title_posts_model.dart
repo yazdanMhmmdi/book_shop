@@ -1,9 +1,8 @@
-import 'book_model.dart';
-import 'response_data_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-import '../../domain/entities/book.dart';
-import '../../domain/entities/response_data.dart';
+import 'book_model.dart';
+import 'response_data_model.dart';
+
 part 'title_posts_model.g.dart';
 
 @JsonSerializable(fieldRename: FieldRename.snake)

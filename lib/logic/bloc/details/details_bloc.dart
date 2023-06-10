@@ -1,31 +1,31 @@
-import 'dart:async';
+// import 'dart:async';
 
-import 'package:bloc/bloc.dart';
-import '../../../data/data.dart';
-import 'package:equatable/equatable.dart';
+// import 'package:bloc/bloc.dart';
+// import 'package:equatable/equatable.dart';
 
-part 'details_event.dart';
-part 'details_state.dart';
+// import '../../../data/data.dart';
 
-class DetailsBloc extends Bloc<DetailsEvent, DetailsState> {
-  DetailsBloc() : super(DetailsInitial());
+// part 'details_event.dart';
+// part 'details_state.dart';
 
-  DetailsRepository _detailsRepository = new DetailsRepository();
-  @override
-  Stream<DetailsState> mapEventToState(
-    DetailsEvent event,
-  ) async* {
-    if (event is GetDetails) {
-      yield DetailsLoading();
+// class DetailsBloc extends Bloc<DetailsEvent, DetailsState> {
+//   DetailsBloc() : super(DetailsInitial());
 
-      try {
-        DetailsModel _detailsModel =
-            await _detailsRepository.getDetails(event.post_id);
-        yield DetailsSuccess(_detailsModel);
-      } catch (_) {
-        print('detailsBloc : ${_}');
-        yield DetailsFailure();
-      }
-    }
-  }
-}
+//   @override
+//   Stream<DetailsState> mapEventToState(
+//     DetailsEvent event,
+//   ) async* {
+//     if (event is GetDetails) {
+//       yield DetailsLoading();
+
+//       try {
+//         DetailsModel _detailsModel =
+//             await _detailsRepository.getDetails(event.post_id);
+//         yield DetailsSuccess(_detailsModel);
+//       } catch (_) {
+//         print('detailsBloc : ${_}');
+//         yield DetailsFailure();
+//       }
+//     }
+//   }
+// }

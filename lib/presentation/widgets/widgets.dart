@@ -13,7 +13,6 @@ export 'home_slider_item.dart';
 export 'horizontal_card.dart';
 export 'loading_bar.dart';
 export 'my_button.dart';
-export 'my_progress_button.dart';
 export 'my_slide_action.dart';
 export 'my_text_field.dart';
 export 'my_tool_bar.dart';

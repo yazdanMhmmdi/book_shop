@@ -1,7 +1,8 @@
+import 'package:flutter/material.dart';
+
+import '../../constants/constants.dart';
 import '../animation/animation.dart';
 import '../widgets/widgets.dart';
-import 'package:flutter/material.dart';
-import '../../constants/constants.dart';
 
 class TitleTab extends StatelessWidget {
   @override
@@ -178,7 +179,7 @@ class TitleTab extends StatelessWidget {
         Text(
           "$title",
           style: const TextStyle(
-              fontFamily: "IranSans", fontSize: 16, color: Colors.black87),
+              fontFamily: "IranSans", fontSize: 14, color: Colors.black87),
         ),
       ],
     ));

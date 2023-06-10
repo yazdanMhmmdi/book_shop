@@ -1,3 +1,12 @@
+// ignore_for_file: must_be_immutable
+
+import 'package:data_connection_checker_tv/data_connection_checker.dart';
+import 'package:dio/dio.dart';
+import 'package:get_it/get_it.dart';
+import 'package:http/http.dart' as http;
+import 'package:package_info_plus/package_info_plus.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 import 'core/network/remote_api_service.dart';
 import 'core/network/update_app_api_service.dart';
 import 'core/utils/package_info_provider.dart';
@@ -6,6 +15,7 @@ import 'data/datasources/remote/book_shop_api_service.dart';
 import 'data/datasources/remote/update_app_api_service_impl.dart';
 import 'data/repository/title_posts_repository_impl.dart';
 import 'data/repository/update_app_repository_impl.dart';
+import 'domain/entities/book_shop_client.dart';
 import 'domain/repositories/account_repository.dart';
 import 'domain/repositories/auth_repository.dart';
 import 'domain/repositories/basket_repository.dart';
@@ -24,15 +34,6 @@ import 'domain/usecases/sign_up_usecase.dart';
 import 'domain/usecases/title_posts_usecase.dart';
 import 'logic/cubit/ckeck_update_cubit.dart';
 import 'logic/logic.dart';
-import 'package:data_connection_checker_tv/data_connection_checker.dart';
-import 'package:dio/dio.dart';
-import 'package:get_it/get_it.dart';
-import 'package:http/http.dart' as http;
-import 'package:package_info_plus/package_info_plus.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-import 'domain/entities/book_shop_client.dart';
-import 'logic/bloc/home/home_bloc.dart';
 
 final sl = GetIt.instance;
 Future<void> init() async {

@@ -68,7 +68,7 @@ class Strings {
   //account
   static const String settingsLabel = "تنظیمات";
   static const String accountEdit = "ویرایش حساب کاربری";
-  static const String accountWelcome = "خوش آمدید!";
+  static const String accountWelcome = "!خوش آمدید";
   static const String thisUsernameAlreadyExists =
       "این نام کاربری قبلا کرفته شده است";
   static const String accountLoginOrSignUp = "ورود یا ساخت حساب کاربری";

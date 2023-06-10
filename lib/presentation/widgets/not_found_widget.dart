@@ -1,6 +1,9 @@
+// ignore_for_file: must_be_immutable
+
+import 'package:flutter/material.dart';
+
 import '../animation/animation.dart';
 import 'widgets.dart';
-import 'package:flutter/material.dart';
 
 class NotFoundWidget extends StatelessWidget {
   String text;
@@ -20,7 +23,7 @@ class NotFoundWidget extends StatelessWidget {
             Text(
               text,
               style: const TextStyle(
-                  fontFamily: "IranSans", fontSize: 18, color: Colors.black87),
+                  fontFamily: "IranSans", fontSize: 16, color: Colors.black87),
             ),
           ),
         ],

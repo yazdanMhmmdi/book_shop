@@ -1,15 +1,18 @@
+// ignore_for_file: must_be_immutable
+
 import 'dart:async';
 
-import '../../core/error/failure.dart';
-import '../../networking/networking.dart';
-import '../widgets/single_button_dialog_widget.dart';
-import '../widgets/widgets.dart';
+import 'package:book_shop/presentation/widgets/custom_progress_button.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
-import '../../logic/logic.dart';
+
 import '../../constants/constants.dart';
+import '../../logic/logic.dart';
+import '../../networking/networking.dart';
+import '../widgets/single_button_dialog_widget.dart';
+import '../widgets/widgets.dart';
 
 class DetailsScreen extends StatelessWidget {
   late Map<String, String> args;
@@ -181,13 +184,13 @@ class DetailsScreen extends StatelessWidget {
                                                                           Orientation
                                                                               .landscape
                                                                       ? 16.0
-                                                                      : 0.0),
+                                                                      : 8.0),
                                                               height: 108 +
                                                                   (orientation ==
                                                                           Orientation
                                                                               .landscape
                                                                       ? 16.0
-                                                                      : 0.0),
+                                                                      : 8.0),
                                                               color: Colors
                                                                   .transparent,
                                                             ),
@@ -200,18 +203,21 @@ class DetailsScreen extends StatelessWidget {
                                                       style: const TextStyle(
                                                           fontFamily:
                                                               "iranSans",
-                                                          fontSize: 20,
+                                                          fontSize: 18,
                                                           color:
                                                               Colors.black38),
                                                       textAlign:
                                                           TextAlign.center,
+                                                    ),
+                                                    SizedBox(
+                                                      height: 4,
                                                     ),
                                                     Text(
                                                       name,
                                                       style: const TextStyle(
                                                           fontFamily:
                                                               "iranSans",
-                                                          fontSize: 24,
+                                                          fontSize: 18,
                                                           fontWeight:
                                                               FontWeight.w700,
                                                           color:
@@ -280,7 +286,7 @@ class DetailsScreen extends StatelessWidget {
                                                 Strings.detailsDescription,
                                                 style: TextStyle(
                                                     fontFamily: "iranSans",
-                                                    fontSize: 20,
+                                                    fontSize: 16,
                                                     color: Colors.black87,
                                                     fontWeight:
                                                         FontWeight.w700),

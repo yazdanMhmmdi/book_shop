@@ -1,11 +1,12 @@
-import '../../data/model/book_model.dart';
-import '../animation/animation.dart';
-import '../widgets/widgets.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../logic/logic.dart';
+
 import '../../constants/constants.dart';
+import '../../data/model/book_model.dart';
+import '../../logic/logic.dart';
+import '../animation/animation.dart';
+import '../widgets/widgets.dart';
 
 class HomeTab extends StatelessWidget {
   @override
@@ -18,7 +19,6 @@ class HomeTab extends StatelessWidget {
           return MyLoadingBar(animation: "Untitled");
         } else if (state is HomeSuccess) {
           List<BookModel>? msList = state.postModel.mostSalesBooks;
-          List<BookModel>? fbList = state.postModel.freshsBooks;
           return ScrollConfiguration(
             behavior:
                 ScrollConfiguration.of(context).copyWith(scrollbars: false),
@@ -124,8 +124,8 @@ class HomeTab extends StatelessWidget {
         style: const TextStyle(
             color: Colors.black87,
             fontFamily: "IranSans",
-            fontSize: 20,
-            fontWeight: FontWeight.w700),
+            fontSize: 16,
+            fontWeight: FontWeight.bold),
       ),
     );
   }

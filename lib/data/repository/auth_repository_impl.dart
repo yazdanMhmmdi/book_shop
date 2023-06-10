@@ -1,12 +1,11 @@
-import '../../core/error/failure.dart';
-import '../../core/params/auth_params.dart';
-import '../model/auth_model.dart';
-import '../../networking/networking.dart';
 import 'package:dartz/dartz.dart';
 
 import '../../core/error/exceptions.dart';
+import '../../core/error/failure.dart';
 import '../../core/network/remote_api_service.dart';
+import '../../core/params/auth_params.dart';
 import '../../domain/repositories/auth_repository.dart';
+import '../model/auth_model.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   final RemoteApiService homeApiService;

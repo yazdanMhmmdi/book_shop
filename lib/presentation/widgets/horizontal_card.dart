@@ -1,8 +1,11 @@
-import '../../networking/networking.dart';
-import 'widgets.dart';
+// ignore_for_file: must_be_immutable
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:octo_image/octo_image.dart';
+
+import '../../networking/networking.dart';
+import 'widgets.dart';
 
 class HorizontalCard extends StatelessWidget {
   String id;
@@ -82,7 +85,8 @@ class HorizontalCard extends StatelessWidget {
                   style: const TextStyle(
                       color: Colors.black38,
                       fontFamily: "IranSans",
-                      fontSize: 14),
+                      fontSize: 12,
+                      fontWeight: FontWeight.normal),
                 ),
               ),
               const SizedBox(
@@ -96,8 +100,8 @@ class HorizontalCard extends StatelessWidget {
                   style: const TextStyle(
                       color: Colors.black87,
                       fontFamily: "IranSans",
-                      fontSize: 14,
-                      fontWeight: FontWeight.w700),
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold),
                 ),
               ),
               const SizedBox(

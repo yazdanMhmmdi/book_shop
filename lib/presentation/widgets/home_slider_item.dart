@@ -1,6 +1,9 @@
+// ignore_for_file: must_be_immutable
+
+import 'package:flutter/material.dart';
+
 import '../../constants/constants.dart';
 import '../../networking/networking.dart';
-import 'package:flutter/material.dart';
 
 class HomeSliderItem extends StatelessWidget {
   String picture;
@@ -45,7 +48,7 @@ class HomeSliderItem extends StatelessWidget {
                           style: TextStyle(
                             fontFamily: Strings.fontIranSans,
                             color: IColors.white90,
-                            fontSize: 18,
+                            fontSize: 16,
                             fontWeight: FontWeight.w700,
                           )),
                       const SizedBox(
@@ -75,7 +78,7 @@ class HomeSliderItem extends StatelessWidget {
                 Image.network(
                   ImageAddressProvider.imageURL + picture,
                   fit: BoxFit.fill,
-                  width: 140,
+                  width: 120,
                   height: 150,
                 ),
               ],

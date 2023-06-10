@@ -20,6 +20,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   late AccountBloc _accountBloc;
   @override
   void initState() {
+    super.initState();
     _bottomNavController =
         TabController(initialIndex: 3, vsync: this, length: 4);
 
@@ -34,49 +35,55 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
-        body: SafeArea(
-          child: BlocBuilder<InternetCubit, InternetState>(
-            builder: (context, state) {
-              if (state is InternetConnected) {
-                return Stack(
-                  children: [
-                    TabBarView(
-                        physics:
-                            const NeverScrollableScrollPhysics(), // swipe navigation handling is not supported
-                        controller: _bottomNavController,
-                        children: <Widget>[
-                          BlocProvider.value(
-                            value: _accountBloc,
-                            child: SettingsTab(),
-                          ),
-                          // ChatListTab(),
-                          BlocProvider(
-                              create: (BuildContext context) => BasketBloc(
-                                  deleteBasketUsecase: sl(),
-                                  addBasketUsecase: sl(),
-                                  getBasketUsecase: sl()),
-                              child: BasketTab()),
-                          TitleTab(),
-                          // ValueListenableBuilder<int>(
-                          // valueListenable: _counter,
-                          // builder: (context, value, child) {
-                          // return
-                          BlocProvider.value(value: _homeBloc, child: HomeTab()
-                              // );
+        body: WillPopScope(
+          onWillPop: () async {
+            return true;
+          },
+          child: SafeArea(
+            child: BlocBuilder<InternetCubit, InternetState>(
+              builder: (context, state) {
+                if (state is InternetConnected) {
+                  return Stack(
+                    children: [
+                      TabBarView(
+                          physics:
+                              const NeverScrollableScrollPhysics(), // swipe navigation handling is not supported
+                          controller: _bottomNavController,
+                          children: <Widget>[
+                            BlocProvider.value(
+                              value: _accountBloc,
+                              child: SettingsTab(),
+                            ),
+                            // ChatListTab(),
+                            BlocProvider(
+                                create: (BuildContext context) => BasketBloc(
+                                    deleteBasketUsecase: sl(),
+                                    addBasketUsecase: sl(),
+                                    getBasketUsecase: sl()),
+                                child: BasketTab()),
+                            TitleTab(),
+                            // ValueListenableBuilder<int>(
+                            // valueListenable: _counter,
+                            // builder: (context, value, child) {
+                            // return
+                            BlocProvider.value(
+                                value: _homeBloc, child: HomeTab()
+                                // );
 
-                              // }
-                              ),
-                        ]),
-                  ],
-                );
-              } else if (state is InternetDisconnected) {
-                return NoNetworkFlare();
-              } else if (state is InternetLoading) {
-                return Container();
-              } else {
-                return Container();
-              }
-            },
+                                // }
+                                ),
+                          ]),
+                    ],
+                  );
+                } else if (state is InternetDisconnected) {
+                  return NoNetworkFlare();
+                } else if (state is InternetLoading) {
+                  return Container();
+                } else {
+                  return Container();
+                }
+              },
+            ),
           ),
         ),
         bottomNavigationBar: BlocBuilder<InternetCubit, InternetState>(

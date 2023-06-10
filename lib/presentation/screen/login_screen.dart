@@ -1,9 +1,13 @@
-import '../animation/animation.dart';
-import '../widgets/widgets.dart';
+// ignore_for_file: must_be_immutable
+
+import 'package:book_shop/presentation/widgets/custom_progress_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../logic/logic.dart';
+
 import '../../constants/constants.dart';
+import '../../logic/logic.dart';
+import '../animation/animation.dart';
+import '../widgets/widgets.dart';
 
 class LoginScreen extends StatelessWidget {
   late TextEditingController _usernameController;
@@ -37,7 +41,8 @@ class LoginScreen extends StatelessWidget {
         BlocListener<AuthBloc, AuthState>(
           listener: (context, state) {
             if (state is AuthSuccess) {
-              Navigator.pushNamed(context, '/home');
+              Navigator.pushNamedAndRemoveUntil(
+                  context, '/home', (route) => false);
             }
           },
         ),
@@ -77,7 +82,7 @@ class LoginScreen extends StatelessWidget {
                                     Strings.loginLabel,
                                     style: TextStyle(
                                         fontFamily: "IranSans",
-                                        fontSize: 18,
+                                        fontSize: 16,
                                         fontWeight: FontWeight.w700),
                                   ),
                                   const SizedBox(height: 16),
@@ -154,7 +159,7 @@ class LoginScreen extends StatelessWidget {
                                         const Text(
                                           Strings.loginNSU,
                                           style: TextStyle(
-                                            fontSize: 14,
+                                            fontSize: 12,
                                             fontFamily: "IranSans",
                                             color: IColors.boldGreen,
                                           ),
@@ -162,7 +167,7 @@ class LoginScreen extends StatelessWidget {
                                         Text(
                                           Strings.loginNeedSignUp,
                                           style: TextStyle(
-                                            fontSize: 14,
+                                            fontSize: 12,
                                             fontFamily: "IranSans",
                                             color: const Color(0xff000000)
                                                 .withOpacity(0.55),

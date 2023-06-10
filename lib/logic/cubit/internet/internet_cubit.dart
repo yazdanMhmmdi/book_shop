@@ -1,7 +1,8 @@
 import 'package:bloc/bloc.dart';
-import '../../../networking/network_info.dart';
 import 'package:data_connection_checker_tv/data_connection_checker.dart';
 import 'package:equatable/equatable.dart';
+
+import '../../../networking/network_info.dart';
 
 part 'internet_state.dart';
 

@@ -1,11 +1,14 @@
-import '../../data/model/book_model.dart';
+// ignore_for_file: must_be_immutable
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import '../../constants/constants.dart';
-import '../../networking/networking.dart';
-import 'widgets.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:intl/intl.dart';
+
+import '../../constants/constants.dart';
+import '../../data/model/book_model.dart';
+import '../../networking/networking.dart';
+import 'widgets.dart';
 
 class BasketItem extends StatelessWidget {
   BookModel bookModel;
@@ -123,12 +126,12 @@ class BasketItem extends StatelessWidget {
                                   maxLines: 1,
                                   style: const TextStyle(
                                       fontFamily: "IranSans",
-                                      fontSize: 16,
+                                      fontSize: 14,
                                       color: Colors.black87,
                                       fontWeight: FontWeight.w700),
                                 ),
                                 const SizedBox(
-                                  height: 8,
+                                  height: 4,
                                 ),
                                 Text(
                                   bookModel.writer!,
@@ -152,7 +155,7 @@ class BasketItem extends StatelessWidget {
                                           bookModel.price.toString())) +
                                       " تومان",
                                   style: const TextStyle(
-                                      fontSize: 16,
+                                      fontSize: 14,
                                       fontFamily: Strings.fontIranSans,
                                       color: IColors.boldGreen,
                                       fontWeight: FontWeight.w700),

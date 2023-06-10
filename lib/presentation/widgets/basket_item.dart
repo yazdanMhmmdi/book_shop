@@ -1,11 +1,14 @@
-import '../../data/model/book_model.dart';
+// ignore_for_file: must_be_immutable
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import '../../constants/constants.dart';
-import '../../networking/networking.dart';
-import 'widgets.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:intl/intl.dart';
+
+import '../../constants/constants.dart';
+import '../../data/model/book_model.dart';
+import '../../networking/networking.dart';
+import 'widgets.dart';
 
 class BasketItem extends StatelessWidget {
   BookModel bookModel;

@@ -1,5 +1,9 @@
-import '../../domain/entities/response_data.dart';
+// ignore_for_file: must_be_immutable
+
 import 'package:json_annotation/json_annotation.dart';
+
+import '../../domain/entities/response_data.dart';
+
 part 'response_data_model.g.dart';
 
 @JsonSerializable(fieldRename: FieldRename.snake)

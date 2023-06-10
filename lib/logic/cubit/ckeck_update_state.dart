@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 part of 'ckeck_update_cubit.dart';
 
 abstract class CheckUpdateState extends Equatable {

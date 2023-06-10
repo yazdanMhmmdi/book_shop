@@ -1,8 +1,11 @@
+// ignore_for_file: must_be_immutable
+
+import 'package:flutter/material.dart';
+import 'package:progress_state_button/progress_button.dart';
+
 import '../../constants/constants.dart';
 import '../animation/animation.dart';
 import 'widgets.dart';
-import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class PayCheckWidget extends StatelessWidget {
   int tax, deliveryCost, fullCost;

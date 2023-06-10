@@ -1,21 +1,18 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import '../../../core/params/account_params.dart';
-import '../../../data/model/account_response_model.dart';
-import '../../../data/data.dart';
-import '../../../data/model/function_response_model.dart';
-import '../../../data/model/user_model.dart';
-import '../../../domain/usecases/edit_account_usecase.dart';
-import '../../../domain/usecases/get_account_usecase.dart';
-import '../../cubit/cubit.dart';
-import '../../../presentation/widgets/widgets.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../../constants/strings.dart';
 import '../../../core/error/failure.dart';
-import '../../../core/utils/constants.dart';
+import '../../../core/params/account_params.dart';
+import '../../../data/model/function_response_model.dart';
+import '../../../data/model/user_model.dart';
+import '../../../domain/usecases/edit_account_usecase.dart';
+import '../../../domain/usecases/get_account_usecase.dart';
+import '../../../presentation/widgets/widgets.dart';
+import '../../cubit/cubit.dart';
 
 part 'account_event.dart';
 part 'account_state.dart';
@@ -30,7 +27,6 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
     on<EditEvent>(_edit);
   }
   String username = "", password = "";
-  late AccountModel _accountModel;
   late FormValidationCubit formValidationCubit;
   GetAccountUsecase getAccountUsecase;
   EditAccountUsecase editAccountUsecase;
@@ -82,7 +78,6 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
           emit(AccountEditFailure(username: username, password: password));
           //delay text error in under editable text to sync with AccountEditInital state
           if (left is SameUsernameFailure) {
-            SameUsernameFailure fa = left;
             Timer(const Duration(seconds: 2), () {
               formValidationCubit
                   .usernameIsAlreadyExists(Strings.thisUsernameAlreadyExists);

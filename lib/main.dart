@@ -1,11 +1,10 @@
-import 'dart:io';
-
-import 'presentation/router/app_router.dart';
-import 'presentation/widgets/widgets.dart';
+// ignore_for_file: must_be_immutable
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 import 'injector.dart';
+import 'presentation/router/app_router.dart';
+import 'presentation/widgets/widgets.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

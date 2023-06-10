@@ -1,13 +1,12 @@
-import '../../constants/values.dart';
-import '../../logic/cubit/ckeck_update_cubit.dart';
-import '../../networking/network_info.dart';
-import '../screen/screen.dart';
 import 'package:data_connection_checker_tv/data_connection_checker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../logic/logic.dart';
 
+import '../../constants/values.dart';
 import '../../injector.dart';
+import '../../logic/cubit/ckeck_update_cubit.dart';
+import '../../logic/logic.dart';
+import '../screen/screen.dart';
 
 class AppRouter {
   late AuthBloc _authBloc;
@@ -130,9 +129,6 @@ class AppRouter {
           },
           pageBuilder: (_, __, ___) => MultiBlocProvider(
             providers: [
-              BlocProvider(
-                create: (context) => DetailsBloc(),
-              ),
               BlocProvider.value(
                 value: _internetCubit,
               ),
@@ -182,50 +178,24 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => SocketTextScreen(),
         );
-      case '/chat':
-        final Map<String, String> args =
-            settings.arguments as Map<String, String>;
 
-        return PageRouteBuilder(
-          transitionDuration: Duration(milliseconds: Values.animationDuration),
-          transitionsBuilder: (context, ainmation, animationTime, child) {
-            return FadeTransition(opacity: ainmation, child: child);
-          },
-          pageBuilder: (_, __, ___) => MultiBlocProvider(
-            providers: [
-              BlocProvider(
-                create: (BuildContext context) => ChatBloc(),
-              ),
-              BlocProvider.value(
-                value: _internetCubit,
-              ),
-            ],
-            child: ChatScreen(
-              args: args,
-            ),
-          ),
-        );
-      case '/chatList':
-        return PageRouteBuilder(
-          transitionDuration:
-              const Duration(milliseconds: Values.animationDuration),
-          transitionsBuilder: (context, ainmation, animationTime, child) {
-            return FadeTransition(opacity: ainmation, child: child);
-          },
-          pageBuilder: (_, __, ___) => MultiBlocProvider(providers: [
-            BlocProvider(
-              create: (BuildContext context) => ChatlistBloc(),
-            ),
-            BlocProvider.value(
-              value: _internetCubit,
-            ),
-          ], child: ChatListScreen()),
-        );
       default:
         return MaterialPageRoute(
             builder: (_) => MultiBlocProvider(providers: [
                   BlocProvider.value(
                     value: _internetCubit,
+                  ),
+                  BlocProvider(
+                    create: (context) => CheckUpdateCubit(
+                      getUpdateUsecase: sl(),
+                      packageInfoProvider: sl(),
+                    ),
+                  ),
+                  BlocProvider(
+                    create: (context) => CheckUpdateCubit(
+                      getUpdateUsecase: sl(),
+                      packageInfoProvider: sl(),
+                    ),
                   ),
                   BlocProvider(
                     create: (context) => SplashCubit(),

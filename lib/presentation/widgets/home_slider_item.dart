@@ -1,6 +1,9 @@
+// ignore_for_file: must_be_immutable
+
+import 'package:flutter/material.dart';
+
 import '../../constants/constants.dart';
 import '../../networking/networking.dart';
-import 'package:flutter/material.dart';
 
 class HomeSliderItem extends StatelessWidget {
   String picture;

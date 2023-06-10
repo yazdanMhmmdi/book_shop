@@ -1,11 +1,15 @@
+// ignore_for_file: must_be_immutable
+
 import 'dart:async';
 
-import '../animation/animation.dart';
-import '../widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../logic/logic.dart';
+import 'package:progress_state_button/progress_button.dart';
+
 import '../../constants/constants.dart';
+import '../../logic/logic.dart';
+import '../animation/animation.dart';
+import '../widgets/widgets.dart';
 
 class SignUpScreen extends StatelessWidget {
   late TextEditingController _usernameController;

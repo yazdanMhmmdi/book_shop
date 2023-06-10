@@ -1,8 +1,11 @@
+// ignore_for_file: must_be_immutable
+
 import 'dart:io';
 
-import '../../constants/constants.dart';
-import 'widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:progress_state_button/progress_button.dart';
+
+import '../../constants/constants.dart';
 
 class MyButton extends StatelessWidget {
   late String text;
@@ -24,7 +27,7 @@ class MyButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MyProgressButton(
+    return ProgressButton(
       minWidth: 50.0,
       height: 46.0,
       maxWidth: Platform.isWindows ? 1920 : MediaQuery.of(context).size.width,

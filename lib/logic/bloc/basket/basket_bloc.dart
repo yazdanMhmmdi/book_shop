@@ -1,22 +1,19 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import '../../../core/params/basket_params.dart';
-import '../../../data/data.dart';
-import '../../../data/model/function_response_model.dart';
-import '../../../domain/entities/basket_data.dart';
-import '../../../domain/repositories/basket_repository.dart';
-import '../bloc.dart';
-import '../../../presentation/widgets/widgets.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../../core/error/failure.dart';
+import '../../../core/params/basket_params.dart';
+import '../../../data/data.dart';
 import '../../../data/model/basket_data_model.dart';
 import '../../../data/model/book_model.dart';
+import '../../../data/model/function_response_model.dart';
 import '../../../domain/usecases/add_basket_usecase.dart';
 import '../../../domain/usecases/delete_basket_usecase.dart';
 import '../../../domain/usecases/get_basket_usecase.dart';
+import '../../../presentation/widgets/widgets.dart';
 
 part 'basket_event.dart';
 part 'basket_state.dart';
@@ -94,7 +91,6 @@ class BasketBloc extends Bloc<BasketEvent, BasketState> {
     }, (success) {
       emit(BasketLoading());
       if (success.status) {
-        int index = 0;
 
         _bookModel!.removeWhere((e) => e.id == event.book_id);
 

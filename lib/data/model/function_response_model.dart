@@ -1,5 +1,8 @@
-import '../../domain/entities/function_response.dart';
+// ignore_for_file: must_be_immutable
 import 'package:json_annotation/json_annotation.dart';
+
+import '../../domain/entities/function_response.dart';
+
 part 'function_response_model.g.dart';
 
 @JsonSerializable(fieldRename: FieldRename.snake)

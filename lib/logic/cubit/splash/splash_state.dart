@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 part of 'splash_cubit.dart';
 
 abstract class SplashState extends Equatable {

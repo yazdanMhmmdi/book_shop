@@ -1,14 +1,13 @@
-import '../../logic/cubit/ckeck_update_cubit.dart';
-import '../widgets/widgets.dart';
+// ignore_for_file: must_be_immutable
+
 import "package:flutter/material.dart";
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import '../../logic/logic.dart';
-import '../../constants/constants.dart';
 
-import '../../injector.dart';
-import '../widgets/single_button_dialog_widget.dart';
+import '../../constants/constants.dart';
+import '../../logic/cubit/ckeck_update_cubit.dart';
+import '../../logic/logic.dart';
 import '../widgets/update_dialog.dart';
+import '../widgets/widgets.dart';
 
 class SplashScreen extends StatelessWidget {
   late SplashCubit _splashCubit;
@@ -52,36 +51,47 @@ class SplashScreen extends StatelessWidget {
           }
         })
       ],
-      child: BlocBuilder<InternetCubit, InternetState>(
+      child: BlocBuilder<CheckUpdateCubit, CheckUpdateState>(
         builder: (context, state) {
-          if (state is InternetConnected) {
+          if (state is CheckUpdateFailure) {
             return Scaffold(
-              backgroundColor: IColors.green,
-              body: Stack(
-                children: [
-                  Stack(
-                    children: [
-                      Center(
-                        child: Image.asset(
-                          Assets.logo,
-                          width: 96,
-                          height: 109,
-                        ),
-                      ),
-                      BackgroundShapes(),
-                    ],
-                  ),
-                ],
-              ),
+              backgroundColor: Colors.white,
+              body: ServerFailureFlare(),
             );
-          } else if (state is InternetDisconnected) {
-            return Scaffold(
-                backgroundColor: Colors.white,
-                body: Center(child: NoNetworkFlare()));
           } else {
-            return Scaffold(
-                backgroundColor: Colors.white,
-                body: Center(child: NoNetworkFlare()));
+            return BlocBuilder<InternetCubit, InternetState>(
+              builder: (context, state) {
+                if (state is InternetConnected) {
+                  return Scaffold(
+                    backgroundColor: IColors.green,
+                    body: Stack(
+                      children: [
+                        Stack(
+                          children: [
+                            Center(
+                              child: Image.asset(
+                                Assets.logo,
+                                width: 96,
+                                height: 109,
+                              ),
+                            ),
+                            BackgroundShapes(),
+                          ],
+                        ),
+                      ],
+                    ),
+                  );
+                } else if (state is InternetDisconnected) {
+                  return Scaffold(
+                      backgroundColor: Colors.white,
+                      body: Center(child: NoNetworkFlare()));
+                } else {
+                  return Scaffold(
+                      backgroundColor: Colors.white,
+                      body: Center(child: NoNetworkFlare()));
+                }
+              },
+            );
           }
         },
       ),

@@ -1,5 +1,5 @@
-import 'api_provider.dart';
+import '../core/utils/constants.dart';
 
 class ImageAddressProvider {
-  static final String imageURL = 'http://' + ApiProvider.URL_IP;
+  static final String imageURL = kBaseUrl!;
 }

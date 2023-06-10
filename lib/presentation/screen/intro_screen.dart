@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:intro_slider/dot_animation_enum.dart';
 import 'package:intro_slider/intro_slider.dart';
-import 'package:intro_slider/slide_object.dart';
+
 import '../../constants/constants.dart';
 
 class IntroScreen extends StatefulWidget {
@@ -50,12 +49,6 @@ class _IntroScreenState extends State<IntroScreen> {
 
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.init(
-        BoxConstraints(
-            maxWidth: MediaQuery.of(context).size.width,
-            maxHeight: MediaQuery.of(context).size.height),
-        designSize: const Size(360, 640),
-        orientation: Orientation.portrait);
     return IntroSlider(
       // Skip button
       renderSkipBtn: renderSkipBtn(),
@@ -73,7 +66,6 @@ class _IntroScreenState extends State<IntroScreen> {
       // Dot indicator
       colorDot: IColors.boldGreen,
       sizeDot: 13.0,
-      typeDotAnimation: dotSliderAnimation.SIZE_TRANSITION,
 
       // Tabs
       listCustomTabs: renderListCustomTabs(),

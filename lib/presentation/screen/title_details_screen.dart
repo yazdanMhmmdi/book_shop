@@ -1,13 +1,13 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, must_be_immutable
 
+import 'package:book_shop/constants/constants.dart';
 import 'package:book_shop/core/utils/throteller.dart';
+import 'package:book_shop/logic/logic.dart';
 import 'package:book_shop/presentation/animation/animation.dart';
 import 'package:book_shop/presentation/widgets/circular_indicator.dart';
 import 'package:book_shop/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:book_shop/logic/logic.dart';
-import 'package:book_shop/constants/constants.dart';
 
 import '../widgets/no_book_found_widget.dart';
 import '../widgets/pagination_loading_widget.dart';

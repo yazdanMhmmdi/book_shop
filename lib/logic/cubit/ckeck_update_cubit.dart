@@ -1,11 +1,11 @@
 import 'package:bloc/bloc.dart';
-import '../../core/params/update_app_params.dart';
-import '../../core/utils/package_info_provider.dart';
-import '../../core/utils/url_provider.dart';
-import '../../data/model/update_app_model.dart';
-import '../../domain/usecases/get_update_usecase.dart';
 import 'package:equatable/equatable.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../../core/params/update_app_params.dart';
+import '../../core/utils/package_info_provider.dart';
+import '../../data/model/update_app_model.dart';
+import '../../domain/usecases/get_update_usecase.dart';
 
 part 'ckeck_update_state.dart';
 

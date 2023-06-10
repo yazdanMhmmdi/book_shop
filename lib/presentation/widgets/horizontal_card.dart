@@ -1,8 +1,11 @@
-import '../../networking/networking.dart';
-import 'widgets.dart';
+// ignore_for_file: must_be_immutable
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:octo_image/octo_image.dart';
+
+import '../../networking/networking.dart';
+import 'widgets.dart';
 
 class HorizontalCard extends StatelessWidget {
   String id;

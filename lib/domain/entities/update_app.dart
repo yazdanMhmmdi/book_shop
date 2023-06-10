@@ -1,8 +1,10 @@
-import '../../core/utils/url_provider.dart';
+// ignore_for_file: must_be_immutable
+
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-import '../../core/utils/image_address_provider.dart';
+import '../../core/utils/url_provider.dart';
+
 
 class UpdateApp extends Equatable {
   String? id;

@@ -1,18 +1,17 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import '../../../core/error/failure.dart';
-import '../../../data/data.dart';
-import '../../../domain/usecases/login_usecase.dart';
-import '../../../domain/usecases/sign_up_usecase.dart';
-import '../../cubit/cubit.dart';
-import '../../../presentation/widgets/widgets.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../core/error/failure.dart';
 import '../../../core/params/auth_params.dart';
-import '../../../domain/repositories/auth_repository.dart';
+import '../../../data/data.dart';
+import '../../../domain/usecases/login_usecase.dart';
+import '../../../domain/usecases/sign_up_usecase.dart';
+import '../../../presentation/widgets/widgets.dart';
+import '../../cubit/cubit.dart';
 
 part 'auth_event.dart';
 part 'auth_state.dart';

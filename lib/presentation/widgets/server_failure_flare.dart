@@ -1,7 +1,6 @@
 import 'package:flare_loading/flare_loading.dart';
 import 'package:flutter/material.dart';
 
-import '../../constants/assets.dart';
 import '../../constants/constants.dart';
 import 'secondary_button_widget.dart';
 

@@ -1,7 +1,10 @@
+// ignore_for_file: must_be_immutable
+
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/material.dart';
+
 import '../../../constants/constants.dart';
 import '../widgets.dart';
-import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 
 class DetailSliderWidget extends StatefulWidget {
   Duration duration;

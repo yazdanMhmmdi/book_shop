@@ -1,6 +1,9 @@
-import '../../constants/constants.dart';
+// ignore_for_file: must_be_immutable
+
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
+
+import '../../constants/constants.dart';
 
 class MyLoadingBar extends StatelessWidget {
   late String animation = "";

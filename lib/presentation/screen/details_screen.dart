@@ -1,15 +1,18 @@
+// ignore_for_file: must_be_immutable
+
 import 'dart:async';
 
-import '../../core/error/failure.dart';
-import '../../networking/networking.dart';
-import '../widgets/single_button_dialog_widget.dart';
-import '../widgets/widgets.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:progress_state_button/progress_button.dart';
 import 'package:sizer/sizer.dart';
-import '../../logic/logic.dart';
+
 import '../../constants/constants.dart';
+import '../../logic/logic.dart';
+import '../../networking/networking.dart';
+import '../widgets/single_button_dialog_widget.dart';
+import '../widgets/widgets.dart';
 
 class DetailsScreen extends StatelessWidget {
   late Map<String, String> args;

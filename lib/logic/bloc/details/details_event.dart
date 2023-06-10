@@ -1,15 +1,17 @@
-part of 'details_bloc.dart';
+// // ignore_for_file: must_be_immutable
 
-abstract class DetailsEvent extends Equatable {
-  const DetailsEvent();
+// part of 'details_bloc.dart';
 
-  @override
-  List<Object> get props => [];
-}
+// abstract class DetailsEvent extends Equatable {
+//   const DetailsEvent();
 
-class GetDetails extends DetailsEvent {
-  String post_id;
-  GetDetails({required this.post_id});
-  @override
-  List<Object> get props => [post_id];
-}
+//   @override
+//   List<Object> get props => [];
+// }
+
+// class GetDetails extends DetailsEvent {
+//   String post_id;
+//   GetDetails({required this.post_id});
+//   @override
+//   List<Object> get props => [post_id];
+// }

@@ -1,5 +1,6 @@
-import '../../constants/constants.dart';
 import 'package:intl/intl.dart';
+
+import '../../constants/constants.dart';
 
 class NumberFormatter {
   static getNumber(int number) {

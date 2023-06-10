@@ -20,6 +20,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   late AccountBloc _accountBloc;
   @override
   void initState() {
+    super.initState();
     _bottomNavController =
         TabController(initialIndex: 3, vsync: this, length: 4);
 

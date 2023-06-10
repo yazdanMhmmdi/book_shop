@@ -18,6 +18,7 @@ class _FadeInTransitionState extends State<FadeInTransition>
 
   @override
   void initState() {
+    super.initState();
     _animationController = AnimationController(
         vsync: this,
         duration: Duration(

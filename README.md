@@ -1,6 +1,6 @@
-# Book shop 
+# Book shop
 
-![A test image](http://yazdanmohammadi.ir/images/mockup.jpg)
+![mockup](https://github.com/yazdanMhmmdi/book_shop/assets/71337251/9d8c3e9d-c8e6-4c25-832b-6666f3b11d3b)
 ## version 1.0.0
 - animated login & sign up page
 - responsive ui
@@ -17,9 +17,9 @@
 - fix poster image
 - fix card rounded corners
 - delete white screen 
-## Info
-Flutter SDK version 2.2.0-11.0.pre master for both v1.0.0 & v1.1.0
-## [Download APK v1.0.0](https://yazdanmohammadi.ir/downloads/book_shop_v1.0.0.apk)
-## [Download APK v1.1.0](https://yazdanmohammadi.ir/downloads/book_shop_v1.1.0.Build.02.apk)
+## version 1.3.0
+- login without registration
+
+## [Download APK v1.3.0](http://yazdanmohammadi.ir/download/book_shop_v1.3.0_arm64-v8a-release.apk)
 
 
